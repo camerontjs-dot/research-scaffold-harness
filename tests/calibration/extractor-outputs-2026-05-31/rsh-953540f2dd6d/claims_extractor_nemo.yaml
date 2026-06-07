@@ -1,0 +1,91 @@
+schema_version: extractor-output-sidecar-v1
+extractor_id: mlx-mistral-nemo-12b
+extractor_version: 0.1.0
+extractor_is_stub: false
+diagnostics:
+- think-block-stripped
+claim_count: 6
+claims:
+  schema_version: 1.0.0
+  run_id: rsh-953540f2dd6d
+  generated_at_utc: '2026-05-31T04:32:41Z'
+  claims:
+  - claim_id: rsh-953540f2dd6d-c001
+    claim_type: extracted_claim
+    claim_text: A pharmaceutical quality system under FDA CGMP integrates current
+      good manufacturing practice requirements with a systematic approach to process
+      understanding and risk management.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-nemo-12b; stub=false
+  - claim_id: rsh-953540f2dd6d-c002
+    claim_type: extracted_claim
+    claim_text: Senior management establishes quality policy objectives and allocates
+      resources for manufacturing operations.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-nemo-12b; stub=false
+  - claim_id: rsh-953540f2dd6d-c003
+    claim_type: extracted_claim
+    claim_text: Process validation ensures manufacturing operations produce consistent
+      results within predefined specifications.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-nemo-12b; stub=false
+  - claim_id: rsh-953540f2dd6d-c004
+    claim_type: extracted_claim
+    claim_text: In-process controls, environmental monitoring, and equipment qualification
+      form the operational backbone of pharmaceutical quality systems.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-nemo-12b; stub=false
+  - claim_id: rsh-953540f2dd6d-c005
+    claim_type: extracted_claim
+    claim_text: Analytical methods must be validated to confirm specificity, accuracy,
+      and reproducibility.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-nemo-12b; stub=false
+  - claim_id: rsh-953540f2dd6d-c006
+    claim_type: extracted_claim
+    claim_text: Laboratory data integrity requires complete, attributable, and contemporaneous
+      records.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-nemo-12b; stub=false

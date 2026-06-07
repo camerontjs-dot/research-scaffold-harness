@@ -1,0 +1,13 @@
+schema_version: extractor-output-sidecar-v1
+extractor_id: mlx-mistral-nemo-12b
+extractor_version: 0.1.0
+extractor_is_stub: false
+diagnostics:
+- unclosed-think-block-stripped
+- official-answer-body-empty
+claim_count: 0
+claims:
+  schema_version: 1.0.0
+  run_id: rsh-318e7831856f
+  generated_at_utc: '2026-05-31T12:06:09Z'
+  claims: []

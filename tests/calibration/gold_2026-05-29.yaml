@@ -1,0 +1,197 @@
+gold_version: "2026-05-29-v1"
+source_cells_file: "cells_in_scope.yaml"
+proposer_identity: "TBD"
+proposer_prompt_hash: "sha256:TBD"
+coder_identity: "Cameron"
+coding_date: "2026-05-29"
+status: "template_only_not_adjudicated"
+selection_status: "cells_selected_pending_visible_answer_adjudication"
+notes: >-
+  Selection draft for the first extractor-calibration gold pass. This set aims
+  for roughly 25-30 final adjudicated atomic claims while covering all five
+  generator models, all four workflow conditions, and the three original
+  zero-claim failure modes. Keep this file rejected by the evaluator until the
+  visible answer bodies, proposer outputs, human decisions, and final
+  adjudicated claims are filled.
+selection_rationale:
+  target_final_claim_count: "25-30"
+  expected_claim_count_from_original_matrix: 25
+  expected_recovered_claims_from_fm_a: "up to 3 after human visible-answer scan"
+  coverage:
+    models:
+      - "Phi-4-mini-reasoning"
+      - "Qwen3-8B"
+      - "Llama-3.1-8B-Instruct"
+      - "Gemma-3-12b-it QAT"
+      - "Phi-4-reasoning-plus"
+    conditions:
+      - "baseline"
+      - "format_only"
+      - "provenance_scaffold"
+      - "full_scaffold"
+    failure_modes:
+      - "FM-A double-marker recoverable case"
+      - "FM-B think-block budget exhaustion"
+      - "FM-C scaffold-stage exhaustion"
+  backup_cells_if_claim_count_low:
+    - cell_id: "rsh-4f201c60d416"
+      reason: "Gemma format_only, 4 original claims, clean compliance case."
+    - cell_id: "rsh-48c06999fbd2"
+      reason: "Llama provenance_scaffold, 5 original claims, useful if the selected positive cells adjudicate low."
+  drop_first_if_claim_count_high:
+    - cell_id: "rsh-8910934edd14"
+      reason: "Largest selected positive cell at 7 original claims."
+cells:
+  - cell_id: "rsh-e9827bcbb2f6"
+    model: "lmstudio-community/Phi-4-mini-reasoning-MLX-4bit"
+    condition: "format_only"
+    original_claim_count: 0
+    original_failure_mode: "FM-B"
+    selection_reason: "Includes a Phi-4-mini reasoning-model think-block failure case."
+    visible_answer_body_sha256: "sha256:TBD"
+    visible_answer_body_excerpt: "TBD"
+    proposer_diagnostics:
+      empty_input: false
+      refusal: false
+      notes: "TBD"
+    proposed_claims: []
+    adjudication_decisions: []
+    adjudicated_claims: []
+
+  - cell_id: "rsh-3aa96f2efe29"
+    model: "mlx-community/Qwen3-8B-4bit"
+    condition: "baseline"
+    original_claim_count: 3
+    selection_reason: "Small clean baseline case from Qwen."
+    visible_answer_body_sha256: "sha256:TBD"
+    visible_answer_body_excerpt: "TBD"
+    proposer_diagnostics:
+      empty_input: false
+      refusal: false
+      notes: "TBD"
+    proposed_claims: []
+    adjudication_decisions: []
+    adjudicated_claims: []
+
+  - cell_id: "rsh-f2957bfdc6d1"
+    model: "mlx-community/Qwen3-8B-4bit"
+    condition: "provenance_scaffold"
+    original_claim_count: 0
+    original_failure_mode: "FM-B"
+    selection_reason: "Adds a Qwen think-block failure case under provenance_scaffold."
+    visible_answer_body_sha256: "sha256:TBD"
+    visible_answer_body_excerpt: "TBD"
+    proposer_diagnostics:
+      empty_input: false
+      refusal: false
+      notes: "TBD"
+    proposed_claims: []
+    adjudication_decisions: []
+    adjudicated_claims: []
+
+  - cell_id: "rsh-219a5670de31"
+    model: "mlx-community/Qwen3-8B-4bit"
+    condition: "full_scaffold"
+    original_claim_count: 5
+    selection_reason: "Moderate full_scaffold positive case from Qwen."
+    visible_answer_body_sha256: "sha256:TBD"
+    visible_answer_body_excerpt: "TBD"
+    proposer_diagnostics:
+      empty_input: false
+      refusal: false
+      notes: "TBD"
+    proposed_claims: []
+    adjudication_decisions: []
+    adjudicated_claims: []
+
+  - cell_id: "rsh-14cc40061937"
+    model: "mlx-community/Meta-Llama-3.1-8B-Instruct-4bit"
+    condition: "baseline"
+    original_claim_count: 0
+    original_failure_mode: "FM-A"
+    selection_reason: "The recoverable double-marker case. Human gold should capture whether the visible answer contains the three claims lost by the old stub."
+    visible_answer_body_sha256: "sha256:TBD"
+    visible_answer_body_excerpt: "TBD"
+    proposer_diagnostics:
+      empty_input: false
+      refusal: false
+      notes: "TBD"
+    proposed_claims: []
+    adjudication_decisions: []
+    adjudicated_claims: []
+
+  - cell_id: "rsh-8910934edd14"
+    model: "mlx-community/Meta-Llama-3.1-8B-Instruct-4bit"
+    condition: "format_only"
+    original_claim_count: 7
+    selection_reason: "Largest selected positive case. Useful stress test for claim splitting without using the very large Phi-4-mini cells."
+    visible_answer_body_sha256: "sha256:TBD"
+    visible_answer_body_excerpt: "TBD"
+    proposer_diagnostics:
+      empty_input: false
+      refusal: false
+      notes: "TBD"
+    proposed_claims: []
+    adjudication_decisions: []
+    adjudicated_claims: []
+
+  - cell_id: "rsh-afe4ff0ca356"
+    model: "mlx-community/Meta-Llama-3.1-8B-Instruct-4bit"
+    condition: "full_scaffold"
+    original_claim_count: 0
+    original_failure_mode: "FM-C"
+    selection_reason: "The scaffold-stage exhaustion case. This distinguishes missing final answer from ordinary zero-claim extraction."
+    visible_answer_body_sha256: "sha256:TBD"
+    visible_answer_body_excerpt: "TBD"
+    proposer_diagnostics:
+      empty_input: false
+      refusal: false
+      notes: "TBD"
+    proposed_claims: []
+    adjudication_decisions: []
+    adjudicated_claims: []
+
+  - cell_id: "rsh-7e8e8cc1274a"
+    model: "mlx-community/gemma-3-12b-it-qat-4bit"
+    condition: "baseline"
+    original_claim_count: 3
+    selection_reason: "Clean Gemma baseline case. Gemma had full marker compliance in the original matrix."
+    visible_answer_body_sha256: "sha256:TBD"
+    visible_answer_body_excerpt: "TBD"
+    proposer_diagnostics:
+      empty_input: false
+      refusal: false
+      notes: "TBD"
+    proposed_claims: []
+    adjudication_decisions: []
+    adjudicated_claims: []
+
+  - cell_id: "rsh-f4e563504f43"
+    model: "mlx-community/gemma-3-12b-it-qat-4bit"
+    condition: "full_scaffold"
+    original_claim_count: 4
+    selection_reason: "Clean Gemma full_scaffold case for a compliant scaffolded output."
+    visible_answer_body_sha256: "sha256:TBD"
+    visible_answer_body_excerpt: "TBD"
+    proposer_diagnostics:
+      empty_input: false
+      refusal: false
+      notes: "TBD"
+    proposed_claims: []
+    adjudication_decisions: []
+    adjudicated_claims: []
+
+  - cell_id: "rsh-7e754f7cdeed"
+    model: "mlx-community/Phi-4-reasoning-plus-4bit"
+    condition: "baseline"
+    original_claim_count: 3
+    selection_reason: "Adds the only originally compliant Phi-4-reasoning-plus cell."
+    visible_answer_body_sha256: "sha256:TBD"
+    visible_answer_body_excerpt: "TBD"
+    proposer_diagnostics:
+      empty_input: false
+      refusal: false
+      notes: "TBD"
+    proposed_claims: []
+    adjudication_decisions: []
+    adjudicated_claims: []

@@ -1,0 +1,4 @@
+task_id: rsh-001-fixture
+research_question: "What are the core elements of a pharmaceutical quality system under FDA CGMP guidance?"
+domain: pharma_regulatory
+expert_checkable: true

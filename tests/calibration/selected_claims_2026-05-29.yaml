@@ -1,0 +1,180 @@
+claim_packet_version: "2026-05-29-v1"
+source_gold_draft: "gold_2026-05-29.yaml"
+source_matrix_dir: "../../build/phase-2-unit4-matrix"
+claim_source: "existing Unit 4 claims.yaml files"
+status: "helper_only_not_gold"
+notes: >-
+  These are the claims already extracted by the original Unit 4 stub extractor
+  for the selected calibration cells. Use them as a starting checklist while
+  writing the human-adjudicated gold file. They are not the gold answer key:
+  each claim still needs to be checked against the visible answer body, accepted,
+  edited, rejected, or supplemented with claims the old extractor missed.
+summary:
+  selected_cell_count: 10
+  extracted_claim_count: 25
+  zero_claim_selected_cells: 4
+  zero_claim_note: >-
+    The zero-claim cells still need human visible-answer scans. The old Unit 4
+    artifacts predate raw_output.txt sidecars, so any recovered claims for
+    FM-A/FM-B/FM-C cells must come from visible-answer review or a rerun that
+    preserves raw_output.txt.
+cells:
+  - cell_id: "rsh-e9827bcbb2f6"
+    model: "lmstudio-community/Phi-4-mini-reasoning-MLX-4bit"
+    condition: "format_only"
+    original_failure_mode: "FM-B"
+    extracted_claims: []
+    adjudication_note: "Human scan required. Original extractor found no claims."
+
+  - cell_id: "rsh-3aa96f2efe29"
+    model: "mlx-community/Qwen3-8B-4bit"
+    condition: "baseline"
+    extracted_claims:
+      - source_claim_id: "rsh-3aa96f2efe29-c001"
+        claim_text: "The pharmaceutical quality system requires management to establish quality policy and ensure resource allocation for manufacturing operations."
+        suggested_decision: "TBD"
+        adjudication_note: "Check against the visible answer body before accepting."
+      - source_claim_id: "rsh-3aa96f2efe29-c002"
+        claim_text: "Process validation and in-process controls are critical to maintaining consistent product quality under CGMP guidelines."
+        suggested_decision: "TBD"
+        adjudication_note: "Check against the visible answer body before accepting."
+      - source_claim_id: "rsh-3aa96f2efe29-c003"
+        claim_text: "Laboratory data integrity and traceable documentation are essential for ensuring product consistency and compliance with CGMP standards."
+        suggested_decision: "TBD"
+        adjudication_note: "Check against the visible answer body before accepting."
+
+  - cell_id: "rsh-f2957bfdc6d1"
+    model: "mlx-community/Qwen3-8B-4bit"
+    condition: "provenance_scaffold"
+    original_failure_mode: "FM-B"
+    extracted_claims: []
+    adjudication_note: "Human scan required. Original extractor found no claims."
+
+  - cell_id: "rsh-219a5670de31"
+    model: "mlx-community/Qwen3-8B-4bit"
+    condition: "full_scaffold"
+    extracted_claims:
+      - source_claim_id: "rsh-219a5670de31-c001"
+        claim_text: "The core elements of a pharmaceutical quality system under FDA CGMP guidance include management responsibility, production system controls, and laboratory and documentation controls."
+        suggested_decision: "TBD"
+        adjudication_note: "Check whether this should stay one claim or split by element."
+      - source_claim_id: "rsh-219a5670de31-c002"
+        claim_text: "Senior management establishes quality policy objectives, allocates resources, defines roles, ensures personnel qualifications, and maintains oversight through periodic reviews (src-001)."
+        suggested_decision: "TBD"
+        adjudication_note: "Likely compound. Consider splitting if the visible answer states each duty separately."
+      - source_claim_id: "rsh-219a5670de31-c003"
+        claim_text: "Process validation, in-process controls, environmental monitoring, equipment qualification, and deviation handling procedures are critical to production system controls (src-001)."
+        suggested_decision: "TBD"
+        adjudication_note: "Likely compound. Consider splitting by control type if needed."
+      - source_claim_id: "rsh-219a5670de31-c004"
+        claim_text: "Analytical methods must be validated for specificity, accuracy, and reproducibility, and laboratory data integrity requires complete, attributable, and contemporaneous records (src-001)."
+        suggested_decision: "TBD"
+        adjudication_note: "Likely two claims: method validation and data integrity records."
+      - source_claim_id: "rsh-219a5670de31-c005"
+        claim_text: "Batch records, standard operating procedures, and change control documentation ensure traceability from raw materials to finished product release (src-001)."
+        suggested_decision: "TBD"
+        adjudication_note: "Check whether traceability is stated as a single combined claim."
+
+  - cell_id: "rsh-14cc40061937"
+    model: "mlx-community/Meta-Llama-3.1-8B-Instruct-4bit"
+    condition: "baseline"
+    original_failure_mode: "FM-A"
+    extracted_claims: []
+    adjudication_note: >-
+      Human scan required. This is the double-marker case. The old extractor
+      lost claims because it read the final empty marker segment.
+
+  - cell_id: "rsh-8910934edd14"
+    model: "mlx-community/Meta-Llama-3.1-8B-Instruct-4bit"
+    condition: "format_only"
+    extracted_claims:
+      - source_claim_id: "rsh-8910934edd14-c001"
+        claim_text: "A robust pharmaceutical quality system integrates current good manufacturing practice requirements with a systematic approach to process understanding and risk management."
+        suggested_decision: "TBD"
+        adjudication_note: "Consider editing if 'robust' is the extractor's wording rather than visible-answer wording."
+      - source_claim_id: "rsh-8910934edd14-c002"
+        claim_text: "Senior management establishes quality policy objectives and allocates adequate resources for manufacturing operations."
+        suggested_decision: "TBD"
+        adjudication_note: "Check against the visible answer body before accepting."
+      - source_claim_id: "rsh-8910934edd14-c003"
+        claim_text: "Process validation demonstrates that manufacturing operations produce consistent results within predefined specifications."
+        suggested_decision: "TBD"
+        adjudication_note: "Check against the visible answer body before accepting."
+      - source_claim_id: "rsh-8910934edd14-c004"
+        claim_text: "Deviation handling procedures capture unexpected events and trigger corrective and preventive actions when root cause analysis identifies systemic issues."
+        suggested_decision: "TBD"
+        adjudication_note: "Likely compound. Check whether capture, CAPA trigger, and systemic root cause are separate stated claims."
+      - source_claim_id: "rsh-8910934edd14-c005"
+        claim_text: "Analytical methods undergo validation to confirm specificity, accuracy, and reproducibility."
+        suggested_decision: "TBD"
+        adjudication_note: "Check against the visible answer body before accepting."
+      - source_claim_id: "rsh-8910934edd14-c006"
+        claim_text: "Laboratory data integrity practices require complete, attributable, and contemporaneous records."
+        suggested_decision: "TBD"
+        adjudication_note: "Check against the visible answer body before accepting."
+      - source_claim_id: "rsh-8910934edd14-c007"
+        claim_text: "Batch records, standard operating procedures, and change control documentation provide the traceability chain linking raw materials through finished product release."
+        suggested_decision: "TBD"
+        adjudication_note: "Check whether the three documentation types should stay one traceability claim."
+
+  - cell_id: "rsh-afe4ff0ca356"
+    model: "mlx-community/Meta-Llama-3.1-8B-Instruct-4bit"
+    condition: "full_scaffold"
+    original_failure_mode: "FM-C"
+    extracted_claims: []
+    adjudication_note: "Human scan required. Original extractor found no final claims because the run stopped before the final-answer stage."
+
+  - cell_id: "rsh-7e8e8cc1274a"
+    model: "mlx-community/gemma-3-12b-it-qat-4bit"
+    condition: "baseline"
+    extracted_claims:
+      - source_claim_id: "rsh-7e8e8cc1274a-c001"
+        claim_text: "A pharmaceutical quality system integrates current good manufacturing practice requirements with a systematic approach to process understanding and risk management."
+        suggested_decision: "TBD"
+        adjudication_note: "Removed leftover bullet/backtick formatting from the old extractor output."
+      - source_claim_id: "rsh-7e8e8cc1274a-c002"
+        claim_text: "Senior management establishes quality policy objectives and allocates resources."
+        suggested_decision: "TBD"
+        adjudication_note: "Removed leftover bullet/backtick formatting from the old extractor output."
+      - source_claim_id: "rsh-7e8e8cc1274a-c003"
+        claim_text: "Process validation demonstrates that manufacturing operations produce consistent results."
+        suggested_decision: "TBD"
+        adjudication_note: "Removed leftover bullet/backtick formatting from the old extractor output."
+
+  - cell_id: "rsh-f4e563504f43"
+    model: "mlx-community/gemma-3-12b-it-qat-4bit"
+    condition: "full_scaffold"
+    extracted_claims:
+      - source_claim_id: "rsh-f4e563504f43-c001"
+        claim_text: "A pharmaceutical quality system integrates CGMP requirements with process understanding and risk management."
+        suggested_decision: "TBD"
+        adjudication_note: "Check against the visible answer body before accepting."
+      - source_claim_id: "rsh-f4e563504f43-c002"
+        claim_text: "Management Responsibility is a core element, involving setting quality policy objectives and allocating resources."
+        suggested_decision: "TBD"
+        adjudication_note: "May need edit for sentence case and atomic wording."
+      - source_claim_id: "rsh-f4e563504f43-c003"
+        claim_text: "Production System Controls are a core element, focused on validation, in-process controls, environmental monitoring, and deviation handling."
+        suggested_decision: "TBD"
+        adjudication_note: "Likely compound. Check whether to split by control type."
+      - source_claim_id: "rsh-f4e563504f43-c004"
+        claim_text: "Laboratory and Documentation Controls are a core element, including analytical method validation and data integrity practices."
+        suggested_decision: "TBD"
+        adjudication_note: "Likely compound. Check whether to split method validation and data integrity."
+
+  - cell_id: "rsh-7e754f7cdeed"
+    model: "mlx-community/Phi-4-reasoning-plus-4bit"
+    condition: "baseline"
+    extracted_claims:
+      - source_claim_id: "rsh-7e754f7cdeed-c001"
+        claim_text: "Senior management establishes quality objectives, allocates resources, and oversees quality outcomes through reviews."
+        suggested_decision: "TBD"
+        adjudication_note: "Likely compound. Consider splitting if the visible answer states each duty separately."
+      - source_claim_id: "rsh-7e754f7cdeed-c002"
+        claim_text: "Manufacturing operations rely on validated processes, in-process and environmental controls, equipment qualification, and deviation handling for consistency."
+        suggested_decision: "TBD"
+        adjudication_note: "Likely compound. Consider splitting by manufacturing-control category."
+      - source_claim_id: "rsh-7e754f7cdeed-c003"
+        claim_text: "Analytical methods are validated and laboratory records ensure traceability from raw materials to finished products."
+        suggested_decision: "TBD"
+        adjudication_note: "Likely two claims: method validation and record traceability."

@@ -1,0 +1,65 @@
+calibration_scope_version: 2026-05-31-v1
+source_matrix_dir: ../../build/phase-2-unit4-matrix-v2
+supersedes: cells_in_scope.yaml (built on the lost 2026-05-18 matrix)
+visible_answers_dir: visible-answers-2026-05-31/
+notes: 8 cells from matrix v2 selected on VISIBLE-BODY content, stratified across
+  all 5 models and all 4 conditions. Mix of tri-agreement anchors, high-divergence
+  (small3 over-atomization), and one intentional zero-claim non-answer. reference_extractor_counts
+  are pre-calibration (NOT ground truth), selection context only.
+cells:
+- cell_id: rsh-8c6337107a9f
+  model: lmstudio-community/Phi-4-mini-reasoning-MLX-4bit
+  condition: baseline
+  selection_reason: Reasoning model WITH a visible answer; stub footer spike (36)
+  reference_extractor_counts: 36/3/10
+  visible_answer_body_chars: 578
+  visible_answer_body_sha256: sha256:334a7d1a77a941c9a02150b3dccf3c00324ce9e50a03efce896d77d8d1f1b76b
+- cell_id: rsh-953540f2dd6d
+  model: mlx-community/Qwen3-8B-4bit
+  condition: provenance_scaffold
+  selection_reason: Tri-agreement anchor, substantial body
+  reference_extractor_counts: 6/6/6
+  visible_answer_body_chars: 1554
+  visible_answer_body_sha256: sha256:4989cadb7f867b13da591217b3a68f99d22ea20dfc3bfc37afb4baff26202d64
+- cell_id: rsh-f6e603ab0646
+  model: mlx-community/Meta-Llama-3.1-8B-Instruct-4bit
+  condition: baseline
+  selection_reason: Tri-agreement anchor
+  reference_extractor_counts: 3/3/3
+  visible_answer_body_chars: 521
+  visible_answer_body_sha256: sha256:f93c47e0bb3c42f5f611f49fdf4d5acb96102e8578c1de50b501592b87b9edf4
+- cell_id: rsh-a2d1f94091b3
+  model: mlx-community/Meta-Llama-3.1-8B-Instruct-4bit
+  condition: full_scaffold
+  selection_reason: Clean full_scaffold body
+  reference_extractor_counts: 0/3/3
+  visible_answer_body_chars: 1477
+  visible_answer_body_sha256: sha256:fface5166c31e352a1cf7e7058d3fac76c5a79e199c07625ceadfccfc4f88cfb
+- cell_id: rsh-5b438961affa
+  model: mlx-community/gemma-3-12b-it-qat-4bit
+  condition: format_only
+  selection_reason: Small3 over-atomization (16)
+  reference_extractor_counts: 1/4/16
+  visible_answer_body_chars: 1157
+  visible_answer_body_sha256: sha256:1c1ac2b3b06078ad1a4cc1480539286d791e1ef85a09f4403c66516e9ffc933b
+- cell_id: rsh-be410d83ba0c
+  model: mlx-community/gemma-3-12b-it-qat-4bit
+  condition: full_scaffold
+  selection_reason: Maximum divergence (small3=26); biggest body
+  reference_extractor_counts: 4/4/26
+  visible_answer_body_chars: 2158
+  visible_answer_body_sha256: sha256:c568a763593d5c762abf7fe70e22fab06eea6f675ba6e4da3f5b248842e7f0f1
+- cell_id: rsh-fdc95474a98c
+  model: mlx-community/Phi-4-reasoning-plus-4bit
+  condition: baseline
+  selection_reason: Only Phi-4-RP cell with a visible answer; divergent
+  reference_extractor_counts: 3/7/20
+  visible_answer_body_chars: 896
+  visible_answer_body_sha256: sha256:aeb095b0b2d1299cc4aec7a6ac75de483b9855efb23aab6f16fe19a4ca0e38c8
+- cell_id: rsh-318e7831856f
+  model: mlx-community/Phi-4-reasoning-plus-4bit
+  condition: format_only
+  selection_reason: Intentional zero-claim case (think-exhaustion, empty body)
+  reference_extractor_counts: 0/0/0
+  visible_answer_body_chars: 0
+  visible_answer_body_sha256: sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855

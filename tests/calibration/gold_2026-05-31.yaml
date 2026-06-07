@@ -1,0 +1,1431 @@
+gold_version: 2026-05-31-v1
+source_cells_file: cells_in_scope_2026-05-31.yaml
+source_matrix_dir: ../../build/phase-2-unit4-matrix-v2
+visible_answers_dir: visible-answers-2026-05-31/
+proposer_identity: claude (cold per-cell subagent; Anthropic family, distinct from
+  Mistral extractors and all generators; fresh context, no cross-cell memory)
+proposer_prompt_hash: sha256:9c14d22978e0f130a8f6233edcd7c245a737145e5726d8888bd16f9938eb8954
+coder_identity: Cameron
+coding_date: '2026-05-31'
+status: adjudicated
+notes: 'matrix-v2 calibration gold scaffold. Visible answer bodies (stripped surface
+  the live extractors read) saved under visible_answers_dir and hashed in visible_answer_body_sha256.
+  Per cell: fill proposed_claims (fresh-context proposer), adjudication_decisions,
+  adjudicated_claims; then flip status.'
+cells:
+- cell_id: rsh-8c6337107a9f
+  model: lmstudio-community/Phi-4-mini-reasoning-MLX-4bit
+  condition: baseline
+  visible_answer_body_sha256: sha256:334a7d1a77a941c9a02150b3dccf3c00324ce9e50a03efce896d77d8d1f1b76b
+  visible_answer_body_excerpt: '- **Management Responsibility**:
+
+    Senior management establishes quality policy objectives and allocates adequate
+    resources for manufacturing operations.
+
+    - **Production System Contro …'
+  proposer_diagnostics:
+    empty_input: false
+    refusal: false
+    notes: ''
+  proposed_claims:
+  - claim_text: Senior management establishes quality policy objectives and allocates
+      adequate resources for manufacturing operations.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Senior management establishes quality policy objectives and allocates
+      adequate resources for manufacturing operations.
+  - claim_text: Process validation demonstrates consistent manufacturing results within
+      predefined specifications.
+    claim_type: methodological
+    proposer_confidence: high
+    source_quote: Process validation demonstrates consistent manufacturing results
+      within predefined specifications, supported by in-process controls, environmental
+      monitoring, and equipment qualification.
+  - claim_text: Process validation is supported by in-process controls.
+    claim_type: methodological
+    proposer_confidence: medium
+    source_quote: supported by in-process controls, environmental monitoring, and
+      equipment qualification.
+  - claim_text: Process validation is supported by environmental monitoring.
+    claim_type: methodological
+    proposer_confidence: medium
+    source_quote: supported by in-process controls, environmental monitoring, and
+      equipment qualification.
+  - claim_text: Process validation is supported by equipment qualification.
+    claim_type: methodological
+    proposer_confidence: medium
+    source_quote: supported by in-process controls, environmental monitoring, and
+      equipment qualification.
+  - claim_text: Analytical methods undergo validation to ensure accuracy.
+    claim_type: methodological
+    proposer_confidence: high
+    source_quote: Analytical methods undergo validation to ensure accuracy, and laboratory
+      data integrity practices maintain complete, attributible, and contemporaneous
+      records.
+  - claim_text: Laboratory data integrity practices maintain complete, attributible,
+      and contemporaneous records.
+    claim_type: methodological
+    proposer_confidence: high
+    source_quote: laboratory data integrity practices maintain complete, attributible,
+      and contemporaneous records.
+  adjudication_decisions:
+  - claim_index: 0
+    proposal: Senior management establishes quality policy objectives and allocates
+      adequate resources for manufacturing operations.
+    decision: split
+    final:
+    - Senior management establishes quality policy objectives.
+    - Senior management allocates adequate resources for manufacturing operations.
+    reason: Split per splitter rule — two distinct duties; consistent with cell rsh-f6e603ab0646.
+  - claim_index: 1
+    proposal: Process validation demonstrates consistent manufacturing results within
+      predefined specifications.
+    decision: accept
+    final: Process validation demonstrates consistent manufacturing results within
+      predefined specifications.
+    reason: One task.
+  - claim_index: 2
+    proposal: Process validation is supported by in-process controls.
+    decision: accept
+    final: Process validation is supported by in-process controls.
+    reason: Distinct support; kept separate per splitter rule.
+  - claim_index: 3
+    proposal: Process validation is supported by environmental monitoring.
+    decision: accept
+    final: Process validation is supported by environmental monitoring.
+    reason: Distinct support.
+  - claim_index: 4
+    proposal: Process validation is supported by equipment qualification.
+    decision: accept
+    final: Process validation is supported by equipment qualification.
+    reason: Distinct support.
+  - claim_index: 5
+    proposal: Analytical methods undergo validation to ensure accuracy.
+    decision: accept
+    final: Analytical methods undergo validation to ensure accuracy.
+    reason: One task (method validation).
+  - claim_index: 6
+    proposal: Laboratory data integrity practices maintain complete, attributible,
+      and contemporaneous records.
+    decision: accept
+    final: Laboratory data integrity practices maintain complete, attributible, and
+      contemporaneous records.
+    reason: One task; the three record qualities are adjectival, kept together.
+  adjudicated_claims:
+  - claim_text: Senior management establishes quality policy objectives.
+    claim_type: factual
+    source_quote: Senior management establishes quality policy objectives and allocates
+      adequate resources for manufacturing operations.
+    adjudication_note: 'split from proposal #1 (objectives)'
+  - claim_text: Senior management allocates adequate resources for manufacturing operations.
+    claim_type: factual
+    source_quote: Senior management establishes quality policy objectives and allocates
+      adequate resources for manufacturing operations.
+    adjudication_note: 'split from proposal #1 (resources)'
+  - claim_text: Process validation demonstrates consistent manufacturing results within
+      predefined specifications.
+    claim_type: methodological
+    source_quote: Process validation demonstrates consistent manufacturing results
+      within predefined specifications, supported by in-process controls, environmental
+      monitoring, and equipment qualification.
+    adjudication_note: accepted
+  - claim_text: Process validation is supported by in-process controls.
+    claim_type: methodological
+    source_quote: supported by in-process controls, environmental monitoring, and
+      equipment qualification.
+    adjudication_note: accepted
+  - claim_text: Process validation is supported by environmental monitoring.
+    claim_type: methodological
+    source_quote: supported by in-process controls, environmental monitoring, and
+      equipment qualification.
+    adjudication_note: accepted
+  - claim_text: Process validation is supported by equipment qualification.
+    claim_type: methodological
+    source_quote: supported by in-process controls, environmental monitoring, and
+      equipment qualification.
+    adjudication_note: accepted
+  - claim_text: Analytical methods undergo validation to ensure accuracy.
+    claim_type: methodological
+    source_quote: Analytical methods undergo validation to ensure accuracy, and laboratory
+      data integrity practices maintain complete, attributible, and contemporaneous
+      records.
+    adjudication_note: accepted
+  - claim_text: Laboratory data integrity practices maintain complete, attributible,
+      and contemporaneous records.
+    claim_type: methodological
+    source_quote: laboratory data integrity practices maintain complete, attributible,
+      and contemporaneous records.
+    adjudication_note: accepted as one (adjectival qualities)
+- cell_id: rsh-953540f2dd6d
+  model: mlx-community/Qwen3-8B-4bit
+  condition: provenance_scaffold
+  visible_answer_body_sha256: sha256:4989cadb7f867b13da591217b3a68f99d22ea20dfc3bfc37afb4baff26202d64
+  visible_answer_body_excerpt: 1. **Claim Text:** A pharmaceutical quality system
+    under FDA CGMP integrates current good manufacturing practice requirements with
+    a systematic approach to process understanding an …
+  proposer_diagnostics:
+    empty_input: false
+    refusal: false
+    notes: answer was a structured claim list; proposer dropped scaffold metadata
+      fields
+  proposed_claims:
+  - claim_text: A pharmaceutical quality system under FDA CGMP integrates current
+      good manufacturing practice requirements with a systematic approach to process
+      understanding and risk management.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: A pharmaceutical quality system under FDA CGMP integrates current
+      good manufacturing practice requirements with a systematic approach to process
+      understanding and risk management.
+  - claim_text: Senior management establishes quality policy objectives for manufacturing
+      operations.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Senior management establishes quality policy objectives and allocates
+      resources for manufacturing operations.
+  - claim_text: Senior management allocates resources for manufacturing operations.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Senior management establishes quality policy objectives and allocates
+      resources for manufacturing operations.
+  - claim_text: Process validation ensures manufacturing operations produce consistent
+      results within predefined specifications.
+    claim_type: methodological
+    proposer_confidence: high
+    source_quote: Process validation ensures manufacturing operations produce consistent
+      results within predefined specifications.
+  - claim_text: In-process controls, environmental monitoring, and equipment qualification
+      form the operational backbone of pharmaceutical quality systems.
+    claim_type: factual
+    proposer_confidence: medium
+    source_quote: In-process controls, environmental monitoring, and equipment qualification
+      form the operational backbone of pharmaceutical quality systems.
+  - claim_text: Analytical methods must be validated to confirm specificity, accuracy,
+      and reproducibility.
+    claim_type: methodological
+    proposer_confidence: high
+    source_quote: Analytical methods must be validated to confirm specificity, accuracy,
+      and reproducibility.
+  - claim_text: Laboratory data integrity requires complete, attributable, and contemporaneous
+      records.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Laboratory data integrity requires complete, attributable, and contemporaneous
+      records.
+  adjudication_decisions:
+  - claim_index: 0
+    proposal: A pharmaceutical quality system under FDA CGMP integrates current good
+      manufacturing practice requirements with a systematic approach to process understanding
+      and risk management.
+    decision: accept
+    final: A pharmaceutical quality system under FDA CGMP integrates current good
+      manufacturing practice requirements with a systematic approach to process understanding
+      and risk management.
+    reason: One assertion about what a QMS integrates.
+  - claim_index: 1
+    proposal: Senior management establishes quality policy objectives for manufacturing
+      operations.
+    decision: edit
+    final: Senior management establishes quality policy objectives.
+    reason: Trimmed proposer's appended 'for manufacturing operations' to match the
+      source (the phrase modifies resource allocation, not objective-setting).
+  - claim_index: 2
+    proposal: Senior management allocates resources for manufacturing operations.
+    decision: accept
+    final: Senior management allocates resources for manufacturing operations.
+    reason: Distinct duty (resources).
+  - claim_index: 3
+    proposal: Process validation ensures manufacturing operations produce consistent
+      results within predefined specifications.
+    decision: accept
+    final: Process validation ensures manufacturing operations produce consistent
+      results within predefined specifications.
+    reason: One task.
+  - claim_index: 4
+    proposal: In-process controls, environmental monitoring, and equipment qualification
+      form the operational backbone of pharmaceutical quality systems.
+    decision: accept
+    final: In-process controls, environmental monitoring, and equipment qualification
+      form the operational backbone of pharmaceutical quality systems.
+    reason: 'Kept as ONE — collective subject (''form the operational backbone''),
+      a single assertion; unlike cell 1''s distributive ''supported by'' list. Cameron:
+      ''technically about 1 thing.'''
+  - claim_index: 5
+    proposal: Analytical methods must be validated to confirm specificity, accuracy,
+      and reproducibility.
+    decision: accept
+    final: Analytical methods must be validated to confirm specificity, accuracy,
+      and reproducibility.
+    reason: One task; adjectival qualities kept together.
+  - claim_index: 6
+    proposal: Laboratory data integrity requires complete, attributable, and contemporaneous
+      records.
+    decision: accept
+    final: Laboratory data integrity requires complete, attributable, and contemporaneous
+      records.
+    reason: One task; adjectival qualities kept together.
+  adjudicated_claims:
+  - claim_text: A pharmaceutical quality system under FDA CGMP integrates current
+      good manufacturing practice requirements with a systematic approach to process
+      understanding and risk management.
+    claim_type: factual
+    source_quote: A pharmaceutical quality system under FDA CGMP integrates current
+      good manufacturing practice requirements with a systematic approach to process
+      understanding and risk management.
+    adjudication_note: accepted
+  - claim_text: Senior management establishes quality policy objectives.
+    claim_type: factual
+    source_quote: Senior management establishes quality policy objectives and allocates
+      resources for manufacturing operations.
+    adjudication_note: 'edited: trimmed trailing phrase'
+  - claim_text: Senior management allocates resources for manufacturing operations.
+    claim_type: factual
+    source_quote: Senior management establishes quality policy objectives and allocates
+      resources for manufacturing operations.
+    adjudication_note: accepted
+  - claim_text: Process validation ensures manufacturing operations produce consistent
+      results within predefined specifications.
+    claim_type: methodological
+    source_quote: Process validation ensures manufacturing operations produce consistent
+      results within predefined specifications.
+    adjudication_note: accepted
+  - claim_text: In-process controls, environmental monitoring, and equipment qualification
+      form the operational backbone of pharmaceutical quality systems.
+    claim_type: factual
+    source_quote: In-process controls, environmental monitoring, and equipment qualification
+      form the operational backbone of pharmaceutical quality systems.
+    adjudication_note: accepted as one (collective subject)
+  - claim_text: Analytical methods must be validated to confirm specificity, accuracy,
+      and reproducibility.
+    claim_type: methodological
+    source_quote: Analytical methods must be validated to confirm specificity, accuracy,
+      and reproducibility.
+    adjudication_note: accepted
+  - claim_text: Laboratory data integrity requires complete, attributable, and contemporaneous
+      records.
+    claim_type: factual
+    source_quote: Laboratory data integrity requires complete, attributable, and contemporaneous
+      records.
+    adjudication_note: accepted
+- cell_id: rsh-f6e603ab0646
+  model: mlx-community/Meta-Llama-3.1-8B-Instruct-4bit
+  condition: baseline
+  visible_answer_body_sha256: sha256:f93c47e0bb3c42f5f611f49fdf4d5acb96102e8578c1de50b501592b87b9edf4
+  visible_answer_body_excerpt: 'The core elements of a pharmaceutical quality system
+    under FDA CGMP guidance include:
+
+
+    - Management Responsibility: Senior management establishes quality policy objectives
+    and allo …'
+  proposer_diagnostics:
+    empty_input: false
+    refusal: false
+    notes: ''
+  proposed_claims:
+  - claim_text: The core elements of a pharmaceutical quality system under FDA CGMP
+      guidance include management responsibility, production system controls, and
+      laboratory and documentation controls.
+    claim_type: factual
+    proposer_confidence: medium
+    source_quote: 'The core elements of a pharmaceutical quality system under FDA
+      CGMP guidance include:'
+  - claim_text: Senior management establishes quality policy objectives.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: 'Management Responsibility: Senior management establishes quality
+      policy objectives and allocates adequate resources for manufacturing operations.'
+  - claim_text: Senior management allocates adequate resources for manufacturing operations.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: 'Management Responsibility: Senior management establishes quality
+      policy objectives and allocates adequate resources for manufacturing operations.'
+  - claim_text: Process validation demonstrates that manufacturing operations produce
+      consistent results within predefined specifications.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: 'Production System Controls: Process validation demonstrates that
+      manufacturing operations produce consistent results within predefined specifications.'
+  - claim_text: Analytical methods undergo validation to confirm specificity, accuracy,
+      and reproducibility.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: 'Laboratory and Documentation Controls: Analytical methods undergo
+      validation to confirm specificity, accuracy, and reproducibility.'
+  adjudication_decisions:
+  - claim_index: 0
+    proposal: The core elements of a pharmaceutical quality system under FDA CGMP
+      guidance include management responsibility, production system controls, and
+      laboratory and documentation controls.
+    decision: accept
+    final: The core elements of a pharmaceutical quality system under FDA CGMP guidance
+      include management responsibility, production system controls, and laboratory
+      and documentation controls.
+    reason: Accepted — umbrella claim naming the three core elements; Cameron judged
+      it a good substantive claim, not a mere header.
+  - claim_index: 1
+    proposal: Senior management establishes quality policy objectives.
+    decision: accept
+    final: Senior management establishes quality policy objectives.
+    reason: 'Accepted; kept separate from #3 — establishing quality-policy objectives
+      and allocating resources are distinct duties.'
+  - claim_index: 2
+    proposal: Senior management allocates adequate resources for manufacturing operations.
+    decision: accept
+    final: Senior management allocates adequate resources for manufacturing operations.
+    reason: 'Accepted; kept separate from #2 (distinct duty).'
+  - claim_index: 3
+    proposal: Process validation demonstrates that manufacturing operations produce
+      consistent results within predefined specifications.
+    decision: accept
+    final: Process validation demonstrates that manufacturing operations produce consistent
+      results within predefined specifications.
+    reason: Accepted as proposed.
+  - claim_index: 4
+    proposal: Analytical methods undergo validation to confirm specificity, accuracy,
+      and reproducibility.
+    decision: accept
+    final: Analytical methods undergo validation to confirm specificity, accuracy,
+      and reproducibility.
+    reason: Accepted as proposed.
+  adjudicated_claims:
+  - claim_text: The core elements of a pharmaceutical quality system under FDA CGMP
+      guidance include management responsibility, production system controls, and
+      laboratory and documentation controls.
+    claim_type: factual
+    source_quote: 'The core elements of a pharmaceutical quality system under FDA
+      CGMP guidance include:'
+    adjudication_note: accepted as proposed
+  - claim_text: Senior management establishes quality policy objectives.
+    claim_type: factual
+    source_quote: 'Management Responsibility: Senior management establishes quality
+      policy objectives and allocates adequate resources for manufacturing operations.'
+    adjudication_note: accepted as proposed
+  - claim_text: Senior management allocates adequate resources for manufacturing operations.
+    claim_type: factual
+    source_quote: 'Management Responsibility: Senior management establishes quality
+      policy objectives and allocates adequate resources for manufacturing operations.'
+    adjudication_note: accepted as proposed
+  - claim_text: Process validation demonstrates that manufacturing operations produce
+      consistent results within predefined specifications.
+    claim_type: factual
+    source_quote: 'Production System Controls: Process validation demonstrates that
+      manufacturing operations produce consistent results within predefined specifications.'
+    adjudication_note: accepted as proposed
+  - claim_text: Analytical methods undergo validation to confirm specificity, accuracy,
+      and reproducibility.
+    claim_type: factual
+    source_quote: 'Laboratory and Documentation Controls: Analytical methods undergo
+      validation to confirm specificity, accuracy, and reproducibility.'
+    adjudication_note: accepted as proposed
+- cell_id: rsh-a2d1f94091b3
+  model: mlx-community/Meta-Llama-3.1-8B-Instruct-4bit
+  condition: full_scaffold
+  visible_answer_body_sha256: sha256:fface5166c31e352a1cf7e7058d3fac76c5a79e199c07625ceadfccfc4f88cfb
+  visible_answer_body_excerpt: '**1. Draft an answer plan**
+
+
+    Based on the provided source packet, the core elements of a pharmaceutical quality
+    system under FDA CGMP guidance can be broken down into three main ar …'
+  proposer_diagnostics:
+    empty_input: false
+    refusal: false
+    notes: full_scaffold output; proposer excluded scaffold stages 1-6 (evidence table,
+      disconfirmation pass, uncertainty section, audit headers)
+  proposed_claims:
+  - claim_text: 'The core elements of a pharmaceutical quality system under FDA CGMP
+      guidance can be broken down into three main areas: management responsibility,
+      production system controls, and laboratory and documentation controls.'
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: 'The core elements of a pharmaceutical quality system under FDA
+      CGMP guidance include:'
+  - claim_text: Management responsibility is established by senior management to ensure
+      quality policy objectives.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Management responsibility is established by senior management to
+      ensure quality policy objectives and allocate adequate resources for manufacturing
+      operations.
+  - claim_text: Management responsibility involves senior management allocating adequate
+      resources for manufacturing operations.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Management responsibility is established by senior management to
+      ensure quality policy objectives and allocate adequate resources for manufacturing
+      operations.
+  - claim_text: Production system controls encompass process validation, in-process
+      controls, environmental monitoring, and equipment qualification.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Production system controls encompass process validation, in-process
+      controls, environmental monitoring, and equipment qualification to produce consistent
+      results within predefined specifications.
+  - claim_text: Production system controls are intended to produce consistent results
+      within predefined specifications.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Production system controls encompass process validation, in-process
+      controls, environmental monitoring, and equipment qualification to produce consistent
+      results within predefined specifications.
+  - claim_text: Laboratory and documentation controls involve analytical method validation
+      for specificity, accuracy, and reproducibility.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Laboratory and documentation controls involve analytical method
+      validation for specificity, accuracy, and reproducibility, and laboratory data
+      integrity practices require complete, attributable, and contemporaneous records.
+  - claim_text: Laboratory data integrity practices require complete, attributable,
+      and contemporaneous records.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: laboratory data integrity practices require complete, attributable,
+      and contemporaneous records.
+  adjudication_decisions:
+  - claim_index: 0
+    proposal: 'The core elements of a pharmaceutical quality system under FDA CGMP
+      guidance can be broken down into three main areas: management responsibility,
+      production system controls, and laboratory and documentation controls.'
+    decision: accept
+    final: 'The core elements of a pharmaceutical quality system under FDA CGMP guidance
+      can be broken down into three main areas: management responsibility, production
+      system controls, and laboratory and documentation controls.'
+    reason: accepted (umbrella; also stated in the final-answer intro; consistent
+      with cell 3)
+  - claim_index: 1
+    proposal: Management responsibility is established by senior management to ensure
+      quality policy objectives.
+    decision: accept
+    final: Management responsibility is established by senior management to ensure
+      quality policy objectives.
+    reason: 'accepted (split: objectives)'
+  - claim_index: 2
+    proposal: Management responsibility involves senior management allocating adequate
+      resources for manufacturing operations.
+    decision: accept
+    final: Management responsibility involves senior management allocating adequate
+      resources for manufacturing operations.
+    reason: 'accepted (split: resources)'
+  - claim_index: 3
+    proposal: Production system controls encompass process validation, in-process
+      controls, environmental monitoring, and equipment qualification.
+    decision: accept
+    final: Production system controls encompass process validation, in-process controls,
+      environmental monitoring, and equipment qualification.
+    reason: accepted as one (collective 'encompass [list]')
+  - claim_index: 4
+    proposal: Production system controls are intended to produce consistent results
+      within predefined specifications.
+    decision: accept
+    final: Production system controls are intended to produce consistent results within
+      predefined specifications.
+    reason: 'accepted (purpose, split from #4)'
+  - claim_index: 5
+    proposal: Laboratory and documentation controls involve analytical method validation
+      for specificity, accuracy, and reproducibility.
+    decision: accept
+    final: Laboratory and documentation controls involve analytical method validation
+      for specificity, accuracy, and reproducibility.
+    reason: accepted (one task; adjectival qualities)
+  - claim_index: 6
+    proposal: Laboratory data integrity practices require complete, attributable,
+      and contemporaneous records.
+    decision: accept
+    final: Laboratory data integrity practices require complete, attributable, and
+      contemporaneous records.
+    reason: accepted (one task; adjectival qualities)
+  adjudicated_claims:
+  - claim_text: 'The core elements of a pharmaceutical quality system under FDA CGMP
+      guidance can be broken down into three main areas: management responsibility,
+      production system controls, and laboratory and documentation controls.'
+    claim_type: factual
+    source_quote: 'The core elements of a pharmaceutical quality system under FDA
+      CGMP guidance include:'
+    adjudication_note: accepted (umbrella; also stated in the final-answer intro;
+      consistent with cell 3)
+  - claim_text: Management responsibility is established by senior management to ensure
+      quality policy objectives.
+    claim_type: factual
+    source_quote: Management responsibility is established by senior management to
+      ensure quality policy objectives and allocate adequate resources for manufacturing
+      operations.
+    adjudication_note: 'accepted (split: objectives)'
+  - claim_text: Management responsibility involves senior management allocating adequate
+      resources for manufacturing operations.
+    claim_type: factual
+    source_quote: Management responsibility is established by senior management to
+      ensure quality policy objectives and allocate adequate resources for manufacturing
+      operations.
+    adjudication_note: 'accepted (split: resources)'
+  - claim_text: Production system controls encompass process validation, in-process
+      controls, environmental monitoring, and equipment qualification.
+    claim_type: factual
+    source_quote: Production system controls encompass process validation, in-process
+      controls, environmental monitoring, and equipment qualification to produce consistent
+      results within predefined specifications.
+    adjudication_note: accepted as one (collective 'encompass [list]')
+  - claim_text: Production system controls are intended to produce consistent results
+      within predefined specifications.
+    claim_type: factual
+    source_quote: Production system controls encompass process validation, in-process
+      controls, environmental monitoring, and equipment qualification to produce consistent
+      results within predefined specifications.
+    adjudication_note: 'accepted (purpose, split from #4)'
+  - claim_text: Laboratory and documentation controls involve analytical method validation
+      for specificity, accuracy, and reproducibility.
+    claim_type: factual
+    source_quote: Laboratory and documentation controls involve analytical method
+      validation for specificity, accuracy, and reproducibility, and laboratory data
+      integrity practices require complete, attributable, and contemporaneous records.
+    adjudication_note: accepted (one task; adjectival qualities)
+  - claim_text: Laboratory data integrity practices require complete, attributable,
+      and contemporaneous records.
+    claim_type: factual
+    source_quote: laboratory data integrity practices require complete, attributable,
+      and contemporaneous records.
+    adjudication_note: accepted (one task; adjectival qualities)
+- cell_id: rsh-5b438961affa
+  model: mlx-community/gemma-3-12b-it-qat-4bit
+  condition: format_only
+  visible_answer_body_sha256: sha256:1c1ac2b3b06078ad1a4cc1480539286d791e1ef85a09f4403c66516e9ffc933b
+  visible_answer_body_excerpt: According to FDA CGMP guidance, a pharmaceutical quality
+    system is a robust and interconnected system that integrates current good manufacturing
+    practice (CGMP) requirements with a …
+  proposer_diagnostics:
+    empty_input: false
+    refusal: false
+    notes: dense single paragraph; proposer offered summary+atomized redundancy, redundant
+      lab summary rejected
+  proposed_claims:
+  - claim_text: According to FDA CGMP guidance, a pharmaceutical quality system is
+      a robust and interconnected system that integrates current good manufacturing
+      practice (CGMP) requirements with a systematic approach to process understanding
+      and risk management.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: According to FDA CGMP guidance, a pharmaceutical quality system
+      is a robust and interconnected system that integrates current good manufacturing
+      practice (CGMP) requirements with a systematic approach to process understanding
+      and risk management.
+  - claim_text: Management responsibility requires senior management to establish
+      quality policy objectives and allocate resources.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Management responsibility requires senior management to establish
+      quality policy objectives and allocate resources.
+  - claim_text: Management responsibility includes defining roles.
+    claim_type: factual
+    proposer_confidence: medium
+    source_quote: Management responsibility includes defining roles.
+  - claim_text: Management responsibility includes ensuring personnel qualifications.
+    claim_type: factual
+    proposer_confidence: medium
+    source_quote: Management responsibility includes ensuring personnel qualifications.
+  - claim_text: Management responsibility includes conducting periodic management
+      reviews of quality outcomes.
+    claim_type: factual
+    proposer_confidence: medium
+    source_quote: Management responsibility includes conducting periodic management
+      reviews of quality outcomes.
+  - claim_text: Production system controls focus on demonstrating consistent manufacturing
+      results through process validation.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Production system controls focus on demonstrating consistent manufacturing
+      results through process validation.
+  - claim_text: Production system controls utilize in-process controls.
+    claim_type: factual
+    proposer_confidence: medium
+    source_quote: Production system controls utilize in-process controls.
+  - claim_text: Production system controls utilize environmental monitoring.
+    claim_type: factual
+    proposer_confidence: medium
+    source_quote: Production system controls utilize environmental monitoring.
+  - claim_text: Production system controls utilize equipment qualification.
+    claim_type: factual
+    proposer_confidence: medium
+    source_quote: Production system controls utilize equipment qualification.
+  - claim_text: Deviation handling procedures are crucial for addressing unexpected
+      events and instigating corrective and preventive actions based on root cause
+      analysis.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Deviation handling procedures are crucial for addressing unexpected
+      events and instigating corrective and preventive actions based on root cause
+      analysis.
+  - claim_text: Laboratory and documentation controls ensure data integrity through
+      validated analytical methods, complete and attributable records, and traceability
+      through batch records, standard operating procedures, and change control documentation.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Laboratory and documentation controls ensure data integrity through
+      validated analytical methods, complete and attributable records, and traceability
+      through batch records, standard operating procedures, and change control documentation.
+  - claim_text: Laboratory and documentation controls ensure data integrity through
+      validated analytical methods.
+    claim_type: factual
+    proposer_confidence: medium
+    source_quote: Laboratory and documentation controls ensure data integrity through
+      validated analytical methods.
+  - claim_text: Laboratory and documentation controls ensure data integrity through
+      complete and attributable records.
+    claim_type: factual
+    proposer_confidence: medium
+    source_quote: Laboratory and documentation controls ensure data integrity through
+      complete and attributable records.
+  - claim_text: Laboratory and documentation controls ensure traceability through
+      batch records, standard operating procedures, and change control documentation.
+    claim_type: factual
+    proposer_confidence: medium
+    source_quote: Laboratory and documentation controls ensure traceability through
+      batch records, standard operating procedures, and change control documentation.
+  adjudication_decisions:
+  - claim_index: 0
+    proposal: According to FDA CGMP guidance, a pharmaceutical quality system is a
+      robust and interconnected system that integrates current good manufacturing
+      practice (CGMP) requirements with a systematic approach to process understanding
+      and risk management.
+    decision: edit
+    final: A pharmaceutical quality system integrates current good manufacturing practice
+      (CGMP) requirements with a systematic approach to process understanding and
+      risk management.
+    reason: Trimmed attribution and evaluative framing; kept the integration assertion.
+  - claim_index: 1
+    proposal: Management responsibility requires senior management to establish quality
+      policy objectives and allocate resources.
+    decision: split
+    final:
+    - Senior management establishes quality policy objectives.
+    - Senior management allocates resources.
+    reason: Split — two distinct duties.
+  - claim_index: 2
+    proposal: Management responsibility includes defining roles.
+    decision: accept
+    final: Management responsibility includes defining roles.
+    reason: Distinct duty.
+  - claim_index: 3
+    proposal: Management responsibility includes ensuring personnel qualifications.
+    decision: accept
+    final: Management responsibility includes ensuring personnel qualifications.
+    reason: Distinct duty.
+  - claim_index: 4
+    proposal: Management responsibility includes conducting periodic management reviews
+      of quality outcomes.
+    decision: accept
+    final: Management responsibility includes conducting periodic management reviews
+      of quality outcomes.
+    reason: Distinct duty.
+  - claim_index: 5
+    proposal: Production system controls focus on demonstrating consistent manufacturing
+      results through process validation.
+    decision: accept
+    final: Production system controls focus on demonstrating consistent manufacturing
+      results through process validation.
+    reason: One task.
+  - claim_index: 6
+    proposal: Production system controls utilize in-process controls.
+    decision: accept
+    final: Production system controls utilize in-process controls.
+    reason: Distinct support (distributive list).
+  - claim_index: 7
+    proposal: Production system controls utilize environmental monitoring.
+    decision: accept
+    final: Production system controls utilize environmental monitoring.
+    reason: Distinct support.
+  - claim_index: 8
+    proposal: Production system controls utilize equipment qualification.
+    decision: accept
+    final: Production system controls utilize equipment qualification.
+    reason: Distinct support.
+  - claim_index: 9
+    proposal: Deviation handling procedures are crucial for addressing unexpected
+      events and instigating corrective and preventive actions based on root cause
+      analysis.
+    decision: split
+    final:
+    - Deviation handling procedures address unexpected events.
+    - Deviation handling procedures instigate corrective and preventive actions based
+      on root cause analysis.
+    reason: Split — two distinct tasks (address events / instigate CAPA via RCA).
+  - claim_index: 10
+    proposal: Laboratory and documentation controls ensure data integrity through
+      validated analytical methods, complete and attributable records, and traceability
+      through batch records, standard operating procedures, and change control documentation.
+    decision: reject
+    final: ''
+    reason: Redundant summary; duplicates the atomized lab claims. Dropped to avoid
+      double-counting.
+  - claim_index: 11
+    proposal: Laboratory and documentation controls ensure data integrity through
+      validated analytical methods.
+    decision: accept
+    final: Laboratory and documentation controls ensure data integrity through validated
+      analytical methods.
+    reason: Distinct lab task.
+  - claim_index: 12
+    proposal: Laboratory and documentation controls ensure data integrity through
+      complete and attributable records.
+    decision: accept
+    final: Laboratory and documentation controls ensure data integrity through complete
+      and attributable records.
+    reason: Distinct lab task; adjectival qualities together.
+  - claim_index: 13
+    proposal: Laboratory and documentation controls ensure traceability through batch
+      records, standard operating procedures, and change control documentation.
+    decision: accept
+    final: Laboratory and documentation controls ensure traceability through batch
+      records, standard operating procedures, and change control documentation.
+    reason: One collective traceability claim (Cameron).
+  adjudicated_claims:
+  - claim_text: A pharmaceutical quality system integrates current good manufacturing
+      practice (CGMP) requirements with a systematic approach to process understanding
+      and risk management.
+    claim_type: factual
+    source_quote: According to FDA CGMP guidance, a pharmaceutical quality system
+      is a robust and interconnected system that integrates current good manufacturing
+      practice (CGMP) requirements with a systematic approach
+    adjudication_note: 'edited: trimmed attribution lead-in and evaluative ''robust
+      and interconnected'' framing'
+  - claim_text: Senior management establishes quality policy objectives.
+    claim_type: factual
+    source_quote: management responsibility requires senior management to establish
+      quality policy objectives and allocate resources, including defining roles,
+      ensuring personnel qualifications, and conducting periodic management reviews
+      of quality outcomes.
+    adjudication_note: 'split from proposer #2 (objectives)'
+  - claim_text: Senior management allocates resources.
+    claim_type: factual
+    source_quote: management responsibility requires senior management to establish
+      quality policy objectives and allocate resources, including defining roles,
+      ensuring personnel qualifications, and conducting periodic management reviews
+      of quality outcomes.
+    adjudication_note: 'split from proposer #2 (resources)'
+  - claim_text: Management responsibility includes defining roles.
+    claim_type: factual
+    source_quote: including defining roles, ensuring personnel qualifications, and
+      conducting periodic management reviews of quality outcomes.
+    adjudication_note: accepted
+  - claim_text: Management responsibility includes ensuring personnel qualifications.
+    claim_type: factual
+    source_quote: including defining roles, ensuring personnel qualifications, and
+      conducting periodic management reviews of quality outcomes.
+    adjudication_note: accepted
+  - claim_text: Management responsibility includes conducting periodic management
+      reviews of quality outcomes.
+    claim_type: factual
+    source_quote: including defining roles, ensuring personnel qualifications, and
+      conducting periodic management reviews of quality outcomes.
+    adjudication_note: accepted
+  - claim_text: Production system controls focus on demonstrating consistent manufacturing
+      results through process validation.
+    claim_type: factual
+    source_quote: production system controls focus on demonstrating consistent manufacturing
+      results through process validation, utilizing in-process controls, environmental
+      monitoring, and equipment qualification.
+    adjudication_note: accepted
+  - claim_text: Production system controls utilize in-process controls.
+    claim_type: factual
+    source_quote: utilizing in-process controls, environmental monitoring, and equipment
+      qualification.
+    adjudication_note: accepted (distributive split, per cell-1 precedent)
+  - claim_text: Production system controls utilize environmental monitoring.
+    claim_type: factual
+    source_quote: utilizing in-process controls, environmental monitoring, and equipment
+      qualification.
+    adjudication_note: accepted
+  - claim_text: Production system controls utilize equipment qualification.
+    claim_type: factual
+    source_quote: utilizing in-process controls, environmental monitoring, and equipment
+      qualification.
+    adjudication_note: accepted
+  - claim_text: Deviation handling procedures address unexpected events.
+    claim_type: factual
+    source_quote: Deviation handling procedures are crucial for addressing unexpected
+      events and instigating corrective and preventive actions based on root cause
+      analysis.
+    adjudication_note: 'split from proposer #10 (address events)'
+  - claim_text: Deviation handling procedures instigate corrective and preventive
+      actions based on root cause analysis.
+    claim_type: factual
+    source_quote: Deviation handling procedures are crucial for addressing unexpected
+      events and instigating corrective and preventive actions based on root cause
+      analysis.
+    adjudication_note: 'split from proposer #10 (CAPA/RCA)'
+  - claim_text: Laboratory and documentation controls ensure data integrity through
+      validated analytical methods.
+    claim_type: factual
+    source_quote: laboratory and documentation controls ensure data integrity through
+      validated analytical methods, complete and attributable records, and traceability
+      through batch records, standard operating procedures, and change control documentation.
+    adjudication_note: accepted
+  - claim_text: Laboratory and documentation controls ensure data integrity through
+      complete and attributable records.
+    claim_type: factual
+    source_quote: laboratory and documentation controls ensure data integrity through
+      validated analytical methods, complete and attributable records, and traceability
+      through batch records, standard operating procedures, and change control documentation.
+    adjudication_note: accepted (adjectival qualities together)
+  - claim_text: Laboratory and documentation controls ensure traceability through
+      batch records, standard operating procedures, and change control documentation.
+    claim_type: factual
+    source_quote: and traceability through batch records, standard operating procedures,
+      and change control documentation.
+    adjudication_note: 'accepted as ONE (collective ''traceability through [list]'');
+      Cameron: good as is'
+- cell_id: rsh-be410d83ba0c
+  model: mlx-community/gemma-3-12b-it-qat-4bit
+  condition: full_scaffold
+  visible_answer_body_sha256: sha256:c568a763593d5c762abf7fe70e22fab06eea6f675ba6e4da3f5b248842e7f0f1
+  visible_answer_body_excerpt: 1. **Identify Core Elements:** The question asks for
+    "core elements" of a pharmaceutical quality system. This implies identifying the
+    key components, not a comprehensive list of ev …
+  proposer_diagnostics:
+    empty_input: false
+    refusal: false
+    notes: full_scaffold; scaffold stages excluded by proposer; proposer over-atomized
+      'encompass/cover' lists (19), collapsed to 9 per collective rule
+  proposed_claims:
+  - claim_text: A pharmaceutical quality system, under FDA CGMP guidance, comprises
+      several interconnected core elements.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: A pharmaceutical quality system, under FDA CGMP guidance, comprises
+      several interconnected core elements.
+  - claim_text: A pharmaceutical quality system integrates current good manufacturing
+      practice (CGMP) requirements with a systematic approach to process understanding
+      and risk management.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: A pharmaceutical quality system integrates current good manufacturing
+      practice (CGMP) requirements with a systematic approach to process understanding
+      and risk management.
+  - claim_text: Management Responsibility is a core element of a pharmaceutical quality
+      system.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Management Responsibility is a core element of a pharmaceutical
+      quality system.
+  - claim_text: Management Responsibility involves senior management's establishment
+      of quality policy objectives.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Management Responsibility involves senior management's establishment
+      of quality policy objectives.
+  - claim_text: Management Responsibility involves allocation of adequate resources.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Management Responsibility involves allocation of adequate resources.
+  - claim_text: Management Responsibility involves definition of organizational roles.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Management Responsibility involves definition of organizational
+      roles.
+  - claim_text: Management Responsibility involves ongoing oversight of quality outcomes
+      through periodic management review.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Management Responsibility involves ongoing oversight of quality
+      outcomes through periodic management review.
+  - claim_text: Production System Controls are essential.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Production System Controls are essential.
+  - claim_text: Production System Controls encompass process validation.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Production System Controls encompass process validation.
+  - claim_text: Production System Controls encompass in-process controls.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Production System Controls encompass in-process controls.
+  - claim_text: Production System Controls encompass environmental monitoring.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Production System Controls encompass environmental monitoring.
+  - claim_text: Production System Controls encompass equipment qualification.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Production System Controls encompass equipment qualification.
+  - claim_text: Production System Controls encompass procedures for handling deviations,
+      corrective, and preventive actions.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Production System Controls encompass procedures for handling deviations,
+      corrective, and preventive actions.
+  - claim_text: Laboratory and Documentation Controls are a core element.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Laboratory and Documentation Controls are a core element.
+  - claim_text: Laboratory and Documentation Controls cover analytical method validation.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Laboratory and Documentation Controls cover analytical method validation.
+  - claim_text: Laboratory and Documentation Controls cover data integrity practices.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Laboratory and Documentation Controls cover data integrity practices.
+  - claim_text: Laboratory and Documentation Controls cover the maintenance of batch
+      records and standard operating procedures.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Laboratory and Documentation Controls cover the maintenance of batch
+      records and standard operating procedures.
+  - claim_text: Laboratory and Documentation Controls cover change control documentation.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Laboratory and Documentation Controls cover change control documentation.
+  - claim_text: Change control documentation provides a traceable chain from raw materials
+      to finished product release.
+    claim_type: factual
+    proposer_confidence: medium
+    source_quote: Change control documentation provides a traceable chain from raw
+      materials to finished product release.
+  adjudication_decisions:
+  - claim_index: 0
+    proposal: A pharmaceutical quality system, under FDA CGMP guidance, comprises
+      several interconnected core elements.
+    decision: merge
+    disposition: 'merge->umbrella #1'
+  - claim_index: 1
+    proposal: A pharmaceutical quality system integrates current good manufacturing
+      practice (CGMP) requirements with a systematic approach to process understanding
+      and risk management.
+    decision: accept
+    disposition: accept->#2
+  - claim_index: 2
+    proposal: Management Responsibility is a core element of a pharmaceutical quality
+      system.
+    decision: merge
+    disposition: 'merge->umbrella #1 (element name)'
+  - claim_index: 3
+    proposal: Management Responsibility involves senior management's establishment
+      of quality policy objectives.
+    decision: accept
+    disposition: accept->#3
+  - claim_index: 4
+    proposal: Management Responsibility involves allocation of adequate resources.
+    decision: accept
+    disposition: accept->#4
+  - claim_index: 5
+    proposal: Management Responsibility involves definition of organizational roles.
+    decision: accept
+    disposition: accept->#5
+  - claim_index: 6
+    proposal: Management Responsibility involves ongoing oversight of quality outcomes
+      through periodic management review.
+    decision: accept
+    disposition: accept->#6
+  - claim_index: 7
+    proposal: Production System Controls are essential.
+    decision: merge
+    disposition: merge->#7 (subject framing)
+  - claim_index: 8
+    proposal: Production System Controls encompass process validation.
+    decision: merge
+    disposition: merge->#7
+  - claim_index: 9
+    proposal: Production System Controls encompass in-process controls.
+    decision: merge
+    disposition: merge->#7
+  - claim_index: 10
+    proposal: Production System Controls encompass environmental monitoring.
+    decision: merge
+    disposition: merge->#7
+  - claim_index: 11
+    proposal: Production System Controls encompass equipment qualification.
+    decision: merge
+    disposition: merge->#7
+  - claim_index: 12
+    proposal: Production System Controls encompass procedures for handling deviations,
+      corrective, and preventive actions.
+    decision: merge
+    disposition: merge->#7
+  - claim_index: 13
+    proposal: Laboratory and Documentation Controls are a core element.
+    decision: merge
+    disposition: 'merge->umbrella #1 + subject framing of #8'
+  - claim_index: 14
+    proposal: Laboratory and Documentation Controls cover analytical method validation.
+    decision: merge
+    disposition: merge->#8
+  - claim_index: 15
+    proposal: Laboratory and Documentation Controls cover data integrity practices.
+    decision: merge
+    disposition: merge->#8
+  - claim_index: 16
+    proposal: Laboratory and Documentation Controls cover the maintenance of batch
+      records and standard operating procedures.
+    decision: merge
+    disposition: merge->#8
+  - claim_index: 17
+    proposal: Laboratory and Documentation Controls cover change control documentation.
+    decision: merge
+    disposition: merge->#8
+  - claim_index: 18
+    proposal: Change control documentation provides a traceable chain from raw materials
+      to finished product release.
+    decision: accept
+    disposition: accept->#9
+  adjudicated_claims:
+  - claim_text: 'A pharmaceutical quality system comprises several interconnected
+      core elements: management responsibility, production system controls, and laboratory
+      and documentation controls.'
+    claim_type: factual
+    source_quote: comprises several interconnected core elements
+    adjudication_note: 'umbrella; folded proposer #0 + the element-membership intros
+      (#2,#7,#13)'
+  - claim_text: A pharmaceutical quality system integrates current good manufacturing
+      practice (CGMP) requirements with a systematic approach to process understanding
+      and risk management.
+    claim_type: factual
+    source_quote: it integrates current good manufacturing practice (CGMP) requirements
+      with a systematic approach to process understanding and risk management
+    adjudication_note: accepted (integration)
+  - claim_text: Senior management establishes quality policy objectives.
+    claim_type: factual
+    source_quote: establishment of quality policy objectives
+    adjudication_note: accepted (duty; normalized phrasing)
+  - claim_text: Senior management allocates adequate resources.
+    claim_type: factual
+    source_quote: allocation of adequate resources
+    adjudication_note: accepted (duty)
+  - claim_text: Senior management defines organizational roles.
+    claim_type: factual
+    source_quote: definition of organizational roles
+    adjudication_note: accepted (duty)
+  - claim_text: Senior management provides ongoing oversight of quality outcomes through
+      periodic management review.
+    claim_type: factual
+    source_quote: ongoing oversight of quality outcomes through periodic management
+      review
+    adjudication_note: accepted (duty)
+  - claim_text: Production System Controls encompass process validation, in-process
+      controls, environmental monitoring, equipment qualification, and procedures
+      for handling deviations and corrective/preventive actions.
+    claim_type: factual
+    source_quote: encompassing process validation, in-process controls, environmental
+      monitoring, equipment qualification, and procedures for handling deviations,
+      corrective, and preventive actions
+    adjudication_note: 'collapsed proposer #8-12 into one collective ''encompass''
+      claim (cell-4 rule)'
+  - claim_text: Laboratory and Documentation Controls cover analytical method validation,
+      data integrity practices, maintenance of batch records and standard operating
+      procedures, and change control documentation.
+    claim_type: factual
+    source_quote: covering analytical method validation, data integrity practices,
+      the maintenance of batch records and standard operating procedures, and change
+      control documentation
+    adjudication_note: 'collapsed proposer #14-17 into one collective ''covering''
+      claim'
+  - claim_text: Change control documentation provides a traceable chain from raw materials
+      to finished product release.
+    claim_type: factual
+    source_quote: change control documentation to provide a traceable chain from raw
+      materials to finished product release
+    adjudication_note: accepted
+- cell_id: rsh-fdc95474a98c
+  model: mlx-community/Phi-4-reasoning-plus-4bit
+  condition: baseline
+  visible_answer_body_sha256: sha256:aeb095b0b2d1299cc4aec7a6ac75de483b9855efb23aab6f16fe19a4ca0e38c8
+  visible_answer_body_excerpt: 'A pharmaceutical quality system under FDA CGMP guidance
+    is built on three interconnected core elements:
+
+
+    • Management Responsibility – Senior management defines quality objectives, …'
+  proposer_diagnostics:
+    empty_input: false
+    refusal: false
+    notes: baseline prose; resolved identically to cell 6 (fold membership, split
+      duties, collapse collective lists)
+  proposed_claims:
+  - claim_text: A pharmaceutical quality system under FDA CGMP guidance is built on
+      three interconnected core elements.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: 'A pharmaceutical quality system under FDA CGMP guidance is built
+      on three interconnected core elements:'
+  - claim_text: Management Responsibility is one of the three core elements.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Senior management defines quality objectives, allocates resources,
+      establishes organizational roles, ensures personnel qualifications, and conducts
+      regular reviews to oversee quality outcomes.
+  - claim_text: Under Management Responsibility, senior management defines quality
+      objectives.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Senior management defines quality objectives, allocates resources,
+      establishes organizational roles, ensures personnel qualifications, and conducts
+      regular reviews to oversee quality outcomes.
+  - claim_text: Under Management Responsibility, senior management allocates resources.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Senior management defines quality objectives, allocates resources,
+      establishes organizational roles, ensures personnel qualifications, and conducts
+      regular reviews to oversee quality outcomes.
+  - claim_text: Under Management Responsibility, senior management establishes organizational
+      roles.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Senior management defines quality objectives, allocates resources,
+      establishes organizational roles, ensures personnel qualifications, and conducts
+      regular reviews to oversee quality outcomes.
+  - claim_text: Under Management Responsibility, senior management ensures personnel
+      qualifications.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Senior management defines quality objectives, allocates resources,
+      establishes organizational roles, ensures personnel qualifications, and conducts
+      regular reviews to oversee quality outcomes.
+  - claim_text: Under Management Responsibility, senior management conducts regular
+      reviews to oversee quality outcomes.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: Senior management defines quality objectives, allocates resources,
+      establishes organizational roles, ensures personnel qualifications, and conducts
+      regular reviews to oversee quality outcomes.
+  - claim_text: Production System Controls is one of the three core elements.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: This element involves process validation, in-process controls, environmental
+      monitoring, equipment qualification, and deviation handling procedures that
+      trigger corrective and preventive actions when needed.
+  - claim_text: Production System Controls involves process validation.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: This element involves process validation, in-process controls, environmental
+      monitoring, equipment qualification, and deviation handling procedures that
+      trigger corrective and preventive actions when needed.
+  - claim_text: Production System Controls involves in-process controls.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: This element involves process validation, in-process controls, environmental
+      monitoring, equipment qualification, and deviation handling procedures that
+      trigger corrective and preventive actions when needed.
+  - claim_text: Production System Controls involves environmental monitoring.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: This element involves process validation, in-process controls, environmental
+      monitoring, equipment qualification, and deviation handling procedures that
+      trigger corrective and preventive actions when needed.
+  - claim_text: Production System Controls involves equipment qualification.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: This element involves process validation, in-process controls, environmental
+      monitoring, equipment qualification, and deviation handling procedures that
+      trigger corrective and preventive actions when needed.
+  - claim_text: Production System Controls involves deviation handling procedures
+      that trigger corrective and preventive actions when needed.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: This element involves process validation, in-process controls, environmental
+      monitoring, equipment qualification, and deviation handling procedures that
+      trigger corrective and preventive actions when needed.
+  - claim_text: Laboratory and Documentation Controls is one of the three core elements.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: This includes validating analytical methods for specificity, accuracy,
+      and reproducibility; maintaining laboratory data integrity; and ensuring comprehensive
+      documentation (batch records, SOPs, and change control) to provide a traceability
+      chain from raw materials to finished product.
+  - claim_text: Laboratory and Documentation Controls includes validating analytical
+      methods for specificity, accuracy, and reproducibility.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: This includes validating analytical methods for specificity, accuracy,
+      and reproducibility; maintaining laboratory data integrity; and ensuring comprehensive
+      documentation (batch records, SOPs, and change control) to provide a traceability
+      chain from raw materials to finished product.
+  - claim_text: Laboratory and Documentation Controls includes maintaining laboratory
+      data integrity.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: This includes validating analytical methods for specificity, accuracy,
+      and reproducibility; maintaining laboratory data integrity; and ensuring comprehensive
+      documentation (batch records, SOPs, and change control) to provide a traceability
+      chain from raw materials to finished product.
+  - claim_text: Laboratory and Documentation Controls includes ensuring comprehensive
+      documentation, including batch records, SOPs, and change control.
+    claim_type: factual
+    proposer_confidence: high
+    source_quote: This includes validating analytical methods for specificity, accuracy,
+      and reproducibility; maintaining laboratory data integrity; and ensuring comprehensive
+      documentation (batch records, SOPs, and change control) to provide a traceability
+      chain from raw materials to finished product.
+  - claim_text: Comprehensive documentation provides a traceability chain from raw
+      materials to finished product.
+    claim_type: factual
+    proposer_confidence: medium
+    source_quote: This includes validating analytical methods for specificity, accuracy,
+      and reproducibility; maintaining laboratory data integrity; and ensuring comprehensive
+      documentation (batch records, SOPs, and change control) to provide a traceability
+      chain from raw materials to finished product.
+  adjudication_decisions:
+  - claim_index: 0
+    proposal: A pharmaceutical quality system under FDA CGMP guidance is built on
+      three interconnected core elements.
+    decision: merge
+    disposition: 'merge->umbrella #1'
+  - claim_index: 1
+    proposal: Management Responsibility is one of the three core elements.
+    decision: merge
+    disposition: 'merge->umbrella #1'
+  - claim_index: 2
+    proposal: Under Management Responsibility, senior management defines quality objectives.
+    decision: accept
+    disposition: accept->#2
+  - claim_index: 3
+    proposal: Under Management Responsibility, senior management allocates resources.
+    decision: accept
+    disposition: accept->#3
+  - claim_index: 4
+    proposal: Under Management Responsibility, senior management establishes organizational
+      roles.
+    decision: accept
+    disposition: accept->#4
+  - claim_index: 5
+    proposal: Under Management Responsibility, senior management ensures personnel
+      qualifications.
+    decision: accept
+    disposition: accept->#5
+  - claim_index: 6
+    proposal: Under Management Responsibility, senior management conducts regular
+      reviews to oversee quality outcomes.
+    decision: accept
+    disposition: accept->#6
+  - claim_index: 7
+    proposal: Production System Controls is one of the three core elements.
+    decision: merge
+    disposition: 'merge->umbrella #1'
+  - claim_index: 8
+    proposal: Production System Controls involves process validation.
+    decision: merge
+    disposition: merge->#7
+  - claim_index: 9
+    proposal: Production System Controls involves in-process controls.
+    decision: merge
+    disposition: merge->#7
+  - claim_index: 10
+    proposal: Production System Controls involves environmental monitoring.
+    decision: merge
+    disposition: merge->#7
+  - claim_index: 11
+    proposal: Production System Controls involves equipment qualification.
+    decision: merge
+    disposition: merge->#7
+  - claim_index: 12
+    proposal: Production System Controls involves deviation handling procedures that
+      trigger corrective and preventive actions when needed.
+    decision: merge
+    disposition: merge->#7
+  - claim_index: 13
+    proposal: Laboratory and Documentation Controls is one of the three core elements.
+    decision: merge
+    disposition: 'merge->umbrella #1'
+  - claim_index: 14
+    proposal: Laboratory and Documentation Controls includes validating analytical
+      methods for specificity, accuracy, and reproducibility.
+    decision: merge
+    disposition: merge->#8
+  - claim_index: 15
+    proposal: Laboratory and Documentation Controls includes maintaining laboratory
+      data integrity.
+    decision: merge
+    disposition: merge->#8
+  - claim_index: 16
+    proposal: Laboratory and Documentation Controls includes ensuring comprehensive
+      documentation, including batch records, SOPs, and change control.
+    decision: merge
+    disposition: merge->#8
+  - claim_index: 17
+    proposal: Comprehensive documentation provides a traceability chain from raw materials
+      to finished product.
+    decision: accept
+    disposition: accept->#9
+  adjudicated_claims:
+  - claim_text: 'A pharmaceutical quality system under FDA CGMP guidance is built
+      on three interconnected core elements: management responsibility, production
+      system controls, and laboratory and documentation controls.'
+    claim_type: factual
+    source_quote: 'A pharmaceutical quality system under FDA CGMP guidance is built
+      on three interconnected core elements:'
+    adjudication_note: 'umbrella; folded proposer #0 + membership intros (#1,#7,#13)'
+  - claim_text: Senior management defines quality objectives.
+    claim_type: factual
+    source_quote: Senior management defines quality objectives, allocates resources,
+      establishes organizational roles, ensures personnel qualifications, and conducts
+      regular reviews to oversee quality outcomes.
+    adjudication_note: accepted (duty)
+  - claim_text: Senior management allocates resources.
+    claim_type: factual
+    source_quote: Senior management defines quality objectives, allocates resources,
+      establishes organizational roles, ensures personnel qualifications, and conducts
+      regular reviews to oversee quality outcomes.
+    adjudication_note: accepted (duty)
+  - claim_text: Senior management establishes organizational roles.
+    claim_type: factual
+    source_quote: Senior management defines quality objectives, allocates resources,
+      establishes organizational roles, ensures personnel qualifications, and conducts
+      regular reviews to oversee quality outcomes.
+    adjudication_note: accepted (duty)
+  - claim_text: Senior management ensures personnel qualifications.
+    claim_type: factual
+    source_quote: Senior management defines quality objectives, allocates resources,
+      establishes organizational roles, ensures personnel qualifications, and conducts
+      regular reviews to oversee quality outcomes.
+    adjudication_note: accepted (duty)
+  - claim_text: Senior management conducts regular reviews to oversee quality outcomes.
+    claim_type: factual
+    source_quote: Senior management defines quality objectives, allocates resources,
+      establishes organizational roles, ensures personnel qualifications, and conducts
+      regular reviews to oversee quality outcomes.
+    adjudication_note: accepted (duty)
+  - claim_text: Production System Controls involve process validation, in-process
+      controls, environmental monitoring, equipment qualification, and deviation handling
+      procedures that trigger corrective and preventive actions.
+    claim_type: factual
+    source_quote: This element involves process validation, in-process controls, environmental
+      monitoring, equipment qualification, and deviation handling procedures that
+      trigger corrective and preventive actions when needed.
+    adjudication_note: 'collapsed proposer #8-12 (collective ''involves [list]'',
+      per cell-6 rule)'
+  - claim_text: Laboratory and Documentation Controls include analytical method validation,
+      laboratory data integrity, and comprehensive documentation (batch records, SOPs,
+      change control).
+    claim_type: factual
+    source_quote: This includes validating analytical methods for specificity, accuracy,
+      and reproducibility; maintaining laboratory data integrity; and ensuring comprehensive
+      documentation (batch records, SOPs, and change control) to provide a traceability
+      chain from raw materials to finished product.
+    adjudication_note: 'collapsed proposer #14-16 (collective, per cell-6 rule)'
+  - claim_text: Comprehensive documentation provides a traceability chain from raw
+      materials to finished product.
+    claim_type: factual
+    source_quote: This includes validating analytical methods for specificity, accuracy,
+      and reproducibility; maintaining laboratory data integrity; and ensuring comprehensive
+      documentation (batch records, SOPs, and change control) to provide a traceability
+      chain from raw materials to finished product.
+    adjudication_note: accepted
+- cell_id: rsh-318e7831856f
+  model: mlx-community/Phi-4-reasoning-plus-4bit
+  condition: format_only
+  visible_answer_body_sha256: sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  visible_answer_body_excerpt: (empty — non-answer; zero-claim scan)
+  proposer_diagnostics:
+    empty_input: true
+    refusal: false
+    notes: empty visible body
+  proposed_claims: []
+  adjudication_decisions: []
+  adjudicated_claims: []
+  human_zero_claim_scan:
+    reviewer: Cameron
+    scan_status: completed
+    disposition_after_scan: valid_zero_claim_answer
+    rationale: Visible answer body is empty — Phi-4-RP exhausted its token budget
+      inside an unclosed think-block (FM-B), producing no answer. No substantive claim
+      present; valid zero-claim.
+granularity_rule: 'Splitter (Cameron, 2026-05-31): a distinct claim is about one thing
+  or task. Coordinated lists of distinct tasks/duties split into separate atomic claims;
+  adjectival qualities of a single object stay together (e.g. ''complete, attributable,
+  contemporaneous records'' = one claim, not three).'
+adjudication_completed_date: '2026-05-31'

@@ -1,0 +1,66 @@
+schema_version: extractor-output-sidecar-v1
+extractor_id: mlx-mistral-nemo-12b
+extractor_version: 0.1.0
+extractor_is_stub: false
+diagnostics: []
+claim_count: 4
+claims:
+  schema_version: 1.0.0
+  run_id: rsh-5b438961affa
+  generated_at_utc: '2026-05-31T11:25:38Z'
+  claims:
+  - claim_id: rsh-5b438961affa-c001
+    claim_type: extracted_claim
+    claim_text: A pharmaceutical quality system integrates CGMP requirements with
+      process understanding and risk management.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-nemo-12b; stub=false
+  - claim_id: rsh-5b438961affa-c002
+    claim_type: extracted_claim
+    claim_text: Management responsibility requires senior management to establish
+      quality policy objectives, allocate resources, define roles, ensure personnel
+      qualifications, and conduct periodic management reviews.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-nemo-12b; stub=false
+  - claim_id: rsh-5b438961affa-c003
+    claim_type: extracted_claim
+    claim_text: Production system controls include process validation, in-process
+      controls, environmental monitoring, equipment qualification, and deviation handling
+      procedures.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-nemo-12b; stub=false
+  - claim_id: rsh-5b438961affa-c004
+    claim_type: extracted_claim
+    claim_text: Laboratory and documentation controls ensure data integrity through
+      validated analytical methods, complete and attributable records, and traceability
+      through batch records, standard operating procedures, and change control documentation.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-nemo-12b; stub=false

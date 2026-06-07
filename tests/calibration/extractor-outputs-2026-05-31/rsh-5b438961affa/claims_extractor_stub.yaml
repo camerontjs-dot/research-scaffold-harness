@@ -1,0 +1,25 @@
+schema_version: extractor-output-sidecar-v1
+extractor_id: stub-offline-deterministic
+extractor_version: 0.1.0
+extractor_is_stub: true
+diagnostics: []
+claim_count: 1
+claims:
+  schema_version: 1.0.0
+  run_id: rsh-5b438961affa
+  generated_at_utc: '2026-05-31T11:25:18Z'
+  claims:
+  - claim_id: rsh-5b438961affa-c001
+    claim_type: extracted_claim
+    claim_text: A robust pharmaceutical quality system integrates current good manufacturing
+      practice requirements with a systematic approach to process understanding and
+      risk management.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=stub-offline-deterministic; stub=true

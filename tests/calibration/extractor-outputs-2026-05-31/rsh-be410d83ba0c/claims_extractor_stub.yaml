@@ -1,0 +1,65 @@
+schema_version: extractor-output-sidecar-v1
+extractor_id: stub-offline-deterministic
+extractor_version: 0.1.0
+extractor_is_stub: true
+diagnostics: []
+claim_count: 4
+claims:
+  schema_version: 1.0.0
+  run_id: rsh-be410d83ba0c
+  generated_at_utc: '2026-05-31T11:36:15Z'
+  claims:
+  - claim_id: rsh-be410d83ba0c-c001
+    claim_type: extracted_claim
+    claim_text: '`- A pharmaceutical quality system integrates CGMP requirements and
+      risk management.`'
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=stub-offline-deterministic; stub=true
+  - claim_id: rsh-be410d83ba0c-c002
+    claim_type: extracted_claim
+    claim_text: '`- Management Responsibility is a core element, involving establishing
+      quality policy, allocating resources, defining roles, and oversight.`'
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=stub-offline-deterministic; stub=true
+  - claim_id: rsh-be410d83ba0c-c003
+    claim_type: extracted_claim
+    claim_text: '`- Production System Controls is a core element, encompassing process
+      validation, in-process controls, environmental monitoring, equipment qualification,
+      and deviation handling.`'
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=stub-offline-deterministic; stub=true
+  - claim_id: rsh-be410d83ba0c-c004
+    claim_type: extracted_claim
+    claim_text: '`- Laboratory and Documentation Controls is a core element, including
+      analytical method validation, data integrity, batch records, SOPs, and change
+      control.`'
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=stub-offline-deterministic; stub=true

@@ -1,0 +1,329 @@
+schema_version: extractor-output-sidecar-v1
+extractor_id: mlx-mistral-small3
+extractor_version: 0.1.0
+extractor_is_stub: false
+diagnostics: []
+claim_count: 26
+claims:
+  schema_version: 1.0.0
+  run_id: rsh-be410d83ba0c
+  generated_at_utc: '2026-05-31T11:41:04Z'
+  claims:
+  - claim_id: rsh-be410d83ba0c-c001
+    claim_type: extracted_claim
+    claim_text: The question asks for core elements of a pharmaceutical quality system.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c002
+    claim_type: extracted_claim
+    claim_text: The question implies identifying the key components, not a comprehensive
+      list of every detail.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c003
+    claim_type: extracted_claim
+    claim_text: src-001 seems to outline these elements.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c004
+    claim_type: extracted_claim
+    claim_text: The provided text doesn’t contradict any of the claims.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c005
+    claim_type: extracted_claim
+    claim_text: The claims might be considered too broad.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c006
+    claim_type: extracted_claim
+    claim_text: The answer is limited to the information provided in src-001.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c007
+    claim_type: extracted_claim
+    claim_text: The scope is limited to the description given by the source.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c008
+    claim_type: extracted_claim
+    claim_text: A pharmaceutical quality system, under FDA CGMP guidance, comprises
+      several interconnected core elements.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c009
+    claim_type: extracted_claim
+    claim_text: It integrates current good manufacturing practice (CGMP) requirements
+      with a systematic approach to process understanding and risk management.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c010
+    claim_type: extracted_claim
+    claim_text: Management Responsibility is a core element.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c011
+    claim_type: extracted_claim
+    claim_text: It involves senior management's establishment of quality policy objectives.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c012
+    claim_type: extracted_claim
+    claim_text: It involves allocation of adequate resources.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c013
+    claim_type: extracted_claim
+    claim_text: It involves definition of organizational roles.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c014
+    claim_type: extracted_claim
+    claim_text: It involves ongoing oversight of quality outcomes through periodic
+      management review.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c015
+    claim_type: extracted_claim
+    claim_text: Production System Controls are essential.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c016
+    claim_type: extracted_claim
+    claim_text: It encompasses process validation.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c017
+    claim_type: extracted_claim
+    claim_text: It encompasses in-process controls.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c018
+    claim_type: extracted_claim
+    claim_text: It encompasses environmental monitoring.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c019
+    claim_type: extracted_claim
+    claim_text: It encompasses equipment qualification.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c020
+    claim_type: extracted_claim
+    claim_text: It encompasses procedures for handling deviations.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c021
+    claim_type: extracted_claim
+    claim_text: It encompasses corrective, and preventive actions.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c022
+    claim_type: extracted_claim
+    claim_text: Laboratory and Documentation Controls are a core element.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c023
+    claim_type: extracted_claim
+    claim_text: It covers analytical method validation.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c024
+    claim_type: extracted_claim
+    claim_text: It covers data integrity practices.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c025
+    claim_type: extracted_claim
+    claim_text: It covers the maintenance of batch records and standard operating
+      procedures.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false
+  - claim_id: rsh-be410d83ba0c-c026
+    claim_type: extracted_claim
+    claim_text: It covers change control documentation to provide a traceable chain
+      from raw materials to finished product release.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-small3; stub=false

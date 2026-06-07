@@ -1,0 +1,53 @@
+schema_version: extractor-output-sidecar-v1
+extractor_id: mlx-mistral-nemo-12b
+extractor_version: 0.1.0
+extractor_is_stub: false
+diagnostics: []
+claim_count: 3
+claims:
+  schema_version: 1.0.0
+  run_id: rsh-a2d1f94091b3
+  generated_at_utc: '2026-05-31T11:19:59Z'
+  claims:
+  - claim_id: rsh-a2d1f94091b3-c001
+    claim_type: extracted_claim
+    claim_text: Management responsibility is established by senior management to ensure
+      quality policy objectives and allocate adequate resources for manufacturing
+      operations.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-nemo-12b; stub=false
+  - claim_id: rsh-a2d1f94091b3-c002
+    claim_type: extracted_claim
+    claim_text: Production system controls encompass process validation, in-process
+      controls, environmental monitoring, and equipment qualification to produce consistent
+      results within predefined specifications.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-nemo-12b; stub=false
+  - claim_id: rsh-a2d1f94091b3-c003
+    claim_type: extracted_claim
+    claim_text: Laboratory and documentation controls involve analytical method validation
+      for specificity, accuracy, and reproducibility, and laboratory data integrity
+      practices require complete, attributable, and contemporaneous records.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-nemo-12b; stub=false

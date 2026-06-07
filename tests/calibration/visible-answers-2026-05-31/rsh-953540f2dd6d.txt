@@ -1,0 +1,29 @@
+1. **Claim Text:** A pharmaceutical quality system under FDA CGMP integrates current good manufacturing practice requirements with a systematic approach to process understanding and risk management.
+**Support Status:** Sourced
+**Source ID:** src-001
+**Note:** Directly stated in the introduction of the source.
+
+2. **Claim Text:** Senior management establishes quality policy objectives and allocates resources for manufacturing operations.
+**Support Status:** Sourced
+**Source ID:** src-001
+**Note:** Explicitly mentioned under "Management Responsibility."
+
+3. **Claim Text:** Process validation ensures manufacturing operations produce consistent results within predefined specifications.
+**Support Status:** Sourced
+**Source ID:** src-001
+**Note:** Directly stated under "Production System Controls."
+
+4. **Claim Text:** In-process controls, environmental monitoring, and equipment qualification form the operational backbone of pharmaceutical quality systems.
+**Support Status:** Sourced
+**Source ID:** src-001
+**Note:** Explicitly mentioned under "Production System Controls."
+
+5. **Claim Text:** Analytical methods must be validated to confirm specificity, accuracy, and reproducibility.
+**Support Status:** Sourced
+**Source ID:** src-001
+**Note:** Directly stated under "Laboratory and Documentation Controls."
+
+6. **Claim Text:** Laboratory data integrity requires complete, attributable, and contemporaneous records.
+**Support Status:** Sourced
+**Source ID:** src-001
+**Note:** Explicitly mentioned under "Laboratory and Documentation Controls."

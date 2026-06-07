@@ -1,0 +1,96 @@
+calibration_scope_version: "2026-05-28-v1"
+source_matrix_report: "../../build/phase-2-unit4-matrix-report.md"
+target_gold_claim_count: "25-30 atomic claims after human adjudication"
+zero_claim_pending_limit: 4
+notes: >-
+  These are the 20 Phase 2 Unit 4 cells from the original five-model by
+  four-condition RSH-001 matrix. Use this file to select visible answer bodies
+  for LLM-proposed, human-adjudicated calibration gold.
+cells:
+  - cell_id: rsh-7324949470df
+    model: lmstudio-community/Phi-4-mini-reasoning-MLX-4bit
+    condition: baseline
+    original_claim_count: 10
+  - cell_id: rsh-e9827bcbb2f6
+    model: lmstudio-community/Phi-4-mini-reasoning-MLX-4bit
+    condition: format_only
+    original_claim_count: 0
+    original_failure_mode: FM-B
+  - cell_id: rsh-13b9f1876874
+    model: lmstudio-community/Phi-4-mini-reasoning-MLX-4bit
+    condition: provenance_scaffold
+    original_claim_count: 20
+  - cell_id: rsh-ed5861ebe8b9
+    model: lmstudio-community/Phi-4-mini-reasoning-MLX-4bit
+    condition: full_scaffold
+    original_claim_count: 23
+  - cell_id: rsh-3aa96f2efe29
+    model: mlx-community/Qwen3-8B-4bit
+    condition: baseline
+    original_claim_count: 3
+  - cell_id: rsh-a69cd3056039
+    model: mlx-community/Qwen3-8B-4bit
+    condition: format_only
+    original_claim_count: 3
+  - cell_id: rsh-f2957bfdc6d1
+    model: mlx-community/Qwen3-8B-4bit
+    condition: provenance_scaffold
+    original_claim_count: 0
+    original_failure_mode: FM-B
+  - cell_id: rsh-219a5670de31
+    model: mlx-community/Qwen3-8B-4bit
+    condition: full_scaffold
+    original_claim_count: 5
+  - cell_id: rsh-14cc40061937
+    model: mlx-community/Meta-Llama-3.1-8B-Instruct-4bit
+    condition: baseline
+    original_claim_count: 0
+    original_failure_mode: FM-A
+  - cell_id: rsh-8910934edd14
+    model: mlx-community/Meta-Llama-3.1-8B-Instruct-4bit
+    condition: format_only
+    original_claim_count: 7
+  - cell_id: rsh-48c06999fbd2
+    model: mlx-community/Meta-Llama-3.1-8B-Instruct-4bit
+    condition: provenance_scaffold
+    original_claim_count: 5
+  - cell_id: rsh-afe4ff0ca356
+    model: mlx-community/Meta-Llama-3.1-8B-Instruct-4bit
+    condition: full_scaffold
+    original_claim_count: 0
+    original_failure_mode: FM-C
+  - cell_id: rsh-7e8e8cc1274a
+    model: mlx-community/gemma-3-12b-it-qat-4bit
+    condition: baseline
+    original_claim_count: 3
+  - cell_id: rsh-4f201c60d416
+    model: mlx-community/gemma-3-12b-it-qat-4bit
+    condition: format_only
+    original_claim_count: 4
+  - cell_id: rsh-45ccc9955e4d
+    model: mlx-community/gemma-3-12b-it-qat-4bit
+    condition: provenance_scaffold
+    original_claim_count: 4
+  - cell_id: rsh-f4e563504f43
+    model: mlx-community/gemma-3-12b-it-qat-4bit
+    condition: full_scaffold
+    original_claim_count: 4
+  - cell_id: rsh-7e754f7cdeed
+    model: mlx-community/Phi-4-reasoning-plus-4bit
+    condition: baseline
+    original_claim_count: 3
+  - cell_id: rsh-122f1c1ffec7
+    model: mlx-community/Phi-4-reasoning-plus-4bit
+    condition: format_only
+    original_claim_count: 0
+    original_failure_mode: FM-B
+  - cell_id: rsh-e07e21b3dc50
+    model: mlx-community/Phi-4-reasoning-plus-4bit
+    condition: provenance_scaffold
+    original_claim_count: 0
+    original_failure_mode: FM-B
+  - cell_id: rsh-58c5f6d2408a
+    model: mlx-community/Phi-4-reasoning-plus-4bit
+    condition: full_scaffold
+    original_claim_count: 0
+    original_failure_mode: FM-B

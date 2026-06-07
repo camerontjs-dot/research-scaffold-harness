@@ -1,0 +1,50 @@
+schema_version: extractor-output-sidecar-v1
+extractor_id: mlx-mistral-nemo-12b
+extractor_version: 0.1.0
+extractor_is_stub: false
+diagnostics: []
+claim_count: 3
+claims:
+  schema_version: 1.0.0
+  run_id: rsh-f6e603ab0646
+  generated_at_utc: '2026-05-31T04:36:41Z'
+  claims:
+  - claim_id: rsh-f6e603ab0646-c001
+    claim_type: extracted_claim
+    claim_text: Senior management establishes quality policy objectives and allocates
+      adequate resources for manufacturing operations.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-nemo-12b; stub=false
+  - claim_id: rsh-f6e603ab0646-c002
+    claim_type: extracted_claim
+    claim_text: Process validation demonstrates that manufacturing operations produce
+      consistent results within predefined specifications.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-nemo-12b; stub=false
+  - claim_id: rsh-f6e603ab0646-c003
+    claim_type: extracted_claim
+    claim_text: Analytical methods undergo validation to confirm specificity, accuracy,
+      and reproducibility.
+    support_status: uncertain
+    claim_strength: 0.5
+    extraction_fidelity: 0.5
+    source_refs: []
+    counterevidence_checked: false
+    counterevidence_found: false
+    downgraded: false
+    downgrade_reason: null
+    scaffold_notes: extractor_id=mlx-mistral-nemo-12b; stub=false
