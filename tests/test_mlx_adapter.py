@@ -7,6 +7,7 @@ mlx-lm plus enough memory to load the smallest model on Apple Silicon.
 
 from __future__ import annotations
 
+import importlib.metadata
 from pathlib import Path
 
 import pytest
@@ -31,6 +32,24 @@ from research_scaffold_harness.runner.mlx_adapter import (
 
 _FIXTURE_DIR = Path(__file__).parent / "fixtures" / "source-packet-minimal"
 _SMALLEST_MODEL = "lmstudio-community/Phi-4-mini-reasoning-MLX-4bit"
+
+
+def _mlx_lm_available() -> bool:
+    """True when mlx-lm package metadata is installed (the ``[mlx]`` extra)."""
+    try:
+        importlib.metadata.version("mlx-lm")
+    except importlib.metadata.PackageNotFoundError:
+        return False
+    return True
+
+
+# isinstance() against the runtime-checkable ModelAdapter protocol touches a
+# property that resolves the mlx-lm version, so this shape check needs the
+# optional [mlx] extra even though it loads no model.
+_REQUIRES_MLX_LM = pytest.mark.skipif(
+    not _mlx_lm_available(),
+    reason="resolves the mlx-lm version; install the [mlx] extra to run this shape check",
+)
 
 
 def test_allowlist_contains_exactly_five_models() -> None:
@@ -78,6 +97,7 @@ def test_qat_model_records_qat_quantization() -> None:
     assert adapter.quantization == "qat-4bit"
 
 
+@_REQUIRES_MLX_LM
 def test_adapter_satisfies_model_adapter_protocol() -> None:
     adapter = MLXModelAdapter(model_id=_SMALLEST_MODEL)
     assert isinstance(adapter, ModelAdapter)
