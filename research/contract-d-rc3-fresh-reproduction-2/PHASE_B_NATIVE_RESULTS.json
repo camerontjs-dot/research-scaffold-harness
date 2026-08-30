@@ -1,0 +1,22 @@
+{
+  "citation-use-clear": {
+    "outcome": "candidate_for_authorization",
+    "semantic_identity": "decision:sha256:f26789dc854d8583f923c4d600e493f910d60c721e861487307d6c64373b6679"
+  },
+  "completed-hold": {
+    "outcome": "hold",
+    "semantic_identity": "decision:sha256:82460425b646110c11bc659a76230f5e4a88620e634f478fc8fc879e4ba93905"
+  },
+  "evaluation-failed": {
+    "outcome": "evaluation_failed",
+    "semantic_identity": "decision:sha256:6ed6155819124bc5fc205f84b21bc283a21eee1d937cf36aa1fc2d4aaef49cd9"
+  },
+  "source-audit-clear": {
+    "outcome": "candidate_for_authorization",
+    "semantic_identity": "decision:sha256:85bd84dc0fbe36d47cbe6325dfa65fc36ccbbd69aff510055b5891136ecbf4ac"
+  },
+  "task-dispatch-clear": {
+    "outcome": "candidate_for_authorization",
+    "semantic_identity": "decision:sha256:9f389768439368165671360d08d16bc9f72f5768a5c468344ba27e9432b40eaf"
+  }
+}
