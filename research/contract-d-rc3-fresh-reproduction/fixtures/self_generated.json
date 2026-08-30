@@ -1,0 +1,43 @@
+{
+  "source_audit_clear": {
+    "contract_d_version": "0.3.0-rc3",
+    "input_authority": {"kind": "contract-c", "id": "c-alpha", "immutable_id": "result-set:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+    "policy": {"id": "mainframe.source-audit", "version": "1"},
+    "target": {"kind": "knowledge", "id": "k-alpha", "content_sha256": "sha256:1111111111111111111111111111111111111111111111111111111111111111"},
+    "evaluation": {"state": "completed", "disposition": "clear"},
+    "effect": {"type": "knowledge.add_verified_tag", "version": "1", "params": {"scope": "claim"}},
+    "metadata": {"reason_codes": ["independent_clear"], "explanation": "Independent positive control", "diagnostics": {"trace": [1, 2, 3]}}
+  },
+  "citation_clear": {
+    "contract_d_version": "0.3.0-rc3",
+    "input_authority": {"kind": "contract-c", "id": "c-beta", "immutable_id": "result-set:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
+    "policy": {"id": "mainframe.citation-use", "version": "1"},
+    "target": {"kind": "knowledge", "id": "k-beta", "content_sha256": "sha256:2222222222222222222222222222222222222222222222222222222222222222"},
+    "evaluation": {"state": "completed", "disposition": "clear"},
+    "effect": {"type": "knowledge.cite_as_evidence", "version": "1"}
+  },
+  "dispatch_clear": {
+    "contract_d_version": "0.3.0-rc3",
+    "input_authority": {"kind": "task-review", "id": "r-alpha", "immutable_id": "task-review:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"},
+    "policy": {"id": "mainframe.task-dispatch", "version": "1"},
+    "target": {"kind": "task", "id": "t-alpha", "content_sha256": "sha256:3333333333333333333333333333333333333333333333333333333333333333"},
+    "evaluation": {"state": "completed", "disposition": "clear"},
+    "effect": {"type": "task.dispatch", "version": "1"}
+  },
+  "completed_hold": {
+    "contract_d_version": "0.3.0-rc3",
+    "input_authority": {"kind": "contract-c", "id": "c-hold", "immutable_id": "result-set:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"},
+    "policy": {"id": "mainframe.source-audit", "version": "1"},
+    "target": {"kind": "knowledge", "id": "k-hold", "content_sha256": "sha256:4444444444444444444444444444444444444444444444444444444444444444"},
+    "evaluation": {"state": "completed", "disposition": "hold"},
+    "effect": {"type": "knowledge.add_verified_tag", "version": "1"}
+  },
+  "evaluation_failed": {
+    "contract_d_version": "0.3.0-rc3",
+    "input_authority": {"kind": "contract-c", "id": "c-fail", "immutable_id": "result-set:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"},
+    "policy": {"id": "mainframe.source-audit", "version": "1"},
+    "target": {"kind": "knowledge", "id": "k-fail", "content_sha256": "sha256:5555555555555555555555555555555555555555555555555555555555555555"},
+    "evaluation": {"state": "failed"},
+    "metadata": {"reason_codes": ["evaluation_error"]}
+  }
+}

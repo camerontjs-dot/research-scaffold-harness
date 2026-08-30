@@ -1,0 +1,15 @@
+{
+  "authority_mutations": [
+    "contract_d_version", "input_authority.kind", "input_authority.id", "input_authority.immutable_id",
+    "policy.id", "policy.version", "target.kind", "target.id", "target.content_sha256",
+    "evaluation.state", "evaluation.disposition", "effect.type", "effect.version", "effect.params.scope"
+  ],
+  "metadata_invariants": ["metadata.reason_codes", "metadata.explanation", "metadata.diagnostics"],
+  "authorization_only_context": ["actor", "profile", "approval", "delegation", "context"],
+  "injection_names": ["actor", "requested_operation", "approval", "delegation", "autonomy", "execution_permission", "execution_state", "execution_receipt"],
+  "weak_consumers": [
+    "clear-disposition-only", "target-id-only", "target-ignore-kind-content", "hold-failure-collapse",
+    "reason-text-effect-inference", "unknown-effect-acceptance", "policy-blind", "upstream-blind",
+    "identity-contaminated-by-authorization-context"
+  ]
+}
