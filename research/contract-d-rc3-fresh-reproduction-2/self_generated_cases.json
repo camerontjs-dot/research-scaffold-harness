@@ -1,0 +1,33 @@
+{
+  "version": "1",
+  "basis": "Independent cases derived only from the frozen RC3 public authority before reference reveal.",
+  "cases": [
+    {"id":"upstream-kind-substitution","mutation":"expected input_authority.kind differs","validity":"valid","semantic_identity":"unchanged decision object; if object mutated, changes","applicability":"not_applicable"},
+    {"id":"upstream-id-substitution","mutation":"expected input_authority.id differs","validity":"valid","semantic_identity":"unchanged decision object; if object mutated, changes","applicability":"not_applicable"},
+    {"id":"upstream-immutable-substitution","mutation":"expected input_authority.immutable_id differs","validity":"valid","semantic_identity":"unchanged decision object; if object mutated, changes","applicability":"not_applicable"},
+    {"id":"policy-id-substitution","mutation":"expected policy.id differs","validity":"valid","semantic_identity":"unchanged decision object; if object mutated, changes","applicability":"not_applicable"},
+    {"id":"policy-version-substitution","mutation":"expected policy.version differs","validity":"valid","semantic_identity":"unchanged decision object; if object mutated, changes","applicability":"not_applicable"},
+    {"id":"target-kind-substitution","mutation":"expected target.kind differs","validity":"valid","semantic_identity":"unchanged decision object; if object mutated, changes","applicability":"not_applicable"},
+    {"id":"target-id-substitution","mutation":"expected target.id differs","validity":"valid","semantic_identity":"unchanged decision object; if object mutated, changes","applicability":"not_applicable"},
+    {"id":"target-content-substitution","mutation":"expected target.content_sha256 differs","validity":"valid","semantic_identity":"unchanged decision object; if object mutated, changes","applicability":"not_applicable"},
+    {"id":"requested-operation-substitution","mutation":"requested operation differs from registered effect.type","validity":"valid","semantic_identity":"unchanged","applicability":"not_applicable"},
+    {"id":"requested-scope-substitution","mutation":"requested scope=object while decision normalizes scope=claim","validity":"valid","semantic_identity":"unchanged","applicability":"not_applicable"},
+    {"id":"safe-default-request-omitted","mutation":"requested add_verified_tag params omitted","validity":"valid","semantic_identity":"unchanged","applicability":"candidate_for_authorization when decision scope normalizes to claim"},
+    {"id":"safe-default-decision-omitted","mutation":"decision add_verified_tag params/scope omitted","validity":"valid","semantic_identity":"same as explicit scope=claim","applicability":"same as explicit scope=claim"},
+    {"id":"metadata-reason-mutation","mutation":"metadata.reason_codes changed","validity":"valid","semantic_identity":"unchanged","applicability":"unchanged"},
+    {"id":"metadata-explanation-mutation","mutation":"metadata.explanation changed","validity":"valid","semantic_identity":"unchanged","applicability":"unchanged"},
+    {"id":"metadata-diagnostics-mutation","mutation":"metadata.diagnostics changed, including Authorization-looking diagnostic data","validity":"valid","semantic_identity":"unchanged","applicability":"unchanged"},
+    {"id":"unknown-contract-version","mutation":"contract_d_version=0.4.0","validity":"invalid","semantic_identity":"not established","applicability":"cannot_establish"},
+    {"id":"unknown-evaluation-state","mutation":"evaluation.state=future","validity":"invalid","semantic_identity":"not established","applicability":"cannot_establish"},
+    {"id":"unknown-disposition","mutation":"completed disposition=maybe","validity":"invalid","semantic_identity":"not established","applicability":"cannot_establish"},
+    {"id":"unknown-effect-type","mutation":"effect.type=future.effect","validity":"invalid","semantic_identity":"not established","applicability":"cannot_establish"},
+    {"id":"unknown-effect-version","mutation":"known effect version=2","validity":"invalid","semantic_identity":"not established","applicability":"cannot_establish"},
+    {"id":"unknown-effect-parameter","mutation":"add undeclared effect param","validity":"invalid","semantic_identity":"not established","applicability":"cannot_establish"},
+    {"id":"unknown-structural-field","mutation":"add unknown Contract-D-owned structural field","validity":"invalid","semantic_identity":"not established","applicability":"cannot_establish"},
+    {"id":"hold-vs-failure","mutation":"compare completed hold with failed evaluation","validity":"both valid","semantic_identity":"distinct","applicability":"hold vs evaluation_failed when upstream/policy/target match"},
+    {"id":"hold-target-mismatch","mutation":"completed hold used against different target","validity":"valid","semantic_identity":"unchanged","applicability":"not_applicable"},
+    {"id":"failure-target-mismatch","mutation":"failed decision used against different target","validity":"valid","semantic_identity":"unchanged","applicability":"not_applicable"},
+    {"id":"duplicate-json-key","mutation":"duplicate object key in JSON text","validity":"invalid","semantic_identity":"not established","applicability":"cannot_establish"},
+    {"id":"authorization-context-only","mutation":"external actor/profile/approval/delegation/autonomy/operational context changes","validity":"Decision object unchanged","semantic_identity":"unchanged","applicability":"Decision applicability unchanged"}
+  ]
+}
