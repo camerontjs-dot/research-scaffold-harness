@@ -1,0 +1,22 @@
+name: Research - Contract D Fresh Independent Reproduction RC0
+
+on:
+  pull_request:
+    paths:
+      - "research/contract-d-fresh-reproduction/**"
+      - ".github/workflows/research-contract-d-fresh-reproduction-rc0.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frozen-independent-suite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run frozen independent Contract D suite
+        run: python research/contract-d-fresh-reproduction/test_contract_d.py

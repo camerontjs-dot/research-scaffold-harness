@@ -1,0 +1,24 @@
+name: Research - Contract D Post-Reveal Conformance
+
+on:
+  pull_request:
+    paths:
+      - "research/contract-d-fresh-reproduction/**"
+      - ".github/workflows/research-contract-d-post-reveal-conformance.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compare-frozen-consumer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Preserve frozen independent suite
+        run: python research/contract-d-fresh-reproduction/test_contract_d.py
+      - name: Run post-reveal native conformance comparison
+        run: python research/contract-d-fresh-reproduction/post_reveal_compare.py
