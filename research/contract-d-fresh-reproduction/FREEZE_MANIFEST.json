@@ -1,0 +1,43 @@
+{
+  "files": [
+    {"bytes": 598, "path": ".github/workflows/research-contract-d-fresh-reproduction-rc0.yml", "sha256": "33ee7215fd49c1cd759c88b4316a092cc07878ec602374741e09cf6044099c0f"},
+    {"bytes": 2913, "path": "research/contract-d-fresh-reproduction/FIELD_ABLATION_PREDICTIONS.md", "sha256": "12e9e10b10e98672ba73c45349db1a5a283bae3995e94687fde4504ff9399bba"},
+    {"bytes": 4855, "path": "research/contract-d-fresh-reproduction/PREDICTIONS.md", "sha256": "062b0338d18c55dedab777ea247fa23de11ad85b8fc60e49efaef561bb635ebe"},
+    {"bytes": 345, "path": "research/contract-d-fresh-reproduction/PRE_FREEZE_TEST_RECEIPT.md", "sha256": "4ae8c723f4a34a14e40cce0916cda56f10504114f1205dbad4413b763313cbbd"},
+    {"bytes": 2365, "path": "research/contract-d-fresh-reproduction/SOURCE_AUTHORITY.md", "sha256": "cfaae680bf962dc50ef2d4a681207c78536b8260210e007d616f98000af8da85"},
+    {"bytes": 15904, "path": "research/contract-d-fresh-reproduction/contract_d.py", "sha256": "dd6b3bce4d5069bf64c0f71a0f27836915ce210f14a9ea2aacc1f17b7a7a4d80"},
+    {"bytes": 599, "path": "research/contract-d-fresh-reproduction/fixtures/completed-hold.json", "sha256": "6a31e91322ff52ee5b2e14273830acb072bdd21bf1d7d0cc36a2571f0d87f583"},
+    {"bytes": 534, "path": "research/contract-d-fresh-reproduction/fixtures/evaluation-failed.json", "sha256": "3ddc9f3b02b10f4c282bac2bd0dd5699700a7b15a572dbbe82081805e1a20cde"},
+    {"bytes": 514, "path": "research/contract-d-fresh-reproduction/fixtures/unknown-effect-type.json", "sha256": "d2c202686529a6fdd6bc0ceb2458ba76e4c19ff5b5ce5d1ba33613644f6ac1e5"},
+    {"bytes": 618, "path": "research/contract-d-fresh-reproduction/fixtures/unknown-effect-version.json", "sha256": "9c2a2b97cee1bf9fda537cb880fd5c6d24144bf1801b7d7baa3943141b033fa6"},
+    {"bytes": 572, "path": "research/contract-d-fresh-reproduction/fixtures/valid-citation-use-clear.json", "sha256": "068db25441448de3cff0a77febc2062c506de839a61cc85eacd2cfb2beedaa11"},
+    {"bytes": 662, "path": "research/contract-d-fresh-reproduction/fixtures/valid-knowledge-tag-clear.json", "sha256": "71b6b4f6a0b3fc21ccf293f70726250751ee117d2274b8057dff76de29a2b671"},
+    {"bytes": 592, "path": "research/contract-d-fresh-reproduction/fixtures/valid-task-dispatch-clear.json", "sha256": "565e15c96a21fce27f3e4fb5ba773cc50339201e99b8d3484605063689e27b23"},
+    {"bytes": 19114, "path": "research/contract-d-fresh-reproduction/test_contract_d.py", "sha256": "f85f7acf6fe29999f042aeeb20aec3ee14226f47f591828ceda246c9c9c3edd1"}
+  ],
+  "fixture_corpus_hash_method": "sha256 of UTF-8 concatenation of sorted '<filename>\\\\0<fixture_sha256>\\\\n' records",
+  "fixture_corpus_sha256": "48d29b0ba59f2978f4e146c6aa91ef3c9bb841938b8b7c818d171e9c92f88fae",
+  "fixture_sha256": {
+    "completed-hold.json": "6a31e91322ff52ee5b2e14273830acb072bdd21bf1d7d0cc36a2571f0d87f583",
+    "evaluation-failed.json": "3ddc9f3b02b10f4c282bac2bd0dd5699700a7b15a572dbbe82081805e1a20cde",
+    "unknown-effect-type.json": "d2c202686529a6fdd6bc0ceb2458ba76e4c19ff5b5ce5d1ba33613644f6ac1e5",
+    "unknown-effect-version.json": "9c2a2b97cee1bf9fda537cb880fd5c6d24144bf1801b7d7baa3943141b033fa6",
+    "valid-citation-use-clear.json": "068db25441448de3cff0a77febc2062c506de839a61cc85eacd2cfb2beedaa11",
+    "valid-knowledge-tag-clear.json": "71b6b4f6a0b3fc21ccf293f70726250751ee117d2274b8057dff76de29a2b671",
+    "valid-task-dispatch-clear.json": "565e15c96a21fce27f3e4fb5ba773cc50339201e99b8d3484605063689e27b23"
+  },
+  "hash_algorithm": "sha256",
+  "label": "FRESH_IMPLEMENTATION_FROZEN_BEFORE_REFERENCE_REVEAL",
+  "manifest_version": 1,
+  "source_authorities": {
+    "apparatus_contracts_main": "00bdf9546a877f9f6c1d7fd227fd959e1d7aa99e",
+    "contract_d_pr19_observed_head": "6c1ddb5a6b6b1a5373261e41d64a4baee83e0efb",
+    "decision_authorization_boundary": "f7c3759dfac7ee4be45879b8266b5eb1440530ee",
+    "decision_engine_main": "ff7a0f63e5f7075b192dff04064b950bf7255ffa",
+    "rc0_preregistration": "6d6f003cc705264e4f8ecda24602da1da1820bc0",
+    "rc0_written_results": "cc27d766d751dbc1d062e0790f2bee5e04276c23",
+    "rc1_preregistration": "785a407e71797e88c89e81fd164302c05785d9d0",
+    "rc2_preregistration": "bc1cc749bcea5a12aa66f6ac091cc17a8463991c"
+  },
+  "test_summary": {"local_exit_code": 0, "result": "OK", "tests": 28}
+}
