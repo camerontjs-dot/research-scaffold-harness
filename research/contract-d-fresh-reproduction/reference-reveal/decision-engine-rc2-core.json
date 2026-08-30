@@ -1,0 +1,1 @@
+{"contract_version":"D-rc2","input_authority":{"kind":"contract-c","id":"c1"},"policy":{"id":"source-audit","version":"1"},"target":{"kind":"knowledge","id":"k1","content_hash":"h1"},"evaluation_state":"completed","disposition":"clear","effect":{"type":"knowledge.add_verified_tag","version":"1","params":{"scope":"claim"}}}
