@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import copy
 import json
-import math
 import os
 import struct
 import subprocess
@@ -43,11 +42,20 @@ def ref_result(fn):
     except ContractDError as exc:
         return {"status": "reject_controlled", "error": exc.code}
     except RecursionError:
-        return {"status": "reject_controlled", "error": "RecursionError-translated-by-harness"}
+        return {"status": "reject_controlled", "error": "recursion"}
+
+
+def authority_view(value):
+    """Remove implementation-private rejection wording from authority comparison."""
+    if isinstance(value, dict) and value.get("status") == "reject_controlled":
+        return {"status": "reject_controlled"}
+    return value
 
 
 def add(case_id: str, category: str, ref_value, ind_value, *, authority=True, mismatch_class=None):
-    same = ref_value == ind_value
+    ref_cmp = authority_view(ref_value)
+    ind_cmp = authority_view(ind_value)
+    same = ref_cmp == ind_cmp
     rec = {
         "id": case_id,
         "category": category,
@@ -171,7 +179,7 @@ def special_ref(kind: str, base: dict, count: int | None = None):
     return ref_result(run)
 
 
-# A. Structural/state behavior: all public fixtures.
+# A. Structural/state behavior: public fixtures and exact applicability.
 for name in sorted(VALID):
     add(f"validate:valid:{name}", "structural", validate_ref(VALID[name]), validate_node(VALID[name]))
 for name in sorted(INVALID):
@@ -181,7 +189,6 @@ case_version = copy.deepcopy(VALID["source-audit-clear.json"])
 case_version["contract_d_version"] = "0.3.0-RC5"
 add("validate:case-varied-version", "structural", validate_ref(case_version), validate_node(case_version))
 
-# Explicit state outcomes beyond the public conformance set.
 for name in ["citation-use-clear.json", "task-dispatch-clear.json", "completed-hold.json", "evaluation-failed.json"]:
     d = copy.deepcopy(VALID[name])
     e = expectation_for(d)
@@ -220,7 +227,6 @@ for cid, params in [
     e = expectation_for(base, params_marker=params)
     add(f"consume:{cid}", "requested-params", consume_ref(base, e), consume_node(base, e))
 
-# Malformed expectations.
 malformed = []
 e = expectation_for(base); del e["target"]["id"]; malformed.append(("missing-nested-key", e))
 e = expectation_for(base); e["target"]["extra"] = "x"; malformed.append(("extra-nested-key", e))
@@ -233,7 +239,6 @@ e = expectation_for(base); e["extra"] = True; malformed.append(("extra-top-key",
 for cid, e in malformed:
     add(f"consume:malformed:{cid}", "malformed-expectation", consume_ref(base, e), consume_node(base, e))
 
-# Host-only/non-finite/surrogate malformed expectation values exposed by reference tests.
 e_base = expectation_for(base)
 e = to_ref_expectation(e_base); object.__setattr__(e, "effect_params", {"scope": float("nan")})
 r = ref_consume(copy.deepcopy(base), e)["outcome"]
@@ -263,24 +268,17 @@ sur_raw = json.dumps(sur, ensure_ascii=True, separators=(",", ":")).encode("asci
 add("ingress:unpaired-surrogate", "unicode", parse_ref(sur_raw), parse_node(sur_raw))
 
 for kind in ["self_cycle", "mutual_cycle", "shared_acyclic"]:
-    add(
-        f"host:{kind}",
-        "container-graph",
-        special_ref(kind, base),
-        node({"action": kind, "base": base}),
-    )
-add(
-    "depth:128-boundary-accept",
-    "depth",
-    special_ref("depth", base, 125),
-    node({"action": "depth", "base": base, "count": 125}),
-)
-add(
-    "depth:129-reject",
-    "depth",
-    special_ref("depth", base, 126),
-    node({"action": "depth", "base": base, "count": 126}),
-)
+    add(f"host:{kind}", "container-graph", special_ref(kind, base), node({"action": kind, "base": base}))
+add("depth:128-boundary-accept", "depth", special_ref("depth", base, 125), node({"action": "depth", "base": base, "count": 125}))
+add("depth:129-reject", "depth", special_ref("depth", base, 126), node({"action": "depth", "base": base, "count": 126}))
+
+
+def decision_bytes_with_number(token: str) -> bytes:
+    x = copy.deepcopy(base)
+    x["metadata"]["diagnostics"] = {"number": "__NUMBER_TOKEN__"}
+    text = json.dumps(x, ensure_ascii=False, separators=(",", ":"))
+    return text.replace('"__NUMBER_TOKEN__"', token).encode("utf-8")
+
 
 vectors = [
     ("0000000000000000", "0"), ("8000000000000000", "0"),
@@ -296,63 +294,46 @@ vectors = [
     ("41b3de4355555556", "333333333.3333334"), ("41b3de4355555557", "333333333.33333343"),
     ("becbf647612f3696", "-0.0000033333333333333333"), ("43143ff3c1cb0959", "1424953923781206.2"),
 ]
+# These binary64s are integer-valued in JavaScript Number even though the Python
+# reference exposes them as float. Compare their Contract-D/JCS meaning via byte
+# ingress, as required by the packet's cross-language host-representation rule.
+BYTE_COMPARABLE_BITS = {
+    "7fefffffffffffff", "ffefffffffffffff", "4340000000000000", "c340000000000000",
+    "4430000000000000", "44b52d02c7e14af5", "44b52d02c7e14af6", "44b52d02c7e14af7",
+    "444b1ae4d6e2ef4e", "444b1ae4d6e2ef4f", "444b1ae4d6e2ef50",
+}
 for bits, expected in vectors:
-    add(
-        f"jcs:number:{bits}",
-        "jcs-number",
-        canonical_ref({"n": f64(bits)}),
-        node({"action": "number_bits", "bits": bits}),
-    )
-
-# Byte-ingress integer tokens in the exact RC5 domain.
-def decision_bytes_with_number(token: str) -> bytes:
-    x = copy.deepcopy(base)
-    x["metadata"]["diagnostics"] = {"number": "__NUMBER_TOKEN__"}
-    text = json.dumps(x, ensure_ascii=False, separators=(",", ":"))
-    return text.replace('"__NUMBER_TOKEN__"', token).encode("utf-8")
+    if bits in BYTE_COMPARABLE_BITS:
+        raw = decision_bytes_with_number(expected)
+        r = parse_ref(raw)
+        n = parse_node(raw)
+    else:
+        r = canonical_ref({"n": f64(bits)})
+        n = node({"action": "number_bits", "bits": bits})
+    add(f"jcs:number:{bits}", "jcs-number", r, n)
 
 for token in ["9007199254740993", "9007199254740992", "295147905179352830000", "100000000000000000000"]:
     raw = decision_bytes_with_number(token)
     add(f"ingress:integer-token:{token}", "number-domain", parse_ref(raw), parse_node(raw))
 
-add(
-    "jcs:utf16-key-order",
-    "jcs-ordering",
-    canonical_ref({"\uffff": 1, "\U0001f4a9": 2}),
-    canonical_node({"\uffff": 1, "\U0001f4a9": 2}),
-)
+add("jcs:utf16-key-order", "jcs-ordering", canonical_ref({"\uffff": 1, "\U0001f4a9": 2}), canonical_node({"\uffff": 1, "\U0001f4a9": 2}))
 
-# Normative canonical transport bytes for all public valid decisions.
 for name in sorted(VALID):
-    add(
-        f"canonical-decision:{name}",
-        "canonical-transport",
-        canonical_decision_ref(VALID[name]),
-        canonical_decision_node(VALID[name]),
-    )
+    add(f"canonical-decision:{name}", "canonical-transport", canonical_decision_ref(VALID[name]), canonical_decision_node(VALID[name]))
 
-# Normative semantic identities. Empty-schema effects are a prereveal uncertainty.
+# C. Frozen prereveal uncertainty 1: empty-schema projection shape.
 for name in sorted(VALID):
-    hint = None
-    if name in {"citation-use-clear.json", "task-dispatch-clear.json"}:
-        hint = "PUBLIC_AUTHORITY_AMBIGUITY"
-    add(
-        f"semantic-identity:{name}",
-        "semantic-identity",
-        identity_ref(VALID[name]),
-        identity_node(VALID[name]),
-        mismatch_class=hint,
-    )
+    hint = "PUBLIC_AUTHORITY_AMBIGUITY" if name in {"citation-use-clear.json", "task-dispatch-clear.json"} else None
+    add(f"semantic-identity:{name}", "semantic-identity", identity_ref(VALID[name]), identity_node(VALID[name]), mismatch_class=hint)
 
-# Metadata firewall/invariance on an effect whose normalization is unambiguous.
 meta = copy.deepcopy(base)
 meta["metadata"]["diagnostics"] = {"actor": "root", "approval": True, "n": 1e-6}
 add("semantic-identity:metadata-firewall", "metadata-firewall", identity_ref(meta), identity_node(meta))
 no_meta = copy.deepcopy(base); no_meta.pop("metadata")
 add("semantic-identity:metadata-absent", "metadata-firewall", identity_ref(no_meta), identity_node(no_meta))
 
-# Preserve a host-representation variance exposed by the Python reference tests.
-# Python has a distinct float host type; JavaScript Number has no int/float distinction.
+# Preserve, but do not score as authority, the host API variance that motivated
+# the corrected byte-level comparison above.
 for decimal in ["9007199254740992", "295147905179352830000"]:
     r = canonical_ref({"n": float(decimal)})
     n = node({"action": "host_integer_valued_binary64", "decimal": decimal})
@@ -365,12 +346,12 @@ for decimal in ["9007199254740992", "295147905179352830000"]:
         mismatch_class="NON_AUTHORITY_IMPLEMENTATION_VARIANCE",
     )
 
-# Summaries.
 auth = [r for r in records if r["authority_relevant"]]
 diffs = [r for r in records if not r["agreement"]]
 auth_diffs = [r for r in auth if not r["agreement"]]
 class_counts = Counter(r.get("classification", "AGREEMENT") for r in records)
 summary = {
+    "harness_revision": 2,
     "total_comparisons": len(records),
     "authority_relevant_total": len(auth),
     "authority_relevant_agreements": sum(1 for r in auth if r["agreement"]),
