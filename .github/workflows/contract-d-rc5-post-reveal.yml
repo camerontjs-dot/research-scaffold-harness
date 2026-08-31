@@ -1,0 +1,25 @@
+name: Contract D RC5 post-reveal comparison
+
+on:
+  push:
+    branches:
+      - research/contract-d-rc5-fresh-reproduction-v1
+    paths:
+      - .github/workflows/contract-d-rc5-post-reveal.yml
+
+permissions:
+  contents: read
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sparse checkout comparison harness only
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            research/contract-d-rc5-fresh-reproduction-v1/post_reveal
+          sparse-checkout-cone-mode: false
+      - name: Run frozen reference and differential comparison
+        shell: bash
+        run: bash research/contract-d-rc5-fresh-reproduction-v1/post_reveal/run_hosted_comparison.sh
