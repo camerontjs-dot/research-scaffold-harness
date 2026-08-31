@@ -41,6 +41,7 @@ mlx = [
 
 [project.scripts]
 scaffold-harness = "research_scaffold_harness.cli:cli"
+contract-e-rc3c = "research_scaffold_harness.contract_e_rc3c.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
