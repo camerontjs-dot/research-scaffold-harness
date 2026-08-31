@@ -1,0 +1,308 @@
+{
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-m",
+    "research.contract_e_fresh_reproduction.run_tests"
+  ],
+  "summary": {
+    "passed": 73,
+    "failed": 0,
+    "errors": 0,
+    "total": 73,
+    "ok": true
+  },
+  "tests": [
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_spec_loader:test_authorized_specs_load",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_extra_qualification_not_current",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_extra_revoked_at_before_evaluated_at_not_current",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_extra_warrant_inapplicable",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_extra_warrant_not_allowed_on_operational_domain",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_loader_exposes_nine_domains",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t00_source_access_happy_path_accepts",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t01_subject_principal_substitution",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t02_authority_domain_substitution",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t03_typed_operation_substitution_unknown_for_domain",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t03b_typed_operation_substitution_record_operations",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t04_scope_substitution",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t05_target_class_substitution",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t06_exact_target_substitution",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t06b_absent_target_ids_unbound",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t07_stale_record_rejected_for_new_exercise",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t07b_historical_accepts_later_noncurrent_record",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t08_outside_validity_interval",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t08b_later_revocation_must_not_rewrite_history",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t09_authority_reference_type_mismatch",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t10_unresolvable_authority_basis",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t11_competence_present_mandate_absent",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t11b_credential_is_not_authority",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t12_mandate_present_required_competence_absent",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t13_valid_warrant_missing_mandate",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t13b_decision_warrant_with_grant_not_policy",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t14_valid_mandate_missing_required_warrant",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t14b_wrong_warrant_type_for_decision",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t15_result_payload_mutation_does_not_affect_accept",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t15b_positive_result_does_not_self_authorize",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t16_delegation_amplification_added_operation",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t16b_delegation_amplification_extended_expiry",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t16c_delegation_amplification_expanded_scope",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t16d_delegation_true_subset_accepts",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t17a_identity_provenance_cannot_carry_competence",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t17b_none_propagation_rejects_any_propagated_fields",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t17c_reestablished_authority_with_identity_provenance_accepts",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t17d_explicit_propagation_of_warrant_forbidden",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t18_participant_domain_substitution",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t18b_participant_excluded_responsibility",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t18c_participant_not_inferred_from_subject",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t19a_unknown_domain",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t19b_unknown_operation",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t19c_malformed_missing_target_hash",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t20_supporting_artifact_as_sole_basis",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t21_reference_current_cannot_override_record",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t22a_historical_valid_despite_later_revocation",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t22b_new_exercise_after_revocation_rejected",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t23_cross_domain_warrant",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t24_jurisdiction_inapplicable",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t25_stale_target_hash",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t26_non_implication_cross_use",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t27_non_implication_not_inferred",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t28_grant_not_allowed_for_decision_mandate",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t29_identity_policy_id_is_not_bound_record",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t30_jurisdiction_not_current_on_new_exercise",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t31_generic_authorized_boolean_forbidden",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t31b_generic_authorized_cannot_repair_missing_basis",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t32_qualification_cannot_substitute_for_basis",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t33_qualification_subject_mismatch",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t33b_qualification_scope_need_not_match_jurisdiction",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t34_warrant_operation_mismatch",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t35_empty_authority_basis_list",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t35b_single_basis_object_is_malformed",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t36_unknown_propagation_mode",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t37_evaluated_at_on_valid_from_inclusive",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t37b_evaluated_at_on_valid_until_inclusive",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t38_irrelevant_payload_fields_do_not_affect_outcome",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t39_mixed_artifact_and_matching_grant_accepts",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_preregistered:test_t40_delegation_parent_unresolvable",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_cli_eval:test_cli_accepts_happy_path",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_fixtures:test_fixture_source_access_accepts",
+      "status": "pass"
+    },
+    {
+      "id": "research.contract_e_fresh_reproduction.tests.test_fixtures:test_fixture_subject_mismatch_rejects",
+      "status": "pass"
+    }
+  ]
+}

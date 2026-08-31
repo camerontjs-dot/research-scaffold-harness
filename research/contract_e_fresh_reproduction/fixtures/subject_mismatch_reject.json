@@ -1,0 +1,29 @@
+{
+  "exercise_kind": "new",
+  "envelope": {
+    "subject": {"id": "sub-2", "kind": "agent"},
+    "authority_domain": "source_access",
+    "operation": "source.read",
+    "target": {"class": "document", "id": "doc-1", "current_hash": "hash-1"},
+    "jurisdiction": {"scope": "org-a", "applicable": true, "current": true},
+    "authority_basis": [{"type": "grant", "id": "grant-1", "current": true}],
+    "propagation": "none",
+    "non_implications": ["decision_mandate", "citation_use", "task_dispatch"],
+    "evaluated_at": "2026-06-01T00:00:00Z",
+    "participant": "evidence-bundler"
+  },
+  "basis_records": {
+    "grant-1": {
+      "id": "grant-1",
+      "type": "grant",
+      "subject_ids": ["sub-1"],
+      "authority_domain": "source_access",
+      "operations": ["source.read"],
+      "scopes": ["org-a"],
+      "target_classes": ["document"],
+      "current": true,
+      "valid_from": "2026-01-01T00:00:00Z",
+      "valid_until": "2026-12-31T23:59:59Z"
+    }
+  }
+}
