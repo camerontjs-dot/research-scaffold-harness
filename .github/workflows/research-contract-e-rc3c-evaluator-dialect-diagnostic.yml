@@ -1,0 +1,49 @@
+name: Research - Contract E RC3C evaluator dialect diagnostic
+
+on:
+  push:
+    branches:
+      - research/contract-e-rc3c-evaluator-dialect-diagnostic-20260831
+  pull_request:
+    paths:
+      - "docs/research/contract-e/rc3c-fresh-reproduction/diagnose_evaluator_dialect.py"
+      - ".github/workflows/research-contract-e-rc3c-evaluator-dialect-diagnostic.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Protect frozen Grok implementation and tests
+        run: |
+          set -euo pipefail
+          test "$(git diff --name-only b3dcaa5764827d8d167327ea41daf1aac43b8a3b...HEAD -- src tests/contract_e_rc3c | wc -l | tr -d ' ')" = "0"
+
+      - name: Verify post-falsification parent
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor 6da342a0bf3d724b24530518cbd2b97b92be1e77 HEAD
+
+      - name: Run causal diagnostic
+        env:
+          PYTHONPATH: src
+        run: |
+          set -o pipefail
+          python docs/research/contract-e/rc3c-fresh-reproduction/diagnose_evaluator_dialect.py \
+            | tee rc3c-evaluator-dialect-diagnostic.txt
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: contract-e-rc3c-evaluator-dialect-${{ github.sha }}
+          path: |
+            rc3c-evaluator-dialect-diagnostic.txt
+            docs/research/contract-e/rc3c-fresh-reproduction/EVALUATOR-DIALECT-DIAGNOSTIC.json
+          if-no-files-found: warn
+          retention-days: 30
