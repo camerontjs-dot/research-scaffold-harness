@@ -1,0 +1,44 @@
+{
+  "independent_freeze_commit": "a34fcccf15b752f0870099d18ee8370aae591b04",
+  "independent_implementation_blob": "5c7ac5a4c821a76d6520412d2dade0cfb0c19021",
+  "producer": "decision-engine-research-rc4",
+  "producer_blob": "96d7856493c498080e3e34366654aeebd14db9f4",
+  "results": {
+    "citation-use-clear": {
+      "direct_object_no_translation": true,
+      "expected_outcome": "candidate_for_authorization",
+      "outcome": "candidate_for_authorization",
+      "semantic_identity": "decision:sha256:a7593e3dff38d841b99c6ce7a7d33991900b69522ad380f8c1043148d15ee200",
+      "valid": true
+    },
+    "completed-hold": {
+      "direct_object_no_translation": true,
+      "expected_outcome": "hold",
+      "outcome": "hold",
+      "semantic_identity": "decision:sha256:d6741bea58ad3392b9204aa7498cd9f890976bf32e1b86b71a5e194b640b8716",
+      "valid": true
+    },
+    "evaluation-failed": {
+      "direct_object_no_translation": true,
+      "expected_outcome": "evaluation_failed",
+      "outcome": "evaluation_failed",
+      "semantic_identity": "decision:sha256:bd71b6852f3166aa8a7994cde913b1558a53cd049685cab3a1863d2f15c239f6",
+      "valid": true
+    },
+    "source-audit-clear": {
+      "direct_object_no_translation": true,
+      "expected_outcome": "candidate_for_authorization",
+      "outcome": "candidate_for_authorization",
+      "semantic_identity": "decision:sha256:9f8a43651f0de365a26161f7951493f9e01370dcca46b6e24ea80d1a9636152f",
+      "valid": true
+    },
+    "task-dispatch-clear": {
+      "direct_object_no_translation": true,
+      "expected_outcome": "candidate_for_authorization",
+      "outcome": "candidate_for_authorization",
+      "semantic_identity": "decision:sha256:2c57de9b2e78dc4de82455dbd74d0e4bd61bb5c6a45c7d5c0edf89d19b4d3004",
+      "valid": true
+    }
+  },
+  "translation_required": false
+}
