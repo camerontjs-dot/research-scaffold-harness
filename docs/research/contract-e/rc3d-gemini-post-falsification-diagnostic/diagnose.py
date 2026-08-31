@@ -99,17 +99,14 @@ def case_entry(family: str, case_id: str, expected: str | None, expected_reason:
 
 cases = []
 
-# RC3A envelope cases
 for c in rc3a["envelope_cases"]:
     env, reg = materialize_case(c)
     cases.append(case_entry("rc3a_envelope", c["id"], c.get("expected"), c.get("reason"), request_of(env, reg)))
 
-# RC3B direct basis attacks
 for c in attacks["cases"]:
     env, reg = materialize_case(c)
     cases.append(case_entry("rc3b_basis_attacks", c["id"], c.get("expected"), c.get("reason"), request_of(env, reg)))
 
-# Full 9x15 matrix
 conferring_ids = [rid for rid, rec in records.items() if rec.get("type") in CONFERING]
 for base_name, canonical_id in cmp.CANONICAL_BASIS.items():
     for record_id in conferring_ids:
@@ -128,7 +125,6 @@ for base_name, canonical_id in cmp.CANONICAL_BASIS.items():
             tags=["matrix", "canonical" if expected == "accept" else "noncanonical"],
         ))
 
-# RC3C currentness and envelope-wire cases
 for c in rc3c["currentness_cases"]:
     env, reg = materialize_case(c)
     cases.append(case_entry("rc3c_currentness", c["id"], c.get("expected"), c.get("reason"), request_of(env, reg)))
@@ -136,7 +132,6 @@ for c in rc3c["wire_cases"]:
     env, reg = materialize_case(c)
     cases.append(case_entry("rc3c_wire", c["id"], c.get("expected"), c.get("reason"), request_of(env, reg)))
 
-# Only envelope-based RC3C reason cases. Propagation is intentionally untouched.
 for c in rc3c["reason_cases"]:
     if "source_envelope_case" not in c:
         continue
@@ -145,7 +140,6 @@ for c in rc3c["reason_cases"]:
     env, reg = materialize_case(merged)
     cases.append(case_entry("rc3c_reason_envelope", c["id"], c.get("expected"), c.get("reason"), request_of(env, reg)))
 
-# Semantic metamorphic requests. Expected outcome is canonical accept for these frozen positive bases.
 meta = rc3c["semantic_metamorphic"]
 semantic_groups = defaultdict(list)
 for base_name in meta["bases"]:
@@ -159,9 +153,12 @@ for base_name in meta["bases"]:
         if variant.get("omit"):
             env.pop("result", None)
             label = variant["label"]
-        else:
+        elif "label" in variant and "result" in variant:
             env["result"] = deep(variant["result"])
             label = variant["label"]
+        else:
+            env["result"] = deep(variant)
+            label = variant.get("label", json.dumps(variant, sort_keys=True))
         cid = f"SEM-{base_name}--{label}"
         cases.append(case_entry("semantic_metamorphic", cid, "accept", None, request_of(env, deep(registry_doc)), tags=["semantic", base_name, label]))
         semantic_groups[base_name].append(cid)
@@ -193,7 +190,6 @@ for item in cases:
             **meta_applied,
         })
 
-# Control correspondence with the published terminal comparison for overlapping family/id rows.
 original = json.loads(ORIGINAL_RESULTS.read_text())
 orig_rows = original.get("rows") or original.get("cases") or original.get("evaluations") or []
 orig_index = {(r.get("family"), r.get("id")): r for r in orig_rows if isinstance(r, dict)}
@@ -217,13 +213,14 @@ def summarize(condition):
 
 summary = {c: summarize(c) for c in CONDITIONS}
 
-# Cluster-specific paired effects.
+
 def index(condition):
     return {(r["family"], r["id"]): r for r in rows if r["condition"] == condition}
-idx = {c: index(c) for c in CONDITIONS}
 
+idx = {c: index(c) for c in CONDITIONS}
 warrant_keys = [k for k, r in idx["W0_B0_control"].items() if r["warrant_affected"]]
 support_keys = [k for k, r in idx["W0_B0_control"].items() if r["support_affected"]]
+
 
 def transitions(keys, treatment):
     out = Counter()
@@ -237,7 +234,6 @@ def transitions(keys, treatment):
             examples.append({"family": k[0], "id": k[1], "before": {"outcome": a["outcome"], "reason": a["reason"], "exception": a["exception_type"]}, "after": {"outcome": b["outcome"], "reason": b["reason"], "exception": b["exception_type"]}})
     return {"counts": dict(out), "changed": examples}
 
-# Matrix safety for each condition.
 matrix = {}
 for condition in CONDITIONS:
     rs = [r for r in rows if r["condition"] == condition and r["family"] == "rc3b_compatibility_matrix"]
@@ -252,7 +248,6 @@ for condition in CONDITIONS:
         "noncanonical_execution_errors": sum(1 for r in noncanonical if r["outcome"] == "execution_error"),
     }
 
-# Semantic metamorphic completion/invariance under each condition.
 semantic = {}
 for condition in CONDITIONS:
     byid = idx[condition]
@@ -276,16 +271,10 @@ for condition in CONDITIONS:
         group_details[base_name] = {"baseline_complete": base_complete, "completed_variant_comparisons": var_complete, "signature_changes": var_changes}
     semantic[condition] = {"completed_variant_comparisons": completed, "authority_signature_changes": changes, "groups": group_details}
 
-# Explicit clusters intentionally untouched: verify diagnostic never transforms non-envelope request families.
-untouched_note = {
-    "propagation_nested_request": "not transformed or rescored",
-    "delegation_singular_operations_scope": "not transformed or rescored",
-    "qualification_scope_array": "not transformed or rescored",
-}
-
 result = {
     "schema": "contract-e-rc3d-gemini-post-falsification-diagnostic-v1",
     "terminal_disposition_of_subject": "FALSIFIED_UNCHANGED",
+    "first_run": {"run_id": 33438328587, "status": "INCONCLUSIVE_APPARATUS_FAILURE", "cause": "semantic variant parser assumed result wrapper"},
     "control_correspondence_mismatches": control_mismatches,
     "eligible_case_count": len(cases),
     "evaluation_count": len(rows),
@@ -298,7 +287,11 @@ result = {
     "combined_transitions_on_support_cases": transitions(support_keys, "W1_B1_combined"),
     "compatibility_matrix": matrix,
     "semantic_metamorphic": semantic,
-    "explicit_failures_left_untouched": untouched_note,
+    "explicit_failures_left_untouched": {
+        "propagation_nested_request": "not transformed or rescored",
+        "delegation_singular_operations_scope": "not transformed or rescored",
+        "qualification_scope_array": "not transformed or rescored",
+    },
     "rows": rows,
 }
 
@@ -314,9 +307,8 @@ print("WARRANT_AFFECTED", len(warrant_keys), json.dumps(transitions(warrant_keys
 print("SUPPORT_AFFECTED", len(support_keys), json.dumps(transitions(support_keys, "B1_conferring_only")["counts"], sort_keys=True))
 for c in CONDITIONS:
     print("MATRIX", c, json.dumps(matrix[c], sort_keys=True))
-    print("SEMANTIC", c, json.dumps({k:v for k,v in semantic[c].items() if k != "groups"}, sort_keys=True))
+    print("SEMANTIC", c, json.dumps({k: v for k, v in semantic[c].items() if k != "groups"}, sort_keys=True))
 
-# Fail only for invalid apparatus/control correspondence or unsafe treatment false permits.
 unsafe = sum(v.get("false_accept", 0) for k, v in summary.items() if k != "W0_B0_control")
 if control_mismatches:
     print("DIAGNOSTIC_INVALID_CONTROL_MISMATCH")
