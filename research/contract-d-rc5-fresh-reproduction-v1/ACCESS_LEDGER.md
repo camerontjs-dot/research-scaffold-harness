@@ -20,9 +20,9 @@ The GitHub connector rejected the branch-specific metadata endpoint used to veri
 - `research/contract-d-rc4-fresh-reproduction` @ `75812088e7965e507a353da7414f7d3f503fcecd`
 - `research/contract-d-rc4-fresh-reproduction-v2` @ `d5f461df0d6ba5d9687d58851f91927aae2b17c6`
 
-This metadata is classified as demonstrably non-answer-bearing for the independent Contract D semantic question: it reveals only that prior branches exist and their opaque Git identities. No denied branch was opened or searched and no prior reproduction content or outcome was observed.
+This metadata is demonstrably non-answer-bearing for the independent Contract D semantic question. No denied branch was opened or searched and no prior reproduction content or outcome was observed.
 
-## Accesses
+## Prereveal accesses
 
 1. `camerontjs-dot/apparatus-contracts` @ `fed140fc8e357c6122d66f8db7d6d9202a6b8edf`
    - `research/contract-d-independent-authority-rc5/CONTEXT_FREE_LAUNCH_PACKET.md`
@@ -37,43 +37,39 @@ This metadata is classified as demonstrably non-answer-bearing for the independe
 
 3. `camerontjs-dot/research-scaffold-harness` branch `research/contract-d-rc5-fresh-reproduction-v1`
    - `research/contract-d-rc5-fresh-reproduction-v1/ACCESS_LEDGER.md`
-   - purpose: durable access ledger creation and finalization.
+   - purpose: durable access ledger creation and maintenance.
 
 4. `camerontjs-dot/apparatus-contracts` @ frozen candidate commit `f0f7a9684cf114159ca1cfe1c9f11b626a07e6c8`
-   - declared candidate subtree from launch packet: `f5db874db39c0c3bf863f4ba2cc1a3597369f3bf`
-   - `research/contract-d-independent-authority-rc5/candidate/SPEC.md` — verified blob `57fa4ca59efced5e35115551b1aa57dbbc7f6b2c`
-   - `research/contract-d-independent-authority-rc5/candidate/schema.json` — verified blob `fe4e74464a53f581d52baed02257dd9452e6bfe3`
-   - `research/contract-d-independent-authority-rc5/candidate/effect-registry.json` — verified blob `53df222ca439248a44029e02a662825235db892f`
-   - `research/contract-d-independent-authority-rc5/candidate/fixtures/valid.json` — verified blob `f03b16f41f119a8a485e0f7ac3dac30f509c40b9`
-   - `research/contract-d-independent-authority-rc5/candidate/fixtures/invalid.json` — verified blob `8c3fd3370d7f96a7cb162d8acfeacb7b189b4d86`
-   - `research/contract-d-independent-authority-rc5/candidate/conformance-cases.json` — verified blob `29825bfa89b2b91bfa9e457c001e2c869a3649a4`
+   - packet-pinned candidate subtree: `f5db874db39c0c3bf863f4ba2cc1a3597369f3bf`
+   - `research/contract-d-independent-authority-rc5/candidate/SPEC.md` — blob `57fa4ca59efced5e35115551b1aa57dbbc7f6b2c`
+   - `research/contract-d-independent-authority-rc5/candidate/schema.json` — blob `fe4e74464a53f581d52baed02257dd9452e6bfe3`
+   - `research/contract-d-independent-authority-rc5/candidate/effect-registry.json` — blob `53df222ca439248a44029e02a662825235db892f`
+   - `research/contract-d-independent-authority-rc5/candidate/fixtures/valid.json` — blob `f03b16f41f119a8a485e0f7ac3dac30f509c40b9`
+   - `research/contract-d-independent-authority-rc5/candidate/fixtures/invalid.json` — blob `8c3fd3370d7f96a7cb162d8acfeacb7b189b4d86`
+   - `research/contract-d-independent-authority-rc5/candidate/conformance-cases.json` — blob `29825bfa89b2b91bfa9e457c001e2c869a3649a4`
    - purpose: complete allowed prereveal Contract D authority surface.
 
-5. External normative source explicitly permitted by the packet:
-   - RFC Editor, RFC 8785 / JSON Canonicalization Scheme: `https://www.rfc-editor.org/rfc/rfc8785`
+5. External normative source explicitly permitted by the launch packet:
+   - RFC Editor, RFC 8785 / JSON Canonicalization Scheme, `https://www.rfc-editor.org/rfc/rfc8785`
    - consulted for JCS primitive serialization, UTF-16 property ordering, negative-zero/number examples, and the canonical `295147905179352830000` sample.
-   - no other web search or external Contract D source was used.
+   - no external Contract D behavioral source was used.
 
 6. Local language/runtime execution:
-   - Node.js `v22.16.0`, built-in modules only (`node:crypto`, `node:test`, `node:assert/strict`); no third-party package or implementation consulted.
+   - Node.js `v22.16.0`, built-in modules only (`node:crypto`, `node:test`, `node:assert/strict`).
    - independent implementation scratch mirror used only to author and execute the files later committed below.
 
 7. `camerontjs-dot/research-scaffold-harness` branch `research/contract-d-rc5-fresh-reproduction-v1`
-   - `research/contract-d-rc5-fresh-reproduction-v1/contract_d_rc5.js`
-   - committed blob verified: `e60d3a15da98e32a732f1860808b8dda7ba7f3ee`
-   - `research/contract-d-rc5-fresh-reproduction-v1/test_contract_d_rc5.js`
-   - committed blob verified: `102327e348364c62454369d2614ca98ce80d94c5`
-   - purpose: independent implementation and prereveal tests. Git blob identities match the locally executed files exactly.
+   - `research/contract-d-rc5-fresh-reproduction-v1/contract_d_rc5.js` — frozen blob `e60d3a15da98e32a732f1860808b8dda7ba7f3ee`
+   - `research/contract-d-rc5-fresh-reproduction-v1/test_contract_d_rc5.js` — frozen blob `102327e348364c62454369d2614ca98ce80d94c5`
+   - purpose: independent implementation and prereveal tests. Git blob identities matched the locally executed files exactly.
 
 ## Prereveal test execution
 
-Command:
-
-`node --test test_contract_d_rc5.js`
+Command: `node --test test_contract_d_rc5.js`
 
 Runtime: Node.js `v22.16.0`.
 
-Final prereveal result:
+Result:
 
 - tests: 24
 - pass: 24
@@ -83,10 +79,55 @@ Final prereveal result:
 - todo: 0
 - final TAP run duration: 86.232614 ms
 
-The suite covers the required positive, negative, sensitivity, invariance, metamorphic, depth/cycle, byte-ingress, Unicode, RFC 8785/JCS numeric/canonicalization, applicability, failure-state, malformed-expectation, and Authorization-firewall controls described by the launch packet.
+## Post-freeze authorization and accesses
 
-## Denied material
+8. `camerontjs-dot/apparatus-contracts` @ `48a46db987b6ce3079abe28f83be6c8396aa2353`
+   - `research/contract-d-independent-authority-rc5/POST_FREEZE_REVEAL_PACKET.md`
+   - verified blob: `a403c343631f60144f87ddf1efb984afa60d1ca3`
+   - purpose: exact post-freeze reveal and differential-comparison authorization.
 
-No denied Contract D reference implementation, reference tests, candidate requirements, RC5 change note, prior reproduction contents/results, adversarial-harness contents/results, producer implementation, promotion/EDR material, or surrounding ChatGPT/project/thread context was intentionally accessed.
+9. Before opening reference behavior, the immutable independent objects were re-read at freeze commit `54c78823e289a3d0d490189d1ffafc25d127d585` and still matched:
+   - `research/contract-d-rc5-fresh-reproduction-v1/contract_d_rc5.js` — `e60d3a15da98e32a732f1860808b8dda7ba7f3ee`
+   - `research/contract-d-rc5-fresh-reproduction-v1/test_contract_d_rc5.js` — `102327e348364c62454369d2614ca98ce80d94c5`
+   - result: no `FROZEN_IMPLEMENTATION_MOVED` blocker.
 
-The only denied-adjacent exposure was the opaque prior-branch name/head metadata listed above; it was not used to choose architecture, semantics, expected outputs, or fixes.
+10. Newly authorized reference files, all read only at exact frozen candidate commit `f0f7a9684cf114159ca1cfe1c9f11b626a07e6c8` and all blob-verified:
+   - `candidate/contract_d_core.py` — `6c3fbe3e6ac6effe0a4ed66f17145ffd32705edf`
+   - `candidate/contract_d_validate.py` — `8cc6d81515d7c5b0a86df163a38d1c12931f897f`
+   - `candidate/contract_d_consume.py` — `42536aaac5acd953f150a87891a70e9c194b7aaf`
+   - `candidate/requirements.txt` — `9bc3e4b733b2963a79a756a696eeafc92b532634`
+   - `candidate/tests/test_rc5.py` — `1f8470b4f6efea5bec3260cd575a626e8242c045`
+   - `candidate/tests/test_rc5_expectation_hardening.py` — `9d02b269fe83ba79ded16d154f59fed0267e87c5`
+   - `candidate/tests/test_rc5_jcs_vectors.py` — `35a01f918fc4b993e5367d7878e5b11a90bcd428`
+   - `requirements.txt` pins `rfc8785==0.1.4`.
+
+11. Post-reveal comparison-only files added under the permitted separate path:
+   - `research/contract-d-rc5-fresh-reproduction-v1/post_reveal/node_adapter.js`
+   - `research/contract-d-rc5-fresh-reproduction-v1/post_reveal/differential.py`
+   - `research/contract-d-rc5-fresh-reproduction-v1/post_reveal/run_hosted_comparison.sh`
+   - `.github/workflows/contract-d-rc5-post-reveal.yml`
+   - purpose: exact hosted materialization, frozen reference execution, and differential comparison. These files do not modify the frozen independent implementation or prereveal tests.
+
+12. GitHub Actions hosted reference execution and differential comparison:
+   - corrected scientific run: workflow run `33402915735`, job `99523356769`, head `57bd0eb7802fc6609e81220f545681c5ecf1a930`
+   - runner OS: Ubuntu `24.04.4`, `ubuntu-24.04` image `20260823.283.1`
+   - Python: `3.12.3`
+   - Node: `v22.23.2`
+   - pip: `24.0`
+   - `rfc8785`: `0.1.4`
+   - pytest: `9.1.1`
+   - exact reference-suite command: `python -m pytest -q tests/test_rc5.py tests/test_rc5_expectation_hardening.py tests/test_rc5_jcs_vectors.py`
+   - exact reference-suite result: `67 passed in 0.10s`, exit `0`
+   - the runner independently re-verified all seven newly authorized reference blobs, the required already-public registry/fixture/conformance blobs, and both frozen JS blobs before execution.
+
+13. Differential evaluator history, preserved rather than erased:
+   - initial hosted run `33402693664`, job `99522614919` exposed an `EVALUATOR_OR_HARNESS_DEFECT`: it compared implementation-private rejection codes as normative and compared Python `float` values directly with JavaScript's single `Number` host type for integer-valued binary64 values, contrary to the reveal packet's scoring rules.
+   - initial raw scorer output was preserved in the hosted run logs and was not used for terminal scientific scoring.
+   - corrected harness revision 2 normalized controlled rejection to acceptance-vs-controlled-rejection and compared cross-language integer-valued binary64 cases at the Contract-D byte/JCS boundary.
+   - corrected result: 105 total comparisons; 103 authority-relevant; 101 authority-relevant agreements; 2 authority-relevant non-agreements, both `PUBLIC_AUTHORITY_AMBIGUITY`; 0 `AUTHORITY_RELEVANT_DISAGREEMENT`; plus 2 preserved `NON_AUTHORITY_IMPLEMENTATION_VARIANCE` host-representation cases.
+
+## Post-freeze forbidden-material status
+
+The reveal authorization did not open the wider research history. No `RC5_CHANGE_NOTE.md`, prior RC3/RC4 implementation/test/reproduction content, adversarial-harness content or results, Contract D promotion/EDR material, Decision Engine Contract D producer/reference code, or surrounding ChatGPT/project-history retrieval was intentionally accessed.
+
+The prereveal contamination classification remains `NON_ANSWER_BEARING_METADATA_EXPOSURE_ONLY`. The packet-pinned candidate-subtree posture is not retroactively classified as contamination. The reference implementation/tests were accessed only after the immutable independent freeze and only under the explicit reveal packet.
