@@ -1,0 +1,15 @@
+{
+  "version": "1",
+  "purpose": "Self-generated prereveal mutation and discriminator inventory",
+  "classes": [
+    "state_controls",
+    "authority_sensitivity",
+    "requested_operation_and_parameter_discriminators",
+    "finite_json_discriminators",
+    "authority_invariance",
+    "replay_and_substitution",
+    "future_and_unknown_behavior",
+    "canonicalization_and_identity",
+    "weak_consumer_discrimination"
+  ]
+}
