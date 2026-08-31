@@ -1,0 +1,15 @@
+{
+  "grant-1": {
+    "id": "grant-1",
+    "type": "grant",
+    "subject_ids": ["subj-1"],
+    "authority_domain": "source_access",
+    "operations": ["source.read"],
+    "scopes": ["lab-a"],
+    "target_classes": ["source"],
+    "target_ids": ["tgt-1"],
+    "current": true,
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_until": "2026-12-31T23:59:59Z"
+  }
+}

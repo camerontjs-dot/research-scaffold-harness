@@ -1,0 +1,13 @@
+{
+  "subject": {"id": "subj-1", "kind": "agent"},
+  "participant": "evidence-bundler",
+  "authority_domain": "source_access",
+  "operation": "source.read",
+  "target": {"class": "source", "id": "tgt-1", "current_hash": "hash-1"},
+  "jurisdiction": {"scope": "lab-a", "applicable": true, "current": true},
+  "authority_basis": [{"type": "grant", "id": "grant-1", "current": true}],
+  "competence": [],
+  "propagation": "none",
+  "non_implications": [],
+  "evaluated_at": "2026-06-15T12:00:00Z"
+}
