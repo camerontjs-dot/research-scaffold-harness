@@ -1,0 +1,31 @@
+{
+  "version": "1",
+  "derivation": "Deterministic mutations of the frozen public positive controls; concrete objects are generated in test_rc4_independent.py.",
+  "cases": [
+    {"id":"hold-operation-mismatch","class":"RC4 discriminator","expect":"not_applicable"},
+    {"id":"hold-param-conflict","class":"RC4 discriminator","expect":"not_applicable"},
+    {"id":"hold-exact","class":"RC4 discriminator","expect":"hold"},
+    {"id":"object-scope-no-request-params","class":"RC4 discriminator","expect":"candidate_for_authorization"},
+    {"id":"object-scope-empty-request-params","class":"RC4 discriminator","expect":"candidate_for_authorization"},
+    {"id":"object-scope-explicit-claim","class":"RC4 discriminator","expect":"not_applicable"},
+    {"id":"object-scope-explicit-object","class":"RC4 discriminator","expect":"candidate_for_authorization"},
+    {"id":"invalid-utf8","class":"parser","expect":"cannot_establish"},
+    {"id":"duplicate-key","class":"parser","expect":"cannot_establish"},
+    {"id":"nonfinite-number","class":"parser","expect":"cannot_establish"},
+    {"id":"host-only-diagnostics","class":"finite-json","expect":"cannot_establish"},
+    {"id":"nonstring-object-key","class":"finite-json","expect":"cannot_establish"},
+    {"id":"metadata-invariance","class":"identity","expect":"same_semantic_identity"},
+    {"id":"authorization-context-invariance","class":"identity","expect":"same_semantic_identity"},
+    {"id":"target-content-substitution","class":"replay","expect":"not_applicable"},
+    {"id":"target-kind-substitution","class":"replay","expect":"not_applicable"},
+    {"id":"upstream-substitution","class":"replay","expect":"not_applicable"},
+    {"id":"policy-version-substitution","class":"replay","expect":"not_applicable"},
+    {"id":"unknown-contract-version","class":"future/unknown","expect":"cannot_establish"},
+    {"id":"unknown-evaluation-state","class":"future/unknown","expect":"cannot_establish"},
+    {"id":"unknown-disposition","class":"future/unknown","expect":"cannot_establish"},
+    {"id":"unknown-effect-type","class":"future/unknown","expect":"cannot_establish"},
+    {"id":"unknown-effect-version","class":"future/unknown","expect":"cannot_establish"},
+    {"id":"unknown-effect-parameter","class":"future/unknown","expect":"cannot_establish"},
+    {"id":"unknown-structural-field","class":"future/unknown","expect":"cannot_establish"}
+  ]
+}
