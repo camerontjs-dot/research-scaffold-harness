@@ -1,0 +1,55 @@
+name: Research - Contract E RC3D Gemini post-falsification diagnostic
+
+on:
+  push:
+    branches:
+      - research/contract-e-rc3d-gemini-post-falsification-diagnostic-20260831
+  pull_request:
+    paths:
+      - "docs/research/contract-e/rc3d-gemini-post-falsification-diagnostic/**"
+      - ".github/workflows/research-contract-e-rc3d-gemini-post-falsification-diagnostic.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Protect frozen Gemini implementation and pre-reveal tests
+        run: |
+          set -euo pipefail
+          test "$(git hash-object consumer.py)" = "a1275e1e2ddd6c4509ca8b7769b5651c19749f85"
+          test "$(git hash-object test_rc3d.py)" = "1102fc173086c45040da45125de4d138ee495765"
+          test -z "$(git diff --name-only 5364837007fe18f9e05eb39e0aa1031e28561290...HEAD -- consumer.py test_rc3d.py)"
+
+      - name: Verify diagnostic starts from terminal comparison evidence
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor bc1ebd8e61fb884787b85155baf93d57773b6ff8 HEAD
+          test -f docs/research/contract-e/rc3d-gemini-post-falsification-diagnostic/PREREGISTRATION.md
+          test -f docs/research/contract-e/rc3d-fresh-reproduction/COMPARISON-RESULTS.json
+
+      - name: Rerun frozen pre-reveal suite
+        run: |
+          set -o pipefail
+          python3 test_rc3d.py -v 2>&1 | tee frozen-suite.txt
+
+      - name: Run preregistered causal diagnostic
+        run: |
+          set -o pipefail
+          python3 docs/research/contract-e/rc3d-gemini-post-falsification-diagnostic/diagnose.py \
+            | tee diagnostic.txt
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: contract-e-rc3d-gemini-post-falsification-diagnostic-${{ github.sha }}
+          path: |
+            frozen-suite.txt
+            diagnostic.txt
+            docs/research/contract-e/rc3d-gemini-post-falsification-diagnostic/DIAGNOSTIC-RESULTS.json
