@@ -1,0 +1,54 @@
+{
+  "schema": "contract-e-authority-chain-fresh-reproduction-rc1-freeze-receipt-v1",
+  "marker": "FRESH_CONTRACT_E_AUTHORITY_CHAIN_RC1_FROZEN_BEFORE_REVEAL",
+  "clean_base": "548bfa81f65290eda15af658f647497679b840ef",
+  "execution_branch": "research/contract-e-authority-chain-fresh-reproduction-rc1-20260901",
+  "aperture": {
+    "repository": "camerontjs-dot/apparatus-contracts",
+    "provenance_head": "da3f7fd2664f9037452ca001b3c816a73ace79d7",
+    "files": [
+      {
+        "path": "docs/research/contract-e/authority-chain-fresh-reproduction-rc1/AUTHORITY-CHAIN-CONTRACT-v1.json",
+        "git_blob": "9a82515391beb8ca57fc5ab861c5c389b7750914",
+        "sha256": "f012826c1f2b54b534ddace6a38be270e5bd94bcf0fc539f024bcb12c62bf381"
+      },
+      {
+        "path": "docs/research/contract-e/authority-chain-fresh-reproduction-rc1/PRE_FREEZE_BOOTSTRAP.md",
+        "git_blob": "ed59344c6471404d49bba3f9c4a5e362f875976e",
+        "sha256": "7cf083daff12b05a08c1d04f4edc259b2e673ddf723e348b794ba996217a4372"
+      }
+    ],
+    "transport": "exact file-scoped fetches with explicit provenance ref; no apparatus commit object opened"
+  },
+  "implementation_commit": "e9ef0f06e503f280db748532bc7547f3e1234f32",
+  "implementation_tree": "e82e9b30e421a8d5e77bebc9d21806b82c4ba168",
+  "implementation": {
+    "path": "research/contract_e_authority_chain_fresh_rc1/authority_chain.py",
+    "git_blob": "cbbb5d6478dbcfdc54fb6377d57301570500c2ac",
+    "sha256": "9273fe17f54ac2902390bf3af124e290ffc9896bdba2fe8e2e1c4dc9bac14eaa",
+    "bytes": 14808
+  },
+  "tests": [
+    {
+      "path": "research/contract_e_authority_chain_fresh_rc1/test_authority_chain.py",
+      "git_blob": "bc1a274785eaa4b9502e7c212eeba3d6582bd923",
+      "sha256": "2f53ae7fa370e15937a79fd32230015650276acea157502cc1ec2654af1cc88d",
+      "bytes": 14089
+    }
+  ],
+  "prereveal_test": {
+    "command": "python research/contract_e_authority_chain_fresh_rc1/test_authority_chain.py",
+    "result": "PASS",
+    "tests_run": 27,
+    "failures": 0,
+    "errors": 0
+  },
+  "contamination_status": "CLEAN_PRE_FREEZE_APERTURE",
+  "deviations": [
+    "Implementation and prereveal test files were written in two sequential GitHub contents-API commits; implementation_commit is the second commit and contains both frozen files."
+  ],
+  "uncertainties": [
+    "The aperture file Git blob identities were verified exactly against the launch values. The launch-supplied SHA-256 values are recorded here; the connector did not provide a direct byte-stream bridge into the local hashing runtime for a separate recomputation.",
+    "Under the contract's mandated producer-ceiling-first precedence and producer_allowed_kinds map, specialized reasons observation_root_not_independent, resolver_producer_invalid, and executor_report_not_verification_authority appear unreachable for recursively valid nodes; no precedence workaround was introduced."
+  ]
+}
