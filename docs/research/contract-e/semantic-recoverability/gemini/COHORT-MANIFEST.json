@@ -1,0 +1,54 @@
+{
+  "schema": "contract-e-semantic-recoverability-cohort-manifest-v1",
+  "status": "readers-frozen-no-adjudication",
+  "frozen_authority": {
+    "repository": "camerontjs-dot/apparatus-contracts",
+    "content_freeze": "3e522b79208f5b918d51d903b4fcc0623145923d",
+    "content_tree": "455c286c1569f80b0f34fdcb9b444f7dcf7d2ea6",
+    "pr47_head": "b7fa5e3885bb75a21573f32268bf7c66d7428fdb",
+    "pr47_state": "draft-unmerged",
+    "artifact_directory": "docs/research/contract-e/semantic-recoverability-audit/",
+    "git_blobs": {
+      "RESOLVED-CONTRACT.json.gz.b64": "ddf667cf53c8388e6e8bfc6f099ec453a0c2628d",
+      "INTERPRETATION-RECORD-SCHEMA.json": "54268fe089aa88507faa03f63cdbd9b37e27993d",
+      "READER-TASK.md": "a04d2d05df31ddb8bfa3731dd7857276f9a34134",
+      "FROZEN-SEMANTIC-QUESTIONS.json": "867dfe4d1be40344bc07b651c060c78b5e9307d7",
+      "QUESTION-PHASE-TASK.md": "52dd27a23bde3cd0b465cd8cdc93347fd1bdba5d"
+    },
+    "resolved_contract_sha256": "d883e5678aa7d39db6bd98d9607c94ee74ae68cd4c17a1def5cd00e6468634f9",
+    "question_count": 51
+  },
+  "readers": {
+    "READER_GROK": {
+      "provider": "xAI Grok CLI",
+      "cli": "grok 1.0.13 (5e9a58528b76) [stable]",
+      "executable": "grok",
+      "session_id": "f6a9e985-4d54-48c5-a0cb-d5b679b256fc",
+      "runtime_model_phase1": "grok-4.6-build",
+      "runtime_model_phase2": "grok-4.6-build",
+      "session_summary_model_id": "grok-4.6",
+      "interpretation_sha256": "5e1d0b7c86297f5b67fa132718304fdc806c9b54682f72f5265f59422b01ea20",
+      "semantic_answers_sha256": "40f26fc68fd56e45eb4356e3fdccd6f5d3b58fb644cf4cf2cb591da20eb16d1b"
+    },
+    "READER_GEMINI": {
+      "provider": "Google Gemini CLI",
+      "cli": "gemini 0.46.0",
+      "executable": "gemini",
+      "session_id": "16fd5a48-84c7-491c-b804-107f9eaa805f",
+      "runtime_models_phase1": {
+        "gemini-3.1-pro-preview-customtools": "1 request / 1 error",
+        "gemini-3-flash-preview": "4 requests / 0 errors"
+      },
+      "runtime_models_phase2": {
+        "gemini-3.1-pro-preview-customtools": "1 request / 1 error",
+        "gemini-3-flash-preview": "2 requests / 0 errors"
+      },
+      "reader_self_reported_model": "gemini-2.0-flash-exp",
+      "interpretation_sha256": "717746bb32bcf9e2ec625a0160ffd99436dce46d4b30367ad1fcdb36578d8444",
+      "semantic_answers_sha256": "071e34fe642815ba813957f382b037dd47d3e307d2ff91036b80f8e91b14563f"
+    }
+  },
+  "phase1_frozen_before_question_reveal": true,
+  "question_reveal_utc": "2026-09-01T04:13:58.452035Z",
+  "adjudication": "none"
+}
