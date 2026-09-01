@@ -1,0 +1,328 @@
+{
+  "metadata": {
+    "reader_runtime": "Copilot CLI semantic interpretation-only reader",
+    "model_identity": "independent interpretation-only reader; no implementation, validator, or hidden-test speculation",
+    "session_identity": "single-pass contract-comprehension session",
+    "resolved_contract_sha256": "d883e5678aa7d39db6bd98d9607c94ee74ae68cd4c17a1def5cd00e6468634f9",
+    "contamination_status": "clean: only RESOLVED-CONTRACT.json and INTERPRETATION-RECORD-SCHEMA.json plus the task prompt were used; no other project material or history was consulted."
+  },
+  "global_model": {
+    "statement": "The resolved artifact is a fail-closed authority grammar: authority is not inferred from positive result status, generic participant identity, or result payload success; it is established only through a current, domain-appropriate authority basis, optionally qualified and warranted, with unknown or malformed conditions rejecting.",
+    "status": "REQUIRED",
+    "contract_refs": [
+      "/effective_contract/core_non_implications_and_fail_closed_rules",
+      "/effective_contract/common_envelope",
+      "/effective_contract/authority_basis",
+      "/effective_contract/qualification",
+      "/effective_contract/warrant",
+      "/effective_contract/currentness"
+    ],
+    "notes": "This is a direct synthesis of the contract’s fail-closed rules and the basis/qualification/warrant validity rules; the contract itself leaves certain cardinality and registry-resolution issues explicitly unresolved."
+  },
+  "domain_interpretations": [
+    {
+      "kind": "operational",
+      "operations": ["source.read"],
+      "competence_required": false,
+      "warrant_allowed": false,
+      "accepted_qualification_types": [],
+      "accepted_warrant_types": [],
+      "contract_refs": ["/effective_contract/authority_domains/source_access"]
+    },
+    {
+      "kind": "operational",
+      "operations": ["evidence.admit_passage"],
+      "competence_required": false,
+      "warrant_allowed": false,
+      "accepted_qualification_types": [],
+      "accepted_warrant_types": [],
+      "contract_refs": ["/effective_contract/authority_domains/evidence_admission"]
+    },
+    {
+      "kind": "mandate",
+      "operations": ["assessment.issue"],
+      "competence_required": false,
+      "warrant_allowed": false,
+      "accepted_qualification_types": [],
+      "accepted_warrant_types": [],
+      "contract_refs": ["/effective_contract/authority_domains/assessment_mandate"]
+    },
+    {
+      "kind": "informational",
+      "operations": ["semantic.validate_numeric"],
+      "competence_required": true,
+      "warrant_allowed": true,
+      "accepted_qualification_types": ["numeric_relation_validator"],
+      "accepted_warrant_types": ["numeric-threshold-v1"],
+      "contract_refs": ["/effective_contract/authority_domains/numeric_relation", "/effective_contract/domain_basis_requirements/numeric_relation"]
+    },
+    {
+      "kind": "informational",
+      "operations": ["semantic.validate_absence"],
+      "competence_required": true,
+      "warrant_allowed": true,
+      "accepted_qualification_types": ["source_boundary_validator"],
+      "accepted_warrant_types": ["source-boundary-v1"],
+      "contract_refs": ["/effective_contract/authority_domains/source_boundary", "/effective_contract/domain_basis_requirements/source_boundary"]
+    },
+    {
+      "kind": "mandate",
+      "operations": ["decision.make"],
+      "competence_required": false,
+      "warrant_allowed": true,
+      "accepted_qualification_types": [],
+      "accepted_warrant_types": ["decision-policy-v1"],
+      "contract_refs": ["/effective_contract/authority_domains/decision_mandate", "/effective_contract/domain_basis_requirements/decision_mandate"]
+    },
+    {
+      "kind": "operational",
+      "operations": ["citation.use"],
+      "competence_required": false,
+      "warrant_allowed": false,
+      "accepted_qualification_types": [],
+      "accepted_warrant_types": [],
+      "contract_refs": ["/effective_contract/authority_domains/citation_use"]
+    },
+    {
+      "kind": "operational",
+      "operations": ["task.dispatch"],
+      "competence_required": false,
+      "warrant_allowed": false,
+      "accepted_qualification_types": [],
+      "accepted_warrant_types": [],
+      "contract_refs": ["/effective_contract/authority_domains/task_dispatch"]
+    },
+    {
+      "kind": "informational",
+      "operations": ["outcome.verify"],
+      "competence_required": true,
+      "warrant_allowed": true,
+      "accepted_qualification_types": ["outcome_verifier"],
+      "accepted_warrant_types": ["postcondition-observation-v1"],
+      "contract_refs": ["/effective_contract/authority_domains/outcome_verification", "/effective_contract/domain_basis_requirements/outcome_verification"]
+    }
+  ],
+  "authority_basis_interpretation": {
+    "statement": "Authority basis is a required, current, match-valid record that resolves from an authority reference to a resolved basis record and must satisfy record type, subject, domain, operation, jurisdiction scope, target class, target id, and validity-window checks before any operation can proceed. A warrant does not repair a missing or mismatched basis, and support artifacts are not authority-conferring unless explicitly in the authority_conferring_types set.",
+    "status": "REQUIRED",
+    "contract_refs": [
+      "/effective_contract/authority_basis",
+      "/effective_contract/currentness",
+      "/effective_contract/core_non_implications_and_fail_closed_rules",
+      "/effective_contract/explicit_open_normative_questions/1"
+    ],
+    "notes": "This follows the explicit matching rules and the non-implications that say a current policy identifier without a matching record is not authority and that a valid warrant does not repair a missing or mismatched authority basis."
+  },
+  "qualification_interpretation": {
+    "statement": "Qualification is a separate semantic object whose shape is required for certain domains; it is not authority by itself, it is not an alternative to basis, and it must match the subject/scope and currentness rules for the domain-specific operation.",
+    "status": "REQUIRED",
+    "contract_refs": [
+      "/effective_contract/qualification",
+      "/effective_contract/domain_basis_requirements/numeric_relation",
+      "/effective_contract/domain_basis_requirements/source_boundary",
+      "/effective_contract/domain_basis_requirements/outcome_verification",
+      "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+    ],
+    "notes": "The contract explicitly says qualification_is_not_authority_basis_by_itself and lists missing_required_qualification as a reason in the whole-envelope precedence."
+  },
+  "warrant_interpretation": {
+    "statement": "A warrant is a domain-specific, operation-matching, target-matching, applicable/current record that may authorize a domain only when allowed; it is not operational permission and it cannot substitute for a missing or mismatched authority basis.",
+    "status": "REQUIRED",
+    "contract_refs": [
+      "/effective_contract/warrant",
+      "/effective_contract/authority_domains/numeric_relation",
+      "/effective_contract/authority_domains/source_boundary",
+      "/effective_contract/authority_domains/decision_mandate",
+      "/effective_contract/authority_domains/outcome_verification",
+      "/effective_contract/core_non_implications_and_fail_closed_rules"
+    ],
+    "notes": "The contract explicitly states warrant_is_not_operational_permission and says a valid warrant does not repair a missing or mismatched authority basis."
+  },
+  "currentness_interpretation": {
+    "statement": "Currentness is a strict fail-closed requirement for new exercises: the authority reference and resolved authority basis must both be current, evaluated_at must be within the validity interval, and revoked_at must not have occurred. Historical validity is descriptive, not an authorization for new action.",
+    "status": "REQUIRED",
+    "contract_refs": [
+      "/effective_contract/currentness",
+      "/effective_contract/historical_authority",
+      "/effective_contract/authority_basis/matching_rules",
+      "/effective_contract/reason_semantics/rc3b_basis_precedence"
+    ],
+    "notes": "The contract explicitly sets authority_reference_current_semantics to fail_closed_freshness_veto and says new_exercise_requires_current_recheck."
+  },
+  "participant_interpretation": {
+    "statement": "Participant responsibility is domain-scoped and declaration-based: a participant must be declared, must accept the authority domain and operation, and can only perform responsibilities explicitly enumerated for that participant type; the participant’s responsibility domain is not inferred from subject identity and cannot be bypassed by positive semantic results.",
+    "status": "REQUIRED",
+    "contract_refs": [
+      "/effective_contract/common_envelope/participant_rules",
+      "/effective_contract/participant_declarations",
+      "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+    ],
+    "notes": "This is directly stated in the common envelope and participant declarations; the contract treats unknown participant and out-of-scope participant actions as normative rejection reasons."
+  },
+  "propagation_interpretation": {
+    "statement": "Propagation is not an implicit transfer of authority or competence: by default, authority propagation is none. Only explicit propagation modes are allowed, and any propagation request must use the canonical wrapper and cannot silently alias forbidden fields; authority-related fields remain forbidden unless separately reauthorized.",
+    "status": "REQUIRED",
+    "contract_refs": [
+      "/effective_contract/propagation",
+      "/effective_contract/core_non_implications_and_fail_closed_rules/default_authority_propagation",
+      "/effective_contract/evaluation_interface/consumer_requirements",
+      "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+    ],
+    "notes": "The direct text says identity provenance is never implicit and that authority-related fields are forbidden unless separately reauthorized; it also names unknown_propagation_mode as a rejection reason."
+  },
+  "delegation_interpretation": {
+    "statement": "Delegation is a subset-preserving, non-amplifying transfer of authority: child operations and scope must be subsets of parent, the child cannot extend expiry or domain, linkage must match parent_authority_id, and the parent and child must both be current for a new exercise.",
+    "status": "REQUIRED",
+    "contract_refs": [
+      "/effective_contract/delegation",
+      "/effective_contract/reason_semantics/rc3c/relisted_cross_domain_primary_reasons",
+      "/effective_contract/reason_semantics/rc3d_interface/canonical_primary_reasons"
+    ],
+    "notes": "The delegation request section explicitly defines operation, scope, domain, currentness, and expiry failure reasons, and it excludes inferential equality of delegator and principal."
+  },
+  "historical_interpretation": {
+    "statement": "Historical authority is treated as a record of what was valid at a prior time and is not rewritten by later revocation. But historical validity alone does not authorize a new action; a new exercise requires current recheck and will reject when only historical authority exists.",
+    "status": "REQUIRED",
+    "contract_refs": [
+      "/effective_contract/historical_authority",
+      "/effective_contract/currentness",
+      "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+    ],
+    "notes": "The contract explicitly says later_revocation_rewrites_history is false and new_exercise_rejection_when_only_historical_record_present is authority_basis_not_current."
+  },
+  "result_payload_interpretation": {
+    "statement": "Result payload content is opaque to the common validator: positive status, success, and confidence have no authority effect. A result cannot cure missing authority or a mismatched basis.",
+    "status": "REQUIRED",
+    "contract_refs": [
+      "/effective_contract/result_payload",
+      "/effective_contract/core_non_implications_and_fail_closed_rules/positive_result_self_authorizes",
+      "/effective_contract/authority_basis/non_implications"
+    ],
+    "notes": "This is direct normative text and matches the fail-closed rule that a positive semantic result does not repair authority defects."
+  },
+  "interface_interpretation": {
+    "statement": "The evaluation interface is a canonical wrapper model: recognized kinds are envelope, propagation, delegation, and historical, with explicit unknown-kind and unknown-mode rejection. Consumers must handle native canonical request wrappers and registry documents; fixture materialization is only a mapping layer, not authority repair.",
+    "status": "REQUIRED",
+    "contract_refs": [
+      "/effective_contract/evaluation_interface",
+      "/effective_contract/reason_semantics/rc3d_interface",
+      "/effective_contract/evaluation_interface/fixture_materialization_boundary"
+    ],
+    "notes": "The interface section explicitly forbids silent default behavior and forbids the materializer from inventing missing authority semantics or changing authority semantics."
+  },
+  "reason_semantics_interpretation": {
+    "statement": "Reason precedence is normative and fail-closed: basis binding reasons are ordered from unresolvable authority basis to outside validity interval, and the whole-envelope reason list includes malformed shape, missing required items, unknown domain or participant, authority mismatches, qualification defects, warrant defects, and propagation/delegation failure reasons. Canonical primary reasons are normative only when listed by the governing amendment or basis-binding ordering.",
+    "status": "REQUIRED",
+    "contract_refs": [
+      "/effective_contract/reason_semantics",
+      "/effective_contract/authority_basis/ordering",
+      "/effective_contract/reason_semantics/rc3b_basis_precedence",
+      "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence",
+      "/effective_contract/reason_semantics/rc3d_interface/canonical_primary_reasons"
+    ],
+    "notes": "This is a direct reading of the precedence lists and the statement that decision_is_normative and canonical_primary_reason_is_normative_only_when_listed_by_this_amendment_or_rc3b_basis_binding."
+  },
+  "underdeterminations": [
+    {
+      "id": "OPEN-WARRANT-CARDINALITY",
+      "question": "Is the envelope-level warrant field exactly one Warrant object, an array of Warrant objects, or another cardinality?",
+      "why_not_decided": "The source set explicitly marks the envelope-level warrant cardinality and the corresponding warrant envelope cardinality as UNDERDETERMINED_BY_SOURCE_SET and never fixes the field cardinality; no direct rule chooses among single, array, or alternate forms.",
+      "contract_refs": [
+        "/effective_contract/common_envelope/warrant_field_cardinality",
+        "/effective_contract/warrant/envelope_field_cardinality",
+        "/explicit_open_normative_questions/0"
+      ]
+    },
+    {
+      "id": "OPEN-SUPPORTING-ARTIFACT-RESOLUTION",
+      "question": "Must a non-authority-conferring supporting artifact reference present in the broader basis chain resolve through RegistryDocument.records?",
+      "why_not_decided": "The contract says supporting artifacts may be part of the basis chain without satisfying the authority requirement but does not specify whether non-conferring references must resolve through the registry or may remain unresolved without invalidating the authority basis.",
+      "contract_refs": [
+        "/effective_contract/authority_basis/non_implications",
+        "/effective_contract/authority_basis/registry_resolution_of_nonconferring_supporting_artifacts",
+        "/explicit_open_normative_questions/1"
+      ]
+    },
+    {
+      "id": "COMMON-ENVELOPE-WARRANT-CARDINALITY",
+      "question": "What cardinality does the common envelope require for warrant(s) at the envelope boundary?",
+      "why_not_decided": "The contract explicitly sets the common-envelope field cardinality to UNDERDETERMINED_BY_SOURCE_SET and nowhere resolves the unique shape required for the envelope-level warrant property.",
+      "contract_refs": [
+        "/effective_contract/common_envelope/warrant_field_cardinality"
+      ]
+    },
+    {
+      "id": "WARRANT-ENVELOPE-CARDINALITY",
+      "question": "What cardinality does the warrant section require for envelope-level Warrant binding?",
+      "why_not_decided": "The contract explicitly sets the warrant envelope field cardinality to UNDERDETERMINED_BY_SOURCE_SET and does not define whether the field is scalar, array, or map-like.",
+      "contract_refs": [
+        "/effective_contract/warrant/envelope_field_cardinality"
+      ]
+    },
+    {
+      "id": "SUPPORTING-ARTIFACT-REGISTRY-LOOKUP",
+      "question": "Does a non-authority-conferring supporting artifact reference need registry resolution to be considered valid in the basis chain?",
+      "why_not_decided": "The contract says such artifacts may be part of the basis chain without satisfying the authority requirement, but the registry-resolution obligation is explicitly left open as UNDERDETERMINED_BY_SOURCE_SET.",
+      "contract_refs": [
+        "/effective_contract/authority_basis/registry_resolution_of_nonconferring_supporting_artifacts"
+      ]
+    }
+  ],
+  "claimed_contradictions": [],
+  "load_bearing_assumptions": [
+    {
+      "assumption": "The resolved artifact in RESOLVED-CONTRACT.json is the sole normative source for this interpretation; other source blobs are only historical provenance and are not separately authoritative.",
+      "needed_for": "All semantics below, including underdetermination retention and fail-closed reasoning.",
+      "contract_refs_or_null": [
+        "/resolution_policy",
+        "/effective_contract/authority_basis",
+        "/effective_contract/reason_semantics"
+      ]
+    },
+    {
+      "assumption": "Fail-closed semantics are authoritative: if a required authority element is missing, malformed, mismatched, stale, or outside its validity interval, the operation rejects rather than silently proceeding.",
+      "needed_for": "Authority basis, qualification, warrant, and currentness interpretations.",
+      "contract_refs_or_null": [
+        "/effective_contract/core_non_implications_and_fail_closed_rules",
+        "/effective_contract/currentness",
+        "/effective_contract/authority_basis/matching_rules"
+      ]
+    },
+    {
+      "assumption": "Qualification and warrant are distinct from authority basis and cannot substitute for a missing or mismatched basis.",
+      "needed_for": "Separating competence, warrant, and basis semantics.",
+      "contract_refs_or_null": [
+        "/effective_contract/qualification/semantic_shape",
+        "/effective_contract/warrant/semantic_shape",
+        "/effective_contract/authority_basis/non_implications"
+      ]
+    },
+    {
+      "assumption": "Historical authority is descriptive only for prior-time inspection and cannot authorize a new action without fresh currentness recheck.",
+      "needed_for": "Historical semantics and currentness interpretation.",
+      "contract_refs_or_null": [
+        "/effective_contract/historical_authority",
+        "/effective_contract/currentness"
+      ]
+    }
+  ],
+  "falsifiers": [
+    {
+      "claim": "Authority basis is required and fail-closed: a missing, mismatched, stale, or non-current basis invalidates an otherwise positive result.",
+      "observation_that_would_falsify_it": "A source artifact that accepts a request with a missing authority basis, mismatched subject or target, or expired validity interval without a rejection would contradict the contract’s fail-closed rules."
+    },
+    {
+      "claim": "Qualification and warrant are not authority bases and cannot repair a missing or mismatched authority basis.",
+      "observation_that_would_falsify_it": "A contract state where an otherwise valid qualification or warrant is accepted as sufficient authority despite a missing, mismatched, or stale basis would contradict the explicit non-implications."
+    },
+    {
+      "claim": "New exercises require fresh currentness validation even when historical authority records exist.",
+      "observation_that_would_falsify_it": "A system allowing a new exercise solely on historical validity, without fresh currentness recheck, would contradict the explicit rule that historical validity alone cannot authorize a new action."
+    },
+    {
+      "claim": "Propagation and delegation do not implicitly transfer authority beyond the canonical record and subset rules.",
+      "observation_that_would_falsify_it": "A propagation or delegation request that silently imports authority_domain, operation, or scope beyond the parent/record constraints would contradict the explicit rules and rejection reasons."
+    }
+  ],
+  "freeze_marker": "FRESH_CONTRACT_E_INTERPRETATION_FROZEN_BEFORE_SEMANTIC_QUESTIONS_REVEAL"
+}
