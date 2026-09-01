@@ -1,0 +1,13 @@
+# Prereveal ambiguities and interpretations
+
+This record was authored from the frozen public `SPEC.md` and `schema.json` only, before any reveal/reference behavior was inspected.
+
+1. **Whole-object non-ASCII serialization.** The specification requires sorted keys, compact separators, UTF-8, and says there is "no ASCII escaping requirement beyond normal JSON validity." For a hash binding, that wording does not uniquely determine whether non-ASCII characters are emitted literally or as JSON `\uXXXX` escapes. This implementation chooses `ensure_ascii=False`, emits literal Unicode code points in JSON, and hashes the resulting UTF-8 bytes. It does not accept both encodings as equivalent because that would make one payload validate against multiple candidate hash constructions.
+
+2. **Downstream source-contract projection wire shape.** The specification defines semantic constraints for CAL explicit-proposition intake (`single` versus `all_of`, exact atoms in order, `source_contract` origin, references bound to the Contract A declaration) but does not define an adapter schema or field names. `source_contract_projection()` therefore exposes a local mechanical dictionary shape. Those field names are not asserted as Contract A authority. For undecomposed/root-only states it uses `handoff_id` plus `handoff_sha256`; for declared state it uses `decomposition_id` plus the whole-object `handoff_sha256`, which binds that declaration. It copies existing proposition identities/text/hashes only.
+
+3. **Duplicate JSON member names.** The public schema and prose do not explicitly state parser behavior for duplicate JSON object member names. Python's default JSON parser would silently keep the last duplicate, which can erase invalid/unknown state before validation. The parser rejects duplicates rather than silently overwriting them. This is treated as a wire parsing safety interpretation, not a new Contract A field-level invariant.
+
+4. **Cross-family identifier equality.** The specification explicitly requires uniqueness only for child proposition IDs within a declared decomposition, source IDs within `sources`, and prohibits a child ID from equaling the root proposition ID. It does not state that `handoff_id`, `work_id`, root proposition ID, decomposition ID, and source IDs occupy one global namespace. This implementation does not invent cross-family uniqueness constraints.
+
+5. **Duplicate source contents/hashes.** Source IDs must be unique, but the specification does not require source contents or `content_sha256` values to be unique. This implementation permits two distinct source IDs to carry byte-identical representations.
