@@ -1,0 +1,510 @@
+{
+  "schema": "contract-e-semantic-question-answers-v1",
+  "resolved_contract_sha256": "d883e5678aa7d39db6bd98d9607c94ee74ae68cd4c17a1def5cd00e6468634f9",
+  "answers": [
+    {
+      "id": "Q-GLOBAL-01",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/core_non_implications_and_fail_closed_rules/positive_result_self_authorizes",
+        "/effective_contract/result_payload/positive_status_has_no_authority_effect",
+        "/effective_contract/result_payload/success_has_no_authority_effect",
+        "/effective_contract/result_payload/confidence_has_no_authority_effect",
+        "/effective_contract/authority_basis/non_implications"
+      ],
+      "brief_reason": "Success/high-confidence result fields have no authority effect; a positive result does not self-authorize or repair a prior rejection."
+    },
+    {
+      "id": "Q-GLOBAL-02",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/core_non_implications_and_fail_closed_rules/warrant_implies_operational_permission",
+        "/effective_contract/warrant/semantic_shape/warrant_is_not_operational_permission",
+        "/effective_contract/authority_basis/non_implications",
+        "/effective_contract/core_non_implications_and_fail_closed_rules/missing_required_basis_behavior"
+      ],
+      "brief_reason": "A warrant is not operational permission and does not repair a missing or mismatched authority-conferring basis."
+    },
+    {
+      "id": "Q-GLOBAL-03",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/core_non_implications_and_fail_closed_rules/competence_implies_jurisdiction",
+        "/effective_contract/qualification/semantic_shape/qualification_is_not_authority_basis_by_itself",
+        "/effective_contract/core_non_implications_and_fail_closed_rules/inapplicable_behavior"
+      ],
+      "brief_reason": "Competence/qualification does not imply jurisdiction and is not itself an authority basis."
+    },
+    {
+      "id": "Q-GLOBAL-04",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/core_non_implications_and_fail_closed_rules/decision_implies_execution_permission",
+        "/effective_contract/authority_basis/non_implications",
+        "/effective_contract/warrant/warrant_types/decision-policy-v1/non_implications"
+      ],
+      "brief_reason": "A typed Decision does not imply execution permission and does not satisfy a task-dispatch grant requirement."
+    },
+    {
+      "id": "Q-GLOBAL-05",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/core_non_implications_and_fail_closed_rules/execution_report_implies_verified_outcome"
+      ],
+      "brief_reason": "An execution report does not imply a verified outcome."
+    },
+    {
+      "id": "Q-BASIS-01",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/authority_basis/matching_rules/reference_type_must_match_record_type",
+        "/effective_contract/authority_basis/ordering/reason_precedence"
+      ],
+      "brief_reason": "Reference type must match the resolved record type (authority_basis_type_mismatch)."
+    },
+    {
+      "id": "Q-BASIS-02",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/authority_basis/matching_rules/subject_id_must_be_in_record_subject_ids"
+      ],
+      "brief_reason": "Envelope subject id must be in record.subject_ids (authority_basis_subject_mismatch)."
+    },
+    {
+      "id": "Q-BASIS-03",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/authority_basis/matching_rules/authority_domain_must_equal_record_authority_domain"
+      ],
+      "brief_reason": "Envelope authority_domain must equal the record authority_domain (authority_basis_domain_mismatch)."
+    },
+    {
+      "id": "Q-BASIS-04",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/authority_basis/matching_rules/operation_must_be_in_record_operations"
+      ],
+      "brief_reason": "Requested operation must be in record.operations (authority_basis_operation_mismatch)."
+    },
+    {
+      "id": "Q-BASIS-05",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/authority_basis/matching_rules/jurisdiction_scope_must_be_in_record_scopes"
+      ],
+      "brief_reason": "Jurisdiction scope must be in record.scopes (authority_basis_scope_mismatch)."
+    },
+    {
+      "id": "Q-BASIS-06",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/authority_basis/matching_rules/target_class_must_be_in_record_target_classes"
+      ],
+      "brief_reason": "Target class must be in record.target_classes (authority_basis_target_class_mismatch)."
+    },
+    {
+      "id": "Q-BASIS-07",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/authority_basis/matching_rules/target_id_must_match_when_record_target_ids_is_nonempty"
+      ],
+      "brief_reason": "When record.target_ids is nonempty, the request target id must match (authority_basis_target_id_mismatch)."
+    },
+    {
+      "id": "Q-BASIS-08",
+      "answer": "UNDERDETERMINED",
+      "supporting_contract_refs": [
+        "/explicit_open_normative_questions/1",
+        "/effective_contract/authority_basis/registry_resolution_of_nonconferring_supporting_artifacts",
+        "/effective_contract/authority_basis/matching_rules/supporting_artifact_reference_never_satisfies_authority_requirement",
+        "/effective_contract/authority_basis/non_implications",
+        "/effective_contract/domain_basis_requirements/task_dispatch"
+      ],
+      "brief_reason": "The task-dispatch grant can satisfy the conferring-basis requirement, but whether a non-conferring supporting artifact must still resolve through RegistryDocument.records is explicitly underdetermined."
+    },
+    {
+      "id": "Q-BASIS-09",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/authority_basis/matching_rules/supporting_artifact_reference_never_satisfies_authority_requirement",
+        "/effective_contract/core_non_implications_and_fail_closed_rules/missing_required_basis_behavior",
+        "/effective_contract/domain_basis_requirements/citation_use",
+        "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+      ],
+      "brief_reason": "A supporting artifact never satisfies the authority requirement; citation_use needs grant or policy."
+    },
+    {
+      "id": "Q-CURRENT-01",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/currentness/reference_false_must_reject_even_when_record_current",
+        "/effective_contract/currentness/authority_reference_current_semantics",
+        "/effective_contract/currentness/required_conjunction",
+        "/effective_contract/currentness/canonical_primary_reason/reference_false"
+      ],
+      "brief_reason": "AuthorityReference.current is a fail-closed freshness veto; false rejects even when the record is current."
+    },
+    {
+      "id": "Q-CURRENT-02",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/currentness/record_false_must_reject_even_when_reference_current",
+        "/effective_contract/currentness/reference_true_cannot_override_noncurrent_record",
+        "/effective_contract/currentness/required_conjunction",
+        "/effective_contract/currentness/canonical_primary_reason/record_false"
+      ],
+      "brief_reason": "Resolved-record currentness is authoritative lifecycle state; a non-current record rejects even if the reference is current."
+    },
+    {
+      "id": "Q-CURRENT-03",
+      "answer": "PERMIT",
+      "supporting_contract_refs": [
+        "/effective_contract/currentness/validity_interval_bounds",
+        "/effective_contract/currentness/required_conjunction"
+      ],
+      "brief_reason": "Validity bounds are inclusive, so evaluated_at == valid_from is inside the interval; other currentness conditions pass."
+    },
+    {
+      "id": "Q-CURRENT-04",
+      "answer": "PERMIT",
+      "supporting_contract_refs": [
+        "/effective_contract/currentness/validity_interval_bounds",
+        "/effective_contract/currentness/required_conjunction"
+      ],
+      "brief_reason": "Validity bounds are inclusive, so evaluated_at == valid_until is inside the interval; other currentness conditions pass."
+    },
+    {
+      "id": "Q-CURRENT-05",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/currentness/revoked_at_at_or_before_evaluated_at_must_reject",
+        "/effective_contract/currentness/required_conjunction",
+        "/effective_contract/currentness/canonical_primary_reason/revoked_at_reached"
+      ],
+      "brief_reason": "New exercise requires evaluated_at < revoked_at; equality is at-or-before and rejects as not current."
+    },
+    {
+      "id": "Q-CURRENT-06",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/currentness/required_conjunction",
+        "/effective_contract/authority_basis/matching_rules/evaluated_at_must_be_within_validity_interval",
+        "/effective_contract/currentness/canonical_primary_reason/outside_validity_interval"
+      ],
+      "brief_reason": "evaluated_at before valid_from is outside the inclusive validity interval, regardless of later currentness."
+    },
+    {
+      "id": "Q-PART-01",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/common_envelope/participant_rules/participant_must_be_declared",
+        "/effective_contract/participant_declarations",
+        "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+      ],
+      "brief_reason": "Participant must be declared; an identifier absent from the declarations is unknown_participant."
+    },
+    {
+      "id": "Q-PART-02",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/common_envelope/participant_rules/participant_must_accept_authority_domain",
+        "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+      ],
+      "brief_reason": "Participant must accept the authority domain (participant_domain_out_of_scope)."
+    },
+    {
+      "id": "Q-PART-03",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/common_envelope/participant_rules/participant_must_accept_operation",
+        "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+      ],
+      "brief_reason": "Participant must accept the operation (participant_operation_out_of_scope)."
+    },
+    {
+      "id": "Q-PART-04",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/common_envelope/participant_rules/participant_declaration_cannot_be_bypassed_by_positive_semantic_result",
+        "/effective_contract/core_non_implications_and_fail_closed_rules/positive_result_self_authorizes"
+      ],
+      "brief_reason": "A positive semantic result cannot bypass the participant declaration/acceptance boundary."
+    },
+    {
+      "id": "Q-QUAL-01",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/authority_domains/numeric_relation/competence_required",
+        "/effective_contract/domain_basis_requirements/numeric_relation/qualification",
+        "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+      ],
+      "brief_reason": "numeric_relation requires competence of type numeric_relation_validator (missing_required_qualification)."
+    },
+    {
+      "id": "Q-QUAL-02",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/authority_domains/numeric_relation/accepted_qualification_types",
+        "/effective_contract/domain_basis_requirements/numeric_relation/qualification",
+        "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+      ],
+      "brief_reason": "The required qualification type is numeric_relation_validator (qualification_type_mismatch)."
+    },
+    {
+      "id": "Q-QUAL-03",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/qualification/semantic_shape/current_required_for_new_exercise",
+        "/effective_contract/qualification/canonical_wire/current",
+        "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+      ],
+      "brief_reason": "Qualification.current is required for new exercise (qualification_not_current)."
+    },
+    {
+      "id": "Q-QUAL-04",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/qualification/semantic_shape/required",
+        "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+      ],
+      "brief_reason": "Qualification.subject_id must match the envelope subject (qualification_subject_mismatch)."
+    },
+    {
+      "id": "Q-WARRANT-01",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/authority_domains/numeric_relation/warrant_allowed",
+        "/effective_contract/domain_basis_requirements/numeric_relation/warrant",
+        "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+      ],
+      "brief_reason": "numeric_relation requires warrant type numeric-threshold-v1 (missing_required_warrant)."
+    },
+    {
+      "id": "Q-WARRANT-02",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/warrant/semantic_shape/must_match_envelope_domain",
+        "/effective_contract/warrant/warrant_types/numeric-threshold-v1/authority_domain",
+        "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+      ],
+      "brief_reason": "Warrant authority_domain must match the envelope (warrant_domain_mismatch)."
+    },
+    {
+      "id": "Q-WARRANT-03",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/warrant/semantic_shape/must_match_envelope_operation",
+        "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+      ],
+      "brief_reason": "Warrant operation must match the envelope operation (warrant_operation_mismatch)."
+    },
+    {
+      "id": "Q-WARRANT-04",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/warrant/semantic_shape/applicable_required",
+        "/effective_contract/core_non_implications_and_fail_closed_rules/inapplicable_behavior",
+        "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+      ],
+      "brief_reason": "A required warrant with applicable=false is inapplicable and rejects (warrant_inapplicable)."
+    },
+    {
+      "id": "Q-WARRANT-05",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/warrant/semantic_shape/must_match_envelope_target",
+        "/effective_contract/warrant/warrant_types/numeric-threshold-v1/required_bindings",
+        "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence"
+      ],
+      "brief_reason": "Warrant target_hash must match the envelope target (warrant_target_hash_mismatch)."
+    },
+    {
+      "id": "Q-WARRANT-06",
+      "answer": "UNDERDETERMINED",
+      "supporting_contract_refs": [
+        "/explicit_open_normative_questions/0",
+        "/effective_contract/common_envelope/warrant_field_cardinality",
+        "/effective_contract/warrant/envelope_field_cardinality"
+      ],
+      "brief_reason": "Envelope warrant cardinality is explicitly underdetermined, so one structurally valid Warrant object is not classified as canonical, malformed, or one of several allowed cardinalities."
+    },
+    {
+      "id": "Q-PROP-01",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/propagation/default_authority_propagation",
+        "/effective_contract/core_non_implications_and_fail_closed_rules/default_authority_propagation",
+        "/effective_contract/propagation/core/never_implicit",
+        "/effective_contract/propagation/shape/none/allowed_fields"
+      ],
+      "brief_reason": "Default authority propagation is none; mode none allows no fields, so no semantic or operational authority is inherited."
+    },
+    {
+      "id": "Q-PROP-02",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/propagation/core/identity_provenance_fields",
+        "/effective_contract/propagation/core/never_implicit",
+        "/effective_contract/authority_basis/non_implications"
+      ],
+      "brief_reason": "Identity-provenance fields, including a policy identifier, are not authority; this mode does not confer semantic validity or operational authority."
+    },
+    {
+      "id": "Q-PROP-03",
+      "answer": "UNDERDETERMINED",
+      "supporting_contract_refs": [
+        "/effective_contract/propagation/shape/explicit/authority_fields_still_forbidden_unless_separately_reauthorized",
+        "/effective_contract/propagation/core/never_implicit",
+        "/effective_contract/propagation/canonical_interface/separately_reauthorized",
+        "/effective_contract/reason_semantics/rc3c/relisted_cross_domain_primary_reasons/explicit_decision_mandate_propagation"
+      ],
+      "brief_reason": "Explicit mode forbids authority fields unless separately reauthorized, and semantic_validity is never implicit, but the artifact does not classify semantic_validity as an authority field or name the request-level consequence (reject vs withhold)."
+    },
+    {
+      "id": "Q-PROP-04",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/propagation/canonical_interface/forbidden_native_aliases",
+        "/effective_contract/propagation/canonical_interface/forbidden_alias_behavior",
+        "/effective_contract/evaluation_interface/consumer_requirements/must_reject_requested_fields_alias_on_native_propagation_request"
+      ],
+      "brief_reason": "requested_fields is a forbidden native alias and rejects as malformed_propagation_request."
+    },
+    {
+      "id": "Q-PROP-05",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/propagation/canonical_interface/unknown_mode_behavior",
+        "/effective_contract/propagation/canonical_interface/mode/enum"
+      ],
+      "brief_reason": "Unknown propagation mode rejects with unknown_propagation_mode."
+    },
+    {
+      "id": "Q-DEL-01",
+      "answer": "PERMIT",
+      "supporting_contract_refs": [
+        "/effective_contract/delegation/request/linkage_rule",
+        "/effective_contract/delegation/request/domain_rule",
+        "/effective_contract/delegation/request/operation_rule",
+        "/effective_contract/delegation/request/scope_rule",
+        "/effective_contract/delegation/request/currentness_rule_for_new_exercise",
+        "/effective_contract/delegation/request/expiry_rule",
+        "/effective_contract/delegation/inherited_semantics/child_must_be_subset_of_parent"
+      ],
+      "brief_reason": "The child satisfies linkage, same domain, currentness, non-amplifying expiry, and strict operation/scope subset of the parent."
+    },
+    {
+      "id": "Q-DEL-02",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/delegation/request/linkage_rule",
+        "/effective_contract/delegation/request/linkage_failure_reason"
+      ],
+      "brief_reason": "child.parent_authority_id must equal parent.id (delegation_parent_mismatch)."
+    },
+    {
+      "id": "Q-DEL-03",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/delegation/request/domain_rule",
+        "/effective_contract/delegation/request/domain_failure_reason"
+      ],
+      "brief_reason": "Child domain must equal parent domain (delegation_domain_amplification)."
+    },
+    {
+      "id": "Q-DEL-04",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/delegation/request/operation_rule",
+        "/effective_contract/delegation/request/operation_failure_reason",
+        "/effective_contract/delegation/inherited_semantics/cannot_add_operation_not_in_parent"
+      ],
+      "brief_reason": "Child operations must be a subset of parent operations (delegation_operation_amplification)."
+    },
+    {
+      "id": "Q-DEL-05",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/delegation/request/scope_rule",
+        "/effective_contract/delegation/request/scope_failure_reason",
+        "/effective_contract/delegation/inherited_semantics/cannot_expand_scope"
+      ],
+      "brief_reason": "Child scope must be a subset of parent scope (delegation_scope_amplification)."
+    },
+    {
+      "id": "Q-DEL-06",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/delegation/request/currentness_rule_for_new_exercise",
+        "/effective_contract/delegation/request/currentness_failure_reason"
+      ],
+      "brief_reason": "New exercise requires parent.current and child.current both true (delegation_not_current)."
+    },
+    {
+      "id": "Q-DEL-07",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/delegation/request/expiry_rule",
+        "/effective_contract/delegation/request/expiry_failure_reason",
+        "/effective_contract/delegation/inherited_semantics/cannot_extend_parent_expiry",
+        "/effective_contract/delegation/canonical_wire/expiry_rule"
+      ],
+      "brief_reason": "Child valid_until must not be later than parent valid_until (delegation_expiry_amplification)."
+    },
+    {
+      "id": "Q-HIST-01",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/historical_authority/later_revocation_rewrites_history",
+        "/effective_contract/core_non_implications_and_fail_closed_rules/historical_validity_rewritten_by_later_revocation",
+        "/effective_contract/historical_authority/record_shape/later_revocation_does_not_rewrite_authority_was_valid_at_time",
+        "/effective_contract/historical_authority/request/historical_inspection_semantics"
+      ],
+      "brief_reason": "Later revocation does not rewrite stored authority_was_valid_at_time; historical_inspection evaluates that stored value."
+    },
+    {
+      "id": "Q-HIST-02",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/historical_authority/request/new_exercise_semantics",
+        "/effective_contract/historical_authority/request/new_exercise_rejection_when_only_historical_record_present",
+        "/effective_contract/historical_authority/inherited/current_recheck_required_for_new_action"
+      ],
+      "brief_reason": "Historical validity alone cannot authorize a new exercise; only a historical record rejects as authority_basis_not_current."
+    },
+    {
+      "id": "Q-HIST-03",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/historical_authority/request/fixture_only_tokens",
+        "/effective_contract/historical_authority/request/fixture_token_is_not_native_mode",
+        "/effective_contract/historical_authority/request/unknown_mode_behavior",
+        "/effective_contract/historical_authority/request/mode/enum"
+      ],
+      "brief_reason": "historical_record is not a native mode; unknown mode rejects with unknown_evaluation_mode and no silent default."
+    },
+    {
+      "id": "Q-REASON-01",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/reason_semantics/rc3c/single_primary_reason",
+        "/effective_contract/reason_semantics/rc3c/whole_envelope_precedence",
+        "/effective_contract/reason_semantics/rc3c_malformed_wire_reasons/competence_not_array"
+      ],
+      "brief_reason": "Both fail, but malformed_competence_shape precedes authority_basis_not_current, so the malformed-wire class is the single primary reason."
+    },
+    {
+      "id": "Q-REASON-02",
+      "answer": "REJECT",
+      "supporting_contract_refs": [
+        "/effective_contract/reason_semantics/rc3c/single_primary_reason",
+        "/effective_contract/authority_basis/ordering/reason_precedence",
+        "/effective_contract/reason_semantics/rc3b_basis_precedence"
+      ],
+      "brief_reason": "unresolvable_authority_basis precedes authority_basis_domain_mismatch in the basis-binding cascade."
+    }
+  ],
+  "metadata": {
+    "freeze_marker": "FRESH_CONTRACT_E_SEMANTIC_ANSWERS_FROZEN_WITHOUT_REFERENCE_KEY"
+  }
+}
