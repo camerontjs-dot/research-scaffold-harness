@@ -10,15 +10,18 @@ Do not optimize for an evaluator you have not seen. Do not guess an answer key.
 
 ## Exclusive pre-freeze aperture
 
-Before the implementation and prereveal tests are frozen, you may inspect only these exact three files at the exact execution branch/head supplied in the launch prompt:
+Before the implementation and prereveal tests are frozen, you may inspect only these four exact files on the execution branch supplied in the launch prompt:
 
 1. `research/contract_e_v1_dual_identity_successor_aperture/SPEC.md`
 2. `research/contract_e_v1_dual_identity_successor_aperture/schema.json`
 3. `research/contract_e_v1_dual_identity_successor_aperture/PRE_FREEZE_TASK.md`
+4. `research/contract_e_v1_dual_identity_successor_aperture/RUN.md`
 
-Retrieve them only by exact path/ref. You may perform a branch/ref lookup solely to verify that the execution branch points to the launch-supplied aperture head. Do not inspect the aperture commit object, tree, diff, PR, Actions, issues, history, repository search, README, or unrelated files.
+`RUN.md` is operational launch metadata only. It does not add Contract E semantics.
 
-If a supposedly file-scoped retrieval exposes unrelated repository/project content, stop and record `CONTAMINATED_PRE_FREEZE_APERTURE` and terminal state `INCONCLUSIVE`. Do not use leaked material.
+You may perform a branch/ref lookup solely to verify that the execution branch points to the launch-supplied starting head. Do not inspect commit history, diffs against any other branch, PR metadata/body/history, Actions, issues other than the launch message already delivered to you, repository search, or any unrelated path.
+
+The execution branch's starting working tree is intentionally sparse. If any supposedly aperture-scoped retrieval exposes unrelated repository/project content, stop and record `CONTAMINATED_PRE_FREEZE_APERTURE` and terminal state `INCONCLUSIVE`. Do not use the leaked material.
 
 ## Forbidden pre-freeze inputs
 
@@ -29,7 +32,7 @@ Do not inspect, retrieve, use, infer from, or ask another model/agent about:
 - hidden cases;
 - evaluator code, qualification logic, qualification evidence, evaluator seal receipts, or comparison results;
 - any prior Contract E candidate implementation, evaluator, fresh reproduction, result, mismatch, reconciliation, or post-falsification analysis;
-- any other Contract E branch, PR, issue, commit, tree, diff, workflow, release, or repository file;
+- any other Contract E branch, PR, issue, commit history, diff, workflow, release, or repository file;
 - Contract A/B/C/D implementations, validators, fixtures, consumers, or pipeline behavior;
 - Claim Audit Lab, Evidence Bundler, Decision Engine, CAL Pipeline, Mainframe, or other project-specific context;
 - prior or parallel conversations, project memory, personal-context retrieval, summaries, or other agents' work;
@@ -85,7 +88,7 @@ Run the tests before freezing. Preserve inconvenient tests/failures rather than 
 
 If the SPEC/schema genuinely do not determine a behavior, record it explicitly in the freeze receipt. Choose the smallest fail-closed behavior justified by the public aperture. Do not silently import semantics from convention or imagined implementation behavior.
 
-Do not modify the three aperture files.
+Do not modify the four aperture files.
 
 ## Immutable pre-reveal freeze
 
@@ -108,9 +111,9 @@ The freeze receipt must contain at minimum:
 - `implementation_frozen: true`;
 - `post_freeze_repair_permitted: false`;
 - exact execution branch;
-- exact clean base supplied by the launch prompt;
-- exact aperture head supplied by the launch prompt;
-- exact aperture file Git blobs supplied by the launch prompt;
+- exact clean-room base branch/head supplied by `RUN.md`;
+- exact execution starting head supplied by `RUN.md`;
+- exact aperture file Git blobs supplied by `RUN.md`;
 - implementation freeze commit/path/blob/SHA-256;
 - test path/blob/SHA-256;
 - prereveal command/count/result/exit code;
@@ -130,7 +133,7 @@ After reveal, the frozen implementation and prereveal tests must remain immutabl
 Return only a compact freeze record containing:
 
 - execution branch;
-- aperture head;
+- execution starting head;
 - implementation freeze commit/blob/SHA-256;
 - test blob/SHA-256;
 - prereveal test count/result;
