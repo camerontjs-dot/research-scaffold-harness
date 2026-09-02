@@ -1,0 +1,40 @@
+{
+  "case_count": 94,
+  "exception_ids": [],
+  "false_permit_ids": [],
+  "false_reject_ids": [],
+  "family_counts": {
+    "action": 9,
+    "comparison": 8,
+    "composition": 8,
+    "decision": 7,
+    "measurement": 10,
+    "observation": 8,
+    "resolution": 10,
+    "semantic": 24,
+    "verification": 10
+  },
+  "implementation_path": "research/contract_e_authority_chain_fresh_rc1/authority_chain.py",
+  "implementation_sha256": "9273fe17f54ac2902390bf3af124e290ffc9896bdba2fe8e2e1c4dc9bac14eaa",
+  "metrics": {
+    "allowed_outcome_match": 1.0,
+    "authority_kind_match": 1.0,
+    "authority_tuple_match": 0.9893617021276596,
+    "canonical_reason_match": 0.9893617021276596,
+    "exact_contract_match": 0.9893617021276596,
+    "exceptions": 0,
+    "false_permits": 0,
+    "false_rejects": 0,
+    "metamorphic_pairs_passed": 13,
+    "metamorphic_pairs_total": 13,
+    "preservation_rate": 1.0,
+    "status_match": 1.0
+  },
+  "mismatch_ids": [
+    "OBS-NEG-KIND"
+  ],
+  "primary_research_disposition": "FALSIFIED",
+  "production_authorization": false,
+  "schema": "contract-e-authority-chain-fresh-rc1-comparison-v1",
+  "scientific_state": "INDEPENDENT_RECOVERABILITY_FALSIFIED"
+}
