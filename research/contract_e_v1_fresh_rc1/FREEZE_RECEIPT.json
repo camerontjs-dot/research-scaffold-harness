@@ -1,0 +1,35 @@
+{
+  "schema": "contract-e-v1-fresh-rc1-freeze-receipt-v1",
+  "marker": "CONTRACT_E_V1_FRESH_RC1_FROZEN_BEFORE_REVEAL",
+  "clean_base": "548bfa81f65290eda15af658f647497679b840ef",
+  "aperture_head": "5a31c2c17dc4b63dd8235f98dd9a3e8e7921e98b",
+  "aperture_spec_blob": "3041d31ed0905d50ff355e483fbb9422df994997",
+  "aperture_spec_sha256": "499b30f4d9d9f29b4c60a7e0d84465e3a09b13972a230b728117024da9d12841",
+  "aperture_schema_blob": "d934d055e39c81e6eb93830e7c6f6f43fc8a0870",
+  "aperture_schema_sha256": "eefe62ff98295f72457c4cc427c398f942afc81954c8d6afff2410652f56a07b",
+  "aperture_task_blob": "54ad2e7a995a282cb82341d22698cbdf872401c7",
+  "aperture_task_sha256": "f90832d3eb5de5c6ab5c9046355a74176a92ed22666a5c6818c180f29a04033d",
+  "implementation_commit": "75e22edf20c531fb50ed47cb1d199dfa15a5a6b8",
+  "implementation_path": "research/contract_e_v1_fresh_rc1/authority_e.py",
+  "implementation_blob": "42d2f43ec9222f2409d6066fd599327ce9ba5765",
+  "implementation_sha256": "7f2c2359a4553edb8adcf9ef9cee6ce624a5e5a1cbd3f67f5ade71be53338ad7",
+  "test_path": "research/contract_e_v1_fresh_rc1/test_authority_e.py",
+  "test_blob": "99cf8901017480b1b55035c174c7667a9811cb73",
+  "test_sha256": "4a5b430b6194dd970b9d830674dc200f8fd98cb48deeb92c1168c29de56bbe32",
+  "prereveal_test_command": "cd /tmp/contract_e_cleanroom/research/contract_e_v1_fresh_rc1 && python -m unittest -v test_authority_e.py",
+  "prereveal_test_result": "PASS: 25 tests ran; OK; exit code 0",
+  "contamination_status": "CLEAN_PRE_FREEZE_APERTURE",
+  "uncertainties": [
+    "Interpreted the specification's 'ordinary authorization' blocker rule to exempt requests with exact jurisdiction domain='resolution' and operation='resolve'; because reference kind is explicitly opaque and blockers have no immutable-reference linkage field, no additional semantic linkage between the resolution target and a blocker can be proven by this interface.",
+    "Interpreted supporting_artifacts[*].ref_id as required to resolve to a request references[*].ref_id because supporting artifacts are described as separate references, although the JSON Schema cannot express that cross-field relation.",
+    "The dict-based evaluate interface cannot detect duplicate raw JSON member names after decoding; the implementation detects cycles, non-string keys, non-finite numbers, host-only values, and UTF-8 encoding failures that remain observable in decoded Python values.",
+    "Applied the AuthorityState canonical-JSON procedure to immutable-reference identity, request_sha256, and receipt semantic identity because those fields require deterministic SHA-256 identities but their sections do not restate a separate canonicalization algorithm.",
+    "For structurally malformed requests whose exact list values cannot be represented by the receipt schema or canonicalized safely, the receipt preserves only schema-valid request list fields and otherwise emits empty arrays; fully valid requests preserve exact copies.",
+    "Did not impose uniqueness on request ref_id values, supporting-artifact ids, conflict ids, or residue ids because neither the specification nor schema states those uniqueness constraints; duplicate local ref_id values therefore remain structurally accepted.",
+    "Treated timestamp strings matching the schema pattern as malformed if they are not calendar-valid UTC timestamps; leap-second ':60' values are rejected, while arbitrary fractional-second precision is compared exactly."
+  ],
+  "deviations": [
+    "The available GitHub write interface commits one file per contents-API write. authority_e.py was committed first at f0b5459e9a2a8551d0f625e21a96313d87127ec2, then test_authority_e.py at 75e22edf20c531fb50ed47cb1d199dfa15a5a6b8; the latter commit, where both exact file states coexist, is treated as the immutable implementation/test freeze.",
+    "The three aperture Git blob identities were independently verified through exact path/ref retrieval before their contents were consumed. A post-freeze attempt to re-retrieve the same three authorized raw paths solely to recompute their launch-supplied SHA-256 values was blocked by the web fetch environment, so the aperture SHA-256 fields record the exact launch-supplied expected values rather than an independently recomputed digest. No unrelated content was returned."
+  ]
+}
