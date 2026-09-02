@@ -1,0 +1,24 @@
+{
+  "authority_match": false,
+  "exact_contract_match": false,
+  "exception": null,
+  "expected": {
+    "allowed": false,
+    "authority_kind": null,
+    "reason": "producer_authority_ceiling",
+    "status": "insufficient_authority"
+  },
+  "false_permit": false,
+  "false_reject": false,
+  "family": "observation",
+  "id": "OBS-NEG-KIND",
+  "missing_fields": [],
+  "observed": {
+    "allowed": false,
+    "authority_kind": null,
+    "reason": "unsupported_authority_kind",
+    "status": "insufficient_authority"
+  },
+  "preservation_failures": [],
+  "tags": ["ceiling_attack"]
+}
