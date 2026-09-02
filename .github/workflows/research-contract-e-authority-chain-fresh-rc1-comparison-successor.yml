@@ -1,0 +1,95 @@
+name: Research - Contract E RC1 Comparison Successor
+
+on:
+  push:
+    branches:
+      - research/contract-e-authority-chain-fresh-rc1-comparison-successor-20260902
+
+permissions:
+  contents: read
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout frozen reproduction lineage
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify frozen implementation and prereveal tests are unchanged
+        shell: bash
+        run: |
+          set -euo pipefail
+          implementation_commit='e9ef0f06e503f280db748532bc7547f3e1234f32'
+          implementation_path='research/contract_e_authority_chain_fresh_rc1/authority_chain.py'
+          test_path='research/contract_e_authority_chain_fresh_rc1/test_authority_chain.py'
+          test "$(git rev-parse "${implementation_commit}:${implementation_path}")" = 'cbbb5d6478dbcfdc54fb6377d57301570500c2ac'
+          test "$(git rev-parse "${implementation_commit}:${test_path}")" = 'bc1a274785eaa4b9502e7c212eeba3d6582bd923'
+          test "$(git hash-object "${implementation_path}")" = 'cbbb5d6478dbcfdc54fb6377d57301570500c2ac'
+          test "$(git hash-object "${test_path}")" = 'bc1a274785eaa4b9502e7c212eeba3d6582bd923'
+          test "$(sha256sum "${implementation_path}" | cut -d' ' -f1)" = '9273fe17f54ac2902390bf3af124e290ffc9896bdba2fe8e2e1c4dc9bac14eaa'
+          test "$(sha256sum "${test_path}" | cut -d' ' -f1)" = '2f53ae7fa370e15937a79fd32230015650276acea157502cc1ec2654af1cc88d'
+          git diff --exit-code "${implementation_commit}" HEAD -- "${implementation_path}" "${test_path}"
+          python "${test_path}"
+
+      - name: Checkout exact sealed evaluator
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/apparatus-contracts
+          ref: 396ffbb07d403032a45545d696046466a9ed2561
+          path: _apparatus
+          fetch-depth: 1
+
+      - name: Verify sealed evaluator identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C _apparatus rev-parse HEAD)" = '396ffbb07d403032a45545d696046466a9ed2561'
+          test "$(git -C _apparatus rev-parse HEAD:sealed/contract-e-authority-chain-fresh-rc1/reference.py)" = '25cec740262b76738ccd9baeac964dc460ac4652'
+          test "$(git -C _apparatus rev-parse HEAD:sealed/contract-e-authority-chain-fresh-rc1/sealed_cases.py)" = '4aef3e0673b74e3a681222ec395e2c47f880ebd9'
+          test "$(git -C _apparatus rev-parse HEAD:sealed/contract-e-authority-chain-fresh-rc1/evaluate_fresh.py)" = 'd9c36fadef62737302ec800f44dd80fe5f7cd071'
+          test "$(git -C _apparatus rev-parse HEAD:sealed/contract-e-authority-chain-fresh-rc1/qualify.py)" = 'd83680e04d40b96847f7a4157b7a10561506c347'
+          test "$(git -C _apparatus rev-parse HEAD:sealed/contract-e-authority-chain-fresh-rc1/EVALUATOR-CONTRACT.md)" = '71b0c4873d4e38245793bc4724acbc93843dc93e'
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          receipt = json.loads(Path('_apparatus/sealed/contract-e-authority-chain-fresh-rc1/qualification/FINAL_SEAL_RECEIPT.json').read_text())
+          assert receipt['accepted_qualification']['workflow_run_id'] == 33467464302
+          assert receipt['accepted_qualification']['reference_exact_matches'] == 94
+          assert receipt['accepted_qualification']['qualification_failures'] == []
+          assert receipt['fresh_implementation_existed_at_seal'] is False
+          PY
+
+      - name: Execute exact sealed 94-case comparison
+        shell: bash
+        run: |
+          set -euo pipefail
+          out='research/contract_e_authority_chain_fresh_rc1/successor_comparison_results'
+          rm -rf "$out"
+          mkdir -p "$out"
+          python _apparatus/sealed/contract-e-authority-chain-fresh-rc1/evaluate_fresh.py \
+            --implementation research/contract_e_authority_chain_fresh_rc1/authority_chain.py \
+            --output-dir "$out" \
+            > "$out/STDOUT.json"
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('research/contract_e_authority_chain_fresh_rc1/successor_comparison_results/RESULTS.json')
+          result = json.loads(p.read_text())
+          assert result['case_count'] == 94
+          assert result['implementation_sha256'] == '9273fe17f54ac2902390bf3af124e290ffc9896bdba2fe8e2e1c4dc9bac14eaa'
+          print(json.dumps(result, indent=2, sort_keys=True))
+          PY
+
+      - name: Upload comparison evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: contract-e-authority-chain-fresh-rc1-successor-comparison
+          path: research/contract_e_authority_chain_fresh_rc1/successor_comparison_results/
+          if-no-files-found: error
