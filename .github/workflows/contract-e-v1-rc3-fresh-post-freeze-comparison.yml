@@ -82,6 +82,17 @@ jobs:
             echo "successor_reference_blob=$(git -C "$A" rev-parse HEAD:docs/research/contract-e/v1-rc3-target-reference-cardinality-successor-20260903/candidate/reference.py)"
           } > post_freeze_results/IDENTITIES.txt
 
+      - name: Install exact sealed-reference standards dependency
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check 'rfc8785==0.1.4'
+          python - <<'PY'
+          import importlib.metadata
+          assert importlib.metadata.version('rfc8785') == '0.1.4'
+          print('rfc8785==0.1.4')
+          PY
+
       - name: Run sealed 62-case comparison against frozen implementation
         id: comparison
         continue-on-error: true
