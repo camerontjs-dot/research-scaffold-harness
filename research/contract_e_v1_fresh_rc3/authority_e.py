@@ -274,7 +274,7 @@ def _valid_authority_record_shape(value: Any) -> bool:
         return False
     if not _nonempty(value["id"]):
         return False
-    if value["basis_type"] not in {"grant", "policy", "delegation"}:
+    if not _valid_unicode_string(value["basis_type"]) or value["basis_type"] not in ("grant", "policy", "delegation"):
         return False
     for key in ("subject_id", "domain", "operation", "scope", "target_class"):
         if not _nonempty(value[key]):
@@ -333,7 +333,8 @@ def _valid_blocker_shape(value: Any) -> bool:
     return _exact_keys(value, required) and (
         _nonempty(value["id"])
         and type(value["relevant"]) is bool
-        and value["status"] in {"unresolved", "contested"}
+        and _valid_unicode_string(value["status"])
+        and value["status"] in ("unresolved", "contested")
     )
 
 
@@ -386,7 +387,7 @@ def _safe_preserve_list(request: Any, key: str, item_validator: Callable[[Any], 
 
 
 def _state_identity(state: Any) -> Optional[str]:
-    if not isinstance(state, dict):
+    if not isinstance(state, dict) or not _is_canonicalizable(state):
         return None
     candidate = {key: value for key, value in state.items() if key != "authority_state_id"}
     return _hash_json(candidate)
@@ -428,6 +429,8 @@ def _chain_valid(records: list[dict]) -> bool:
             return False
         seen_ids.add(record["id"])
         if record["basis_type"] != "delegation":
+            return False
+        if record["subject_id"] == previous["subject_id"]:
             return False
         if record["parent_id"] != previous["id"]:
             return False
