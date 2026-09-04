@@ -1,0 +1,100 @@
+{
+  "schema": "contract-e-v1-rc3-fresh-independent-reproduction-final-seal-v1",
+  "research_only": true,
+  "production_authorization": false,
+  "execution_branch": "research/contract-e-v1-rc3-fresh-independent-execution-20260904",
+  "aperture_head": "91e3970caf7e8b03836df0882158e9e23ff3eb36",
+  "implementation_freeze_commit": "60e2872c61bf098142c5bea4f547f4f7e7707f98",
+  "freeze_receipt_commit": "ed18b8898c73c2721e894ccffbdd40b67df60714",
+  "implementation": {
+    "path": "research/contract_e_v1_fresh_rc3/authority_e.py",
+    "git_blob_id": "9019abd8ade820988de1f899b2ccef9e57e9a908",
+    "sha256": "0246dd6e43b780f8b37b0ea486ed9c376f6579c7a05161318f928e8d00dc1b6c"
+  },
+  "prereveal_tests": {
+    "path": "research/contract_e_v1_fresh_rc3/test_authority_e.py",
+    "git_blob_id": "818c44ad377d95344d158a7698d625548c0f5397",
+    "sha256": "7718074871cf77a1b7f0ad2a5f813e47cfb1d1dc5099330b0e9a4f0f9392d569",
+    "frozen_count": 33,
+    "frozen_result": "OK",
+    "frozen_exit_status": 0,
+    "hosted_post_reveal_rerun_count": 33,
+    "hosted_post_reveal_rerun_result": "OK"
+  },
+  "pre_freeze_contamination_status": "CLEAN_PRE_FREEZE_APERTURE",
+  "post_freeze_reveal_commit": "8c2a16d98772ed8bb44faeed9c5ee0b75b607ceb",
+  "sealed_comparison_authority": {
+    "repository": "camerontjs-dot/apparatus-contracts",
+    "final_seal_commit": "a678c73a661853a3a704666fc6bbf29fa378948f",
+    "final_seal_receipt_blob": "b819b4beb44a02d8f2adf823ea2538621b43495e",
+    "successor_reference_blob": "00d4d8f078073388d751546c24678825b89a6402",
+    "evaluator_blob": "5bba49c6a412c689232ea1315df0153455dd316f",
+    "target_cardinality_cases_blob": "94b6d2c91b0124e7d9469ae24731945a60721ac8",
+    "qualification_contract_blob": "21f5f5e78e82222e8d2d8dba0e645bf7f01c7a14",
+    "qualifier_blob": "b23103db7a4f34144ef0103668ebadd932156c0d"
+  },
+  "preserved_post_freeze_apparatus_failure": {
+    "classification": "APPARATUS_FAILURE_BEFORE_SCIENTIFIC_COMPARISON",
+    "run_id": 33890524011,
+    "job_id": 101080780257,
+    "head": "1ee3f040c48266ac087f48d909314efe14df696a",
+    "artifact_id": 9943626417,
+    "artifact_digest": "sha256:1f39bfcabbb7cb4b6f701f05d402c913b36e68fbc874e5b60af6a04bb687f055",
+    "failure": "ModuleNotFoundError: No module named 'rfc8785' while importing the unchanged sealed Apparatus reference before any hidden-case comparison",
+    "repair_scope": "hosted comparison infrastructure only: install exact rfc8785==0.1.4; no frozen implementation/test, sealed evaluator/reference, hidden-case, expected-output, or normative-projection change",
+    "deviation_record_commit": "a02cb687fc69e886b377ffa91b2e6f8121331679",
+    "repair_commit": "eb9033b8970afa64138f87dd52c5684df3eed6bf"
+  },
+  "accepted_comparison": {
+    "run_id": 33890626280,
+    "job_id": 101081122887,
+    "head": "eb9033b8970afa64138f87dd52c5684df3eed6bf",
+    "workflow_conclusion": "success",
+    "artifact_id": 9943671179,
+    "artifact_digest": "sha256:9f50f655f0638bec3a96dfd8d3a05a1a85256c16b03af5b99bcbe8613a5a31bc",
+    "case_count": 62,
+    "predecessor_case_count": 59,
+    "target_cardinality_case_count": 3,
+    "normative_exact_matches": 62,
+    "normative_mismatch_ids": [],
+    "false_permit_ids": [],
+    "false_reject_ids": [],
+    "exception_ids": [],
+    "preservation_failure_ids": [],
+    "diagnostic_shape_failure_ids": [],
+    "fractional_currentness_failure_ids": [],
+    "canonicalization_failure_ids": [],
+    "dual_identity_failure_ids": [],
+    "target_cardinality_failure_ids": [],
+    "predecessor_reference_regression": {
+      "case_count": 59,
+      "normative_exact_matches": 59,
+      "normative_mismatch_ids": [],
+      "state": "PASS"
+    },
+    "scientific_state": "SUPPORTED"
+  },
+  "research_disposition": "SUPPORTED_FOR_FRESH_INDEPENDENT_RECOVERABILITY",
+  "fresh_independent_recoverability": {
+    "established": true,
+    "scope": "one clean-room implementation recovered the frozen RC3 public SPEC/schema semantics sufficiently to match the sealed target-cardinality successor evaluator on all 62 normative cases with zero false permits, false rejects, exceptions, preservation failures, diagnostic-shape failures, or family-specific failures"
+  },
+  "interpretation_uncertainties_preserved": [
+    "year 0000 rejected",
+    "same-subject delegation denied fail-closed",
+    "delegation validity timestamps may differ while every record is independently current",
+    "Python integers outside plus/minus (2^53-1) rejected",
+    "state recomputation requires the supplied state object itself to be canonicalizable"
+  ],
+  "what_is_not_established": [
+    "production trusted-origin authenticity or legitimacy",
+    "production deployment/integration readiness",
+    "production security posture",
+    "production operational failure/recovery behavior",
+    "production execution occurrence or verification",
+    "operational ownership",
+    "production promotion, merge, tag, or release authority",
+    "universal recoverability across arbitrary independent implementations beyond this reproduction"
+  ],
+  "terminal_rule": "The fresh independent recoverability gate is supported for this bounded reproduction. Do not modify the frozen implementation/tests. Do not infer production readiness or request production promotion from this gate alone; the separate production-profile gate remains NOT_READY."
+}
