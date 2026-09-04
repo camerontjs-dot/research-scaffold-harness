@@ -1,0 +1,38 @@
+{
+  "implementation_frozen": true,
+  "post_freeze_repair_permitted": false,
+  "execution_branch": "research/contract-e-v1-rc3-fresh-independent-execution-20260904",
+  "aperture_head": "91e3970caf7e8b03836df0882158e9e23ff3eb36",
+  "implementation_freeze_commit": "60e2872c61bf098142c5bea4f547f4f7e7707f98",
+  "implementation": {
+    "path": "research/contract_e_v1_fresh_rc3/authority_e.py",
+    "git_blob_id": "9019abd8ade820988de1f899b2ccef9e57e9a908",
+    "sha256": "0246dd6e43b780f8b37b0ea486ed9c376f6579c7a05161318f928e8d00dc1b6c"
+  },
+  "prereveal_tests": {
+    "path": "research/contract_e_v1_fresh_rc3/test_authority_e.py",
+    "git_blob_id": "818c44ad377d95344d158a7698d625548c0f5397",
+    "sha256": "7718074871cf77a1b7f0ad2a5f813e47cfb1d1dc5099330b0e9a4f0f9392d569",
+    "command": "cd /mnt/data/contract_e_work/research/contract_e_v1_fresh_rc3 && python -m unittest -v test_authority_e.py",
+    "mechanism": "local Python unittest execution against local files whose Git blob IDs and SHA-256 values were verified equal to the frozen repository blobs",
+    "count": 33,
+    "result": "OK",
+    "exit_status": 0
+  },
+  "jcs_dependency_choice": "independent JCS implementation in authority_e.py",
+  "rfc8785_0_1_4_used": false,
+  "interpretation_uncertainties": [
+    "Timestamp grammar permits four decimal year digits but does not explicitly state a year-zero convention; the implementation rejects year 0000 and uses Gregorian calendar validity for years 0001-9999.",
+    "The phrase 'new explicit subject_id' was interpreted fail-closed as requiring each delegation subject_id to differ from its immediate parent's subject_id.",
+    "The phrase 'Delegation may change the authorized subject only' was read as constraining authority/jurisdiction dimensions, not per-record validity timestamps, because the explicit preserved-field list omits valid_from, valid_until, and revoked_at; each record's time bounds are therefore independently evaluated.",
+    "For already-decoded Python values, independent JCS rejects integer objects outside the interoperable safe-integer interval -(2^53-1) through +(2^53-1); finite IEEE-754 float values use ECMAScript-compatible shortest serialization.",
+    "AuthorizationState recomputation was interpreted to require the supplied state object itself to be canonicalizable JSON before authority_state_id is excluded; a non-canonicalizable host-only value in that field therefore yields null recomputed_authority_state_id."
+  ],
+  "contamination_status": "CLEAN_PRE_FREEZE_APERTURE",
+  "apparatus_deviations": [
+    "rfc8785==0.1.4 was not installed in the runtime; an attempted exact-version pip install failed because the execution environment had no network/DNS access, so a self-contained independent JCS implementation was used.",
+    "Prereveal execution used local staging under /mnt/data/contract_e_work only; no repository checkout or repository-tree inspection was used.",
+    "Node.js v22.16.0 was used only as a generic standards sanity check for independent finite-float JSON rendering during development; it is not imported or required by the frozen implementation or prereveal test suite.",
+    "GitHub contents writes were necessarily file-scoped commits; the recorded freeze commit is the exact commit where the final implementation blob and frozen prereveal-test blob coexist."
+  ]
+}
