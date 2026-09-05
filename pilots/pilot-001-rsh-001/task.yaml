@@ -1,6 +1,0 @@
-task_id: pilot-001-rsh-001
-research_question: "Using only the provided source packet, write a short QA-facing assessment of what the packet supports about pharmaceutical quality systems under FDA CGMP. Address quality-system scope, management responsibility, corrective and preventive action, annual product review, supplier/change control, and any claims the packet does not establish. Keep the answer useful for a reviewer who needs to know what is supported and what remains out of scope."
-domain: pharma_regulatory
-expert_checkable: true
-source_scope: bounded
-notes: "PILOT-001 / RSH-001 v0.1 design freeze, materialized 2026-06-01. Both sources present: src-cgmp-quality-systems is a bounded FDA-guidance excerpt packet keyed to the nine frozen passage anchors (full PDF SHA-pinned, not committed — see source-provenance.yaml), and src-fictional-compliance-review-note is the synthetic challenge memo. source_scope stays bounded. The harness produces extraction + disposition only; the audit/support-rate pass is the Evidence Bundler's job — see README.md."

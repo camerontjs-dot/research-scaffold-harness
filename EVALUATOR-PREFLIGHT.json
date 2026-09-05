@@ -1,0 +1,26 @@
+{
+  "record_version": "cal.rc5.evaluator-preflight.v1",
+  "public_aperture_commit": "7f21a67f020e75a217676c410fd0b655e3be5c67",
+  "public_aperture_tree": "80f335aabe1840616ae4ae8c47f3fee77b8bb36b",
+  "public_manifest_sha256": "b3be023e6bf03179cd98dbea76cd1f994ab29dd8448e0883939b8df11f7e9114",
+  "sealed_packet_sha256": "ab31ae5437fbbeaf8d581eca81208ea71671b5fc4714bc2638ca7022cc8106da",
+  "sealed_packet_case_count": 21,
+  "oracle_mismatches": 0,
+  "positive_control": "PRESENT_EXPECTED_ACCEPT",
+  "weak_authority_controls": {
+    "proposition_signed_by_atom_only_key": {
+      "signature_valid": true,
+      "weak_unscoped_accept": true
+    },
+    "atom_signed_by_proposition_only_key": {
+      "signature_valid": true,
+      "weak_unscoped_accept": true
+    }
+  },
+  "mutation_sensitivity": "INCLUDES_ALL_21_ATOM_PROJECTION_FIELDS_AND_PROPOSITION_BOUND_FIELDS",
+  "representation_invariance": "ONLY_EXPLICIT_NONSEMANTIC_RAW_TRANSPORT_WHITESPACE_AND_MEMBER_ORDER_CASE",
+  "oracle_basis": "FROZEN_PUBLIC_SPEC_AND_TRUST_POLICY_NOT_CANDIDATE_BEHAVIOR",
+  "candidate_seen": false,
+  "fresh_executor_run": false,
+  "experiment_execution_status": "NOT_RUN"
+}
