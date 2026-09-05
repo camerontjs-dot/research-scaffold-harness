@@ -1,0 +1,57 @@
+{
+  "schema": "contract-e-disposable-execution-recovery-rc1-freeze-v1",
+  "research_only": true,
+  "production_authorization": false,
+  "preregistration": {
+    "commit": "997ea4696bf1b5de24c2187eeb72c76bcb1ed5c4",
+    "blob": "e64eabfdfa79f220ff352c21608fa3d1aec7e67e"
+  },
+  "candidate": {
+    "freeze_commit": "a69c3ac13ec0c0fd7f72fb77c1987c2bc5306588",
+    "path": "research/contract_e_disposable_execution_recovery_rc1/executor_rc1.py",
+    "blob": "2f7f4678f6f92de1e7ced733d324fa9b234e95fc"
+  },
+  "independent_verifier": {
+    "freeze_commit": "23732a1adec7a63f7a52f277ff53c5b0914fce95",
+    "path": "research/contract_e_disposable_execution_recovery_rc1/verifier_rc1.py",
+    "blob": "18e59803ba2e316b16564d1fe26d839c71b82ff7"
+  },
+  "evaluator": {
+    "freeze_commit": "ad2da092a041750a55e06cdf97657dc9112300e9",
+    "path": "research/contract_e_disposable_execution_recovery_rc1/evaluate_rc1.py",
+    "blob": "db6ce20ef9a1f8fe83336d670306de3307524812",
+    "frozen_case_count": 23,
+    "frozen_weak_control_count": 6
+  },
+  "contract_d_authority": {
+    "release_commit": "298a1a0f7b7b6d7712e11200d04faec3e1ca169b",
+    "core_blob": "564dcde5677df5ac8f86f21dc0ffd1692f44c9f0",
+    "validate_blob": "c03ef6c6f059cd03addf5e69b01025bb9a6af8d2",
+    "consume_blob": "8b4ad5c9d6fc1145cf334d1416b5d52b9ed93c68",
+    "effect_registry_blob": "a40f4f4447470654bdc16d852f5927189ae30cc5"
+  },
+  "contract_e_authority": {
+    "sealed_successor_commit": "a678c73a661853a3a704666fc6bbf29fa378948f",
+    "public_spec_blob": "8c142c6b86dd2512f1df0c19aa36dbef759d6c18",
+    "successor_reference_blob": "00d4d8f078073388d751546c24678825b89a6402",
+    "fresh_independent_seal_commit": "9feb44d8c8ea96176f797fe0ef692cc8e4d13656",
+    "fresh_independent_implementation_blob": "9019abd8ade820988de1f899b2ccef9e57e9a908"
+  },
+  "prior_shadow_rc0": {
+    "research_pr": 22,
+    "candidate_blob": "bd60ba1da3e1098d4d1a82d6b99bae6255843529",
+    "evaluator_blob": "b274b963603612ed3ff2993f76c067fa7c09ec31",
+    "accepted_run": 33939307886,
+    "artifact": 9961243481,
+    "artifact_digest": "sha256:ea7fb2e4bc499d6c7e083043f2d3cbd754b8acfd59fbfe693b980be2e6762833"
+  },
+  "frozen": true,
+  "post_freeze_candidate_repair_permitted": false,
+  "post_freeze_verifier_repair_permitted": false,
+  "post_freeze_evaluator_semantic_repair_permitted": false,
+  "allowed_post_freeze_changes": [
+    "workflow/import/dependency plumbing that preserves frozen candidate, verifier, evaluator, cases, weak controls, expectations, and result projection",
+    "apparatus-deviation evidence",
+    "terminal evidence records"
+  ]
+}

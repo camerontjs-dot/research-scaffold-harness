@@ -1,0 +1,157 @@
+name: Contract E disposable execution recovery RC1
+
+on:
+  push:
+    branches:
+      - research/contract-e-disposable-execution-recovery-rc1-20260904
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out frozen RC1 branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify frozen RC1 identities
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT='research/contract_e_disposable_execution_recovery_rc1'
+          RECEIPT='a9cba052bedacea5829ea513afb2742c1d8bab52'
+          git merge-base --is-ancestor "$RECEIPT" HEAD
+          test "$(git rev-parse "HEAD:$ROOT/executor_rc1.py")" = '2f7f4678f6f92de1e7ced733d324fa9b234e95fc'
+          test "$(git rev-parse "HEAD:$ROOT/verifier_rc1.py")" = '18e59803ba2e316b16564d1fe26d839c71b82ff7'
+          test "$(git rev-parse "HEAD:$ROOT/evaluate_rc1.py")" = 'db6ce20ef9a1f8fe83336d670306de3307524812'
+          test "$(git rev-parse "a69c3ac13ec0c0fd7f72fb77c1987c2bc5306588:$ROOT/executor_rc1.py")" = '2f7f4678f6f92de1e7ced733d324fa9b234e95fc'
+          test "$(git rev-parse "23732a1adec7a63f7a52f277ff53c5b0914fce95:$ROOT/verifier_rc1.py")" = '18e59803ba2e316b16564d1fe26d839c71b82ff7'
+          test "$(git rev-parse "ad2da092a041750a55e06cdf97657dc9112300e9:$ROOT/evaluate_rc1.py")" = 'db6ce20ef9a1f8fe83336d670306de3307524812'
+
+      - name: Check out exact Contract D authority
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/apparatus-contracts
+          ref: 298a1a0f7b7b6d7712e11200d04faec3e1ca169b
+          path: apparatus-d
+          fetch-depth: 1
+
+      - name: Check out exact sealed Contract E authority
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/apparatus-contracts
+          ref: a678c73a661853a3a704666fc6bbf29fa378948f
+          path: apparatus-e
+          fetch-depth: 1
+
+      - name: Check out exact fresh-independent Contract E implementation
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/research-scaffold-harness
+          ref: 9feb44d8c8ea96176f797fe0ef692cc8e4d13656
+          path: rsh-e
+          fetch-depth: 1
+
+      - name: Verify exact external authority blobs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C apparatus-d rev-parse HEAD)" = '298a1a0f7b7b6d7712e11200d04faec3e1ca169b'
+          test "$(git -C apparatus-d rev-parse HEAD:validators/contract_d_core.py)" = '564dcde5677df5ac8f86f21dc0ffd1692f44c9f0'
+          test "$(git -C apparatus-d rev-parse HEAD:validators/contract_d_validate.py)" = 'c03ef6c6f059cd03addf5e69b01025bb9a6af8d2'
+          test "$(git -C apparatus-d rev-parse HEAD:validators/contract_d_consume.py)" = '8b4ad5c9d6fc1145cf334d1416b5d52b9ed93c68'
+          test "$(git -C apparatus-d rev-parse HEAD:schema/contract-d/1.0.0/effect-registry.json)" = 'a40f4f4447470654bdc16d852f5927189ae30cc5'
+          test "$(git -C apparatus-e rev-parse HEAD)" = 'a678c73a661853a3a704666fc6bbf29fa378948f'
+          test "$(git -C apparatus-e rev-parse HEAD:docs/research/contract-e/v1-rc3-exact-currentness-jcs-20260902/candidate/SPEC.md)" = '8c142c6b86dd2512f1df0c19aa36dbef759d6c18'
+          test "$(git -C apparatus-e rev-parse HEAD:docs/research/contract-e/v1-rc3-target-reference-cardinality-successor-20260903/candidate/reference.py)" = '00d4d8f078073388d751546c24678825b89a6402'
+          test "$(git -C rsh-e rev-parse HEAD)" = '9feb44d8c8ea96176f797fe0ef692cc8e4d13656'
+          test "$(git -C rsh-e rev-parse HEAD:research/contract_e_v1_fresh_rc3/authority_e.py)" = '9019abd8ade820988de1f899b2ccef9e57e9a908'
+
+      - name: Install exact canonicalization dependency
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check 'rfc8785==0.1.4'
+          python - <<'PY'
+          import importlib.metadata
+          assert importlib.metadata.version('rfc8785') == '0.1.4'
+          PY
+
+      - name: Run frozen RC1 cases and weak controls
+        id: science
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p rc1-results
+          python research/contract_e_disposable_execution_recovery_rc1/evaluate_rc1.py \
+            --candidate research/contract_e_disposable_execution_recovery_rc1/executor_rc1.py \
+            --verifier research/contract_e_disposable_execution_recovery_rc1/verifier_rc1.py \
+            --apparatus-d apparatus-d \
+            --apparatus-e apparatus-e \
+            --independent-e rsh-e/research/contract_e_v1_fresh_rc3/authority_e.py \
+            --output-dir rc1-results \
+            2>&1 | tee rc1-results/evaluation.log
+          status=${PIPESTATUS[0]}
+          printf '%s\n' "$status" > rc1-results/evaluation-exit-status.txt
+          exit "$status"
+
+      - name: Capture exact run identities
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p rc1-results
+          ROOT='research/contract_e_disposable_execution_recovery_rc1'
+          {
+            echo "RC1_HEAD=$(git rev-parse HEAD)"
+            echo "CANDIDATE_BLOB=$(git rev-parse HEAD:$ROOT/executor_rc1.py)"
+            echo "VERIFIER_BLOB=$(git rev-parse HEAD:$ROOT/verifier_rc1.py)"
+            echo "EVALUATOR_BLOB=$(git rev-parse HEAD:$ROOT/evaluate_rc1.py)"
+            echo "CONTRACT_D_HEAD=$(git -C apparatus-d rev-parse HEAD)"
+            echo "CONTRACT_E_HEAD=$(git -C apparatus-e rev-parse HEAD)"
+            echo "INDEPENDENT_E_HEAD=$(git -C rsh-e rev-parse HEAD)"
+          } > rc1-results/RUN_IDENTITIES.txt
+          sha256sum "$ROOT/executor_rc1.py" "$ROOT/verifier_rc1.py" "$ROOT/evaluate_rc1.py" > rc1-results/RC1_SHA256.txt
+
+      - name: Upload immutable RC1 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: contract-e-disposable-execution-recovery-rc1-${{ github.sha }}
+          path: rc1-results/
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Enforce accepted scientific result
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f rc1-results/evaluation-exit-status.txt
+          test "$(cat rc1-results/evaluation-exit-status.txt)" = '0'
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('rc1-results/RESULTS.json')
+          if not p.exists():
+              raise SystemExit('missing RESULTS.json')
+          d = json.loads(p.read_text())
+          assert d['scientific_state'] == 'SUPPORTED_FOR_BOUNDED_DISPOSABLE_EXECUTION_RECOVERY_CLAIM', d
+          assert d['case_count'] == 23, d
+          assert d['case_pass_count'] == 23, d
+          assert d['case_failure_ids'] == [], d
+          assert d['weak_control_count'] == 6, d
+          assert d['weak_controls_caught'] == 6, d
+          assert d['missed_weak_controls'] == [], d
+          print(json.dumps(d, indent=2, sort_keys=True))
+          PY
