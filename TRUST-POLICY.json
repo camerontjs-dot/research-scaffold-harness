@@ -1,0 +1,25 @@
+{
+  "policy_version": "cal.rc5.trust-policy.v1",
+  "context_id": "cal.rc5.asymmetric-two-receipt.strict-comparison.v1",
+  "default": "DENY",
+  "authorizations": [
+    {
+      "key_id": "KA-ATOM-RC5-001",
+      "receipt_type": "CAL.AtomWarrant/v1",
+      "schema_major": 1,
+      "scope": {
+        "context_id": "cal.rc5.asymmetric-two-receipt.strict-comparison.v1",
+        "authority_profile_id": "CAL.RC8J/claim-bound@8e75c6782bb95c3763d06230b9c5df2b6af44054:blob:f55156e43e0c1b4a7868bc8339585b8892edda38"
+      }
+    },
+    {
+      "key_id": "KP-PROP-RC5-001",
+      "receipt_type": "CAL.PropositionBinding/v1",
+      "schema_major": 1,
+      "scope": {
+        "context_id": "cal.rc5.asymmetric-two-receipt.strict-comparison.v1",
+        "claim_namespace": "cal.rc5.experimental.claims.v1"
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "record_version": "cal.rc5.fixture-generation.v1",
+  "generated_utc": "2026-09-05T23:30:00Z",
+  "generator_runtime": {
+    "python": "3.13.5",
+    "cryptography": "46.0.4"
+  },
+  "method": "cryptography Ed25519PrivateKey.generate(); sign RFC 8785 JCS statement bytes; publish raw public keys and signatures only",
+  "private_key_custody": "KA, KP, and hidden unknown-signer KU private-key objects existed only in supervisor process memory during fixture generation. Raw private-key bytes were never serialized, written to the aperture, written to the hidden packet, or printed. The process exited after fixtures were emitted.",
+  "public_key_fingerprints": {
+    "KA-ATOM-RC5-001": "e1256f1f7f3b289b0d0c9730fe4d41045dfbd80bea52d203457b36ed6e0fa1eb",
+    "KP-PROP-RC5-001": "6b76eca6c2c18aa7505c81b9fa07c0d994f597292503f846f6045ea56c45b0d5"
+  },
+  "authority_lineage": {
+    "production_main": "32275a239b68af383a56bca843e28cbc1e343976",
+    "rc3_head": "3f13b162d4b0d0cc837c99b9ad830c4c47707270",
+    "rc4_head": "2e4f42df8486684832944ddb314294d5979398a3",
+    "rc8j_commit": "8e75c6782bb95c3763d06230b9c5df2b6af44054",
+    "rc8j_blob": "f55156e43e0c1b4a7868bc8339585b8892edda38"
+  },
+  "notes": [
+    "Ed25519 and JCS are experimental RC5 profile choices only.",
+    "No CAL producer implementation is included in the public aperture."
+  ]
+}

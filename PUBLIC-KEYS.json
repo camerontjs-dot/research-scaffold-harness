@@ -1,0 +1,21 @@
+{
+  "key_set_version": "cal.rc5.public-keys.v1",
+  "context_id": "cal.rc5.asymmetric-two-receipt.strict-comparison.v1",
+  "signature_profile": "Ed25519",
+  "keys": [
+    {
+      "key_id": "KA-ATOM-RC5-001",
+      "algorithm": "Ed25519",
+      "public_key_encoding": "raw-32-byte/base64url-no-padding",
+      "public_key_base64url": "7JFfnzDnDoDEBI_l_ipHhx7Km8C5K5lxHao4A5eJy4Q",
+      "public_key_sha256": "e1256f1f7f3b289b0d0c9730fe4d41045dfbd80bea52d203457b36ed6e0fa1eb"
+    },
+    {
+      "key_id": "KP-PROP-RC5-001",
+      "algorithm": "Ed25519",
+      "public_key_encoding": "raw-32-byte/base64url-no-padding",
+      "public_key_base64url": "J9ErtlEtW19Q2QL0n2MdtM6CYGckRIyQubBW9A1Fkj0",
+      "public_key_sha256": "6b76eca6c2c18aa7505c81b9fa07c0d994f597292503f846f6045ea56c45b0d5"
+    }
+  ]
+}
