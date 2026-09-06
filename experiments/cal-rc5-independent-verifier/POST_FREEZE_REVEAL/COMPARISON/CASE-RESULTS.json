@@ -1,0 +1,27 @@
+{
+  "record_version": "cal.rc5.post-freeze.case-results.v1",
+  "packet_sha256": "ab31ae5437fbbeaf8d581eca81208ea71671b5fc4714bc2638ca7022cc8106da",
+  "cases": [
+    {"id":"H01-authority-relevant-atom-mutation","kind":"pair","match":true,"exception":null,"expected":{"decision":"REFUSE","code":"ATOM_BINDING_MISMATCH"},"observed":{"decision":"REFUSE","code":"ATOM_BINDING_MISMATCH"}},
+    {"id":"H02-proposition-mutation-same-claim","kind":"pair","match":true,"exception":null,"expected":{"decision":"REFUSE","code":"PROPOSITION_BINDING_MISMATCH"},"observed":{"decision":"REFUSE","code":"PROPOSITION_BINDING_MISMATCH"}},
+    {"id":"H03-recomputed-unkeyed-digest","kind":"atom","match":true,"exception":null,"expected":{"decision":"REFUSE","code":"SIGNATURE_INVALID"},"observed":{"decision":"REFUSE","code":"SIGNATURE_INVALID"}},
+    {"id":"H04-unknown-signer-valid-signature","kind":"atom","match":true,"exception":null,"expected":{"decision":"REFUSE","code":"UNKNOWN_SIGNER"},"observed":{"decision":"REFUSE","code":"UNKNOWN_SIGNER"}},
+    {"id":"H05-proposition-signed-by-atom-only-key","kind":"proposition","match":true,"exception":null,"expected":{"decision":"REFUSE","code":"UNAUTHORIZED_ISSUER_SCOPE"},"observed":{"decision":"REFUSE","code":"UNAUTHORIZED_ISSUER_SCOPE"}},
+    {"id":"H06-atom-signed-by-proposition-only-key","kind":"atom","match":true,"exception":null,"expected":{"decision":"REFUSE","code":"UNAUTHORIZED_ISSUER_SCOPE"},"observed":{"decision":"REFUSE","code":"UNAUTHORIZED_ISSUER_SCOPE"}},
+    {"id":"H07-receipt-type-substitution","kind":"proposition","match":false,"exception":null,"expected":{"decision":"REFUSE","code":"INVALID_RECEIPT_SCHEMA"},"observed":{"decision":"REFUSE","code":"UNSUPPORTED_PROFILE"}},
+    {"id":"H08-schema-major-substitution","kind":"proposition","match":false,"exception":null,"expected":{"decision":"REFUSE","code":"INVALID_RECEIPT_SCHEMA"},"observed":{"decision":"REFUSE","code":"UNSUPPORTED_PROFILE"}},
+    {"id":"H09-duplicate-security-critical-key","kind":"proposition_raw","match":true,"exception":null,"expected":{"decision":"REFUSE","code":"DUPLICATE_JSON_KEY"},"observed":{"decision":"REFUSE","code":"DUPLICATE_JSON_KEY"}},
+    {"id":"H10-signature-corruption","kind":"proposition","match":true,"exception":null,"expected":{"decision":"REFUSE","code":"SIGNATURE_INVALID"},"observed":{"decision":"REFUSE","code":"SIGNATURE_INVALID"}},
+    {"id":"H11-signature-truncation","kind":"proposition","match":false,"exception":null,"expected":{"decision":"REFUSE","code":"INVALID_RECEIPT_SCHEMA"},"observed":{"decision":"REFUSE","code":"SIGNATURE_INVALID_FORMAT"}},
+    {"id":"H12-forbidden-algorithm-profile","kind":"proposition","match":false,"exception":null,"expected":{"decision":"REFUSE","code":"INVALID_RECEIPT_SCHEMA"},"observed":{"decision":"REFUSE","code":"UNSUPPORTED_PROFILE"}},
+    {"id":"H13-incompatible-pair-mix","kind":"pair","match":true,"exception":null,"expected":{"decision":"REFUSE","code":"PAIR_CLAIM_MISMATCH"},"observed":{"decision":"REFUSE","code":"PAIR_CLAIM_MISMATCH"}},
+    {"id":"H14-positive-atom","kind":"atom","match":true,"exception":null,"expected":{"decision":"ACCEPT","code":"ACCEPT"},"observed":{"decision":"ACCEPT","code":"ACCEPT","claim_id":"claim:rc5:001","atom_id":"atom:rc5:a-gt-b"}},
+    {"id":"H15-positive-proposition","kind":"proposition","match":true,"exception":null,"expected":{"decision":"ACCEPT","code":"ACCEPT"},"observed":{"decision":"ACCEPT","code":"ACCEPT","claim_id":"claim:rc5:001"}},
+    {"id":"H16-positive-pair","kind":"pair","match":true,"exception":null,"expected":{"decision":"ACCEPT","code":"ACCEPT"},"observed":{"decision":"ACCEPT","code":"ACCEPT","claim_id":"claim:rc5:001","atom_id":"atom:rc5:a-gt-b"}},
+    {"id":"H17-two-valid-incompatible-same-claim-bindings","kind":"evidence_preservation","match":true,"exception":null,"expected":{"first":"ACCEPT","second":"ACCEPT","aggregate":"UNSUPPORTED_NO_UNIQUENESS_OR_EQUIVOCATION_RULE"},"observed":{"first":"ACCEPT","second":"ACCEPT","aggregate":"UNSUPPORTED_NO_UNIQUENESS_OR_EQUIVOCATION_RULE"}},
+    {"id":"H18-diagnostic-only-case-mutation-invariance","kind":"pair","match":true,"exception":null,"expected":{"decision":"ACCEPT","code":"ACCEPT"},"observed":{"decision":"ACCEPT","code":"ACCEPT","claim_id":"claim:rc5:001","atom_id":"atom:rc5:a-gt-b"}},
+    {"id":"H19-transport-whitespace-member-order-invariance","kind":"pair","match":true,"exception":null,"expected":{"decision":"ACCEPT","code":"ACCEPT"},"observed":{"decision":"ACCEPT","code":"ACCEPT","claim_id":"claim:rc5:001","atom_id":"atom:rc5:a-gt-b"}}
+  ],
+  "mismatch_ids":["H07-receipt-type-substitution","H08-schema-major-substitution","H11-signature-truncation","H12-forbidden-algorithm-profile"],
+  "candidate_case_exceptions":[]
+}
