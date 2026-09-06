@@ -1,0 +1,62 @@
+{
+  "receipt_version":"cal.rc5.post-freeze-terminal-receipt.v1",
+  "terminal_disposition":"INCONCLUSIVE_EVALUATOR_INVALID",
+  "repository":"camerontjs-dot/research-scaffold-harness",
+  "post_reveal_branch":"research/cal-rc5-independent-asymmetric-two-receipt-post-reveal-20260905",
+  "authorized_reveal_commit":"1ea7da82caef7db03c09fcb701e270bee811b2c2",
+  "pre_reveal_freeze_commit":"e2e79fc6c50b2acb00463d36065aa7d7e0727fa8",
+  "frozen_subject":{
+    "implementation_source_commit":"6ea6793b43a210656ac0b4e92dae40aa23322137",
+    "implementation_git_blob":"83bf96ebdeacd3abf276e665374dea172594ce7c",
+    "implementation_sha256":"45881f5e35072ab1ae5da4c48415a302e24fcfd893fe4f6d5434bf95be772264",
+    "prereveal_test_git_blob":"a25ff8b40d1181cf2fb872dd463df6fb51cf0d2c",
+    "prereveal_test_sha256":"098e471a86358517044c2a659f01ad4176a7416f2b4155d90c79f2c1e3bbd5a3",
+    "dependency_git_blob":"ef66329f0538d1bc63c4ae733a1502b4a93d200b",
+    "contamination_declaration_git_blob":"a72811e29328fefcea70950b4374b0af91dbe26d",
+    "pre_freeze_receipt_git_blob":"f44595998d5f6b8333f55eec5372171d0a3b78ee",
+    "candidate_or_prereveal_tests_modified_after_reveal":false
+  },
+  "sealed_evaluator":{
+    "manifest_git_blob":"d36ea41cf05da9eb100f914701f4036c112949b7",
+    "chunk_git_blobs":["5f0f408cb14b71e9c6dd4cc78d01322fdfc36f2d","bebd4df931243bb3293d240ae3a3f75f5d4f591b","92f17f47f9d4f2bdf4d64ce13492ef571e5bdaf9"],
+    "chunk_sha256":["83d25cdeb908cba5156c1f460368b8ea2f65b2eacc6d6c8ab1b0d9960a6a005d","068d1420f899846bc82318c4d1a413da11663ffb48d9cea4acd6fe44b27d640b","4d0a8e26e195e588adf6238cca1e3a5c7e5a0e9668e73e4ec4e9a5ea9bf1369e"],
+    "gzip_bytes":9720,
+    "gzip_sha256":"884f9ca98ce1cd1e958309ce471a688e34b21806132120979e79336194f6f852",
+    "uncompressed_bytes":232512,
+    "uncompressed_sha256":"ab31ae5437fbbeaf8d581eca81208ea71671b5fc4714bc2638ca7022cc8106da",
+    "parse_and_duplicate_key_check":"PASS",
+    "case_count":21
+  },
+  "final_comparison_artifacts_commit":"b07c34e78932a8365f413eb06afbf8949fd79fef",
+  "comparison_artifact_git_blobs":{
+    "compare_rc5_post_reveal.py":"fe54c4cc36483b71f03319e66dff41d8247bf69c",
+    "PACKET-VERIFICATION.json":"b5eed1d0fc2c4c74d7ea4593e41551aba6c0e204",
+    "CASE-RESULTS.json":"92ab187e0eea4c1f7179b5a870fa224884326141",
+    "MUTATION-RESULTS.json":"19b7776af871baaeeb0cbc7ae3d199838943fecd",
+    "CONTROLS-ORACLE-REVIEW.json":"c9b0ad96ecbce24feaa53f5f003e4e819c256efd",
+    "POST_FREEZE_RESULT.json":"be9423fb11770f3ad38339d1dc7cef50e1d435da"
+  },
+  "comparison_summary":{
+    "sealed_case_count":21,
+    "case_level_matches":17,
+    "case_level_mismatches":4,
+    "candidate_case_exceptions":0,
+    "unsafe_acceptances":0,
+    "atom_bound_mutations":"21/21 matched",
+    "proposition_bound_mutations":"5/5 matched",
+    "positive_control":"PASS",
+    "weak_scoped_authority_control":"PASS",
+    "representation_invariance":"PASS",
+    "unsupported_evidence_preservation":"PASS",
+    "frozen_prereveal_tests_rerun":"22/22 PASS"
+  },
+  "preserved_mismatches":[
+    {"id":"H07-receipt-type-substitution","expected":"INVALID_RECEIPT_SCHEMA","observed":"UNSUPPORTED_PROFILE"},
+    {"id":"H08-schema-major-substitution","expected":"INVALID_RECEIPT_SCHEMA","observed":"UNSUPPORTED_PROFILE"},
+    {"id":"H11-signature-truncation","expected":"INVALID_RECEIPT_SCHEMA","observed":"SIGNATURE_INVALID_FORMAT"},
+    {"id":"H12-forbidden-algorithm-profile","expected":"INVALID_RECEIPT_SCHEMA","observed":"UNSUPPORTED_PROFILE"}
+  ],
+  "disposition_basis":"Independent oracle review found a material INVALID_RECEIPT_SCHEMA versus UNSUPPORTED_PROFILE boundary ambiguity for frozen-constant substitutions, while the remaining clear fail-closed typed-code mismatch is not mapped to any preregistered portability, scoped-authority, or exact-binding falsifier. SUPPORTED_WITH_BOUNDS is unavailable because four security-relevant typed results disagree. No new falsifier was invented.",
+  "production_or_release_action_taken":false,
+  "stop_condition":"Post-reveal comparison-only artifacts and terminal receipt durably frozen. No candidate repair, production mutation, merge, promotion, tag, or release performed."
+}
