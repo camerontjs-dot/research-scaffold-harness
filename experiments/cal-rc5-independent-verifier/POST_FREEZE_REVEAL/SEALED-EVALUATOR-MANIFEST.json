@@ -1,0 +1,31 @@
+{
+  "format": "cal.rc5.sealed-evaluator-packet-manifest.v1",
+  "packet_encoding": "gzip(concatenated chunks) -> UTF-8 JSON",
+  "uncompressed_packet_sha256": "ab31ae5437fbbeaf8d581eca81208ea71671b5fc4714bc2638ca7022cc8106da",
+  "uncompressed_bytes": 232512,
+  "gzip_sha256": "884f9ca98ce1cd1e958309ce471a688e34b21806132120979e79336194f6f852",
+  "gzip_bytes": 9720,
+  "chunks": [
+    {
+      "index": 0,
+      "bytes": 3500,
+      "sha256": "83d25cdeb908cba5156c1f460368b8ea2f65b2eacc6d6c8ab1b0d9960a6a005d",
+      "git_blob": "5f0f408cb14b71e9c6dd4cc78d01322fdfc36f2d"
+    },
+    {
+      "index": 1,
+      "bytes": 3500,
+      "sha256": "068d1420f899846bc82318c4d1a413da11663ffb48d9cea4acd6fe44b27d640b",
+      "git_blob": "bebd4df931243bb3293d240ae3a3f75f5d4f591b"
+    },
+    {
+      "index": 2,
+      "bytes": 2720,
+      "sha256": "4d0a8e26e195e588adf6238cca1e3a5c7e5a0e9668e73e4ec4e9a5ea9bf1369e",
+      "git_blob": "92f17f47f9d4f2bdf4d64ce13492ef571e5bdaf9"
+    }
+  ],
+  "visibility": "SUPERVISOR_ONLY_PRE_FREEZE; no ref/tree points to these objects",
+  "contains_private_keys": false,
+  "contains_weak_control_and_hidden_expected_results": true
+}
