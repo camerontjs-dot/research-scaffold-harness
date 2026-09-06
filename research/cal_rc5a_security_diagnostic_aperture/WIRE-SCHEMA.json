@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cal:rc5a:wire-schema:v1",
+  "title": "CAL RC5A structural wire schema",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/AtomReceipt"
+    },
+    {
+      "$ref": "#/$defs/PropositionReceipt"
+    }
+  ],
+  "$defs": {
+    "ReceiptEnvelope": {
+      "type": "object",
+      "required": [
+        "statement",
+        "statement_digest_sha256",
+        "signature_base64url"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "statement": {
+          "type": "object"
+        },
+        "statement_digest_sha256": {
+          "type": "string",
+          "minLength": 1
+        },
+        "signature_base64url": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "AtomProjection": {
+      "type": "object",
+      "required": [
+        "execution_state",
+        "evidence_admitted",
+        "authority_subject_id",
+        "raw_source_id",
+        "authority_subject_source_id",
+        "raw_bundle_id",
+        "authority_subject_bundle_id",
+        "raw_passage_id",
+        "authority_subject_passage_id",
+        "admitted_passage_span",
+        "raw_claim_id",
+        "authority_subject_claim_id",
+        "target_atom_id",
+        "authority_subject_atom_id",
+        "proposal",
+        "assertion",
+        "operator",
+        "field_warrants",
+        "required_fields",
+        "composition",
+        "aperture"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "execution_state": {"type": "string"},
+        "evidence_admitted": {"type": "boolean"},
+        "authority_subject_id": {"type": "string"},
+        "raw_source_id": {"type": "string"},
+        "authority_subject_source_id": {"type": "string"},
+        "raw_bundle_id": {"type": "string"},
+        "authority_subject_bundle_id": {"type": "string"},
+        "raw_passage_id": {"type": "string"},
+        "authority_subject_passage_id": {"type": "string"},
+        "admitted_passage_span": {"type": "array", "prefixItems": [{"type": "integer"}, {"type": "integer"}], "items": false},
+        "raw_claim_id": {"type": "string", "minLength": 1},
+        "authority_subject_claim_id": {"type": "string", "minLength": 1},
+        "target_atom_id": {"type": "string", "minLength": 1},
+        "authority_subject_atom_id": {"type": "string", "minLength": 1},
+        "proposal": {"type": "object"},
+        "assertion": {"type": "object"},
+        "operator": {"type": "object"},
+        "field_warrants": {"type": "object"},
+        "required_fields": {"type": "array", "items": {"type": "string"}},
+        "composition": {"type": "object"},
+        "aperture": {"type": "object"}
+      }
+    },
+    "PropositionProjection": {
+      "type": "object",
+      "required": ["family", "lhs_entity", "rhs_entity", "comparison_direction"],
+      "additionalProperties": false,
+      "properties": {
+        "family": {"type": "string", "minLength": 1},
+        "lhs_entity": {"type": "string", "minLength": 1},
+        "rhs_entity": {"type": "string", "minLength": 1},
+        "comparison_direction": {"type": "string", "minLength": 1}
+      }
+    },
+    "AtomStatement": {
+      "type": "object",
+      "required": ["receipt_type", "schema_major", "context_id", "signature_profile", "authority_profile_id", "issuer_key_id", "authority_status", "authority_reason", "claim_id", "atom_id", "atom_projection"],
+      "additionalProperties": false,
+      "properties": {
+        "receipt_type": {"type": "string", "minLength": 1},
+        "schema_major": {"type": "integer"},
+        "context_id": {"type": "string", "minLength": 1},
+        "signature_profile": {"type": "string", "minLength": 1},
+        "authority_profile_id": {"type": "string", "minLength": 1},
+        "issuer_key_id": {"type": "string", "minLength": 1},
+        "authority_status": {"type": "string", "minLength": 1},
+        "authority_reason": {"type": "string", "minLength": 1},
+        "claim_id": {"type": "string", "minLength": 1},
+        "atom_id": {"type": "string", "minLength": 1},
+        "atom_projection": {"$ref": "#/$defs/AtomProjection"}
+      }
+    },
+    "PropositionStatement": {
+      "type": "object",
+      "required": ["receipt_type", "schema_major", "context_id", "signature_profile", "claim_namespace", "issuer_key_id", "claim_id", "proposition_projection"],
+      "additionalProperties": false,
+      "properties": {
+        "receipt_type": {"type": "string", "minLength": 1},
+        "schema_major": {"type": "integer"},
+        "context_id": {"type": "string", "minLength": 1},
+        "signature_profile": {"type": "string", "minLength": 1},
+        "claim_namespace": {"type": "string", "minLength": 1},
+        "issuer_key_id": {"type": "string", "minLength": 1},
+        "claim_id": {"type": "string", "minLength": 1},
+        "proposition_projection": {"$ref": "#/$defs/PropositionProjection"}
+      }
+    },
+    "AtomReceipt": {
+      "allOf": [
+        {"$ref": "#/$defs/ReceiptEnvelope"},
+        {"properties": {"statement": {"$ref": "#/$defs/AtomStatement"}}}
+      ]
+    },
+    "PropositionReceipt": {
+      "allOf": [
+        {"$ref": "#/$defs/ReceiptEnvelope"},
+        {"properties": {"statement": {"$ref": "#/$defs/PropositionStatement"}}}
+      ]
+    }
+  }
+}
