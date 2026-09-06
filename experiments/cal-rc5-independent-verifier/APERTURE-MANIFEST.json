@@ -1,0 +1,126 @@
+{
+  "manifest_version": "cal.rc5.aperture-manifest.v3",
+  "aperture_role": "PUBLIC_PRE_FREEZE_ONLY",
+  "context_id": "cal.rc5.asymmetric-two-receipt.strict-comparison.v1",
+  "manifest_path": "APERTURE-MANIFEST.json",
+  "manifest_identity": "hash/blob supplied by exact launch prompt; self-hash intentionally not recursive",
+  "allowlist": [
+    {
+      "path": "GENERATION-RECORD.json",
+      "sha256": "711fd1bd4ea542251a703255b52e48090f1219c673f785a0b75b90d1797cf5f1",
+      "bytes": 1347,
+      "git_blob": "86092e5c9a955fbd0ed861d8f221cea3e262a44f"
+    },
+    {
+      "path": "PRE_FREEZE_TASK.md",
+      "sha256": "aff2572b96e808eb35cee72c9f54b24cc86d52eed6743e40b84f17d59d0e8bd1",
+      "bytes": 3732,
+      "git_blob": "7e4dbb7a2be5dffeab7212b96ee3e64bf3466ad9"
+    },
+    {
+      "path": "PUBLIC-KEYS.json",
+      "sha256": "0528c91987b9f689f4c65400e5fce623ac63280223beea61e1ea53c7b0d1c0df",
+      "bytes": 799,
+      "git_blob": "4f8aa43532fda767d6138b2765ceb163985202ef"
+    },
+    {
+      "path": "PUBLIC-POSITIVE-VECTORS/ATOM-WARRANT-001/CANONICAL-SIGNED-BYTES.jcs.json",
+      "sha256": "549a52d11db38b794a2aeb1a31426418a3a171ab206c75afebf4d8228eb45cfd",
+      "bytes": 2194,
+      "git_blob": "d51e945a47547b7508bb63cb9e0503ad38646685"
+    },
+    {
+      "path": "PUBLIC-POSITIVE-VECTORS/ATOM-WARRANT-001/COMPLETE-SERIALIZED-RECEIPT.json",
+      "sha256": "8c620e75e310b6c6daa276961fa4fea8427dbe2e2477c32894a1bb161d2b3b4b",
+      "bytes": 2412,
+      "git_blob": "10fb1fa39eb32cf0ee273cb78a8e1ad2d4e0a147"
+    },
+    {
+      "path": "PUBLIC-POSITIVE-VECTORS/ATOM-WARRANT-001/META.json",
+      "sha256": "1d093ff3caec22fde9ce5d3429f678367719cb53fbb2d63500b213d2289195c1",
+      "bytes": 534,
+      "git_blob": "63e6700778dac458a5b5cfab74862aa3301470df"
+    },
+    {
+      "path": "PUBLIC-POSITIVE-VECTORS/ATOM-WARRANT-001/PROJECTED-SEMANTIC-OBJECT.json",
+      "sha256": "a1ad5e533e889282c49a5bb0be5fddd1cb0594d5851ca9a9c38ceca198ad0439",
+      "bytes": 1717,
+      "git_blob": "f6211959aa03c74012ee76f17964f529bda1ef9a"
+    },
+    {
+      "path": "PUBLIC-POSITIVE-VECTORS/ATOM-WARRANT-001/TYPED-SEMANTIC-INPUT.json",
+      "sha256": "b09bbc6e7122cfd4ba5ab90843e8624c0048343a7aeca8f27998632935340d56",
+      "bytes": 2050,
+      "git_blob": "77ef23f3f7238fbf413b69fc34a4e211544cdccc"
+    },
+    {
+      "path": "PUBLIC-POSITIVE-VECTORS/PROPOSITION-BINDING-001/CANONICAL-SIGNED-BYTES.jcs.json",
+      "sha256": "6031eb3f4f67fde106dc51d534b5c6fb7468cffcb2a1d94223b7adf04478eef7",
+      "bytes": 392,
+      "git_blob": "9afcbb8d965812f41f801312d3897840d41f1353"
+    },
+    {
+      "path": "PUBLIC-POSITIVE-VECTORS/PROPOSITION-BINDING-001/COMPLETE-SERIALIZED-RECEIPT.json",
+      "sha256": "d981cf46314dd18d3e361eb76ca3bbffbcae28a67d7abd1c470b3546bc5cfe7c",
+      "bytes": 610,
+      "git_blob": "6fd71da8a050af8c48cd8bc9d0cee4abf4b990ad"
+    },
+    {
+      "path": "PUBLIC-POSITIVE-VECTORS/PROPOSITION-BINDING-001/META.json",
+      "sha256": "2ccccfb43fe8e6e0992e41a4edb428c65ca8f66b853b651c74e16cb4dac94c12",
+      "bytes": 548,
+      "git_blob": "78911e7ecf3faf440064cb8ef920046673087d7c"
+    },
+    {
+      "path": "PUBLIC-POSITIVE-VECTORS/PROPOSITION-BINDING-001/PROJECTED-SEMANTIC-OBJECT.json",
+      "sha256": "c0095b1c465e31a9502ed84d30ca01140c568d257a7de56370ab3d570a7faf4c",
+      "bytes": 96,
+      "git_blob": "22720d7231ede8b7d3ebf9a03eed9cfb7a69ee0f"
+    },
+    {
+      "path": "PUBLIC-POSITIVE-VECTORS/PROPOSITION-BINDING-001/TYPED-SEMANTIC-INPUT.json",
+      "sha256": "b09bbc6e7122cfd4ba5ab90843e8624c0048343a7aeca8f27998632935340d56",
+      "bytes": 2050,
+      "git_blob": "77ef23f3f7238fbf413b69fc34a4e211544cdccc"
+    },
+    {
+      "path": "PUBLIC-POSITIVE-VECTORS/TWO-RECEIPT-PAIR-001/PAIR.json",
+      "sha256": "2e742456a9d8b6b2dd03fc834264f57571433ffc6d1001f5ce4027891bba109d",
+      "bytes": 2399,
+      "git_blob": "1e0aad6649b11ae6c0020930ffd33b4cdcb7152b"
+    },
+    {
+      "path": "RECEIPT-SCHEMA.json",
+      "sha256": "8aafaf717ac4731e129b76840f759c83882edc9da2c4f60e32a90fa19258314b",
+      "bytes": 6983,
+      "git_blob": "d57e38f381e61aec2160f643dbc9ef2fa4d9e3aa"
+    },
+    {
+      "path": "SPEC.md",
+      "sha256": "8c084d59c307076b67ecb0b4a42e6598e95a6cc2631cdfc944c643e34fc76a36",
+      "bytes": 9344,
+      "git_blob": "f557db96e489b9466c9a9e65b83e821826365ebb"
+    },
+    {
+      "path": "TRUST-POLICY.json",
+      "sha256": "2e22ee93802d4b4d09b562b36436e386b91fd4b99194cd42efbd5cdb4daa1cf8",
+      "bytes": 815,
+      "git_blob": "99b7d3675be0707683c98c9d893ab4f6911fb170"
+    }
+  ],
+  "all_other_paths": "DENIED",
+  "history_and_other_refs": "DENIED_PRE_FREEZE",
+  "prohibited_material": [
+    "CAL RC3/RC4 implementation/tests/runners/PR bodies",
+    "CAL producer signing code",
+    "RC8J implementation",
+    "private signing keys",
+    "hidden evaluator/mutations",
+    "weak verifier/results",
+    "expected hidden results",
+    "prior conversation or research narrative",
+    "supervisor prompt",
+    "deep research report",
+    "other independent implementations"
+  ]
+}
