@@ -1,0 +1,32 @@
+{
+  "manifest_version": "cal.rc5a.aperture-manifest.v1",
+  "experiment": "CAL RC5A security-class / diagnostic-separation independent verifier",
+  "clean_base_repository": "camerontjs-dot/research-scaffold-harness",
+  "clean_base_commit": "548bfa81f65290eda15af658f647497679b840ef",
+  "predecessor_rc5_terminal": {
+    "branch": "research/cal-rc5-independent-asymmetric-two-receipt-post-reveal-20260905",
+    "terminal_commit": "abfbf9992577072a6a6417a9584bf07120e12142",
+    "disposition": "INCONCLUSIVE_EVALUATOR_INVALID",
+    "rule": "immutable predecessor evidence; RC5A does not reinterpret or repair RC5"
+  },
+  "allowed_pre_freeze_files": [
+    {"path": "SPEC.md", "git_blob": "8a48ee1417495f79a775eff5d6085f8ecddd9a47"},
+    {"path": "WIRE-SCHEMA.json", "git_blob": "1626e7358ae260a9d0b7e45785cb217429140bc4"},
+    {"path": "PUBLIC-KEYS.json", "git_blob": "8d94b9daf1eb77291fb83b100358b617d4a60325"},
+    {"path": "TRUST-POLICY.json", "git_blob": "eea849acccb344e185402d5a69dc684582696e98"},
+    {"path": "PUBLIC-POSITIVE-VECTORS.json", "git_blob": "babbd96c632e23db6a56d8ff1630e50cb5d5875c"},
+    {"path": "PRE_FREEZE_TASK.md", "git_blob": "9c41c3d32deba09febec0daab3aaae5830e6b25a"}
+  ],
+  "forbidden_pre_freeze_sources": [
+    "any RC5 candidate implementation or prereveal tests",
+    "any RC5 post-freeze comparison, case results, oracle review, or terminal receipt",
+    "any RC5A supervisor/evaluator branch",
+    "any prior CAL RC3/RC4 producer or verifier implementation",
+    "RC8J implementation code",
+    "web search, prior conversations, memory, or broad repository search"
+  ],
+  "network_policy": "OFF during fresh executor phase unless separately preregistered",
+  "freeze_required": true,
+  "post_freeze_reveal_required": true,
+  "production_authorization": false
+}
