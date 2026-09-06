@@ -1,7 +1,7 @@
 import json, os, pathlib, subprocess, sys, tempfile
 
 HERE=pathlib.Path(__file__).resolve().parent
-AP=HERE.parent/"aperture"
+AP=HERE.parent/"cal_rc5a_security_diagnostic_aperture"
 EVAL=HERE/"evaluate_rc5a.py"
 CASES=HERE/"HIDDEN-CASE-PROGRAM.json"
 PUB=AP/"PUBLIC-KEYS.json"
