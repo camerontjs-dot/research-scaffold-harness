@@ -1,0 +1,91 @@
+{
+  "receipt_version": "cal.rc5.independent-verifier.pre-freeze-receipt.v1",
+  "execution_state": "READY_FOR_POST_FREEZE_REVEAL",
+  "repository": "camerontjs-dot/research-scaffold-harness",
+  "authorized_branch": "research/cal-rc5-independent-asymmetric-two-receipt-aperture-20260905",
+  "aperture_identity": {
+    "commit": "7f21a67f020e75a217676c410fd0b655e3be5c67",
+    "tree": "80f335aabe1840616ae4ae8c47f3fee77b8bb36b",
+    "manifest_git_blob": "ee99f55cab4b4b3a98a4d2be048d753f27c2e9bc",
+    "manifest_sha256": "b3be023e6bf03179cd98dbea76cd1f994ab29dd8448e0883939b8df11f7e9114",
+    "verified_before_implementation": true
+  },
+  "implementation_source_commit": "6ea6793b43a210656ac0b4e92dae40aa23322137",
+  "prereveal_test_results_commit": "3b1b2b77aa24fb551688da640d755f103e3ce25d",
+  "frozen_paths": {
+    "implementation": "experiments/cal-rc5-independent-verifier/rc5_verifier.py",
+    "tests": "experiments/cal-rc5-independent-verifier/test_rc5_verifier.py",
+    "dependencies": "experiments/cal-rc5-independent-verifier/DEPENDENCIES.json",
+    "aperture_manifest_copy": "experiments/cal-rc5-independent-verifier/APERTURE-MANIFEST.json",
+    "contamination_declaration": "experiments/cal-rc5-independent-verifier/CONTAMINATION-DECLARATION.json",
+    "prereveal_test_results": "experiments/cal-rc5-independent-verifier/PREREVEAL-TEST-RESULTS.json",
+    "pre_freeze_receipt": "experiments/cal-rc5-independent-verifier/PRE_FREEZE_RECEIPT.json"
+  },
+  "frozen_source_blobs": {
+    "rc5_verifier.py": "83bf96ebdeacd3abf276e665374dea172594ce7c",
+    "test_rc5_verifier.py": "a25ff8b40d1181cf2fb872dd463df6fb51cf0d2c",
+    "DEPENDENCIES.json": "ef66329f0538d1bc63c4ae733a1502b4a93d200b",
+    "APERTURE-MANIFEST.json": "ee99f55cab4b4b3a98a4d2be048d753f27c2e9bc",
+    "CONTAMINATION-DECLARATION.json": "a72811e29328fefcea70950b4374b0af91dbe26d"
+  },
+  "runtime_and_dependencies": {
+    "effective_model": "GPT-5.6 Sol",
+    "requested_model": "GPT-5.6 Luna",
+    "model_selection_status": "REQUESTED_SELECTOR_NOT_EXPOSED_BY_PLATFORM",
+    "python": "3.13.5",
+    "cryptography": "46.0.4",
+    "cryptography_backend": "OpenSSL 3.5.5 27 Jan 2026",
+    "jcs_dependency": null,
+    "jcs_implementation": "self-authored restricted RFC 8785 implementation",
+    "network_install_performed": false
+  },
+  "prereveal_tests": {
+    "total": 22,
+    "passed": 22,
+    "failures": 0,
+    "errors": 0,
+    "status": "OK",
+    "cli_result": {"decision":"ACCEPT","code":"ACCEPT","claim_id":"claim:rc5:001","atom_id":"atom:rc5:a-gt-b"},
+    "cli_exit_code": 0,
+    "candidate_repaired_after_source_freeze": false
+  },
+  "security_declaration": {
+    "prohibited_material_encountered": false,
+    "private_signing_key_present": false,
+    "shared_signing_secret_present": false,
+    "receipt_issuance_implemented": false,
+    "rc8j_executed": false,
+    "cal_producer_code_imported": false,
+    "cal_rc3_rc4_verifier_code_imported": false,
+    "hidden_evaluator_material_accessed": false,
+    "weak_verifier_material_accessed": false,
+    "expected_hidden_results_accessed": false,
+    "other_independent_verifier_accessed": false,
+    "general_web_search_used": false
+  },
+  "identity_check_note": "The exact authorized branch metadata was read only to verify the supplied commit and tree. Its normal response contained an incidental parent pointer; that parent was not opened, followed, compared, enumerated, or used. No history, other refs, issues, PRs, repository search, or unrelated repository content was inspected.",
+  "material_sources_opened_before_source_freeze": [
+    {"path":"APERTURE-MANIFEST.json","git_blob":"ee99f55cab4b4b3a98a4d2be048d753f27c2e9bc","sha256":"b3be023e6bf03179cd98dbea76cd1f994ab29dd8448e0883939b8df11f7e9114"},
+    {"path":"GENERATION-RECORD.json","git_blob":"86092e5c9a955fbd0ed861d8f221cea3e262a44f","sha256":"711fd1bd4ea542251a703255b52e48090f1219c673f785a0b75b90d1797cf5f1"},
+    {"path":"PRE_FREEZE_TASK.md","git_blob":"7e4dbb7a2be5dffeab7212b96ee3e64bf3466ad9","sha256":"aff2572b96e808eb35cee72c9f54b24cc86d52eed6743e40b84f17d59d0e8bd1"},
+    {"path":"PUBLIC-KEYS.json","git_blob":"4f8aa43532fda767d6138b2765ceb163985202ef","sha256":"0528c91987b9f689f4c65400e5fce623ac63280223beea61e1ea53c7b0d1c0df"},
+    {"path":"PUBLIC-POSITIVE-VECTORS/ATOM-WARRANT-001/CANONICAL-SIGNED-BYTES.jcs.json","git_blob":"d51e945a47547b7508bb63cb9e0503ad38646685","sha256":"549a52d11db38b794a2aeb1a31426418a3a171ab206c75afebf4d8228eb45cfd"},
+    {"path":"PUBLIC-POSITIVE-VECTORS/ATOM-WARRANT-001/COMPLETE-SERIALIZED-RECEIPT.json","git_blob":"10fb1fa39eb32cf0ee273cb78a8e1ad2d4e0a147","sha256":"8c620e75e310b6c6daa276961fa4fea8427dbe2e2477c32894a1bb161d2b3b4b"},
+    {"path":"PUBLIC-POSITIVE-VECTORS/ATOM-WARRANT-001/META.json","git_blob":"63e6700778dac458a5b5cfab74862aa3301470df","sha256":"1d093ff3caec22fde9ce5d3429f678367719cb53fbb2d63500b213d2289195c1"},
+    {"path":"PUBLIC-POSITIVE-VECTORS/ATOM-WARRANT-001/PROJECTED-SEMANTIC-OBJECT.json","git_blob":"f6211959aa03c74012ee76f17964f529bda1ef9a","sha256":"a1ad5e533e889282c49a5bb0be5fddd1cb0594d5851ca9a9c38ceca198ad0439"},
+    {"path":"PUBLIC-POSITIVE-VECTORS/ATOM-WARRANT-001/TYPED-SEMANTIC-INPUT.json","git_blob":"77ef23f3f7238fbf413b69fc34a4e211544cdccc","sha256":"b09bbc6e7122cfd4ba5ab90843e8624c0048343a7aeca8f27998632935340d56"},
+    {"path":"PUBLIC-POSITIVE-VECTORS/PROPOSITION-BINDING-001/CANONICAL-SIGNED-BYTES.jcs.json","git_blob":"9afcbb8d965812f41f801312d3897840d41f1353","sha256":"6031eb3f4f67fde106dc51d534b5c6fb7468cffcb2a1d94223b7adf04478eef7"},
+    {"path":"PUBLIC-POSITIVE-VECTORS/PROPOSITION-BINDING-001/COMPLETE-SERIALIZED-RECEIPT.json","git_blob":"6fd71da8a050af8c48cd8bc9d0cee4abf4b990ad","sha256":"d981cf46314dd18d3e361eb76ca3bbffbcae28a67d7abd1c470b3546bc5cfe7c"},
+    {"path":"PUBLIC-POSITIVE-VECTORS/PROPOSITION-BINDING-001/META.json","git_blob":"78911e7ecf3faf440064cb8ef920046673087d7c","sha256":"2ccccfb43fe8e6e0992e41a4edb428c65ca8f66b853b651c74e16cb4dac94c12"},
+    {"path":"PUBLIC-POSITIVE-VECTORS/PROPOSITION-BINDING-001/PROJECTED-SEMANTIC-OBJECT.json","git_blob":"22720d7231ede8b7d3ebf9a03eed9cfb7a69ee0f","sha256":"c0095b1c465e31a9502ed84d30ca01140c568d257a7de56370ab3d570a7faf4c"},
+    {"path":"PUBLIC-POSITIVE-VECTORS/PROPOSITION-BINDING-001/TYPED-SEMANTIC-INPUT.json","git_blob":"77ef23f3f7238fbf413b69fc34a4e211544cdccc","sha256":"b09bbc6e7122cfd4ba5ab90843e8624c0048343a7aeca8f27998632935340d56","note":"same exact Git blob as the AtomWarrant typed semantic input; content read once by blob identity"},
+    {"path":"PUBLIC-POSITIVE-VECTORS/TWO-RECEIPT-PAIR-001/PAIR.json","git_blob":"1e0aad6649b11ae6c0020930ffd33b4cdcb7152b","sha256":"2e742456a9d8b6b2dd03fc834264f57571433ffc6d1001f5ce4027891bba109d"},
+    {"path":"RECEIPT-SCHEMA.json","git_blob":"d57e38f381e61aec2160f643dbc9ef2fa4d9e3aa","sha256":"8aafaf717ac4731e129b76840f759c83882edc9da2c4f60e32a90fa19258314b"},
+    {"path":"SPEC.md","git_blob":"f557db96e489b9466c9a9e65b83e821826365ebb","sha256":"8c084d59c307076b67ecb0b4a42e6598e95a6cc2631cdfc944c643e34fc76a36"},
+    {"path":"TRUST-POLICY.json","git_blob":"99b7d3675be0707683c98c9d893ab4f6911fb170","sha256":"2e22ee93802d4b4d09b562b36436e386b91fd4b99194cd42efbd5cdb4daa1cf8"}
+  ],
+  "post_source_freeze_reads": [
+    "Only self-authored frozen artifacts were re-read to verify Git blob identity and execute the exact frozen tests. No project-specific source outside the aperture and no evaluator material was opened."
+  ],
+  "stop_condition": "Durable pre-reveal freeze complete. No evaluator material requested or revealed; no hidden comparison performed; no post-reveal repair, merge, promotion, release, or production modification performed."
+}
