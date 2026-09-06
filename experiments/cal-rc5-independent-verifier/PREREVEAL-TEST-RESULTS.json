@@ -1,0 +1,76 @@
+{
+  "results_version": "cal.rc5.independent-verifier.prereveal-tests.v1",
+  "implementation_source_commit": "6ea6793b43a210656ac0b4e92dae40aa23322137",
+  "frozen_artifacts_verified": {
+    "rc5_verifier.py": {
+      "git_blob": "83bf96ebdeacd3abf276e665374dea172594ce7c",
+      "sha256": "45881f5e35072ab1ae5da4c48415a302e24fcfd893fe4f6d5434bf95be772264"
+    },
+    "test_rc5_verifier.py": {
+      "git_blob": "a25ff8b40d1181cf2fb872dd463df6fb51cf0d2c",
+      "sha256": "098e471a86358517044c2a659f01ad4176a7416f2b4155d90c79f2c1e3bbd5a3"
+    },
+    "DEPENDENCIES.json": {
+      "git_blob": "ef66329f0538d1bc63c4ae733a1502b4a93d200b",
+      "sha256": "90884a355f124aaa2aec95409836581792f9a3ca7885efed708349590b6b9e4c"
+    },
+    "APERTURE-MANIFEST.json": {
+      "git_blob": "ee99f55cab4b4b3a98a4d2be048d753f27c2e9bc",
+      "sha256": "b3be023e6bf03179cd98dbea76cd1f994ab29dd8448e0883939b8df11f7e9114"
+    },
+    "CONTAMINATION-DECLARATION.json": {
+      "git_blob": "a72811e29328fefcea70950b4374b0af91dbe26d"
+    }
+  },
+  "runtime": {
+    "python": "3.13.5",
+    "cryptography": "46.0.4",
+    "cryptography_backend": "OpenSSL 3.5.5 27 Jan 2026"
+  },
+  "network_install_performed": false,
+  "tests": {
+    "command": "python3 test_rc5_verifier.github.py",
+    "note": "The exact frozen GitHub test blob was reconstructed locally by matching its Git blob SHA before execution; the verifier blob already matched the locally tested source exactly.",
+    "total": 22,
+    "passed": 22,
+    "failures": 0,
+    "errors": 0,
+    "status": "OK"
+  },
+  "cli_smoke": {
+    "result": {"decision":"ACCEPT","code":"ACCEPT","claim_id":"claim:rc5:001","atom_id":"atom:rc5:a-gt-b"},
+    "exit_code": 0
+  },
+  "coverage": [
+    "public AtomWarrant positive vector",
+    "public PropositionBinding positive vector",
+    "public two-receipt pair",
+    "exact public JCS bytes for both statement classes",
+    "RFC 8785 UTF-16 property ordering",
+    "RFC 8785 string escaping",
+    "stale bound semantic mutation refusal",
+    "unbound diagnostic field mutation remains accepted",
+    "malformed signature format refusal",
+    "format-valid invalid signature refusal",
+    "unknown signer refusal before signature verification",
+    "duplicate JSON key refusal at envelope and nested statement levels",
+    "wrong request context refusal",
+    "inverse/swapped proposition representation refusal without separate signature",
+    "public-key lookup distinguished from issuer authorization",
+    "digest mismatch precedence over malformed signature",
+    "unknown envelope field refusal",
+    "unsupported profile refusal",
+    "invalid JSON refusal",
+    "floating-point semantic input refusal",
+    "out-of-safe-range integer receipt refusal"
+  ],
+  "source_audit": {
+    "private_key_or_signing_operation_found": false,
+    "shared_hmac_secret_found": false,
+    "rc8j_execution_found": false,
+    "cal_rc3_rc4_import_found": false,
+    "producer_state_dependency_found": false,
+    "project_network_dependency_found": false
+  },
+  "execution_note": "An earlier attempt to invoke the exact frozen test file through unittest module discovery used a filename containing a dot and failed in the test loader before any test ran. The exact same frozen candidate and test blob were then executed directly; all 22 tests passed. No candidate code or frozen test semantics were changed after the implementation source commit."
+}
