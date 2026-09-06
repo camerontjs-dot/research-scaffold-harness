@@ -1,0 +1,114 @@
+{
+  "profile": "CAL.RC5A/public-positive-vectors.v1",
+  "semantic_request": {
+    "context_id": "cal.rc5a.asymmetric-two-receipt.strict-comparison.v1",
+    "authority_case": {
+      "execution_state": "SUCCEEDED",
+      "evidence_admitted": true,
+      "authority_subject_id": "authority-subject-001",
+      "raw_source_id": "source-001",
+      "authority_subject_source_id": "source-001",
+      "raw_bundle_id": "bundle-001",
+      "authority_subject_bundle_id": "bundle-001",
+      "raw_passage_id": "passage-001",
+      "authority_subject_passage_id": "passage-001",
+      "admitted_passage_span": [0, 37],
+      "raw_claim_id": "claim-001",
+      "authority_subject_claim_id": "claim-001",
+      "target_atom_id": "atom-001",
+      "authority_subject_atom_id": "atom-001",
+      "proposal": {"family": "strict_comparison", "lhs_entity": "A", "rhs_entity": "B", "comparison_direction": "greater_than"},
+      "assertion": {"family": "strict_comparison", "lhs_entity": "A", "rhs_entity": "B", "comparison_direction": "greater_than"},
+      "operator": {"family": "strict_comparison", "name": "typed-comparison"},
+      "field_warrants": {"lhs_entity": "A", "rhs_entity": "B", "comparison_direction": "greater_than"},
+      "required_fields": ["lhs_entity", "rhs_entity", "comparison_direction"],
+      "composition": {"mode": "all_required"},
+      "aperture": {"kind": "admitted-passage", "passage_id": "passage-001"},
+      "diagnostic_case_id": "PUBLIC-POSITIVE-001"
+    },
+    "proposition": {"claim_id": "claim-001", "family": "strict_comparison", "lhs_entity": "A", "rhs_entity": "B", "comparison_direction": "greater_than"}
+  },
+  "atom": {
+    "projected_semantic_object": {
+      "execution_state": "SUCCEEDED",
+      "evidence_admitted": true,
+      "authority_subject_id": "authority-subject-001",
+      "raw_source_id": "source-001",
+      "authority_subject_source_id": "source-001",
+      "raw_bundle_id": "bundle-001",
+      "authority_subject_bundle_id": "bundle-001",
+      "raw_passage_id": "passage-001",
+      "authority_subject_passage_id": "passage-001",
+      "admitted_passage_span": [0, 37],
+      "raw_claim_id": "claim-001",
+      "authority_subject_claim_id": "claim-001",
+      "target_atom_id": "atom-001",
+      "authority_subject_atom_id": "atom-001",
+      "proposal": {"family": "strict_comparison", "lhs_entity": "A", "rhs_entity": "B", "comparison_direction": "greater_than"},
+      "assertion": {"family": "strict_comparison", "lhs_entity": "A", "rhs_entity": "B", "comparison_direction": "greater_than"},
+      "operator": {"family": "strict_comparison", "name": "typed-comparison"},
+      "field_warrants": {"lhs_entity": "A", "rhs_entity": "B", "comparison_direction": "greater_than"},
+      "required_fields": ["lhs_entity", "rhs_entity", "comparison_direction"],
+      "composition": {"mode": "all_required"},
+      "aperture": {"kind": "admitted-passage", "passage_id": "passage-001"}
+    },
+    "canonical_signed_bytes_utf8": "{\"atom_id\":\"atom-001\",\"atom_projection\":{\"admitted_passage_span\":[0,37],\"aperture\":{\"kind\":\"admitted-passage\",\"passage_id\":\"passage-001\"},\"assertion\":{\"comparison_direction\":\"greater_than\",\"family\":\"strict_comparison\",\"lhs_entity\":\"A\",\"rhs_entity\":\"B\"},\"authority_subject_atom_id\":\"atom-001\",\"authority_subject_bundle_id\":\"bundle-001\",\"authority_subject_claim_id\":\"claim-001\",\"authority_subject_id\":\"authority-subject-001\",\"authority_subject_passage_id\":\"passage-001\",\"authority_subject_source_id\":\"source-001\",\"composition\":{\"mode\":\"all_required\"},\"evidence_admitted\":true,\"execution_state\":\"SUCCEEDED\",\"field_warrants\":{\"comparison_direction\":\"greater_than\",\"lhs_entity\":\"A\",\"rhs_entity\":\"B\"},\"operator\":{\"family\":\"strict_comparison\",\"name\":\"typed-comparison\"},\"proposal\":{\"comparison_direction\":\"greater_than\",\"family\":\"strict_comparison\",\"lhs_entity\":\"A\",\"rhs_entity\":\"B\"},\"raw_bundle_id\":\"bundle-001\",\"raw_claim_id\":\"claim-001\",\"raw_passage_id\":\"passage-001\",\"raw_source_id\":\"source-001\",\"required_fields\":[\"lhs_entity\",\"rhs_entity\",\"comparison_direction\"],\"target_atom_id\":\"atom-001\"},\"authority_profile_id\":\"CAL.RC8J/claim-bound@8e75c6782bb95c3763d06230b9c5df2b6af44054:blob:f55156e43e0c1b4a7868bc8339585b8892edda38\",\"authority_reason\":\"ALL_REQUIRED_WARRANT_ESTABLISHED\",\"authority_status\":\"WARRANTED\",\"claim_id\":\"claim-001\",\"context_id\":\"cal.rc5a.asymmetric-two-receipt.strict-comparison.v1\",\"issuer_key_id\":\"KA-ATOM-RC5A-001\",\"receipt_type\":\"CAL.AtomWarrant/v1\",\"schema_major\":1,\"signature_profile\":\"Ed25519\"}",
+    "complete_serialized_receipt": {
+      "statement": {
+        "receipt_type": "CAL.AtomWarrant/v1",
+        "schema_major": 1,
+        "context_id": "cal.rc5a.asymmetric-two-receipt.strict-comparison.v1",
+        "signature_profile": "Ed25519",
+        "authority_profile_id": "CAL.RC8J/claim-bound@8e75c6782bb95c3763d06230b9c5df2b6af44054:blob:f55156e43e0c1b4a7868bc8339585b8892edda38",
+        "issuer_key_id": "KA-ATOM-RC5A-001",
+        "authority_status": "WARRANTED",
+        "authority_reason": "ALL_REQUIRED_WARRANT_ESTABLISHED",
+        "claim_id": "claim-001",
+        "atom_id": "atom-001",
+        "atom_projection": {
+          "execution_state": "SUCCEEDED",
+          "evidence_admitted": true,
+          "authority_subject_id": "authority-subject-001",
+          "raw_source_id": "source-001",
+          "authority_subject_source_id": "source-001",
+          "raw_bundle_id": "bundle-001",
+          "authority_subject_bundle_id": "bundle-001",
+          "raw_passage_id": "passage-001",
+          "authority_subject_passage_id": "passage-001",
+          "admitted_passage_span": [0, 37],
+          "raw_claim_id": "claim-001",
+          "authority_subject_claim_id": "claim-001",
+          "target_atom_id": "atom-001",
+          "authority_subject_atom_id": "atom-001",
+          "proposal": {"family": "strict_comparison", "lhs_entity": "A", "rhs_entity": "B", "comparison_direction": "greater_than"},
+          "assertion": {"family": "strict_comparison", "lhs_entity": "A", "rhs_entity": "B", "comparison_direction": "greater_than"},
+          "operator": {"family": "strict_comparison", "name": "typed-comparison"},
+          "field_warrants": {"lhs_entity": "A", "rhs_entity": "B", "comparison_direction": "greater_than"},
+          "required_fields": ["lhs_entity", "rhs_entity", "comparison_direction"],
+          "composition": {"mode": "all_required"},
+          "aperture": {"kind": "admitted-passage", "passage_id": "passage-001"}
+        }
+      },
+      "statement_digest_sha256": "453babf36a4a4d1f03dd8f5c373c11a828a30b754128829325ed8c88c1073d5f",
+      "signature_base64url": "CXkFHILLQnCy-EUWFdD_Xn5YgE2_hG-P9rmWC07PihgoHfLcMr9WKHds-u9IdR-8N_IXOdcuqI9Ulwio57ByBA"
+    }
+  },
+  "proposition": {
+    "projected_semantic_object": {"family": "strict_comparison", "lhs_entity": "A", "rhs_entity": "B", "comparison_direction": "greater_than"},
+    "canonical_signed_bytes_utf8": "{\"claim_id\":\"claim-001\",\"claim_namespace\":\"cal.rc5a.experimental.claims.v1\",\"context_id\":\"cal.rc5a.asymmetric-two-receipt.strict-comparison.v1\",\"issuer_key_id\":\"KP-PROP-RC5A-001\",\"proposition_projection\":{\"comparison_direction\":\"greater_than\",\"family\":\"strict_comparison\",\"lhs_entity\":\"A\",\"rhs_entity\":\"B\"},\"receipt_type\":\"CAL.PropositionBinding/v1\",\"schema_major\":1,\"signature_profile\":\"Ed25519\"}",
+    "complete_serialized_receipt": {
+      "statement": {
+        "receipt_type": "CAL.PropositionBinding/v1",
+        "schema_major": 1,
+        "context_id": "cal.rc5a.asymmetric-two-receipt.strict-comparison.v1",
+        "signature_profile": "Ed25519",
+        "claim_namespace": "cal.rc5a.experimental.claims.v1",
+        "issuer_key_id": "KP-PROP-RC5A-001",
+        "claim_id": "claim-001",
+        "proposition_projection": {"family": "strict_comparison", "lhs_entity": "A", "rhs_entity": "B", "comparison_direction": "greater_than"}
+      },
+      "statement_digest_sha256": "bb85d7f7c7abe8d1353a99ffe1d9c1a3727af42579e68dd35bca23294eb54ee0",
+      "signature_base64url": "SCVrXfzZ7yvirw1lCaN0q2U6hBOzvq2xcnF8oc16UObPeRqQ5hWzTP_DjMu5UcKLjxH9AKgIephaTJcm-kRlDw"
+    }
+  }
+}
