@@ -1,0 +1,36 @@
+{
+  "result_version": "cal.rc5.post-freeze-result.v1",
+  "disposition": "INCONCLUSIVE_EVALUATOR_INVALID",
+  "decided_utc": "2026-09-06T03:40:11Z",
+  "reason_code": "MATERIAL_ORACLE_CODE_AMBIGUITY_AND_UNMAPPED_FAIL_CLOSED_TYPED_MISMATCH",
+  "candidate_modified_after_reveal": false,
+  "sealed_packet_validity": "VALID",
+  "security_controls": {
+    "positive_control": true,
+    "weak_scoped_authority_control": true,
+    "mutation_sensitivity": true,
+    "representation_invariance": true,
+    "evidence_preservation": true,
+    "prereveal_regression_22_of_22": true
+  },
+  "observed_mismatches": [
+    {"id":"H07-receipt-type-substitution","expected":"INVALID_RECEIPT_SCHEMA","observed":"UNSUPPORTED_PROFILE","unsafe_acceptance":false},
+    {"id":"H08-schema-major-substitution","expected":"INVALID_RECEIPT_SCHEMA","observed":"UNSUPPORTED_PROFILE","unsafe_acceptance":false},
+    {"id":"H11-signature-truncation","expected":"INVALID_RECEIPT_SCHEMA","observed":"SIGNATURE_INVALID_FORMAT","unsafe_acceptance":false},
+    {"id":"H12-forbidden-algorithm-profile","expected":"INVALID_RECEIPT_SCHEMA","observed":"UNSUPPORTED_PROFILE","unsafe_acceptance":false}
+  ],
+  "preregistered_falsifiers": {
+    "FALSIFIED_INDEPENDENT_PORTABILITY": false,
+    "FALSIFIED_SCOPED_ISSUER_AUTHORITY": false,
+    "FALSIFIED_EXACT_BINDING": false
+  },
+  "why_not_supported": "SUPPORTED_WITH_BOUNDS requires all security-relevant hidden cases to agree with the frozen oracle; four typed results do not.",
+  "why_inconclusive": "Independent oracle review found that the public aperture does not uniquely define the INVALID_RECEIPT_SCHEMA versus UNSUPPORTED_PROFILE boundary for several frozen-constant substitutions, while the remaining clear fail-closed typed-code mismatch is not mapped to any registered falsifier. This prevents valid discrimination under the preregistered disposition taxonomy without inventing a new falsifier.",
+  "bounded_nonclaims": [
+    "No production cryptographic architecture inference",
+    "No signer lifecycle/PKI/revocation inference",
+    "No equivocation detection claim",
+    "No semantic truth claim",
+    "No production integration, merge, promotion, tag, or release authorization"
+  ]
+}
