@@ -1,0 +1,15 @@
+{
+  "profile": "CAL.RC5A/evaluator-qualification.v1",
+  "controls": {
+    "accept_wrong_role": {"exit_code": 1, "failure_kinds": ["NORMATIVE_MISMATCH"], "expected_failure_kinds": ["NORMATIVE_MISMATCH"], "caught": true},
+    "all_refusals_malformed": {"exit_code": 1, "failure_kinds": ["NORMATIVE_MISMATCH"], "expected_failure_kinds": ["NORMATIVE_MISMATCH"], "caught": true},
+    "old_rc5_profile_as_schema": {"exit_code": 1, "failure_kinds": ["NORMATIVE_MISMATCH"], "expected_failure_kinds": ["NORMATIVE_MISMATCH"], "caught": true},
+    "signature_format_as_malformed": {"exit_code": 1, "failure_kinds": ["NORMATIVE_MISMATCH"], "expected_failure_kinds": ["NORMATIVE_MISMATCH"], "caught": true},
+    "generic_diagnostic": {"exit_code": 1, "failure_kinds": ["DIAGNOSTIC_COLLAPSE"], "expected_failure_kinds": ["DIAGNOSTIC_COLLAPSE"], "caught": true},
+    "transport_sensitive_diagnostic": {"exit_code": 1, "failure_kinds": ["DIAGNOSTIC_TRANSPORT_INSTABILITY"], "expected_failure_kinds": ["DIAGNOSTIC_TRANSPORT_INSTABILITY"], "caught": true}
+  },
+  "reference": {"exit_code": 0, "scientific_gate_pass": true, "normative_matches": 23, "case_count": 23, "exceptions": 0, "pass": true},
+  "all_controls_caught": true,
+  "local_qualification_pass": true,
+  "seal_status": "NOT_SEALED_PENDING_INDEPENDENT_ORACLE_REVIEW"
+}
