@@ -1,0 +1,38 @@
+{
+  "record_version":"cal.rc5.post-freeze.controls-oracle.v1",
+  "executed_utc":"2026-09-06T03:40:11Z",
+  "frozen_candidate_identity":{
+    "pre_reveal_freeze_commit":"e2e79fc6c50b2acb00463d36065aa7d7e0727fa8",
+    "implementation_source_commit":"6ea6793b43a210656ac0b4e92dae40aa23322137",
+    "implementation":{"git_blob":"83bf96ebdeacd3abf276e665374dea172594ce7c","sha256":"45881f5e35072ab1ae5da4c48415a302e24fcfd893fe4f6d5434bf95be772264","bytes":28108,"unchanged":true},
+    "prereveal_tests":{"git_blob":"a25ff8b40d1181cf2fb872dd463df6fb51cf0d2c","sha256":"098e471a86358517044c2a659f01ad4176a7416f2b4155d90c79f2c1e3bbd5a3","bytes":16010,"unchanged":true},
+    "dependencies":{"git_blob":"ef66329f0538d1bc63c4ae733a1502b4a93d200b","unchanged":true},
+    "contamination_declaration":{"git_blob":"a72811e29328fefcea70950b4374b0af91dbe26d","state":"CLEAN_PRE_FREEZE","unchanged":true},
+    "freeze_receipt":{"git_blob":"f44595998d5f6b8333f55eec5372171d0a3b78ee","unchanged":true},
+    "post_reveal_candidate_or_test_modified":false
+  },
+  "controls":{
+    "positive_control":{"candidate":{"decision":"ACCEPT","code":"ACCEPT","claim_id":"claim:rc5:001","atom_id":"atom:rc5:a-gt-b"},"pass":true},
+    "weak_scoped_authority":{"proposition_signed_by_atom_only_key":{"weak_unscoped":{"decision":"ACCEPT","validating_key_id":"KA-ATOM-RC5-001"},"candidate":{"decision":"REFUSE","code":"UNAUTHORIZED_ISSUER_SCOPE"},"pass":true},"atom_signed_by_proposition_only_key":{"weak_unscoped":{"decision":"ACCEPT","validating_key_id":"KP-PROP-RC5-001"},"candidate":{"decision":"REFUSE","code":"UNAUTHORIZED_ISSUER_SCOPE"},"pass":true}},
+    "unknown_signer_cryptographic_validity":{"fingerprint_match":true,"signature_valid":true},
+    "mutation_sensitivity":{"atom_21_of_21":true,"proposition_5_of_5":true},
+    "representation_invariance":{"diagnostic_only_mutation":true,"transport_whitespace_and_member_order":true},
+    "evidence_preservation":{"first":"ACCEPT","second":"ACCEPT","aggregate":"UNSUPPORTED_NO_UNIQUENESS_OR_EQUIVOCATION_RULE","pass":true}
+  },
+  "prereveal_test_rerun":{"total":22,"passed":22,"failures":0,"errors":0,"status":"OK","exit_code":0,"exact_frozen_test_blob":"a25ff8b40d1181cf2fb872dd463df6fb51cf0d2c","stderr_sha256":"18dcb5c724ab136c45fd80b17b3ffd86656aea0041c9c09936fe8b3fd323045c"},
+  "independent_oracle_review":{
+    "status":"MATERIAL_ORACLE_DISAGREEMENT",
+    "basis":["SPEC.md","RECEIPT-SCHEMA.json","TRUST-POLICY.json","PUBLIC-KEYS.json"],
+    "findings":[
+      {"cases":["H07-receipt-type-substitution","H08-schema-major-substitution","H12-forbidden-algorithm-profile"],"finding":"The sealed oracle expects INVALID_RECEIPT_SCHEMA for frozen-profile constant substitutions. RECEIPT-SCHEMA const constraints support schema invalidity, but SPEC.md also requires UNSUPPORTED_PROFILE and does not define the exact boundary between strict schema/frozen-constant validation and unsupported-profile refusal. The frozen prereveal tests independently expected UNSUPPORTED_PROFILE for a changed signature_profile.","material":true},
+      {"cases":["H11-signature-truncation"],"finding":"The public receipt schema fixes signature_base64url at exactly 86 characters. The candidate delays that format/length check to signature verification and returns SIGNATURE_INVALID_FORMAT instead of sealed INVALID_RECEIPT_SCHEMA. This is a clear fail-closed typed-stage/code disagreement, not an unsafe acceptance.","material":true}
+    ],
+    "taxonomy_review":{"portability_falsifier_triggered":false,"scoped_issuer_authority_falsifier_triggered":false,"exact_binding_falsifier_triggered":false,"supported_with_bounds_available":false,"discrimination_problem":"Four security-relevant typed outcomes disagree, but no preregistered falsifier maps a fail-closed typed-code mismatch. Combined with the material oracle-code ambiguity, the registered taxonomy cannot validly discriminate this outcome without INCONCLUSIVE_EVALUATOR_INVALID."}
+  },
+  "tooling_deviations_and_exceptions":[
+    {"phase":"binary_packet_materialization","event":"Direct raw binary retrieval was unavailable; exact authorized chunks were reconstructed from connector base64 slices and accepted only after every Git blob, length and SHA-256 check matched.","candidate_modified":false,"packet_repaired":false},
+    {"phase":"packet_materialization","event":"An earlier transcription attempt failed decoding and was discarded before evaluator acceptance; no bytes from it were used.","candidate_modified":false,"packet_repaired":false},
+    {"phase":"frozen_module_loading","event":"A first dynamic import raised a Python dataclasses AttributeError because the module was not registered in sys.modules. The comparison harness registration was corrected; frozen candidate bytes did not change and no evaluator case result was produced by the failed attempt.","candidate_modified":false}
+  ],
+  "summary":{"sealed_case_count":21,"case_level_matches":17,"case_level_mismatches":4,"candidate_case_exceptions":0,"unsafe_acceptances":0,"scoped_authority_preserved":true,"exact_binding_preserved":true,"representation_invariance_preserved":true,"unsupported_multiplicity_evidence_preserved":true}
+}
