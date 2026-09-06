@@ -1,0 +1,15 @@
+{
+  "profile": "CAL.RC5A/public-keys.v1",
+  "keys": [
+    {
+      "key_id": "KA-ATOM-RC5A-001",
+      "algorithm": "Ed25519",
+      "public_key_base64url": "FM77BT_kg1WTKvE0KeV32-ut68bRnzVEBvwyRDVqS0M"
+    },
+    {
+      "key_id": "KP-PROP-RC5A-001",
+      "algorithm": "Ed25519",
+      "public_key_base64url": "_u2DYcupRgqsGEf8S0PK9Tn_N-3aMyliwi5XXP36UvI"
+    }
+  ]
+}
