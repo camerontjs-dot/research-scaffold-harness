@@ -1,0 +1,17 @@
+{
+  "manifest_version": "cal.rc5.independent-verifier.dependencies.v1",
+  "runtime": {
+    "python": "3.13.5"
+  },
+  "direct_dependencies": [
+    {
+      "name": "cryptography",
+      "version": "46.0.4",
+      "purpose": "Ed25519 public-key signature verification"
+    }
+  ],
+  "cryptography_backend": "OpenSSL 3.5.5 27 Jan 2026",
+  "jcs_dependency": null,
+  "jcs_implementation": "self-authored restricted RFC 8785 implementation for I-JSON values with no floating point",
+  "network_install_performed": false
+}
