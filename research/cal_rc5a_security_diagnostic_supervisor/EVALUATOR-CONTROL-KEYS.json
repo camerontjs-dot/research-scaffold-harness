@@ -1,0 +1,8 @@
+{
+  "profile": "CAL.RC5A/evaluator-control-keys.v1",
+  "unknown_signer_public_key": {
+    "key_id": "KU-UNKNOWN-RC5A-001",
+    "algorithm": "Ed25519",
+    "public_key_base64url": "6h24vxfhZt7cqN0iRBQazP7sK9UA1s4jcEnQf6v0_B0"
+  }
+}
