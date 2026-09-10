@@ -36,9 +36,9 @@ At the authorized aperture head, read exactly these files and no other repositor
 - `research/eb_retrieval_audit_independent_consumer_rc3_aperture/SPEC.md`
 - `research/eb_retrieval_audit_independent_consumer_rc3_aperture/PRE_FREEZE_TASK.md`
 - `research/eb_retrieval_audit_independent_consumer_rc3_aperture/APERTURE_MANIFEST.json`
-- `research/eb_retrieval_audit_independent_consumer_rc3_aperture/FROZEN_PACKAGES.tar.gz`
+- the exact GitHub Actions artifact `eb-independent-consumer-rc3-frozen-packages-34434614031` from run `34434614031`, artifact ID `10135740397`, in `camerontjs-dot/research-scaffold-harness`.
 
-You may extract `FROZEN_PACKAGES.tar.gz` and inspect every file contained inside that archive. The archive contents are part of the authorized aperture.
+You may use the GitHub connector only to download that exact artifact. Do not inspect the workflow, run logs, PR narrative, or any other Actions/repository surface. The artifact ZIP is expected to contain only `FROZEN_PACKAGES.tar.gz` and `FROZEN_PACKAGES.sha256`. Verify both the Actions artifact digest and the inner archive SHA-256 from `APERTURE_MANIFEST.json` before extracting. You may then inspect every file contained inside `FROZEN_PACKAGES.tar.gz`; those archive contents are part of the authorized aperture.
 
 ## Pre-freeze denylist
 
@@ -66,7 +66,7 @@ Write implementation and prereveal tests only under:
 
 `research/eb_retrieval_audit_independent_consumer_rc3_execution/`
 
-Do not modify the aperture files or frozen archive.
+Do not modify the aperture files or frozen downloaded archive.
 
 Prefer Python standard library only. If a dependency is genuinely required and already available, record it in the freeze receipt. Do not install project-specific packages or import Evidence Bundler code.
 
