@@ -44,23 +44,29 @@ def validate_contract_c_bytes(raw: bytes, *, expected_sha256: str | None = None,
         value = _parse(raw)
         if value is None:
             return ref.validate_contract_c_bytes(raw, expected_sha256=expected_sha256, contract_b_index=contract_b_index)
-        normalized = ref.canonical_bytes(value)
+        try:
+            normalized = ref.canonical_bytes(value)
+        except (TypeError, ValueError):
+            return ref.validate_contract_c_bytes(raw, expected_sha256=expected_sha256, contract_b_index=contract_b_index)
         return ref.validate_contract_c_bytes(normalized, expected_sha256=None, contract_b_index=contract_b_index)
     if MODE == "repair_unclassified":
         value = _parse(raw)
         if value is None:
             return ref.validate_contract_c_bytes(raw, expected_sha256=expected_sha256, contract_b_index=contract_b_index)
         value = deepcopy(value)
-        for proposition in value.get("propositions", []):
-            conclusion = proposition.get("conclusion")
-            if not isinstance(conclusion, dict):
-                continue
-            contributions = {c.get("contribution_id") for c in proposition.get("contributions", []) if isinstance(c, dict)}
-            causal = {b.get("id") for b in conclusion.get("basis_members", []) if isinstance(b, dict) and b.get("namespace") == "contribution"}
-            residual = set(conclusion.get("residual_contribution_ids", []))
-            missing = sorted(x for x in contributions - causal - residual if isinstance(x, str))
-            conclusion["residual_contribution_ids"] = sorted(residual | set(missing))
-        value["result_set_id"] = ref.result_set_identity(value)
-        normalized = ref.canonical_bytes(value)
+        try:
+            for proposition in value.get("propositions", []):
+                conclusion = proposition.get("conclusion")
+                if not isinstance(conclusion, dict):
+                    continue
+                contributions = {c.get("contribution_id") for c in proposition.get("contributions", []) if isinstance(c, dict)}
+                causal = {b.get("id") for b in conclusion.get("basis_members", []) if isinstance(b, dict) and b.get("namespace") == "contribution"}
+                residual = set(conclusion.get("residual_contribution_ids", []))
+                missing = sorted(x for x in contributions - causal - residual if isinstance(x, str))
+                conclusion["residual_contribution_ids"] = sorted(residual | set(missing))
+            value["result_set_id"] = ref.result_set_identity(value)
+            normalized = ref.canonical_bytes(value)
+        except (AttributeError, KeyError, TypeError, ValueError):
+            return ref.validate_contract_c_bytes(raw, expected_sha256=expected_sha256, contract_b_index=contract_b_index)
         return ref.validate_contract_c_bytes(normalized, expected_sha256=None, contract_b_index=contract_b_index)
     raise RuntimeError(f"unknown MUTANT_MODE: {MODE}")

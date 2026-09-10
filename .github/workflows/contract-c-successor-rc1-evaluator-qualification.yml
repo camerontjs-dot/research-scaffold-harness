@@ -28,7 +28,7 @@ jobs:
           test "$(git hash-object research/contract_c_successor_rc1_fresh_aperture/schema.json)" = "290259d60722553698e5cdddb8a02fa50ec2f3d0"
           test "$(git hash-object sealed/contract_c_successor_rc1_fresh_eval/evaluator.py)" = "8a15f745d10994235f908a7c2c5828354edfec57"
           test "$(git hash-object sealed/contract_c_successor_rc1_fresh_eval/reference_adapter.py)" = "c98f7ef2edb2998782259083d8da9e480e1bf411"
-          test "$(git hash-object sealed/contract_c_successor_rc1_fresh_eval/mutant_candidate.py)" = "a65ed98deb08862cb419d5dc4d651825dc1ac79e"
+          test "$(git hash-object sealed/contract_c_successor_rc1_fresh_eval/mutant_candidate.py)" = "bfad010e25c780846a7b418895a1e3c058c88c66"
           git diff --quiet 04560a7311a510c8ee4c82ad401b35bd7ca7590c -- research/contract_c_successor_rc1_fresh_aperture
           changed="$(git diff --name-only 04560a7311a510c8ee4c82ad401b35bd7ca7590c...HEAD)"
           printf '%s\n' "$changed"
@@ -129,7 +129,7 @@ jobs:
             'aperture_head':'04560a7311a510c8ee4c82ad401b35bd7ca7590c',
             'evaluator_blob':'8a15f745d10994235f908a7c2c5828354edfec57',
             'reference_adapter_blob':'c98f7ef2edb2998782259083d8da9e480e1bf411',
-            'mutant_candidate_blob':'a65ed98deb08862cb419d5dc4d651825dc1ac79e',
+            'mutant_candidate_blob':'bfad010e25c780846a7b418895a1e3c058c88c66',
             'oracle_head':'ad1ffbd7906a7cf34cce5afa906a5797cd4a14ff',
             'reference_check_count':ref['check_count'],
             'reference_passed':ref['passed'],
