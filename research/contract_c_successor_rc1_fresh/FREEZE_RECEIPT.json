@@ -1,0 +1,34 @@
+{
+  "implementation_frozen": true,
+  "post_freeze_repair_permitted": false,
+  "execution_branch": "research/contract-c-successor-rc1-fresh-independent-execution-20260910",
+  "aperture_head": "04560a7311a510c8ee4c82ad401b35bd7ca7590c",
+  "implementation_freeze_commit": "e3bfe1a1a201be6490aa11ae0ae43e7bee79a418",
+  "implementation": {
+    "path": "research/contract_c_successor_rc1_fresh/contract_c_successor.py",
+    "git_blob_id": "6961c45e1baf1f084de186d963d459420f47130c",
+    "sha256": "e846f431a02c58898e23d2a18eccc7aa52c129a042e2aabca270ec1d553dbf5d"
+  },
+  "prereveal_tests": {
+    "path": "research/contract_c_successor_rc1_fresh/test_contract_c_successor.py",
+    "git_blob_id": "17e0b21705364658c76a77bb861c2c01bf9d4b94",
+    "sha256": "01ddceabc27efe882ae3bfc37ce3610ac3aa684185bea2571b7ea0559be0b2cd",
+    "command": "python research/contract_c_successor_rc1_fresh/test_contract_c_successor.py",
+    "count": 19,
+    "result": "PASS (OK)",
+    "exit_status": 0
+  },
+  "interpretation_uncertainties": [
+    "The canonicalization rules do not specify a unique lexical normalization for finite JSON numbers beyond deterministic JSON, compact separators, and finiteness. The implementation uses Python standard-library json.dumps numeric rendering and therefore rejects received numeric spellings that parse to the same value but differ from that rendering.",
+    "No cross-level implication between result-set execution.state and proposition execution states is stated beyond the completed-result-set non-empty rule and proposition-local conclusion rules. The implementation therefore permits a completed result set containing a failed or incomplete proposition if that proposition otherwise satisfies its local rules.",
+    "Contribution classification completeness is interpreted as a rule of a non-null conclusion. Failed or incomplete propositions, which are required to have conclusion:null, may therefore retain contributions (and a structurally/reference-valid measurement) without causal/residual classification.",
+    "Rule-role integrity is implemented in the stated direction: a rule-namespaced causal basis member must have a matching causal rule role, and a residual rule role must not be causal basis. The text does not state the converse, so a declared causal rule role need not itself appear in basis_members.",
+    "The supplied Contract-B index is external validation input rather than Contract-C wire data. Its displayed shape does not explicitly state unknown-field behavior; the implementation chooses a fail-closed exact-shape interpretation for the index and each passage entry."
+  ],
+  "contamination_status": "CLEAN_PRE_FREEZE_APERTURE: only the exact branch/ref lookup and the three authorized aperture files were read before freeze; no file-scoped retrieval exposed unrelated project content.",
+  "apparatus_deviations": [
+    "Work-mode handoff was offered as the repository execution environment and declined by the user interface. Execution therefore used the GitHub connector for exact ref/file reads and branch writes, plus a local standard-library Python sandbox mirror containing only the independently authored implementation and prereveal tests.",
+    "No repository checkout, surrounding tree read, history/diff/PR/issue/Actions inspection, repository search, other branch/tag read, external web research, project dependency, evaluator, reference implementation, or prior Contract C material was used.",
+    "The implementation and test files were committed sequentially through the GitHub contents API. The implementation-freeze commit is the second commit, where both frozen files coexist. Their Git blob IDs were checked against the locally tested byte-for-byte files before the receipt commit."
+  ]
+}
