@@ -1,0 +1,27 @@
+{
+  "aperture_start_commit": "cb1d27ff00ae030093c5e97d78477cec7f20c6f4",
+  "frozen_candidate_commit": "c1c31885f5802d4ea710dea7bcec214e977b9f03",
+  "consumer_blob": "7c4e15855dfba57bdc2a23e98960e0d79d272aa6",
+  "test_blob": "9000b495fd5d15f16dc82e662abe6764dc2b02f1",
+  "consumer_sha256": "b4e5e490f14d2f1ad1f9b0dbf6159334a07893ec9f6c35be98ee52f91c3d6ed5",
+  "test_sha256": "b2f1c0416b7bba96a79b54baed35fa4ccf4a9bf058b99a472f433f07000bff51",
+  "python_version": "Python 3.13.5",
+  "model_identity": "GPT-5.6 Sol",
+  "network_state": "OFF",
+  "allowed_inputs_read": [
+    "research/contract_c_minimal_in_band_consumer_b_aperture/MANIFEST.json",
+    "research/contract_c_minimal_in_band_consumer_b_aperture/PRE_FREEZE_TASK.md",
+    "research/contract_c_minimal_in_band_consumer_b_aperture/SPEC.md",
+    "research/contract_c_minimal_in_band_consumer_b_aperture/SHADOW_SPEC.md",
+    "research/contract_c_minimal_in_band_consumer_b_aperture/schema-delta.json",
+    "research/contract_c_minimal_in_band_consumer_b_aperture/contract-b-index.json",
+    "research/contract_c_minimal_in_band_consumer_b_aperture/valid-shadow.json"
+  ],
+  "forbidden_inputs_read": [],
+  "tests_executed": [
+    "PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v /mnt/data/candidate/test_consumer.py => 21 tests passed; OK"
+  ],
+  "contamination_state": "CLEAN_PRE_FREEZE_APERTURE",
+  "post_freeze_evaluator_seen": false,
+  "terminal_pre_reveal_state": "FROZEN_CANDIDATE_READY_FOR_REVEAL"
+}
