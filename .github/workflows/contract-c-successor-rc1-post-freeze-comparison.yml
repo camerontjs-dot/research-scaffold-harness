@@ -1,0 +1,130 @@
+name: Contract C Successor RC1 Post-Freeze Comparison
+
+on:
+  push:
+    branches:
+      - research/contract-c-successor-rc1-post-freeze-comparison-20260910
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sealed-comparison:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout post-freeze comparison branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify frozen execution state and comparison-only mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse origin/research/contract-c-successor-rc1-fresh-independent-execution-20260910)" = "40bd4e946b9999032195c29848362d0413e55a07"
+          test "$(git hash-object research/contract_c_successor_rc1_fresh/contract_c_successor.py)" = "6961c45e1baf1f084de186d963d459420f47130c"
+          test "$(git hash-object research/contract_c_successor_rc1_fresh/test_contract_c_successor.py)" = "17e0b21705364658c76a77bb861c2c01bf9d4b94"
+          test "$(sha256sum research/contract_c_successor_rc1_fresh/contract_c_successor.py | awk '{print $1}')" = "e846f431a02c58898e23d2a18eccc7aa52c129a042e2aabca270ec1d553dbf5d"
+          test "$(sha256sum research/contract_c_successor_rc1_fresh/test_contract_c_successor.py | awk '{print $1}')" = "01ddceabc27efe882ae3bfc37ce3610ac3aa684185bea2571b7ea0559be0b2cd"
+          changed="$(git diff --name-only 40bd4e946b9999032195c29848362d0413e55a07...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Ev '^\.github/workflows/contract-c-successor-rc1-post-freeze-comparison\.yml$' | grep -q .; then
+            echo 'post-freeze comparison mutation escaped workflow-only surface' >&2
+            exit 1
+          fi
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Re-run frozen prereveal tests without modification
+        run: python research/contract_c_successor_rc1_fresh/test_contract_c_successor.py
+
+      - name: Checkout exact sealed evaluator
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/research-scaffold-harness
+          ref: 6685bd9dc99fca6eff5398c9dc8bb4fd635d0c84
+          path: _sealed
+          fetch-depth: 1
+
+      - name: Verify sealed evaluator identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C _sealed rev-parse HEAD)" = "6685bd9dc99fca6eff5398c9dc8bb4fd635d0c84"
+          test "$(git -C _sealed hash-object sealed/contract_c_successor_rc1_fresh_eval/evaluator.py)" = "8a15f745d10994235f908a7c2c5828354edfec57"
+
+      - name: Execute sealed evaluator against frozen implementation
+        id: compare
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/contract-c-successor-rc1-comparison
+          set +e
+          python _sealed/sealed/contract_c_successor_rc1_fresh_eval/evaluator.py \
+            research/contract_c_successor_rc1_fresh/contract_c_successor.py \
+            --out build/contract-c-successor-rc1-comparison/EVALUATOR_RESULT.json
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > build/contract-c-successor-rc1-comparison/EVALUATOR_EXIT_STATUS.txt
+          test -f build/contract-c-successor-rc1-comparison/EVALUATOR_RESULT.json
+          echo "evaluator_rc=$rc" >> "$GITHUB_OUTPUT"
+
+      - name: Freeze comparison disposition
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('build/contract-c-successor-rc1-comparison')
+          result=json.loads((root/'EVALUATOR_RESULT.json').read_text())
+          rc=int((root/'EVALUATOR_EXIT_STATUS.txt').read_text().strip())
+          assert result['check_count'] == 62
+          assert rc in {0,1}
+          assert (rc == 0) is bool(result['passed'])
+          disposition = (
+              'SUPPORTED_FRESH_INDEPENDENT_REPRODUCTION'
+              if result['passed']
+              else 'FALSIFIED_FRESH_INDEPENDENT_REPRODUCTION'
+          )
+          receipt={
+              'research_disposition': disposition,
+              'execution_branch': 'research/contract-c-successor-rc1-fresh-independent-execution-20260910',
+              'aperture_head': '04560a7311a510c8ee4c82ad401b35bd7ca7590c',
+              'implementation_freeze_commit': 'e3bfe1a1a201be6490aa11ae0ae43e7bee79a418',
+              'freeze_receipt_commit': '40bd4e946b9999032195c29848362d0413e55a07',
+              'implementation_blob': '6961c45e1baf1f084de186d963d459420f47130c',
+              'implementation_sha256': 'e846f431a02c58898e23d2a18eccc7aa52c129a042e2aabca270ec1d553dbf5d',
+              'prereveal_test_blob': '17e0b21705364658c76a77bb861c2c01bf9d4b94',
+              'prereveal_test_sha256': '01ddceabc27efe882ae3bfc37ce3610ac3aa684185bea2571b7ea0559be0b2cd',
+              'sealed_evaluator_head': '6685bd9dc99fca6eff5398c9dc8bb4fd635d0c84',
+              'sealed_evaluator_blob': '8a15f745d10994235f908a7c2c5828354edfec57',
+              'sealed_evaluator_qualification_run': 34533845520,
+              'evaluator_check_count': result['check_count'],
+              'evaluator_failed_checks': result['failed_checks'],
+              'evaluator_passed': result['passed'],
+              'evaluator_exit_status': rc,
+              'post_freeze_repair_permitted': False,
+              'production_promotion_authorized': False,
+          }
+          (root/'COMPARISON_RECEIPT.json').write_text(json.dumps(receipt, indent=2, sort_keys=True)+'\n')
+          print(json.dumps(receipt, sort_keys=True))
+          PY
+
+      - name: Package comparison evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp research/contract_c_successor_rc1_fresh/FREEZE_RECEIPT.json build/contract-c-successor-rc1-comparison/
+          tar -czf contract-c-successor-rc1-comparison-${GITHUB_RUN_ID}.tar.gz -C build contract-c-successor-rc1-comparison
+
+      - name: Upload comparison evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: contract-c-successor-rc1-comparison-${{ github.run_id }}
+          path: contract-c-successor-rc1-comparison-${{ github.run_id }}.tar.gz
+          if-no-files-found: error
