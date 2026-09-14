@@ -1,0 +1,42 @@
+{
+  "alternative_joint_mixed": {
+    "bundle_hash": "sha256:ca72515a7be70922d155e6ed6606dab415a25bab8781efcba0f4ea84314f4d18",
+    "bundle_id": "bundle-sp10",
+    "contract_version": "1.2.0",
+    "passages": {
+      "R1": {"passage_sha256": "sha256:68b1106f8bd5565ee9c53b3d95c736412a390178170b898e8140e5e87ab585fd", "source_id": "src-r1"},
+      "S1": {"passage_sha256": "sha256:c908adfeb438839c5de5264952b9cd8e5eb68dd51c7e57be7c9bb060e35934f2", "source_id": "src-s1"},
+      "S2": {"passage_sha256": "sha256:0a56626e580aabba7afad94dc7176ad4b36755ddebcb779ce929e672b236faab", "source_id": "src-s2"}
+    },
+    "propositions": {"Q1": "0cb2c39121170fcc4985ef2caa62c77b5c7513c2755440d3f647cb83744595c0"}
+  },
+  "independent_supports": {
+    "bundle_hash": "sha256:c80ce022c29a3dfdc2ebfd12fd96556abf7cf35ac6d77101fa700cca2bdd15a5",
+    "bundle_id": "bundle-sp03",
+    "contract_version": "1.2.0",
+    "passages": {
+      "S1": {"passage_sha256": "sha256:c908adfeb438839c5de5264952b9cd8e5eb68dd51c7e57be7c9bb060e35934f2", "source_id": "src-s1"},
+      "S2": {"passage_sha256": "sha256:0a56626e580aabba7afad94dc7176ad4b36755ddebcb779ce929e672b236faab", "source_id": "src-s2"}
+    },
+    "propositions": {"Q1": "0cb2c39121170fcc4985ef2caa62c77b5c7513c2755440d3f647cb83744595c0"}
+  },
+  "no_deciding": {
+    "bundle_hash": "sha256:2618390674a54a520cfd4192816cf13d9dc31e1c08d81addf1fba03db4118105",
+    "bundle_id": "bundle-sp13",
+    "contract_version": "1.2.0",
+    "passages": {
+      "N1": {"passage_sha256": "sha256:1c643fff26c3e0cd8588654c2cddbadadb1ff737b25dec919d4fe70a66a8007d", "source_id": "src-n1"}
+    },
+    "propositions": {"Q1": "0cb2c39121170fcc4985ef2caa62c77b5c7513c2755440d3f647cb83744595c0"}
+  },
+  "unsupported_family": {
+    "bundle_hash": "sha256:0a222d4133f81304d4414ca1d9127a432ceebe1a746d4fb9fcc4111a04b2cff4",
+    "bundle_id": "bundle-unsupported",
+    "contract_version": "1.2.0",
+    "passages": {
+      "U1": {"passage_sha256": "sha256:f7a82cc76972e55db08a518bb1f04b6075249ab34d407086bbc956d2aab3b6c3", "source_id": "src-u1"},
+      "U2": {"passage_sha256": "sha256:7f2f4279899dfcace0d36c7f20e1904fc0b4f33743f77dab7501fed84e4e328c", "source_id": "src-u2"}
+    },
+    "propositions": {"QU0": "838a253972c035fc902a0be7e0305e67591be13e37f19a6719db55c89902be03"}
+  }
+}
