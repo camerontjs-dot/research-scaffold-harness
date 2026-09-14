@@ -1,0 +1,72 @@
+name: Materialize EB Independent Consumer RC3 Aperture
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "research/eb_retrieval_audit_independent_consumer_rc3_aperture/**"
+      - ".github/workflows/eb-independent-consumer-rc3-aperture-materialize.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  materialize-frozen-packages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/evidence-bundler
+          ref: 95b7b4c26ee138646bb007d0ec12501a93e025c6
+          path: eb-src
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: eb-src/pyproject.toml
+
+      - name: Generate frozen packages from exact producer ref
+        working-directory: eb-src
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+          rm -rf ../materialized
+          mkdir -p ../materialized
+          python -m research.eb_retrieval_audit_sidecar_rc2.run_experiment \
+            --research-root research/cal_rc0_contract_b_handoff \
+            --artifact-root ../materialized
+
+      - name: Remove answer-bearing producer result
+        run: |
+          rm -f materialized/RESULT.json
+          test -d materialized/packages
+          test ! -e materialized/RESULT.json
+
+      - name: Create deterministic package-only archive
+        run: |
+          tar --sort=name --mtime='UTC 1970-01-01' --owner=0 --group=0 --numeric-owner \
+            -C materialized -cf - packages | gzip -n > FROZEN_PACKAGES.tar.gz
+          sha256sum FROZEN_PACKAGES.tar.gz | tee FROZEN_PACKAGES.sha256
+
+      - name: Assert archive contains packages only
+        run: |
+          python - <<'PY'
+          import tarfile
+          with tarfile.open('FROZEN_PACKAGES.tar.gz', 'r:gz') as tf:
+              names = tf.getnames()
+          assert names
+          assert all(name == 'packages' or name.startswith('packages/') for name in names)
+          assert not any('RESULT' in name or 'predecessor' in name.lower() for name in names)
+          print({'members': len(names)})
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: eb-independent-consumer-rc3-frozen-packages-${{ github.run_id }}
+          path: |
+            FROZEN_PACKAGES.tar.gz
+            FROZEN_PACKAGES.sha256
+          if-no-files-found: error
