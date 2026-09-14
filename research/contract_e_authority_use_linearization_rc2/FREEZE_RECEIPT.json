@@ -1,0 +1,58 @@
+{
+  "schema": "contract-e-authority-use-linearization-rc2-freeze-v1",
+  "research_only": true,
+  "production_authorization": false,
+  "preregistration": {
+    "base_commit": "2cd26654bb082f94597a4a980eeb8e44c65b3c56",
+    "base_blob": "63c494998394626a28a2458dc011cf36cff5afa8",
+    "amendment_1_commit": "f2a38348e43a5df79fbab496c74fbc23f7c4abc3",
+    "amendment_1_blob": "efcb02c1196c386fbd4f5d21cad704ea915424f4",
+    "amendment_2_commit": "91fdaf8068b2a8ecc3f6b9ad02e8e4e0c598c3f0",
+    "amendment_2_blob": "b46977900561102ed5963299fc5916d172e16903",
+    "amendment_3_commit": "7978a613a8f73b9187fdf23bb3d8640cbe0b0969",
+    "amendment_3_blob": "d34ee6b4cc980895a81d40cb4988bc5e0a4fce90",
+    "amendment_4_commit": "6741e7011ea112c5d13d733c48702c61054c2d7c",
+    "amendment_4_blob": "d671c78082b3a388ae9f1787d253a29d10700173"
+  },
+  "frozen_scientific_surface": {
+    "freeze_commit": "48f22a50eae49ca241a50739b7e7212617e4e94f",
+    "fixtures_path": "research/contract_e_authority_use_linearization_rc2/fixtures_rc2_final.py",
+    "fixtures_blob": "b46fd61e285c6bd9923d638086c593d7aa2a7f6b",
+    "candidate_core_path": "research/contract_e_authority_use_linearization_rc2/candidate_rc2_final.py",
+    "candidate_core_blob": "e3683d0d1f41224b4084c6e3f980eba9ae736276",
+    "candidate_wrapper_path": "research/contract_e_authority_use_linearization_rc2/candidate_rc2_sealed.py",
+    "candidate_wrapper_blob": "ca07a6a9622da596958e55151dfcac9613036484",
+    "verifier_path": "research/contract_e_authority_use_linearization_rc2/verifier_rc2_final.py",
+    "verifier_blob": "0e1cc0a058258601014bfdacca42ace201602391",
+    "worker_path": "research/contract_e_authority_use_linearization_rc2/worker_rc2_final.py",
+    "worker_blob": "709ef81baaf122f73d00820e247654956c935d24",
+    "evaluator_path": "research/contract_e_authority_use_linearization_rc2/evaluate_rc2.py",
+    "evaluator_blob": "8ac02df2a5970db34367fbd875123b3524abe24c",
+    "case_count": 20,
+    "weak_control_count": 6
+  },
+  "pre_freeze_superseded_drafts": [
+    "executor_rc2.py",
+    "fixtures_rc2.py",
+    "fixtures_rc2_frozen.py",
+    "candidate_rc2.py",
+    "verifier_rc2.py",
+    "worker_rc2.py"
+  ],
+  "contract_e_authority": {
+    "sealed_successor_commit": "a678c73a661853a3a704666fc6bbf29fa378948f",
+    "public_spec_blob": "8c142c6b86dd2512f1df0c19aa36dbef759d6c18",
+    "successor_reference_blob": "00d4d8f078073388d751546c24678825b89a6402",
+    "fresh_independent_seal_commit": "9feb44d8c8ea96176f797fe0ef692cc8e4d13656",
+    "fresh_independent_implementation_blob": "9019abd8ade820988de1f899b2ccef9e57e9a908"
+  },
+  "frozen": true,
+  "post_freeze_candidate_repair_permitted": false,
+  "post_freeze_verifier_repair_permitted": false,
+  "post_freeze_evaluator_semantic_repair_permitted": false,
+  "allowed_post_freeze_changes": [
+    "workflow/import/dependency plumbing that preserves all frozen scientific blobs, cases, weak controls, expectations, and result projection",
+    "apparatus deviation records",
+    "terminal result/evidence records"
+  ]
+}

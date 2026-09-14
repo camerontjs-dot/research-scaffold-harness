@@ -1,0 +1,148 @@
+name: Contract E authority-use linearization RC2
+
+on:
+  push:
+    branches:
+      - research/contract-e-authority-use-linearization-rc2-20260904
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out frozen RC2 branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify frozen RC2 scientific blobs
+        shell: bash
+        run: |
+          set -euo pipefail
+          R='research/contract_e_authority_use_linearization_rc2'
+          RECEIPT='e608bb3d96d04fe74d5112e10ebd05ad2c4e9db7'
+          git merge-base --is-ancestor "$RECEIPT" HEAD
+          test "$(git rev-parse HEAD:$R/fixtures_rc2_final.py)" = 'b46fd61e285c6bd9923d638086c593d7aa2a7f6b'
+          test "$(git rev-parse HEAD:$R/candidate_rc2_final.py)" = 'e3683d0d1f41224b4084c6e3f980eba9ae736276'
+          test "$(git rev-parse HEAD:$R/candidate_rc2_sealed.py)" = 'ca07a6a9622da596958e55151dfcac9613036484'
+          test "$(git rev-parse HEAD:$R/verifier_rc2_final.py)" = '0e1cc0a058258601014bfdacca42ace201602391'
+          test "$(git rev-parse HEAD:$R/worker_rc2_final.py)" = '709ef81baaf122f73d00820e247654956c935d24'
+          test "$(git rev-parse HEAD:$R/evaluate_rc2.py)" = '8ac02df2a5970db34367fbd875123b3524abe24c'
+
+      - name: Check out exact sealed Contract E successor
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/apparatus-contracts
+          ref: a678c73a661853a3a704666fc6bbf29fa378948f
+          path: apparatus-e
+          fetch-depth: 1
+
+      - name: Check out exact fresh-independent Contract E implementation
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/research-scaffold-harness
+          ref: 9feb44d8c8ea96176f797fe0ef692cc8e4d13656
+          path: rsh-e
+          fetch-depth: 1
+
+      - name: Verify external Contract E blobs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C apparatus-e rev-parse HEAD)" = 'a678c73a661853a3a704666fc6bbf29fa378948f'
+          test "$(git -C apparatus-e rev-parse HEAD:docs/research/contract-e/v1-rc3-exact-currentness-jcs-20260902/candidate/SPEC.md)" = '8c142c6b86dd2512f1df0c19aa36dbef759d6c18'
+          test "$(git -C apparatus-e rev-parse HEAD:docs/research/contract-e/v1-rc3-target-reference-cardinality-successor-20260903/candidate/reference.py)" = '00d4d8f078073388d751546c24678825b89a6402'
+          test "$(git -C rsh-e rev-parse HEAD)" = '9feb44d8c8ea96176f797fe0ef692cc8e4d13656'
+          test "$(git -C rsh-e rev-parse HEAD:research/contract_e_v1_fresh_rc3/authority_e.py)" = '9019abd8ade820988de1f899b2ccef9e57e9a908'
+
+      - name: Install exact canonicalization dependency
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check 'rfc8785==0.1.4'
+          python - <<'PY'
+          import importlib.metadata
+          assert importlib.metadata.version('rfc8785') == '0.1.4'
+          PY
+
+      - name: Run frozen RC2 matrix and weak controls
+        id: science
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          R='research/contract_e_authority_use_linearization_rc2'
+          mkdir -p rc2-results
+          python "$R/evaluate_rc2.py" \
+            --candidate "$R/candidate_rc2_sealed.py" \
+            --fixtures "$R/fixtures_rc2_final.py" \
+            --verifier "$R/verifier_rc2_final.py" \
+            --worker "$R/worker_rc2_final.py" \
+            --apparatus-e apparatus-e \
+            --independent-e rsh-e/research/contract_e_v1_fresh_rc3/authority_e.py \
+            --output-dir rc2-results \
+            2>&1 | tee rc2-results/evaluation.log
+          status=${PIPESTATUS[0]}
+          printf '%s\n' "$status" > rc2-results/evaluation-exit-status.txt
+          exit "$status"
+
+      - name: Capture exact run identities
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          R='research/contract_e_authority_use_linearization_rc2'
+          mkdir -p rc2-results
+          {
+            echo "RC2_HEAD=$(git rev-parse HEAD)"
+            echo "FIXTURES_BLOB=$(git rev-parse HEAD:$R/fixtures_rc2_final.py)"
+            echo "CANDIDATE_CORE_BLOB=$(git rev-parse HEAD:$R/candidate_rc2_final.py)"
+            echo "CANDIDATE_WRAPPER_BLOB=$(git rev-parse HEAD:$R/candidate_rc2_sealed.py)"
+            echo "VERIFIER_BLOB=$(git rev-parse HEAD:$R/verifier_rc2_final.py)"
+            echo "WORKER_BLOB=$(git rev-parse HEAD:$R/worker_rc2_final.py)"
+            echo "EVALUATOR_BLOB=$(git rev-parse HEAD:$R/evaluate_rc2.py)"
+            echo "CONTRACT_E_HEAD=$(git -C apparatus-e rev-parse HEAD)"
+            echo "INDEPENDENT_E_HEAD=$(git -C rsh-e rev-parse HEAD)"
+          } > rc2-results/RUN_IDENTITIES.txt
+          sha256sum "$R/fixtures_rc2_final.py" "$R/candidate_rc2_final.py" "$R/candidate_rc2_sealed.py" "$R/verifier_rc2_final.py" "$R/worker_rc2_final.py" "$R/evaluate_rc2.py" > rc2-results/RC2_SHA256.txt
+
+      - name: Upload immutable RC2 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: contract-e-authority-use-linearization-rc2-${{ github.sha }}
+          path: rc2-results/
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Enforce accepted scientific result
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f rc2-results/evaluation-exit-status.txt
+          test "$(cat rc2-results/evaluation-exit-status.txt)" = '0'
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('rc2-results/RESULTS.json')
+          if not p.exists():
+              raise SystemExit('missing RESULTS.json')
+          d = json.loads(p.read_text())
+          assert d['scientific_state'] == 'SUPPORTED_FOR_BOUNDED_AUTHORIZATION_USE_LINEARIZATION_CLAIM', d
+          assert d['case_count'] == 20, d
+          assert d['case_pass_count'] == 20, d
+          assert d['case_failure_ids'] == [], d
+          assert d['weak_control_count'] == 6, d
+          assert d['weak_controls_caught'] == 6, d
+          assert d['missed_weak_controls'] == [], d
+          print(json.dumps(d, indent=2, sort_keys=True))
+          PY
