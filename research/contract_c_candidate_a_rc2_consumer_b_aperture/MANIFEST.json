@@ -1,0 +1,26 @@
+{
+  "aperture_class": "context-free-consumer-b-pre-freeze",
+  "base_repository_main": "548bfa81f65290eda15af658f647497679b840ef",
+  "files": {
+    "AUTHORITIES.json": {"git_blob": "3f4ec7063679f5fb5e2797eb553ec2886275d225"},
+    "CONTRACT_B_INDEXES.json": {"git_blob": "7aad2771f603c724c44e948863f1fd8f0bad14e2"},
+    "PRE_FREEZE_TASK.md": {"git_blob": "7a4acbd30a833e4fdda2d60b99c81b43d338b6f5"},
+    "SPEC.md": {"git_blob": "f5faef13c62783dd125fc63e962369ceb563a7a7"},
+    "handoff-alternative-joint-mixed.json": {"git_blob": "fb2eb1872d2a17229caf79fbd6d7a311aae3e2c9", "whole_object_sha256": "sha256:9444086e38bc18ae03aba4c31fdf8879fb139d47168124d7fa1079b35e0cecce"},
+    "handoff-independent-supports.json": {"git_blob": "ddb4f97d1815b56e966f9f7e184b25b049dcb98c", "whole_object_sha256": "sha256:a1d48ca4b2906602475413627cef3d07abb8306540f023b3d7cf09e9eff14f5e"},
+    "handoff-no-deciding.json": {"git_blob": "e82a560d58871653c993640ceae887b98b1dbd20", "whole_object_sha256": "sha256:ea40a42c2267ac59f65dca6777f9c6777164fa9af73259f076449171c76c72f3"},
+    "handoff-unsupported-family.json": {"git_blob": "efa7cd5226bb17d749f1b494c897775564c9ac33", "whole_object_sha256": "sha256:71434a260eeb1af0fb40937031f76aed39fb9b27a47a7f0f9b19f4a4e4b45aee"}
+  },
+  "handoff_count": 4,
+  "network_required": false,
+  "post_freeze_evaluator_in_aperture": false,
+  "reference_consumer_in_aperture": false,
+  "prepared_through_commit_before_manifest": "71644d145a8fd468932ed3a5564699a851b5bd27",
+  "required_read_scope": "research/contract_c_candidate_a_rc2_consumer_b_aperture/**",
+  "write_scope_after_fresh_execution_begins": [
+    "candidate/consumer.py",
+    "candidate/test_consumer.py",
+    "candidate/FREEZE_RECEIPT.json",
+    "candidate/CONTAMINATION_RECORD.json"
+  ]
+}

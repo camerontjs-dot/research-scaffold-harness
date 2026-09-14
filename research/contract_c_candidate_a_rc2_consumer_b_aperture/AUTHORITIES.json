@@ -1,0 +1,30 @@
+{
+  "common": {
+    "policy_resolver_commit_sha": "43b571464734325277374ee81098553fb7c1b944",
+    "policy_sha256": "44ecc33519fa8911079595d322f5f0decbf0389af42e153ac32214931798e42c",
+    "profile": "contract-c-successor-candidate-a-rc2-research",
+    "semantic_implementation_sha": "a902621e8baea3063dddd7f92ba975aade305464"
+  },
+  "handoffs": {
+    "alternative_joint_mixed": {
+      "contract_b_index": "alternative_joint_mixed",
+      "file": "handoff-alternative-joint-mixed.json",
+      "whole_object_sha256": "sha256:9444086e38bc18ae03aba4c31fdf8879fb139d47168124d7fa1079b35e0cecce"
+    },
+    "independent_supports": {
+      "contract_b_index": "independent_supports",
+      "file": "handoff-independent-supports.json",
+      "whole_object_sha256": "sha256:a1d48ca4b2906602475413627cef3d07abb8306540f023b3d7cf09e9eff14f5e"
+    },
+    "no_deciding": {
+      "contract_b_index": "no_deciding",
+      "file": "handoff-no-deciding.json",
+      "whole_object_sha256": "sha256:ea40a42c2267ac59f65dca6777f9c6777164fa9af73259f076449171c76c72f3"
+    },
+    "unsupported_family": {
+      "contract_b_index": "unsupported_family",
+      "file": "handoff-unsupported-family.json",
+      "whole_object_sha256": "sha256:71434a260eeb1af0fb40937031f76aed39fb9b27a47a7f0f9b19f4a4e4b45aee"
+    }
+  }
+}

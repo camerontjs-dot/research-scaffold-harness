@@ -1,0 +1,42 @@
+{
+  "aperture_starting_commit": "07258b47477f8df4151b0ba531809e76a7c5641b",
+  "candidate_commit": "99619c2582a5e632c29a622b878537d10f758698",
+  "frozen_candidate_commit": "99619c2582a5e632c29a622b878537d10f758698",
+  "consumer_blob_id": "1f0e64d22f11d7dbe620fef209852870e6b5203d",
+  "test_blob_id": "54e03ff388974fb3524b164c17b7af9f7cf9870c",
+  "consumer_path": "candidate/consumer.py",
+  "test_path": "candidate/test_consumer.py",
+  "python_version": "3.14.4 (main, Apr  7 2026, 13:13:20) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "model_identity": "UNKNOWN / PLATFORM-SELECTED",
+  "network_state": "off during aperture reads, implementation, and prereveal tests; no internet resources read. Initial bootstrap git clone/fetch of the named repository to reach the exact starting commit required network; no other network use.",
+  "aperture_files_read": [
+    "research/contract_c_candidate_a_rc2_consumer_b_aperture/PRE_FREEZE_TASK.md",
+    "research/contract_c_candidate_a_rc2_consumer_b_aperture/SPEC.md",
+    "research/contract_c_candidate_a_rc2_consumer_b_aperture/MANIFEST.json",
+    "research/contract_c_candidate_a_rc2_consumer_b_aperture/AUTHORITIES.json",
+    "research/contract_c_candidate_a_rc2_consumer_b_aperture/CONTRACT_B_INDEXES.json",
+    "research/contract_c_candidate_a_rc2_consumer_b_aperture/handoff-alternative-joint-mixed.json",
+    "research/contract_c_candidate_a_rc2_consumer_b_aperture/handoff-independent-supports.json",
+    "research/contract_c_candidate_a_rc2_consumer_b_aperture/handoff-no-deciding.json",
+    "research/contract_c_candidate_a_rc2_consumer_b_aperture/handoff-unsupported-family.json"
+  ],
+  "forbidden_inputs_read": [],
+  "prereveal_tests": {
+    "command": "python3 -m unittest candidate.test_consumer -v",
+    "tests_executed": 38,
+    "passed": 38,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "summary": "4 valid handoffs (independent_supports categorical_support [[S1],[S2]]; alternative_joint_mixed MIXED_RELATIONS [[R1,S1],[R1,S2]]; no_deciding no_deciding_relation empty basis; unsupported_family UNSUPPORTED_SEMANTIC_FAMILY empty basis) plus 1 synthetic valid failed result-set; 33 malformed/metamorphic negatives covering profile, unknown fields, destination injection, stale result_set_id, non-canonical bytes/key order/participant order, whole-digest, Contract-B tuple, proposition substitution, absent evidence ref, producer/resolver mismatch, duplicate participant/basis member/equivalent group/keys, unknown basis participant, residual-in-basis, coverage omission, superset non-minimality, relation/terminal incoherence, execution laundering, non_polarized laundering, winner deletion vs original digest, reason case-folding/substitution, mixed+non_polarized, trailing data, NaN constant, failed-with-propositions, reason spelling variants. All passed."
+  },
+  "contamination_state": "clean",
+  "contamination_record": null,
+  "terminal_prereveal_state": "FROZEN_CANDIDATE_READY_FOR_REVEAL",
+  "statement": "No post-freeze evaluator, reference consumer, prior implementation, prior results, or hidden expected outputs were seen, requested, inspected, discovered, constructed, or run. Work used only the allowed aperture files listed above.",
+  "write_surface": [
+    "candidate/consumer.py",
+    "candidate/test_consumer.py",
+    "candidate/FREEZE_RECEIPT.json"
+  ]
+}
