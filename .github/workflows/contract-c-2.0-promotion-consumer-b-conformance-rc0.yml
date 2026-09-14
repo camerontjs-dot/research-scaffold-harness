@@ -1,0 +1,135 @@
+name: Contract C 2.0 Promotion Consumer B Conformance RC0
+
+on:
+  push:
+    branches:
+      - research/contract-c-2.0-promotion-consumer-b-conformance-rc0-20260913
+    paths:
+      - 'production_profile/**'
+      - '.github/workflows/contract-c-2.0-promotion-consumer-b-conformance-rc0.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CONSUMER_B_SUBJECT: ba09743b28e57bc87dd1f315046ef79b93f24021
+  APPARATUS_PROMOTION: b42c827acb0a9fe65353354d709add0e27bab307
+
+jobs:
+  consumer-conformance:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout frozen Consumer B lineage plus production gate
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify frozen independent subject and experiment authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse "$CONSUMER_B_SUBJECT:candidate/consumer.py")" = "1f0e64d22f11d7dbe620fef209852870e6b5203d"
+          test "$(git rev-parse "$CONSUMER_B_SUBJECT:candidate/test_consumer.py")" = "54e03ff388974fb3524b164c17b7af9f7cf9870c"
+          test "$(git rev-parse "$CONSUMER_B_SUBJECT:candidate/FREEZE_RECEIPT.json")" = "1f57979b23eb37d8611acfb58b288e4952eaa717"
+          test "$(git hash-object candidate/consumer.py)" = "1f0e64d22f11d7dbe620fef209852870e6b5203d"
+          test "$(git hash-object candidate/test_consumer.py)" = "54e03ff388974fb3524b164c17b7af9f7cf9870c"
+          test "$(git hash-object candidate/FREEZE_RECEIPT.json)" = "1f57979b23eb37d8611acfb58b288e4952eaa717"
+          test "$(git hash-object research/contract_c_candidate_a_rc2_consumer_b_aperture/AUTHORITIES.json)" = "3f4ec7063679f5fb5e2797eb553ec2886275d225"
+          test "$(git hash-object research/contract_c_candidate_a_rc2_consumer_b_aperture/CONTRACT_B_INDEXES.json)" = "7aad2771f603c724c44e948863f1fd8f0bad14e2"
+          test "$(git hash-object research/contract_c_candidate_a_rc2_consumer_b_aperture/handoff-independent-supports.json)" = "ddb4f97d1815b56e966f9f7e184b25b049dcb98c"
+          test "$(git hash-object research/contract_c_candidate_a_rc2_consumer_b_aperture/handoff-alternative-joint-mixed.json)" = "fb2eb1872d2a17229caf79fbd6d7a311aae3e2c9"
+          test "$(git hash-object research/contract_c_candidate_a_rc2_consumer_b_aperture/handoff-no-deciding.json)" = "e82a560d58871653c993640ceae887b98b1dbd20"
+          test "$(git hash-object research/contract_c_candidate_a_rc2_consumer_b_aperture/handoff-unsupported-family.json)" = "efa7cd5226bb17d749f1b494c897775564c9ac33"
+          test "$(git hash-object production_profile/PREREGISTRATION.md)" = "4d43beb805f081098d63f48fb8de7e03a0d47ef9"
+          test "$(git hash-object production_profile/evaluate.py)" = "ed1f47d13180f1f96bca13e731c51ad7576e3244"
+          test "$(git hash-object production_profile/FREEZE_RECEIPT.md)" = "f0e2614cb91898e72d574ef959c8c41fdccd2ee9"
+          changed="$(git diff --name-only "$CONSUMER_B_SUBJECT"...HEAD)"
+          printf '%s\n' "$changed"
+          if printf '%s\n' "$changed" | grep -Ev '^(production_profile/|\.github/workflows/contract-c-2\.0-promotion-consumer-b-conformance-rc0\.yml$)' | grep -q .; then
+            echo 'production-profile gate modified frozen Consumer B subject' >&2
+            exit 1
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Replay frozen prereveal Consumer B suite unchanged
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m unittest -v candidate/test_consumer.py 2>&1 | tee consumer-b-prereveal.txt
+          grep -Eq 'Ran 38 tests' consumer-b-prereveal.txt
+          grep -Eq '^OK$' consumer-b-prereveal.txt
+
+      - name: Checkout exact locally-qualified Apparatus C2 promotion head
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/apparatus-contracts
+          ref: ${{ env.APPARATUS_PROMOTION }}
+          path: _apparatus
+          fetch-depth: 0
+
+      - name: Verify exact production C2 subject
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C _apparatus rev-parse HEAD)" = "$APPARATUS_PROMOTION"
+          test "$(git -C _apparatus hash-object schema/contract-c/2.0.0/wire-spec.md)" = "960df40619f0fbeb630c4ea8b1042ed3a293a7a3"
+          test "$(git -C _apparatus hash-object schema/contract-c/2.0.0/schema.json)" = "45ebaa1e5b7342422b4d6a19f897e72de4bb148f"
+          test "$(git -C _apparatus hash-object validators/contract_c_rc2.py)" = "1d2ecd228cde807138013c33c8675c3003421d3c"
+          test "$(git -C _apparatus hash-object validators/contract_c_v2.py)" = "bb5a381f89828ddc92adfdedcc4e9d98069f436d"
+          test "$(git -C _apparatus hash-object schema/contract-c/versions.json)" = "6e805e274f8b1f491bf0c10735a46962ab91d2d4"
+
+      - name: Compile production-profile evaluator
+        run: python -m py_compile production_profile/evaluate.py
+
+      - name: Execute preregistered production-profile Consumer B conformance
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/contract-c-2.0-promotion-consumer-b-conformance-rc0
+          python production_profile/evaluate.py \
+            _apparatus \
+            build/contract-c-2.0-promotion-consumer-b-conformance-rc0/EVALUATION.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path('build/contract-c-2.0-promotion-consumer-b-conformance-rc0/EVALUATION.json').read_text())
+          assert result['research_disposition'] == 'SUPPORTED_C2_PROMOTION_INDEPENDENT_CONSUMER_CONFORMANCE'
+          assert result['failures'] == []
+          assert all(result['checks'].values())
+          assert result['interpretation']['consumer_b_modified'] is False
+          assert result['interpretation']['producer_private_state_required'] is False
+          assert result['interpretation']['production_profile_consumer_gate_satisfied'] is True
+          assert result['interpretation']['postreveal_27_attack_programme_rerun_here'] is False
+          assert result['interpretation']['contract_c_2_released'] is False
+          assert result['interpretation']['promotion_merge_authorized'] is False
+          print(json.dumps({
+              'research_disposition': result['research_disposition'],
+              'failures': result['failures'],
+              'production_profile_consumer_gate_satisfied': result['interpretation']['production_profile_consumer_gate_satisfied'],
+          }, sort_keys=True))
+          PY
+
+      - name: Package evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=build/contract-c-2.0-promotion-consumer-b-conformance-rc0
+          mkdir -p "$out"
+          cp production_profile/PREREGISTRATION.md "$out/"
+          cp production_profile/FREEZE_RECEIPT.md "$out/"
+          cp consumer-b-prereveal.txt "$out/" 2>/dev/null || true
+          git rev-parse HEAD > "$out/RSH_SHA.txt"
+          git -C _apparatus rev-parse HEAD > "$out/APPARATUS_SHA.txt" 2>/dev/null || true
+          tar -czf contract-c-2.0-promotion-consumer-b-conformance-rc0-${GITHUB_RUN_ID}.tar.gz -C build contract-c-2.0-promotion-consumer-b-conformance-rc0
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: contract-c-2.0-promotion-consumer-b-conformance-rc0-${{ github.run_id }}
+          path: contract-c-2.0-promotion-consumer-b-conformance-rc0-${{ github.run_id }}.tar.gz
+          if-no-files-found: error
