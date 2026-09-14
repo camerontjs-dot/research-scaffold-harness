@@ -1,0 +1,25 @@
+{
+  "classification": "Draft Research Evaluation",
+  "terminal_pre_execution_state": "FROZEN_EVALUATOR_READY_TO_RUN",
+  "frozen_subject_commit": "ba09743b28e57bc87dd1f315046ef79b93f24021",
+  "frozen_subject_blobs": {
+    "candidate/consumer.py": "1f0e64d22f11d7dbe620fef209852870e6b5203d",
+    "candidate/test_consumer.py": "54e03ff388974fb3524b164c17b7af9f7cf9870c",
+    "candidate/FREEZE_RECEIPT.json": "1f57979b23eb37d8611acfb58b288e4952eaa717"
+  },
+  "preregistration_commit": "dcf65e0b12a5cb84960f443508612a204192f094",
+  "preregistration_blob": "6806e84169707a8021a0682c28cb6a71c96f4001",
+  "evaluator_implementation_commit": "1d841e0b36c90983b11eb122e1755b1548c95b72",
+  "evaluator_blob": "6ba7be4b0820500b5634287f4da0e4433575cf18",
+  "weak_control_blob": "3112093ddec1449e4a0899899bcf37fda6f6454c",
+  "execution_has_occurred": false,
+  "candidate_mutated_after_freeze": false,
+  "evaluator_mutation_after_freeze_permitted": false,
+  "launch_plumbing_may_be_added_after_freeze": true,
+  "governance_deviation": {
+    "accidental_main_placeholder_commit": "dfe5ce90364398c16ec28fd047b2dc8849525884",
+    "immediate_revert_commit": "3ed53b13de18e16aa17e71a602218481bad4fc5e",
+    "effect_on_candidate_independence": "none observed; occurred after subject freeze and contained no evaluator semantics"
+  },
+  "boundary": "Research consumer conformance only; no merge, release, promotion, official Contract C version, Decision policy, Contract E/Authorization, or execution authority."
+}

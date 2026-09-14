@@ -1,0 +1,64 @@
+name: Contract C Consumer B Post-Reveal Evaluation
+
+on:
+  push:
+    branches:
+      - research-infra/contract-c-candidate-a-rc2-consumer-b-postreveal-20260913
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout frozen evaluator branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Show exact identities
+        run: |
+          git rev-parse HEAD
+          git rev-parse HEAD:candidate/consumer.py
+          git rev-parse HEAD:candidate/test_consumer.py
+          git rev-parse HEAD:candidate/FREEZE_RECEIPT.json
+          git rev-parse HEAD:post_reveal/evaluator.py
+          git rev-parse HEAD:post_reveal/weak_control.py
+          git rev-parse HEAD:post_reveal/EVALUATOR_FREEZE_RECEIPT.json
+
+      - name: Run post-reveal evaluator
+        id: evaluator
+        continue-on-error: true
+        run: |
+          python3 post_reveal/evaluator.py --output post_reveal/EVALUATION.json | tee post_reveal/EVALUATION.log
+
+      - name: Upload preserved evaluation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: contract-c-consumer-b-postreveal-evaluation
+          path: |
+            post_reveal/EVALUATION.json
+            post_reveal/EVALUATION.log
+            post_reveal/EVALUATOR_FREEZE_RECEIPT.json
+            post_reveal/PREREGISTRATION.md
+          if-no-files-found: warn
+
+      - name: Enforce scientific disposition
+        if: always()
+        run: |
+          test -f post_reveal/EVALUATION.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('post_reveal/EVALUATION.json')
+          data = json.loads(p.read_text())
+          print('disposition=' + data.get('disposition', '<missing>'))
+          if data.get('disposition') != 'SUPPORTED_INDEPENDENT_CONSUMER_CONFORMANCE':
+              raise SystemExit(1)
+          PY
