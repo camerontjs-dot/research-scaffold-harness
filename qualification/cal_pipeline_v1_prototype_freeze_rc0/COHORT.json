@@ -1,0 +1,327 @@
+{
+  "schema": "cal-pipeline-v1-prototype-freeze-cohort-v1",
+  "campaign": "cal-pipeline-v1-prototype-freeze-rc0",
+  "frozen_before_runner": true,
+  "cases": [
+    {
+      "id": "cg-declared-frozen-fixture",
+      "kind": "claimgate_fixture",
+      "fixture": "declared.json",
+      "expected_claimgate_state": "DECLARED",
+      "expect_contract_a": true,
+      "expect_eb": true,
+      "downstream": "stop_after_eb"
+    },
+    {
+      "id": "cg-not-needed-frozen-fixture",
+      "kind": "claimgate_fixture",
+      "fixture": "not_needed.json",
+      "expected_claimgate_state": "NOT_NEEDED",
+      "expect_contract_a": true,
+      "expect_eb": true,
+      "cal_target": {
+        "semantic_family": "assertion_scope",
+        "fields": {
+          "subject": "Valve Cerulean",
+          "state": "inactive"
+        }
+      },
+      "expected_cal": {
+        "conclusion": "not_checkable",
+        "failure_code": "UNSUPPORTED_SEMANTIC_FAMILY"
+      },
+      "expected_decision_disposition": "hold",
+      "downstream": "through_contract_d"
+    },
+    {
+      "id": "cg-abstained-frozen-fixture",
+      "kind": "claimgate_fixture",
+      "fixture": "abstained.json",
+      "expected_claimgate_state": "ABSTAINED",
+      "expect_contract_a": false,
+      "expect_eb": false,
+      "downstream": "stop_at_claimgate"
+    },
+    {
+      "id": "strict-support-raw",
+      "kind": "raw_request",
+      "request": {
+        "handoff_id": "pipeline-freeze-strict-support",
+        "producer_id": "pipeline-freeze-harness",
+        "producer_version": "rc0",
+        "work_id": "pipeline-freeze-strict-support",
+        "root_id": "pipeline-strict-support-001",
+        "root_text": "Women had a higher rate than Men.",
+        "sources": [
+          {
+            "source_id": "strict-support-source",
+            "media_type": "text/plain; charset=utf-8",
+            "content": "Women had a higher rate than Men."
+          }
+        ]
+      },
+      "expected_claimgate_state": "NOT_NEEDED",
+      "expect_contract_a": true,
+      "expect_eb": true,
+      "cal_target": {
+        "semantic_family": "strict_comparison",
+        "fields": {
+          "lhs_entity": "Women",
+          "rhs_entity": "Men",
+          "comparison_direction": "MORE_THAN"
+        }
+      },
+      "expected_cal": {
+        "conclusion": "supported",
+        "failure_code": null
+      },
+      "expected_decision_disposition": "clear",
+      "contract_e_dry": true,
+      "downstream": "through_contract_e_dry"
+    },
+    {
+      "id": "strict-refute-raw",
+      "kind": "raw_request",
+      "request": {
+        "handoff_id": "pipeline-freeze-strict-refute",
+        "producer_id": "pipeline-freeze-harness",
+        "producer_version": "rc0",
+        "work_id": "pipeline-freeze-strict-refute",
+        "root_id": "pipeline-strict-refute-001",
+        "root_text": "Women had a higher rate than Men.",
+        "sources": [
+          {
+            "source_id": "strict-refute-source",
+            "media_type": "text/plain; charset=utf-8",
+            "content": "Women had a lower rate than Men."
+          }
+        ]
+      },
+      "expected_claimgate_state": "NOT_NEEDED",
+      "expect_contract_a": true,
+      "expect_eb": true,
+      "cal_target": {
+        "semantic_family": "strict_comparison",
+        "fields": {
+          "lhs_entity": "Women",
+          "rhs_entity": "Men",
+          "comparison_direction": "MORE_THAN"
+        }
+      },
+      "expected_cal": {
+        "conclusion": "contradicted",
+        "failure_code": null
+      },
+      "expected_decision_disposition": "hold",
+      "downstream": "through_contract_d"
+    },
+    {
+      "id": "strict-mixed-raw",
+      "kind": "raw_request",
+      "request": {
+        "handoff_id": "pipeline-freeze-strict-mixed",
+        "producer_id": "pipeline-freeze-harness",
+        "producer_version": "rc0",
+        "work_id": "pipeline-freeze-strict-mixed",
+        "root_id": "pipeline-strict-mixed-001",
+        "root_text": "Women had a higher rate than Men.",
+        "sources": [
+          {
+            "source_id": "strict-mixed-support-source",
+            "media_type": "text/plain; charset=utf-8",
+            "content": "Women had a higher rate than Men."
+          },
+          {
+            "source_id": "strict-mixed-refute-source",
+            "media_type": "text/plain; charset=utf-8",
+            "content": "Women had a lower rate than Men."
+          }
+        ]
+      },
+      "expected_claimgate_state": "NOT_NEEDED",
+      "expect_contract_a": true,
+      "expect_eb": true,
+      "cal_target": {
+        "semantic_family": "strict_comparison",
+        "fields": {
+          "lhs_entity": "Women",
+          "rhs_entity": "Men",
+          "comparison_direction": "MORE_THAN"
+        }
+      },
+      "expected_cal": {
+        "conclusion": "not_checkable",
+        "failure_code": "MIXED_RELATIONS"
+      },
+      "expected_decision_disposition": "hold",
+      "downstream": "through_contract_d"
+    },
+    {
+      "id": "strict-no-deciding-raw",
+      "kind": "raw_request",
+      "request": {
+        "handoff_id": "pipeline-freeze-strict-no-deciding",
+        "producer_id": "pipeline-freeze-harness",
+        "producer_version": "rc0",
+        "work_id": "pipeline-freeze-strict-no-deciding",
+        "root_id": "pipeline-strict-no-deciding-001",
+        "root_text": "Women had a higher rate than Men.",
+        "sources": [
+          {
+            "source_id": "strict-no-deciding-source",
+            "media_type": "text/plain; charset=utf-8",
+            "content": "Cats had a higher rate than Dogs."
+          }
+        ]
+      },
+      "expected_claimgate_state": "NOT_NEEDED",
+      "expect_contract_a": true,
+      "expect_eb": true,
+      "cal_target": {
+        "semantic_family": "strict_comparison",
+        "fields": {
+          "lhs_entity": "Women",
+          "rhs_entity": "Men",
+          "comparison_direction": "MORE_THAN"
+        }
+      },
+      "expected_cal": {
+        "conclusion": "not_checkable",
+        "failure_code": "NO_DECIDING_RELATION"
+      },
+      "expected_decision_disposition": "hold",
+      "downstream": "through_contract_d"
+    },
+    {
+      "id": "event-support-raw",
+      "kind": "raw_request",
+      "request": {
+        "handoff_id": "pipeline-freeze-event-support",
+        "producer_id": "pipeline-freeze-harness",
+        "producer_version": "rc0",
+        "work_id": "pipeline-freeze-event-support",
+        "root_id": "pipeline-event-support-001",
+        "root_text": "Alice reviewed dossier before Bob archived dossier.",
+        "sources": [
+          {
+            "source_id": "event-support-source",
+            "media_type": "text/plain; charset=utf-8",
+            "content": "Alice reviewed dossier before Bob archived dossier."
+          }
+        ]
+      },
+      "expected_claimgate_state": "NOT_NEEDED",
+      "expect_contract_a": true,
+      "expect_eb": true,
+      "cal_target": {
+        "semantic_family": "direct_event_order",
+        "fields": {
+          "left_subject": "alice",
+          "left_predicate": "review",
+          "left_object": "dossier",
+          "left_polarity": "positive",
+          "temporal_relation": "BEFORE",
+          "right_subject": "bob",
+          "right_predicate": "archive",
+          "right_object": "dossier",
+          "right_polarity": "positive"
+        }
+      },
+      "expected_cal": {
+        "conclusion": "supported",
+        "failure_code": null
+      },
+      "expected_decision_disposition": "clear",
+      "downstream": "through_contract_d"
+    },
+    {
+      "id": "event-refute-raw",
+      "kind": "raw_request",
+      "request": {
+        "handoff_id": "pipeline-freeze-event-refute",
+        "producer_id": "pipeline-freeze-harness",
+        "producer_version": "rc0",
+        "work_id": "pipeline-freeze-event-refute",
+        "root_id": "pipeline-event-refute-001",
+        "root_text": "Alice reviewed dossier before Bob archived dossier.",
+        "sources": [
+          {
+            "source_id": "event-refute-source",
+            "media_type": "text/plain; charset=utf-8",
+            "content": "Alice reviewed dossier after Bob archived dossier."
+          }
+        ]
+      },
+      "expected_claimgate_state": "NOT_NEEDED",
+      "expect_contract_a": true,
+      "expect_eb": true,
+      "cal_target": {
+        "semantic_family": "direct_event_order",
+        "fields": {
+          "left_subject": "alice",
+          "left_predicate": "review",
+          "left_object": "dossier",
+          "left_polarity": "positive",
+          "temporal_relation": "BEFORE",
+          "right_subject": "bob",
+          "right_predicate": "archive",
+          "right_object": "dossier",
+          "right_polarity": "positive"
+        }
+      },
+      "expected_cal": {
+        "conclusion": "contradicted",
+        "failure_code": null
+      },
+      "expected_decision_disposition": "hold",
+      "downstream": "through_contract_d"
+    },
+    {
+      "id": "event-unresolved-precedence-raw",
+      "kind": "raw_request",
+      "request": {
+        "handoff_id": "pipeline-freeze-event-unresolved",
+        "producer_id": "pipeline-freeze-harness",
+        "producer_version": "rc0",
+        "work_id": "pipeline-freeze-event-unresolved",
+        "root_id": "pipeline-event-unresolved-001",
+        "root_text": "Alice reviewed dossier before Bob archived dossier.",
+        "sources": [
+          {
+            "source_id": "event-unresolved-support-source",
+            "media_type": "text/plain; charset=utf-8",
+            "content": "Alice reviewed dossier before Bob archived dossier."
+          },
+          {
+            "source_id": "event-unresolved-negative-source",
+            "media_type": "text/plain; charset=utf-8",
+            "content": "Alice did not review dossier before Bob archived dossier."
+          }
+        ]
+      },
+      "expected_claimgate_state": "NOT_NEEDED",
+      "expect_contract_a": true,
+      "expect_eb": true,
+      "cal_target": {
+        "semantic_family": "direct_event_order",
+        "fields": {
+          "left_subject": "alice",
+          "left_predicate": "review",
+          "left_object": "dossier",
+          "left_polarity": "positive",
+          "temporal_relation": "BEFORE",
+          "right_subject": "bob",
+          "right_predicate": "archive",
+          "right_object": "dossier",
+          "right_polarity": "positive"
+        }
+      },
+      "expected_cal": {
+        "conclusion": "not_checkable",
+        "failure_code": "RELATION_UNRESOLVED"
+      },
+      "expected_decision_disposition": "hold",
+      "downstream": "through_contract_d"
+    }
+  ]
+}
