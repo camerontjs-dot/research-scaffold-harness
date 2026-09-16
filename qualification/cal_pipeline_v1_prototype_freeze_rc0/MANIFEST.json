@@ -1,0 +1,83 @@
+{
+  "schema": "cal-pipeline-v1-prototype-freeze-manifest-v1",
+  "campaign": "cal-pipeline-v1-prototype-freeze-rc0",
+  "objective": "Qualify one exact inspectable CAL Pipeline V1 prototype for local smoke/use-driven testing without promoting any component to production.",
+  "subjects": {
+    "claimgate": {
+      "repository": "camerontjs-dot/proposition-authoring",
+      "commit": "b3278e960707720f5add10935027a7187725d446",
+      "semantic_source": "f9d0ae9ba81756c51d7f1d433616d699eb9b6fd3",
+      "contract_a_version": "2.0.0",
+      "contract_a_wire": "contract-a-wire-candidate-rc2"
+    },
+    "evidence_bundler": {
+      "repository": "camerontjs-dot/evidence-bundler",
+      "frozen_head": "4e1f6fe00e7c350b28f52bfea14f1f8988847884",
+      "tested_subject": "8e1e15a96308d20be24b0bd0f0a4d554b0f020cc",
+      "profile": "eb-v1-integration-10x3-rc0",
+      "contract_b_version": "1.2.0",
+      "contract_b_lock": "c314e53bd91c0736aa4370a364673b069aceb43e"
+    },
+    "cal": {
+      "repository": "camerontjs-dot/claim-audit-lab",
+      "producer_authority_head": "8204417f478cfbd891499145a7edec5ee33405ad",
+      "integration_records_head": "d03d0e960ad82d889e6763fd4fb53cd24babd187",
+      "frozen_runtime_implementation": "80835a57e121c66d22c68f349abf8e318de0e232",
+      "semantic_implementation_sha": "847cc970642bb648dc994b929c2053b5c9d4648c",
+      "profile": "cal-v1-integration-candidate-v1",
+      "c2_materializer_blob": "ef32fa4fca52a2bb7fe2896b378f9b6fdef0dfde"
+    },
+    "contract_c2": {
+      "repository": "camerontjs-dot/apparatus-contracts",
+      "promotion_head": "b42c827acb0a9fe65353354d709add0e27bab307",
+      "compatibility_version": "2.0.0",
+      "wire_profile": "contract-c-successor-candidate-a-rc2-research"
+    },
+    "contract_c2_resolver": {
+      "repository": "camerontjs-dot/apparatus-contracts",
+      "authority_freeze": "1d33e0612befcf8016816197c90c062373796df9",
+      "resolver_blob": "1a408246fd3bef0758a958ae716b44ea74bc0689",
+      "policy_sha256": "44ecc33519fa8911079595d322f5f0decbf0389af42e153ac32214931798e42c",
+      "qualification_run": 35053521021,
+      "qualification_artifact_digest": "sha256:e7c9f2c482f7fa71ff46ee5df03ed407250d47c57149889d1f8fcb1d353717d7"
+    },
+    "decision": {
+      "repository": "camerontjs-dot/decision-engine",
+      "c2_integration_head": "b1bcc33e2b5ef0707b8cbf7dd8e821b2d34d1b55",
+      "released_v1_base": "7be709b2141c767c5da89b8b94cf90233c4238fe"
+    },
+    "contract_c1": {
+      "repository": "camerontjs-dot/apparatus-contracts",
+      "release_commit": "5fe55f9ed5d0ee9f026ca1b077e9d70ce0487ea1",
+      "tag": "contract-c-v1.0.0",
+      "tag_object": "6bd135a948e407212b2e77ec18ac5c402f93565e"
+    },
+    "contract_d": {
+      "repository": "camerontjs-dot/apparatus-contracts",
+      "release_commit": "298a1a0f7b7b6d7712e11200d04faec3e1ca169b",
+      "tag": "contract-d-v1.0.0",
+      "tag_object": "6eadd688b482f3c9fce2ce5e7a2841089d852096"
+    },
+    "contract_e": {
+      "repository": "camerontjs-dot/apparatus-contracts",
+      "research_head": "a678c73a661853a3a704666fc6bbf29fa378948f",
+      "candidate_freeze": "30dd929b310727737488192af1579729b2d4dd3e",
+      "status": "SUPPORTED_RESEARCH_NOT_PRODUCTION_READY"
+    }
+  },
+  "producer_authority_evidence": {
+    "cal_rc2_run": 35053664704,
+    "cal_rc2_artifact": 10430120937,
+    "cal_rc2_artifact_digest": "sha256:57a199bbea8726401f1d6430469b65be08cdc504c74dfd560c56aeead8a3f064",
+    "cal_rc2_evaluation_digest": "sha256:9372282dff0fc68733573d1635411ad1d4af548a2f04bf43d6e95f25b09c9a9e",
+    "classification": "SUPPORTED_CURRENT_CAL_TO_C2_WITH_RESOLVER_AUTHORITY"
+  },
+  "safety": {
+    "automatic_action_allowed": false,
+    "authorization_execution_allowed": false,
+    "mainframe_mutation_allowed": false,
+    "brain_promotion_allowed": false,
+    "midrun_semantic_tuning_allowed": false,
+    "merge_or_release_authorized": false
+  }
+}
