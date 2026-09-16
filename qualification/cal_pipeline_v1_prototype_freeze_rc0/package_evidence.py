@@ -79,7 +79,7 @@ def main() -> int:
         "archive_digest_file": digest_path.name,
         "file_count": len(file_hashes),
         "result_sha256": file_hashes.get("RESULT.json"),
-        "self_referential_archive_identity": false,
+        "self_referential_archive_identity": False,
     }
     package_path = build_root / f"{CAMPAIGN}-PACKAGE.json"
     json_write(package_path, package)
