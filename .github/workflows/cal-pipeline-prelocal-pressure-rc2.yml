@@ -1,0 +1,206 @@
+name: CAL Pipeline pre-local pressure RC2
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/cal-pipeline-prelocal-pressure-rc2.yml"
+      - "experiments/cal_pipeline_prelocal_rc2/**"
+      - "experiments/cal_pipeline_prelocal_rc1/RUN1_RECONCILIATION.md"
+
+permissions:
+  contents: read
+
+jobs:
+  pressure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/proposition-authoring
+          ref: b3278e960707720f5add10935027a7187725d446
+          path: deps/claimgate
+      - uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/evidence-bundler
+          ref: 4e1f6fe00e7c350b28f52bfea14f1f8988847884
+          path: deps/eb
+      - uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/claim-audit-lab
+          ref: d03d0e960ad82d889e6763fd4fb53cd24babd187
+          path: deps/cal
+      - uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/apparatus-contracts
+          ref: b42c827acb0a9fe65353354d709add0e27bab307
+          path: deps/apparatus-c2
+      - uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/apparatus-contracts
+          ref: 5fe55f9ed5d0ee9f026ca1b077e9d70ce0487ea1
+          path: deps/apparatus-c1
+          fetch-depth: 0
+          fetch-tags: true
+      - uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/apparatus-contracts
+          ref: 298a1a0f7b7b6d7712e11200d04faec3e1ca169b
+          path: deps/apparatus-d
+          fetch-depth: 0
+          fetch-tags: true
+      - uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/apparatus-contracts
+          ref: a678c73a661853a3a704666fc6bbf29fa378948f
+          path: deps/apparatus-e
+      - uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/decision-engine
+          ref: b1bcc33e2b5ef0707b8cbf7dd8e821b2d34d1b55
+          path: deps/decision
+
+      - name: Install bounded environments
+        run: |
+          set -euo pipefail
+          python -m venv .venv-cg
+          .venv-cg/bin/python -m pip install --upgrade pip
+          .venv-cg/bin/python -m pip install -e 'deps/claimgate[dev]'
+          (cd deps/claimgate && ../../.venv-cg/bin/python scripts/fetch_frozen_predecessors.py)
+          python -m venv .venv-eb
+          .venv-eb/bin/python -m pip install --upgrade pip
+          .venv-eb/bin/python -m pip install 'click>=8.1,<9' 'pdfminer.six>=20231228,<20270000' 'pydantic>=2.6,<3' 'pypdf>=4,<7' 'PyYAML>=6,<7' 'rank-bm25>=0.2.2,<0.3' 'pytest>=8,<10'
+          .venv-eb/bin/python -m pip install -e deps/eb --no-deps
+          python -m venv .venv-cal
+          .venv-cal/bin/python -m pip install --upgrade pip
+          .venv-cal/bin/python -m pip install -e 'deps/cal[dev]'
+          .venv-cal/bin/python -m pip install rfc8785
+          mkdir -p build/cal_pipeline_prelocal_rc2/component-logs
+
+      - name: ClaimGate exact qualification-runbook suites
+        id: claimgate_suite
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          cd deps/claimgate
+          {
+            ../../.venv-cg/bin/python -m pytest -q tests/test_contract_a.py tests/test_convergence_choices.py tests/test_scope_ambiguity.py tests/test_rc1_development_cases.py tests/test_weak_controls.py tests/test_rc2_semantic_instruments.py
+            ../../.venv-cg/bin/python -m pytest -q tests/test_rc3_coverage.py tests/test_rc4a_profile_alignment.py
+            ../../.venv-cg/bin/ruff check src tests scripts integration/claimgate_v1_candidate
+          } 2>&1 | tee "$GITHUB_WORKSPACE/build/cal_pipeline_prelocal_rc2/component-logs/claimgate.log"
+
+      - name: Evidence Bundler integration-boundary suite
+        id: eb_suite
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          .venv-eb/bin/python -m pytest -q deps/eb/tests/test_v1_contract_b_projection.py 2>&1 | tee build/cal_pipeline_prelocal_rc2/component-logs/evidence-bundler.log
+
+      - name: Current CAL focused pressure suite
+        id: cal_suite
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          cd deps/cal
+          ../../.venv-cal/bin/python -m pytest -q tests/production/test_convergence_semantics.py tests/production/test_contract_b_integration_candidate.py tests/production/test_contract_b_run_surface.py tests/production/test_rc1_semantic_behavior.py tests/production/test_production_cli.py tests/production/test_semantic_blob_identity.py tests/production/test_rc1_authority_integrity.py tests/production/test_target_identity_binding.py 2>&1 | tee "$GITHUB_WORKSPACE/build/cal_pipeline_prelocal_rc2/component-logs/cal.log"
+
+      - name: Contract C2 validator pressure suite
+        id: c2_suite
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          cd deps/apparatus-c2
+          ../../.venv-cal/bin/python -m pytest -q tests/test_contract_c_v2.py 2>&1 | tee "$GITHUB_WORKSPACE/build/cal_pipeline_prelocal_rc2/component-logs/contract-c2.log"
+
+      - name: Decision C2 ingress hostile-control suite
+        id: decision_suite
+        continue-on-error: true
+        env:
+          APPARATUS_CONTRACT_C2_DIR: ${{ github.workspace }}/deps/apparatus-c2
+          APPARATUS_CONTRACT_C_DIR: ${{ github.workspace }}/deps/apparatus-c1
+          APPARATUS_CONTRACT_D_DIR: ${{ github.workspace }}/deps/apparatus-d
+          DECISION_C2_OUTPUT_DIR: ${{ github.workspace }}/build/decision-c2-suite-rc2
+          PYTHON: ${{ github.workspace }}/.venv-cal/bin/python
+        run: |
+          set -euo pipefail
+          cd deps/decision
+          node tests/contractC2Ingress.integration.mjs 2>&1 | tee "$GITHUB_WORKSPACE/build/cal_pipeline_prelocal_rc2/component-logs/decision.log"
+
+      - name: Contract E RC3 successor 65-control suite
+        id: contract_e_suite
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          cd deps/apparatus-e/docs/research/contract-e/v1-rc3-target-reference-cardinality-successor-20260903/candidate
+          ${{ github.workspace }}/.venv-cal/bin/python test_successor.py 2>&1 | tee "$GITHUB_WORKSPACE/build/cal_pipeline_prelocal_rc2/component-logs/contract-e.log"
+
+      - name: Execute RC2 cross-repository successor
+        id: cross_chain
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          .venv-cal/bin/python experiments/cal_pipeline_prelocal_rc2/run_pressure.py 2>&1 | tee build/cal_pipeline_prelocal_rc2/component-logs/cross-chain-wrapper.log
+
+      - name: Record suite outcomes
+        if: always()
+        env:
+          CLAIMGATE_SUITE: ${{ steps.claimgate_suite.outcome }}
+          EB_SUITE: ${{ steps.eb_suite.outcome }}
+          CAL_SUITE: ${{ steps.cal_suite.outcome }}
+          C2_SUITE: ${{ steps.c2_suite.outcome }}
+          DECISION_SUITE: ${{ steps.decision_suite.outcome }}
+          CONTRACT_E_SUITE: ${{ steps.contract_e_suite.outcome }}
+          CROSS_CHAIN: ${{ steps.cross_chain.outcome }}
+        run: |
+          mkdir -p build/cal_pipeline_prelocal_rc2
+          .venv-cal/bin/python - <<'PY'
+          import json, os
+          from pathlib import Path
+          value = {"claim_gate": os.environ["CLAIMGATE_SUITE"], "evidence_bundler": os.environ["EB_SUITE"], "cal": os.environ["CAL_SUITE"], "contract_c2": os.environ["C2_SUITE"], "decision": os.environ["DECISION_SUITE"], "contract_e": os.environ["CONTRACT_E_SUITE"], "cross_chain": os.environ["CROSS_CHAIN"]}
+          Path("build/cal_pipeline_prelocal_rc2/COMPONENT_STATUS.json").write_text(json.dumps(value, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+          print(json.dumps(value, sort_keys=True))
+          PY
+
+      - name: Upload RC2 evidence before readiness gate
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cal-pipeline-prelocal-pressure-rc2
+          path: build/cal_pipeline_prelocal_rc2
+          if-no-files-found: warn
+
+      - name: Scientific readiness gate
+        if: always()
+        env:
+          CLAIMGATE_SUITE: ${{ steps.claimgate_suite.outcome }}
+          EB_SUITE: ${{ steps.eb_suite.outcome }}
+          CAL_SUITE: ${{ steps.cal_suite.outcome }}
+          C2_SUITE: ${{ steps.c2_suite.outcome }}
+          DECISION_SUITE: ${{ steps.decision_suite.outcome }}
+          CONTRACT_E_SUITE: ${{ steps.contract_e_suite.outcome }}
+          CROSS_CHAIN: ${{ steps.cross_chain.outcome }}
+        run: |
+          set -euo pipefail
+          .venv-cal/bin/python - <<'PY'
+          import json, os
+          from pathlib import Path
+          statuses = [os.environ[k] for k in ("CLAIMGATE_SUITE", "EB_SUITE", "CAL_SUITE", "C2_SUITE", "DECISION_SUITE", "CONTRACT_E_SUITE", "CROSS_CHAIN")]
+          if any(value != "success" for value in statuses):
+              print("RC2_COMPONENT_OR_APPARATUS_NONPASS", statuses)
+              raise SystemExit(1)
+          result = json.loads(Path("build/cal_pipeline_prelocal_rc2/RESULT.json").read_text())
+          classification = result.get("classification")
+          print("SCIENTIFIC_CLASSIFICATION=" + str(classification))
+          if classification != "SUPPORTED_FOR_LOCAL_PIPELINE_SMOKE_WITH_BOUNDS":
+              raise SystemExit(1)
+          PY

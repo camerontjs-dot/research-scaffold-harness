@@ -1,0 +1,21 @@
+{
+  "schema": "cal-pipeline-prelocal-pressure-manifest-v1",
+  "campaign": "cal-pipeline-prelocal-pressure-rc2",
+  "predecessor": {
+    "workflow_run": 35050244828,
+    "artifact": 10428358814,
+    "artifact_digest": "sha256:795ab06ff37288e28a98ee5b17afabeac6046d192f93157d02d5b737b105d695",
+    "disposition": "APPARATUS_FAILURE_BEFORE_EB_CROSS_CHAIN_EXECUTION"
+  },
+  "subjects": {
+    "claimgate": {"repository": "camerontjs-dot/proposition-authoring", "commit": "b3278e960707720f5add10935027a7187725d446", "semantic_source": "f9d0ae9ba81756c51d7f1d433616d699eb9b6fd3", "contract_a_version": "2.0.0", "contract_a_wire": "contract-a-wire-candidate-rc2"},
+    "evidence_bundler": {"repository": "camerontjs-dot/evidence-bundler", "frozen_head": "4e1f6fe00e7c350b28f52bfea14f1f8988847884", "tested_subject": "8e1e15a96308d20be24b0bd0f0a4d554b0f020cc", "profile": "eb-v1-integration-10x3-rc0", "contract_b_version": "1.2.0", "contract_b_lock": "c314e53bd91c0736aa4370a364673b069aceb43e"},
+    "cal": {"repository": "camerontjs-dot/claim-audit-lab", "records_head": "d03d0e960ad82d889e6763fd4fb53cd24babd187", "frozen_implementation": "80835a57e121c66d22c68f349abf8e318de0e232", "semantic_implementation_sha": "847cc970642bb648dc994b929c2053b5c9d4648c", "qualified_rc1_parent": "a902621e8baea3063dddd7f92ba975aade305464", "profile": "cal-v1-integration-candidate-v1"},
+    "contract_c2": {"repository": "camerontjs-dot/apparatus-contracts", "promotion_head": "b42c827acb0a9fe65353354d709add0e27bab307", "compatibility_version": "2.0.0", "wire_profile": "contract-c-successor-candidate-a-rc2-research"},
+    "contract_c1": {"repository": "camerontjs-dot/apparatus-contracts", "release_commit": "5fe55f9ed5d0ee9f026ca1b077e9d70ce0487ea1", "tag": "contract-c-v1.0.0", "tag_object": "6bd135a948e407212b2e77ec18ac5c402f93565e"},
+    "decision": {"repository": "camerontjs-dot/decision-engine", "c2_integration_head": "b1bcc33e2b5ef0707b8cbf7dd8e821b2d34d1b55", "released_v1_base": "7be709b2141c767c5da89b8b94cf90233c4238fe", "contract_d_authority": "298a1a0f7b7b6d7712e11200d04faec3e1ca169b", "contract_d_tag": "contract-d-v1.0.0", "contract_d_tag_object": "6eadd688b482f3c9fce2ce5e7a2841089d852096"},
+    "contract_e": {"repository": "camerontjs-dot/apparatus-contracts", "research_head": "a678c73a661853a3a704666fc6bbf29fa378948f", "candidate_freeze": "30dd929b310727737488192af1579729b2d4dd3e", "status": "SUPPORTED_RESEARCH_NOT_PRODUCTION_READY"}
+  },
+  "apparatus_delta": {"eb_subprocess_pythonpath": "exact deps/eb/src", "preserve_component_logs": true},
+  "safety": {"automatic_mainframe_mutation": false, "automatic_brain_promotion": false, "production_authorization": false, "real_execution": false, "midrun_semantic_tuning": false}
+}
