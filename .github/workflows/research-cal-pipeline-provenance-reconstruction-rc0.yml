@@ -1,0 +1,66 @@
+name: Research - CAL Pipeline provenance reconstruction RC0
+
+on:
+  push:
+    branches:
+      - research/cal-pipeline-provenance-reconstruction-rc0-20260917
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  provenance-reconstruction-rc0:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout exact branch head
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install frozen evaluator dependency
+        run: python -m pip install 'jsonschema==4.25.1'
+
+      - name: Compile evaluator
+        run: python -m py_compile research/cal_pipeline_provenance_reconstruction_rc0/evaluate.py
+
+      - name: Run preregistered discriminator
+        run: |
+          rm -rf provenance-rc0-out
+          python research/cal_pipeline_provenance_reconstruction_rc0/evaluate.py provenance-rc0-out
+
+      - name: Require supported bounded disposition
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path('provenance-rc0-out/RESULT.json').read_text())
+          allowed = {
+              'SUPPORTED_FIRST_GENUINE_RECONSTRUCTABLE',
+              'SUPPORTED_RECONSTRUCTION_ARCHITECTURE_WITH_RETENTION_GAP',
+          }
+          assert result['disposition'] in allowed, result['disposition']
+          assert result['phase_a']['passed'] is True
+          PY
+
+      - name: Freeze exact execution identity
+        run: |
+          printf '%s\n' "${GITHUB_SHA}" > provenance-rc0-out/EXECUTED_HEAD.txt
+          sha256sum \
+            research/cal_pipeline_provenance_reconstruction_rc0/PREREGISTRATION.md \
+            research/cal_pipeline_provenance_reconstruction_rc0/evaluate.py \
+            provenance-rc0-out/RESULT.json \
+            provenance-rc0-out/RESULT.md \
+            > provenance-rc0-out/SHA256SUMS
+
+      - name: Upload evidence artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cal-pipeline-provenance-reconstruction-rc0
+          path: provenance-rc0-out/
+          if-no-files-found: error
+          retention-days: 90
