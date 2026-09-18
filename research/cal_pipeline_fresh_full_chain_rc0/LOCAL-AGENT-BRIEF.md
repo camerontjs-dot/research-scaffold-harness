@@ -8,7 +8,7 @@ Read `RUN-SERIES.json` and `README.md` first.
 
 ## Goal
 
-For all three prepared cases, run the exact frozen pipeline twice:
+For the three prepared single-proposition full-chain cases, run the exact frozen pipeline twice:
 
 1. **control** — ordinary pipeline execution with no provenance sidecars;
 2. **instrumented** — exact same causal inputs/configuration plus the already-qualified provenance attestation/retention/RunManifest layer.
@@ -24,6 +24,9 @@ Do not update component commits, tune retrieval, invent admissions, repair CAL o
 - `not-needed-single`
 - `declared-all-of`
 - `health-canada-text-representation`
+- `valve-temporal-status`
+
+Also run `declared-all-of` as the prepared decomposition-boundary probe.
 
 Use only the frozen packets in `cases/`.
 
@@ -42,6 +45,18 @@ If external validation fails, preserve it and stop that case as `BLOCKED_AT_CONT
 Omit `--admission` unless an exact, pre-existing, independently justified admission artifact already belongs to the case.
 
 Do not manually accept passages merely to force CAL to assess them.
+
+## CAL target boundary
+
+Use the exact frozen typed targets under `targets/` for:
+
+- `not-needed-single`
+- `health-canada-text-representation`
+- `valve-temporal-status`
+
+These targets explicitly use `semantic_family: unsupported`. Do not retag them as a supported family to obtain a favorable CAL verdict. The purpose is to exercise canonical B intake and the fail-closed CAL → C2 → Decision path truthfully.
+
+For `declared-all-of`, do not invent a root-level all_of aggregation. The current canonical CAL surface consumes one exact Contract B claim at a time. Preserve the decomposition/child boundary and report where execution legitimately stops or fans out.
 
 ## Pair comparison
 
