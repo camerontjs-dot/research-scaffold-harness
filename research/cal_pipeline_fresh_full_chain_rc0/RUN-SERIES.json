@@ -2,7 +2,7 @@
   "schema": "cal-pipeline-fresh-full-chain-rc0",
   "series_id": "CAL-FULL-CHAIN-RC0-20260917",
   "classification": "research_qualification_only",
-  "objective": "Exercise three fresh Contract-A-valid cases through the frozen CAL Pipeline and test provenance instrumentation as a non-interfering sidecar by paired control/instrumented execution.",
+  "objective": "Exercise three fresh single-proposition Contract-A-valid cases end-to-end through the frozen CAL Pipeline, retain one declared/all_of case as a decomposition-boundary probe, and test provenance instrumentation as a non-interfering sidecar by paired control/instrumented execution.",
   "output_root_relative_to_mainframe": "20_live/cal-pipeline/cal-v1-studies/full-chain-rc0",
   "authority": {
     "gate_v1": {
@@ -73,7 +73,9 @@
       "expected_gate_state": "NOT_NEEDED",
       "expected_contract_a": true,
       "expected_decomposition_state": "not_decomposed",
-      "source_representation": "text/plain; charset=utf-8"
+      "source_representation": "text/plain; charset=utf-8",
+      "target": "targets/not-needed-single.json",
+      "role": "fresh_single_proposition_full_chain"
     },
     {
       "case_id": "declared-all-of",
@@ -82,7 +84,9 @@
       "expected_contract_a": true,
       "expected_decomposition_state": "declared",
       "expected_operator": "all_of",
-      "source_representation": "text/plain; charset=utf-8"
+      "source_representation": "text/plain; charset=utf-8",
+      "role": "decomposition_boundary_probe",
+      "note": "Gate/A/EB front half is expected to run. Current canonical CAL run-bundle consumes one typed Contract B claim at a time; do not synthesize an unqualified root all_of aggregator. Preserve the child-claim boundary and report the exact stopping point."
     },
     {
       "case_id": "health-canada-text-representation",
@@ -91,13 +95,26 @@
       "expected_contract_a": true,
       "expected_decomposition_state": "not_decomposed",
       "source_representation": "text/plain; charset=utf-8",
-      "note": "Successor representation case. The prior text/html failure remains frozen separately and is not reinterpreted."
+      "note": "Successor representation case. The prior text/html failure remains frozen separately and is not reinterpreted.",
+      "target": "targets/health-canada-text-representation.json",
+      "role": "fresh_single_proposition_full_chain"
+    },
+    {
+      "case_id": "valve-temporal-status",
+      "packet": "cases/valve-temporal-status.json",
+      "target": "targets/valve-temporal-status.json",
+      "role": "fresh_single_proposition_full_chain",
+      "expected_gate_state": "NOT_NEEDED",
+      "expected_contract_a": true,
+      "expected_decomposition_state": "not_decomposed",
+      "source_representation": "text/plain; charset=utf-8"
     }
   ],
   "pass_conditions": [
-    "All three Gate outputs match the preregistered authoring state and emit Contract A.",
-    "All three emitted Contract A objects validate under exact released Contract A 2.0.0 authority.",
-    "All three exact Contract A objects are accepted by frozen EB V1 and produce native package + Contract B 1.2.",
+    "The three cases marked fresh_single_proposition_full_chain have exact frozen CAL typed-target files bound to their root Contract B claim text; their semantic family is explicitly unsupported so CAL may legitimately return UNSUPPORTED_SEMANTIC_FAMILY while still exercising the canonical B intake.",
+    "All four Gate outputs match the preregistered authoring state and emit Contract A.",
+    "All four emitted Contract A objects validate under exact released Contract A 2.0.0 authority.",
+    "All four exact Contract A objects are accepted by frozen EB V1 and produce native package + Contract B 1.2.",
     "Control and instrumented runs use identical causal inputs, compatibility carrier, component identities, and policies.",
     "For every stage that executes in both modes, authoritative/native outputs are byte-identical across control and instrumented runs unless a documented run-local non-semantic field is the sole difference.",
     "Instrumented runs preserve every required artifact and produce candidate manifest roots without self-authorizing them.",
@@ -117,6 +134,7 @@
     "No CAL semantic-accuracy claim.",
     "No Decision correctness claim.",
     "No Authorization or production-readiness claim.",
-    "No Gate V1.0.0 publication permission; PR #50 separately falsifies general released Contract A producer conformance for unsupported media representations."
+    "No Gate V1.0.0 publication permission; PR #50 separately falsifies general released Contract A producer conformance for unsupported media representations.",
+    "The declared/all_of boundary probe does not claim that current CAL/C2/Decision implements root-level all_of aggregation."
   ]
 }
