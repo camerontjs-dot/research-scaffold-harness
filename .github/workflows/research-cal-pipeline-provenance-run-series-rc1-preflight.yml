@@ -1,0 +1,130 @@
+name: Research - CAL Provenance RC1 Package Preflight
+
+on:
+  push:
+    branches:
+      - research/cal-pipeline-provenance-run-series-rc1-20260917
+    paths:
+      - "research/cal_pipeline_provenance_run_series_rc1/**"
+      - ".github/workflows/research-cal-pipeline-provenance-run-series-rc1-preflight.yml"
+  workflow_dispatch:
+
+jobs:
+  package-preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact series branch
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install verifier dependency
+        run: python -m pip install 'jsonschema==4.25.1'
+
+      - name: Compile helpers and parse frozen JSON
+        run: |
+          python -m py_compile \
+            research/cal_pipeline_provenance_run_series_rc1/materialize_benchmark_gate_packet.py \
+            research/cal_pipeline_provenance_run_series_rc1/provenance_support.py \
+            research/cal_pipeline_provenance_run_series_rc1/verify_provenance_package.py \
+            research/cal_pipeline_provenance_run_series_rc1/pack_tree.py
+          python -m json.tool research/cal_pipeline_provenance_run_series_rc1/RUN-SERIES.json >/dev/null
+          python -m json.tool research/cal_pipeline_provenance_run_series_rc1/cases/health-canada-ozempic-001.json >/dev/null
+
+      - name: Checkout exact frozen Evidence Bundler subject
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/evidence-bundler
+          ref: 4e1f6fe00e7c350b28f52bfea14f1f8988847884
+          path: _eb
+          fetch-depth: 1
+
+      - name: Materialize all benchmark Gate packets from the exact frozen corpus
+        run: |
+          python research/cal_pipeline_provenance_run_series_rc1/materialize_benchmark_gate_packet.py \
+            rimebridge-simple-support --evidence-bundler-root _eb --out /tmp/rimebridge.json
+          python research/cal_pipeline_provenance_run_series_rc1/materialize_benchmark_gate_packet.py \
+            amberbraid-temporal-supersession --evidence-bundler-root _eb --out /tmp/amberbraid.json
+          python research/cal_pipeline_provenance_run_series_rc1/materialize_benchmark_gate_packet.py \
+            wick-missing-decisive --evidence-bundler-root _eb --out /tmp/wick.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          expected = {
+              "/tmp/rimebridge.json": 58,
+              "/tmp/amberbraid.json": 60,
+              "/tmp/wick.json": 59,
+          }
+          for path, count in expected.items():
+              obj = json.loads(Path(path).read_text())
+              assert len(obj["request"]["sources"]) == count, (path, len(obj["request"]["sources"]))
+          PY
+
+      - name: Checkout exact provenance schema authority
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/apparatus-contracts
+          ref: 1a5929295e735e351320cbd8c966dc43afed2859
+          path: _contracts
+          fetch-depth: 1
+
+      - name: Exercise candidate sealing mechanics
+        run: |
+          cat >/tmp/attestation.draft.json <<'JSON'
+          {
+            "attestation_schema": "cal-pipeline-apparatus-attestation-v1-candidate",
+            "stage": {"id": "preflight", "kind": "other"},
+            "producer": {
+              "system_id": "research-scaffold-harness",
+              "implementation": {
+                "kind": "git",
+                "repository": "camerontjs-dot/research-scaffold-harness",
+                "commit_sha": "0000000000000000000000000000000000000000"
+              }
+            },
+            "run": {"run_id": "preflight", "work_id": "preflight"},
+            "inputs": [],
+            "authorities": [],
+            "configuration": {"identities": []},
+            "operation": {"name": "package-preflight", "version": "rc1"},
+            "outputs": [],
+            "execution": {"state": "completed", "reason_code": null}
+          }
+          JSON
+          python research/cal_pipeline_provenance_run_series_rc1/provenance_support.py seal-attestation \
+            --apparatus-contracts-root _contracts /tmp/attestation.draft.json /tmp/attestation.json
+          python research/cal_pipeline_provenance_run_series_rc1/provenance_support.py validate \
+            --apparatus-contracts-root _contracts --kind attestation /tmp/attestation.json
+
+          cat >/tmp/manifest.draft.json <<'JSON'
+          {
+            "manifest_schema": "cal-pipeline-run-manifest-v1-candidate",
+            "run_id": "preflight",
+            "work_id": "preflight",
+            "root_inputs": [],
+            "artifacts": [],
+            "stages": [],
+            "authorities": [],
+            "reconstruction": {
+              "required_artifact_ids": [],
+              "status": "not_evaluated",
+              "missing_or_unresolved": [],
+              "notes": ["mechanics-only preflight; this manifest is not an authority root"]
+            }
+          }
+          JSON
+          python research/cal_pipeline_provenance_run_series_rc1/provenance_support.py seal-manifest \
+            --apparatus-contracts-root _contracts /tmp/manifest.draft.json /tmp/manifest.json
+          python research/cal_pipeline_provenance_run_series_rc1/provenance_support.py validate \
+            --apparatus-contracts-root _contracts --kind manifest /tmp/manifest.json
+
+      - name: Check deterministic tree snapshot bytes
+        run: |
+          mkdir -p /tmp/tree/sub
+          printf 'alpha\n' >/tmp/tree/a.txt
+          printf 'beta\n' >/tmp/tree/sub/b.txt
+          python research/cal_pipeline_provenance_run_series_rc1/pack_tree.py /tmp/tree /tmp/tree-a.zip
+          python research/cal_pipeline_provenance_run_series_rc1/pack_tree.py /tmp/tree /tmp/tree-b.zip
+          cmp /tmp/tree-a.zip /tmp/tree-b.zip
