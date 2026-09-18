@@ -1,0 +1,162 @@
+name: Research - CAL Fresh Full Chain RC0 Preflight
+
+on:
+  push:
+    branches:
+      - research/cal-pipeline-fresh-full-chain-rc0-20260917
+    paths:
+      - "research/cal_pipeline_fresh_full_chain_rc0/**"
+      - ".github/workflows/research-cal-fresh-full-chain-rc0-preflight.yml"
+  workflow_dispatch:
+
+jobs:
+  front-half-preflight:
+    runs-on: ubuntu-latest
+    env:
+      GATE_SHA: c0da10e2e3b9aada5f66af9859cf27964fd3c5fc
+      CONTRACT_A_SHA: 529c92b49a34d5c610618551a8737f019f9fa332
+      EB_SHA: 4e1f6fe00e7c350b28f52bfea14f1f8988847884
+    steps:
+      - name: Checkout series package
+        uses: actions/checkout@v4
+
+      - name: Checkout exact Gate V1.0.0
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/proposition-authoring
+          ref: ${{ env.GATE_SHA }}
+          path: gate
+          fetch-depth: 1
+
+      - name: Checkout released Contract A validator
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/apparatus-contracts
+          ref: ${{ env.CONTRACT_A_SHA }}
+          path: contracts
+          fetch-depth: 1
+
+      - name: Checkout exact Evidence Bundler
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/evidence-bundler
+          ref: ${{ env.EB_SHA }}
+          path: eb
+          fetch-depth: 1
+
+      - name: Verify exact authorities
+        run: |
+          test "$(git -C gate rev-parse HEAD)" = "$GATE_SHA"
+          test "$(git -C contracts rev-parse HEAD)" = "$CONTRACT_A_SHA"
+          test "$(git -C eb rev-parse HEAD)" = "$EB_SHA"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install frozen subjects
+        run: |
+          python gate/scripts/fetch_frozen_predecessors.py
+          python -m pip install -e 'gate[dev]'
+          python -m pip install -e 'eb[dev]'
+
+      - name: Run Gate + released Contract A + EB preflight
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import subprocess
+          from pathlib import Path
+
+          root = Path.cwd()
+          cases = [
+              ("not-needed-single", "research/cal_pipeline_fresh_full_chain_rc0/cases/not-needed.json", "NOT_NEEDED", "not_decomposed"),
+              ("declared-all-of", "research/cal_pipeline_fresh_full_chain_rc0/cases/declared.json", "DECLARED", "declared"),
+              ("health-canada-text-representation", "research/cal_pipeline_fresh_full_chain_rc0/cases/health-canada-text.json", "NOT_NEEDED", "not_decomposed"),
+          ]
+          summaries = []
+
+          for case_id, packet_rel, expected_state, expected_decomp in cases:
+              case_root = Path("/tmp/full-chain-preflight") / case_id
+              gate_out = case_root / "gate"
+              eb_out = case_root / "eb"
+              case_root.mkdir(parents=True, exist_ok=True)
+
+              subprocess.run(
+                  [
+                      "python",
+                      str(root / "gate/scripts/run_gate_v1_rc3.py"),
+                      str(root / packet_rel),
+                      "--out-dir",
+                      str(gate_out),
+                      "--implementation-identity",
+                      os.environ["GATE_SHA"],
+                  ],
+                  check=True,
+                  cwd=root / "gate",
+              )
+
+              claim = json.loads((gate_out / "CLAIM-GATE.json").read_text())
+              contract_a = json.loads((gate_out / "CONTRACT-A.json").read_text())
+              assert claim["authoring"]["state"] == expected_state, (case_id, claim["authoring"])
+              assert claim["contract_a_binding"]["state"] == "present", case_id
+              assert contract_a["decomposition"]["state"] == expected_decomp, (case_id, contract_a["decomposition"])
+
+              validator = """
+import json, sys
+from validators.contract_a import validate_candidate
+obj=json.loads(open(sys.argv[1], encoding='utf-8').read())
+validate_candidate(obj)
+print('CONTRACT_A_OK')
+"""
+              env = dict(os.environ)
+              env["PYTHONPATH"] = str(root / "contracts")
+              subprocess.run(
+                  ["python", "-c", validator, str(gate_out / "CONTRACT-A.json")],
+                  check=True,
+                  env=env,
+                  cwd=root,
+              )
+
+              subprocess.run(
+                  [
+                      "python",
+                      str(root / "eb/scripts/run_v1_integration_candidate.py"),
+                      str(gate_out / "CONTRACT-A.json"),
+                      "--compatibility-carrier",
+                      str(root / "eb/research/eb_v1_integration_candidate/contract_b_compatibility_carrier.json"),
+                      "--out-dir",
+                      str(eb_out),
+                  ],
+                  check=True,
+                  cwd=root / "eb",
+              )
+
+              native = json.loads((eb_out / "native_eb_v1_package.json").read_text())
+              projection = json.loads((eb_out / "projection_receipt.json").read_text())
+              contract_b_dir = eb_out / "contract_b"
+              assert contract_b_dir.is_dir() and any(contract_b_dir.iterdir()), case_id
+
+              summaries.append(
+                  {
+                      "case_id": case_id,
+                      "gate_state": claim["authoring"]["state"],
+                      "contract_a_handoff_sha256": contract_a["handoff_sha256"],
+                      "contract_a_external_validation": "PASS",
+                      "eb_package_sha256": native["package_sha256"],
+                      "contract_b_bundle_hash": projection["bundle_hash"],
+                      "projection_receipt_sha256": projection["receipt_sha256"],
+                  }
+              )
+
+          out = Path("/tmp/full-chain-preflight/PREFLIGHT-SUMMARY.json")
+          out.write_text(json.dumps({"cases": summaries}, indent=2, sort_keys=True) + "\n")
+          print(out.read_text())
+          PY
+
+      - name: Freeze preflight outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: cal-fresh-full-chain-rc0-preflight
+          path: /tmp/full-chain-preflight/
+          if-no-files-found: error
