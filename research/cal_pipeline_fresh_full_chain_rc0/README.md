@@ -4,7 +4,7 @@ Status: prepared research run series. No merge, release, promotion, Authorizatio
 
 ## Question
 
-Can three known-authorable, released-Contract-A-valid cases traverse the frozen CAL Pipeline through Decision, and does already-qualified provenance instrumentation leave authoritative/native pipeline outputs unchanged?
+Can three known-authorable, released-Contract-A-valid single propositions traverse the frozen CAL Pipeline through Decision, while a fourth declared/all_of case exposes the current decomposition boundary, and does already-qualified provenance instrumentation leave authoritative/native pipeline outputs unchanged?
 
 This series separates two questions:
 
@@ -47,9 +47,19 @@ Successor representation of the Health Canada case. The consumed source represen
 
 The earlier `text/html` failure remains frozen separately in Proposition Authoring Draft PR #50 and must not be reinterpreted.
 
+### valve-temporal-status
+
+Single-proposition successor of the qualified Gate representative fixture. Expected Gate state `NOT_NEEDED`, Contract A `not_decomposed`. The two supplied representations are explicit UTF-8 text representations valid under released Contract A 2.0.0.
+
+### declared-all-of
+
+This case remains in the series as a decomposition-boundary probe. Gate/A/EB are expected to run, but the canonical CAL `run-bundle` surface consumes one typed Contract B claim at a time and no separately qualified root-level `all_of` aggregator is being assumed here.
+
+Do not fabricate a root Decision by composing child results ad hoc. Preserve the exact child-claim boundary if that is where the current pipeline stops.
+
 ## Paired execution
 
-For each case:
+For each case marked as a fresh single-proposition full-chain run:
 
 ### A. Control
 
@@ -73,7 +83,7 @@ Provenance state must not feed back into Gate, EB, CAL, C2, or Decision.
 
 ## Equality burden
 
-Compare control vs instrumented:
+Compare control vs instrumented for each stage that actually executes:
 
 - Contract A;
 - EB native package;
@@ -168,3 +178,14 @@ Preserve the smallest true outcome. Do not repair a case inside the run series.
 ## Nonclaims
 
 This series does not establish retrieval recall, evidence completeness, CAL semantic accuracy, Decision correctness, Authorization, production readiness, or permission to publish Gate V1.0.0.
+
+
+## Frozen CAL targets
+
+The three single-proposition full-chain cases have exact typed target files under `targets/`.
+
+They deliberately use `semantic_family: unsupported` because these status-style claims are outside CAL V1's two deciding semantic families. This is not a shortcut around CAL. It is an explicit, typed fail-closed path through the canonical Contract B intake.
+
+A terminal `UNSUPPORTED_SEMANTIC_FAMILY` / `not_checkable` result is therefore a legitimate expected class for these cases and still exercises B → CAL → C2 → Decision mechanically.
+
+Do not change the target family merely to obtain SUPPORT/REFUTE.
