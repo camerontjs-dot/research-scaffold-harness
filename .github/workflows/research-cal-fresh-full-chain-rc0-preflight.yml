@@ -16,6 +16,7 @@ jobs:
       GATE_SHA: c0da10e2e3b9aada5f66af9859cf27964fd3c5fc
       CONTRACT_A_SHA: 529c92b49a34d5c610618551a8737f019f9fa332
       EB_SHA: 4e1f6fe00e7c350b28f52bfea14f1f8988847884
+      CAL_SHA: 8204417f478cfbd891499145a7edec5ee33405ad
     steps:
       - name: Checkout series package
         uses: actions/checkout@v4
@@ -44,11 +45,20 @@ jobs:
           path: eb
           fetch-depth: 1
 
+      - name: Checkout exact CAL consumer
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/claim-audit-lab
+          ref: ${{ env.CAL_SHA }}
+          path: cal
+          fetch-depth: 1
+
       - name: Verify exact authorities
         run: |
           test "$(git -C gate rev-parse HEAD)" = "$GATE_SHA"
           test "$(git -C contracts rev-parse HEAD)" = "$CONTRACT_A_SHA"
           test "$(git -C eb rev-parse HEAD)" = "$EB_SHA"
+          test "$(git -C cal rev-parse HEAD)" = "$CAL_SHA"
 
       - uses: actions/setup-python@v5
         with:
@@ -67,6 +77,7 @@ jobs:
           test "$ok" = "1"
           python -m pip install -e 'gate[dev]'
           python -m pip install -e 'eb[dev]'
+          python -m pip install -e 'cal[dev]'
 
       - name: Run Gate + released Contract A + EB preflight
         run: |
@@ -140,6 +151,25 @@ jobs:
               contract_b_dir = eb_out / "contract_b"
               assert contract_b_dir.is_dir() and any(contract_b_dir.iterdir()), case_id
 
+              target_rel = {
+                  "not-needed-single": "research/cal_pipeline_fresh_full_chain_rc0/targets/not-needed-single.json",
+                  "health-canada-text-representation": "research/cal_pipeline_fresh_full_chain_rc0/targets/health-canada-text-representation.json",
+                  "valve-temporal-status": "research/cal_pipeline_fresh_full_chain_rc0/targets/valve-temporal-status.json",
+              }.get(case_id)
+              target_validation = "not_applicable_decomposition_probe"
+              if target_rel is not None:
+                  subprocess.run(
+                      [
+                          "claim-audit-v1",
+                          "validate-bundle",
+                          str(contract_b_dir),
+                          str(root / target_rel),
+                      ],
+                      check=True,
+                      cwd=root / "cal",
+                  )
+                  target_validation = "PASS"
+
               summaries.append(
                   {
                       "case_id": case_id,
@@ -149,6 +179,7 @@ jobs:
                       "eb_package_sha256": native["package_sha256"],
                       "contract_b_bundle_hash": projection["bundle_hash"],
                       "projection_receipt_sha256": projection["receipt_sha256"],
+                      "cal_target_validation": target_validation,
                   }
               )
 
