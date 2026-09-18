@@ -119,6 +119,7 @@ jobs:
           python -m pip install -e 'gate[dev]'
           python -m pip install -e 'eb[dev]'
           python -m pip install -e 'cal[dev]'
+          python -m pip install 'rfc8785==0.1.4'
 
       - name: Run Gate + released Contract A + EB preflight
         run: |
