@@ -87,7 +87,8 @@ jobs:
           repository: camerontjs-dot/apparatus-contracts
           ref: ${{ env.CONTRACT_D_SHA }}
           path: contract-d
-          fetch-depth: 1
+          fetch-depth: 0
+          fetch-tags: true
 
       - name: Verify exact authorities
         run: |
