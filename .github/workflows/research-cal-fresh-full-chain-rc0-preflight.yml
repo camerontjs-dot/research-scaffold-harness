@@ -17,6 +17,10 @@ jobs:
       CONTRACT_A_SHA: 529c92b49a34d5c610618551a8737f019f9fa332
       EB_SHA: 4e1f6fe00e7c350b28f52bfea14f1f8988847884
       CAL_SHA: 8204417f478cfbd891499145a7edec5ee33405ad
+      C2_SHA: b42c827acb0a9fe65353354d709add0e27bab307
+      RESOLVER_SHA: 1d33e0612befcf8016816197c90c062373796df9
+      DECISION_SHA: b1bcc33e2b5ef0707b8cbf7dd8e821b2d34d1b55
+      CONTRACT_D_SHA: 298a1a0f7b7b6d7712e11200d04faec3e1ca169b
     steps:
       - name: Checkout series package
         uses: actions/checkout@v4
@@ -53,12 +57,48 @@ jobs:
           path: cal
           fetch-depth: 1
 
+      - name: Checkout exact Contract C2 authority
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/apparatus-contracts
+          ref: ${{ env.C2_SHA }}
+          path: c2
+          fetch-depth: 1
+
+      - name: Checkout exact resolver authority
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/apparatus-contracts
+          ref: ${{ env.RESOLVER_SHA }}
+          path: resolver
+          fetch-depth: 1
+
+      - name: Checkout exact Decision Engine
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/decision-engine
+          ref: ${{ env.DECISION_SHA }}
+          path: decision
+          fetch-depth: 1
+
+      - name: Checkout exact Contract D authority
+        uses: actions/checkout@v4
+        with:
+          repository: camerontjs-dot/apparatus-contracts
+          ref: ${{ env.CONTRACT_D_SHA }}
+          path: contract-d
+          fetch-depth: 1
+
       - name: Verify exact authorities
         run: |
           test "$(git -C gate rev-parse HEAD)" = "$GATE_SHA"
           test "$(git -C contracts rev-parse HEAD)" = "$CONTRACT_A_SHA"
           test "$(git -C eb rev-parse HEAD)" = "$EB_SHA"
           test "$(git -C cal rev-parse HEAD)" = "$CAL_SHA"
+          test "$(git -C c2 rev-parse HEAD)" = "$C2_SHA"
+          test "$(git -C resolver rev-parse HEAD)" = "$RESOLVER_SHA"
+          test "$(git -C decision rev-parse HEAD)" = "$DECISION_SHA"
+          test "$(git -C contract-d rev-parse HEAD)" = "$CONTRACT_D_SHA"
 
       - uses: actions/setup-python@v5
         with:
@@ -187,6 +227,43 @@ jobs:
           out.write_text(json.dumps({"cases": summaries}, indent=2, sort_keys=True) + "\n")
           print(out.read_text())
           PY
+
+      - name: Run CAL to C2 to Decision preflight for single-proposition cases
+        run: |
+          set -euo pipefail
+          for case_id in not-needed-single health-canada-text-representation valve-temporal-status; do
+            case_root="/tmp/full-chain-preflight/$case_id"
+            target="$GITHUB_WORKSPACE/research/cal_pipeline_fresh_full_chain_rc0/targets/$case_id.json"
+            python "$GITHUB_WORKSPACE/cal/scripts/run_cal_v1_bundle.py" \
+              "$case_root/eb/contract_b" \
+              "$target" \
+              --out-dir "$case_root/cal"
+
+            python "$GITHUB_WORKSPACE/research/cal_pipeline_fresh_full_chain_rc0/materialize_c2_from_cal.py" \
+              --bundle-dir "$case_root/eb/contract_b" \
+              --target "$target" \
+              --cal-result "$case_root/cal/result.json" \
+              --cal-root "$GITHUB_WORKSPACE/cal" \
+              --c2-root "$GITHUB_WORKSPACE/c2" \
+              --resolver-root "$GITHUB_WORKSPACE/resolver" \
+              --out "$case_root/contract-c2.json" \
+              --receipt "$case_root/c2-materialization-receipt.json"
+
+            python "$GITHUB_WORKSPACE/research/cal_pipeline_fresh_full_chain_rc0/prepare_decision_c2_inputs.py" \
+              "$case_root/contract-c2.json" \
+              --out-dir "$case_root/decision-input"
+
+            c2_sha="$(tr -d '\n' < "$case_root/decision-input/contract-c2-sha256.txt")"
+            node "$GITHUB_WORKSPACE/decision/scripts/decision-engine-evaluate-c2.mjs" \
+              --contract-c2 "$case_root/contract-c2.json" \
+              --contract-c2-sha256 "$c2_sha" \
+              --contract-c2-authority "$GITHUB_WORKSPACE/c2" \
+              --contract-d-authority "$GITHUB_WORKSPACE/contract-d" \
+              --expected-contract-b "$case_root/decision-input/expected-contract-b.json" \
+              --policy decision-engine.contract-c.supported-claim-verification@1.0.0 \
+              --context "$case_root/decision-input/decision-context.json" \
+              > "$case_root/contract-d.json"
+          done
 
       - name: Snapshot preflight outputs
         run: |
