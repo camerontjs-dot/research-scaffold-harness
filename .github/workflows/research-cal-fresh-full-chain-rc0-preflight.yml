@@ -81,6 +81,7 @@ jobs:
               ("not-needed-single", "research/cal_pipeline_fresh_full_chain_rc0/cases/not-needed.json", "NOT_NEEDED", "not_decomposed"),
               ("declared-all-of", "research/cal_pipeline_fresh_full_chain_rc0/cases/declared.json", "DECLARED", "declared"),
               ("health-canada-text-representation", "research/cal_pipeline_fresh_full_chain_rc0/cases/health-canada-text.json", "NOT_NEEDED", "not_decomposed"),
+              ("valve-temporal-status", "research/cal_pipeline_fresh_full_chain_rc0/cases/valve-temporal-status.json", "NOT_NEEDED", "not_decomposed"),
           ]
           summaries = []
 
