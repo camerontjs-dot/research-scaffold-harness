@@ -1,0 +1,57 @@
+{
+  "request": {
+    "handoff_id": "full-chain-rc0-valve-temporal-status",
+    "producer_id": "cal-pipeline-full-chain-rc0",
+    "producer_version": "2026-09-17",
+    "work_id": "full-chain-rc0-valve-temporal-status",
+    "root_id": "gates-v1-representative-claim",
+    "root_text": "Valve Cerulean was inactive in 2025.",
+    "sources": [
+      {
+        "source_id": "source-regulator-001",
+        "media_type": "text/plain; charset=utf-8",
+        "content": "Official inspection record. Valve Cerulean was inactive in 2025."
+      },
+      {
+        "source_id": "source-data-002",
+        "media_type": "text/plain; charset=utf-8",
+        "content": "{\"valve\":\"Cerulean\",\"year\":2025,\"status\":\"inactive\"}"
+      }
+    ]
+  },
+  "evidence_task": {
+    "verification_world": "closed",
+    "corpus_scope": "Two frozen textual representations adapted from the qualified Gate V1 representative fixture.",
+    "completeness_state": "partial",
+    "known_gaps_state": "declared_some",
+    "known_gaps": [
+      "no 2026 source supplied"
+    ]
+  },
+  "source_metadata": [
+    {
+      "source_id": "source-regulator-001",
+      "origin_type": "official_document",
+      "issuer": "Agency A",
+      "source_role": "regulator_primary",
+      "source_authority_basis": "Frozen official-inspection fixture representation.",
+      "document_type": "inspection_record",
+      "evidence_form": "document_text",
+      "temporal_coverage": "2025",
+      "jurisdictional_coverage": "Canada",
+      "version": "4",
+      "currency_state": "current_as_fixture"
+    },
+    {
+      "source_id": "source-data-002",
+      "origin_type": "user_supplied",
+      "source_role": "measurement_record",
+      "source_authority_basis": "Frozen structured-export fixture represented as UTF-8 text.",
+      "document_type": "structured_export",
+      "evidence_form": "database_record",
+      "temporal_coverage": "2025",
+      "version": "fixture-v1",
+      "currency_state": "current_as_fixture"
+    }
+  ]
+}
