@@ -21,12 +21,15 @@ Do not update component commits, tune retrieval, invent admissions, repair CAL o
 
 ## Required cases
 
+Full-chain paired execution:
+
 - `not-needed-single`
-- `declared-all-of`
 - `health-canada-text-representation`
 - `valve-temporal-status`
 
-Also run `declared-all-of` as the prepared decomposition-boundary probe.
+Separate decomposition-boundary probe:
+
+- `declared-all-of`
 
 Use only the frozen packets in `cases/`.
 
@@ -57,6 +60,15 @@ Use the exact frozen typed targets under `targets/` for:
 These targets explicitly use `semantic_family: unsupported`. Do not retag them as a supported family to obtain a favorable CAL verdict. The purpose is to exercise canonical B intake and the fail-closed CAL → C2 → Decision path truthfully.
 
 For `declared-all-of`, do not invent a root-level all_of aggregation. The current canonical CAL surface consumes one exact Contract B claim at a time. Preserve the decomposition/child boundary and report where execution legitimately stops or fans out.
+
+## Back-half helpers
+
+Use the prepared public helpers rather than reconstructing an older private adapter:
+
+- `materialize_c2_from_cal.py` for exact saved-CAL-result → validated C2 materialization;
+- `prepare_decision_c2_inputs.py` plus Decision Engine's maintained `scripts/decision-engine-evaluate-c2.mjs` for exact C2 → canonical Contract D.
+
+The C2 helper must reproduce the saved CAL result byte-for-byte before materialization. Preserve any mismatch as a terminal failure.
 
 ## Pair comparison
 
@@ -96,6 +108,10 @@ Stop successful instrumented cases at:
 `20_live/cal-pipeline/cal-v1-studies/full-chain-rc0/`
 
 Keep control and instrumented outputs separate under each case.
+
+## Private RC1 alias observation
+
+After the paired execution is frozen, inspect the private RC1 overall provenance receipt and report the exact four metadata-alias rows plus the one authority-alias row. Do not normalize or modify the candidate provenance schemas in this task.
 
 ## Report back
 

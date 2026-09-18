@@ -134,7 +134,7 @@
     "No CAL semantic-accuracy claim.",
     "No Decision correctness claim.",
     "No Authorization or production-readiness claim.",
-    "No Gate V1.0.0 publication permission; PR #50 separately falsifies general released Contract A producer conformance for unsupported media representations.",
+    "Immutable Gate V1.0.0 is not modified or reinterpreted by this series; its post-release Contract A producer-conformance defect remains tracked separately in proposition-authoring issue #52 and Draft PR #50.",
     "The declared/all_of boundary probe does not claim that current CAL/C2/Decision implements root-level all_of aggregation."
   ]
 }

@@ -37,10 +37,6 @@ Important pins:
 
 Known Gate fixture lineage. Expected Gate state `NOT_NEEDED`, Contract A `not_decomposed`.
 
-### declared-all-of
-
-Known Gate fixture lineage. Expected Gate state `DECLARED`, Contract A `declared/all_of`.
-
 ### health-canada-text-representation
 
 Successor representation of the Health Canada case. The consumed source representation is explicitly `text/plain; charset=utf-8`, which is valid under released Contract A 2.0.0.
@@ -177,8 +173,7 @@ Preserve the smallest true outcome. Do not repair a case inside the run series.
 
 ## Nonclaims
 
-This series does not establish retrieval recall, evidence completeness, CAL semantic accuracy, Decision correctness, Authorization, production readiness, or permission to publish Gate V1.0.0.
-
+This series does not establish retrieval recall, evidence completeness, CAL semantic accuracy, Decision correctness, Authorization, or production readiness. It does not modify or reinterpret immutable Gate V1.0.0; the post-release Contract A producer-conformance defect remains tracked in proposition-authoring issue #52 and Draft PR #50.
 
 ## Frozen CAL targets
 
