@@ -102,13 +102,7 @@ jobs:
               assert claim["contract_a_binding"]["state"] == "present", case_id
               assert contract_a["decomposition"]["state"] == expected_decomp, (case_id, contract_a["decomposition"])
 
-              validator = """
-import json, sys
-from validators.contract_a import validate_candidate
-obj=json.loads(open(sys.argv[1], encoding='utf-8').read())
-validate_candidate(obj)
-print('CONTRACT_A_OK')
-"""
+              validator = "import json,sys; from validators.contract_a import validate_candidate; obj=json.loads(open(sys.argv[1], encoding='utf-8').read()); validate_candidate(obj); print('CONTRACT_A_OK')"
               env = dict(os.environ)
               env["PYTHONPATH"] = str(root / "contracts")
               subprocess.run(
