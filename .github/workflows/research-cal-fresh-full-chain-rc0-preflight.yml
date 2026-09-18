@@ -267,6 +267,78 @@ jobs:
               > "$case_root/contract-d.json"
           done
 
+      - name: Summarize exact full-chain preflight
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          root = Path("/tmp/full-chain-preflight")
+          front = json.loads((root / "PREFLIGHT-SUMMARY.json").read_text())
+          by_case = {row["case_id"]: row for row in front["cases"]}
+
+          def digest(path: Path) -> str:
+              return "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest()
+
+          full_chain = []
+          for case_id in (
+              "not-needed-single",
+              "health-canada-text-representation",
+              "valve-temporal-status",
+          ):
+              case_root = root / case_id
+              cal = json.loads((case_root / "cal/result.json").read_text())
+              c2 = json.loads((case_root / "contract-c2.json").read_text())
+              d = json.loads((case_root / "contract-d.json").read_text())
+              c2_receipt = json.loads(
+                  (case_root / "c2-materialization-receipt.json").read_text()
+              )
+              full_chain.append(
+                  {
+                      **by_case[case_id],
+                      "cal_result_sha256": digest(case_root / "cal/result.json"),
+                      "cal_conclusion": cal["result"]["conclusion"],
+                      "cal_failure_code": cal["result"]["failure_code"],
+                      "cal_saved_byte_identity_reproduced_for_c2": c2_receipt[
+                          "saved_cal_result_byte_identity_reproduced"
+                      ],
+                      "contract_c2_sha256": digest(case_root / "contract-c2.json"),
+                      "contract_c2_result_set_id": c2["result_set_id"],
+                      "contract_c2_terminal": c2["propositions"][0]["terminal"],
+                      "contract_d_sha256": digest(case_root / "contract-d.json"),
+                      "contract_d_evaluation": d["evaluation"],
+                      "contract_d_reason_codes": d.get("metadata", {}).get(
+                          "reason_codes", []
+                      ),
+                      "authorization_executed": False,
+                  }
+              )
+
+          result = {
+              "schema": "cal-fresh-full-chain-rc0-preflight-summary-v1",
+              "full_chain_cases": full_chain,
+              "decomposition_boundary_probe": {
+                  **by_case["declared-all-of"],
+                  "downstream_execution": "not_performed_in_hosted_preflight",
+                  "reason": (
+                      "canonical CAL run-bundle consumes one typed Contract B claim "
+                      "at a time; no root-level all_of aggregator is assumed"
+                  ),
+              },
+              "nonclaims": [
+                  "no retrieval-recall claim",
+                  "no CAL semantic-accuracy claim",
+                  "no Decision correctness claim",
+                  "no Authorization or automatic action",
+                  "no production promotion or release permission",
+              ],
+          }
+          out = root / "FULL-CHAIN-PREFLIGHT-SUMMARY.json"
+          out.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+          print(out.read_text(), end="")
+          PY
+
       - name: Snapshot preflight outputs
         run: |
           python research/cal_pipeline_provenance_run_series_rc1/pack_tree.py \
@@ -280,4 +352,5 @@ jobs:
           path: |
             /tmp/cal-fresh-full-chain-rc0-preflight.zip
             /tmp/full-chain-preflight/PREFLIGHT-SUMMARY.json
+            /tmp/full-chain-preflight/FULL-CHAIN-PREFLIGHT-SUMMARY.json
           if-no-files-found: error
