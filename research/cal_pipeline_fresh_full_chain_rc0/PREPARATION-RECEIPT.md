@@ -102,7 +102,7 @@ Hosted downstream execution was intentionally not performed. Current canonical C
 
 ## Preserved apparatus deviations
 
-The preparation lineage preserves three non-scientific failures rather than erasing them:
+The preparation lineage preserves five non-scientific failures rather than erasing them:
 
 1. initial workflow YAML orchestration error before case execution;
 2. transient frozen-predecessor HTTPS bootstrap reset;

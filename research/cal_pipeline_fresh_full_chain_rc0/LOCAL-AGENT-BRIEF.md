@@ -4,7 +4,7 @@ Execute the prepared run series in:
 
 `research/cal_pipeline_fresh_full_chain_rc0/`
 
-Read `RUN-SERIES.json` and `README.md` first.
+Read `RUN-SERIES.json`, `README.md`, and `PREPARATION-RECEIPT.md` first.
 
 ## Goal
 
