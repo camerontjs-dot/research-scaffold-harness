@@ -1,0 +1,140 @@
+{
+  "schema": "cal-pipeline-fresh-full-chain-rc0",
+  "series_id": "CAL-FULL-CHAIN-RC0-20260917",
+  "classification": "research_qualification_only",
+  "objective": "Exercise three fresh single-proposition Contract-A-valid cases end-to-end through the frozen CAL Pipeline, retain one declared/all_of case as a decomposition-boundary probe, and test provenance instrumentation as a non-interfering sidecar by paired control/instrumented execution.",
+  "output_root_relative_to_mainframe": "20_live/cal-pipeline/cal-v1-studies/full-chain-rc0",
+  "authority": {
+    "gate_v1": {
+      "repository": "camerontjs-dot/proposition-authoring",
+      "commit": "c0da10e2e3b9aada5f66af9859cf27964fd3c5fc",
+      "version": "1.0.0",
+      "note": "Frozen downstream compatibility tree. Use only prepared Contract-A-valid source representations in this series."
+    },
+    "contract_a": {
+      "repository": "camerontjs-dot/apparatus-contracts",
+      "version": "2.0.0",
+      "release_lock": "529c92b49a34d5c610618551a8737f019f9fa332"
+    },
+    "evidence_bundler": {
+      "repository": "camerontjs-dot/evidence-bundler",
+      "commit": "4e1f6fe00e7c350b28f52bfea14f1f8988847884",
+      "profile": "eb-v1-integration-10x3-rc0",
+      "config_sha256": "sha256:5b10d0c29794e80d6876a99e26bcf6ec6a27a4c5165aee78054a6bc32759f4bc",
+      "admission": "none; omit --admission so retained candidates remain needs-review"
+    },
+    "contract_b": {
+      "repository": "camerontjs-dot/apparatus-contracts",
+      "version": "1.2.0",
+      "production_lock": "c314e53bd91c0736aa4370a364673b069aceb43e"
+    },
+    "cal": {
+      "repository": "camerontjs-dot/claim-audit-lab",
+      "c2_authority_commit": "8204417f478cfbd891499145a7edec5ee33405ad",
+      "semantic_implementation": "847cc970642bb648dc994b929c2053b5c9d4648c"
+    },
+    "contract_c2": {
+      "repository": "camerontjs-dot/apparatus-contracts",
+      "authority_commit": "b42c827acb0a9fe65353354d709add0e27bab307",
+      "policy_resolver_commit": "1d33e0612befcf8016816197c90c062373796df9"
+    },
+    "decision_engine": {
+      "repository": "camerontjs-dot/decision-engine",
+      "commit": "b1bcc33e2b5ef0707b8cbf7dd8e821b2d34d1b55"
+    },
+    "contract_d": {
+      "repository": "camerontjs-dot/apparatus-contracts",
+      "version": "1.0.0",
+      "authority_commit": "298a1a0f7b7b6d7712e11200d04faec3e1ca169b"
+    },
+    "provenance": {
+      "schema_commit": "1a5929295e735e351320cbd8c966dc43afed2859",
+      "qualification_disposition": "SUPPORTED_PROVENANCE_RECONSTRUCTION_V1_RC1",
+      "terminal_research_head": "faf4714bb03854975abad063dac5bd106f9ba02f"
+    }
+  },
+  "paired_execution": {
+    "control": "Run exact pipeline without generating provenance attestations or RunManifest sidecars.",
+    "instrumented": "Repeat from the exact same frozen input packet and component/config identities, adding only already-qualified provenance sidecars/retention.",
+    "equality_requirement": [
+      "Contract A bytes",
+      "Evidence Bundler native package bytes",
+      "Contract B bundle bytes/tree",
+      "CAL native result bytes",
+      "Contract C2 bytes",
+      "Contract D bytes"
+    ],
+    "comparison_rule": "Require byte identity where the frozen apparatus is deterministic. If a non-semantic wrapper receipt differs only by output path/run-local metadata, preserve and classify that difference rather than weakening semantic equality."
+  },
+  "cases": [
+    {
+      "case_id": "not-needed-single",
+      "packet": "cases/not-needed.json",
+      "expected_gate_state": "NOT_NEEDED",
+      "expected_contract_a": true,
+      "expected_decomposition_state": "not_decomposed",
+      "source_representation": "text/plain; charset=utf-8",
+      "target": "targets/not-needed-single.json",
+      "role": "fresh_single_proposition_full_chain"
+    },
+    {
+      "case_id": "declared-all-of",
+      "packet": "cases/declared.json",
+      "expected_gate_state": "DECLARED",
+      "expected_contract_a": true,
+      "expected_decomposition_state": "declared",
+      "expected_operator": "all_of",
+      "source_representation": "text/plain; charset=utf-8",
+      "role": "decomposition_boundary_probe",
+      "note": "Gate/A/EB front half is expected to run. Current canonical CAL run-bundle consumes one typed Contract B claim at a time; do not synthesize an unqualified root all_of aggregator. Preserve the child-claim boundary and report the exact stopping point."
+    },
+    {
+      "case_id": "health-canada-text-representation",
+      "packet": "cases/health-canada-text.json",
+      "expected_gate_state": "NOT_NEEDED",
+      "expected_contract_a": true,
+      "expected_decomposition_state": "not_decomposed",
+      "source_representation": "text/plain; charset=utf-8",
+      "note": "Successor representation case. The prior text/html failure remains frozen separately and is not reinterpreted.",
+      "target": "targets/health-canada-text-representation.json",
+      "role": "fresh_single_proposition_full_chain"
+    },
+    {
+      "case_id": "valve-temporal-status",
+      "packet": "cases/valve-temporal-status.json",
+      "target": "targets/valve-temporal-status.json",
+      "role": "fresh_single_proposition_full_chain",
+      "expected_gate_state": "NOT_NEEDED",
+      "expected_contract_a": true,
+      "expected_decomposition_state": "not_decomposed",
+      "source_representation": "text/plain; charset=utf-8"
+    }
+  ],
+  "pass_conditions": [
+    "The three cases marked fresh_single_proposition_full_chain have exact frozen CAL typed-target files bound to their root Contract B claim text; their semantic family is explicitly unsupported so CAL may legitimately return UNSUPPORTED_SEMANTIC_FAMILY while still exercising the canonical B intake.",
+    "All four Gate outputs match the preregistered authoring state and emit Contract A.",
+    "All four emitted Contract A objects validate under exact released Contract A 2.0.0 authority.",
+    "All four exact Contract A objects are accepted by frozen EB V1 and produce native package + Contract B 1.2.",
+    "Control and instrumented runs use identical causal inputs, compatibility carrier, component identities, and policies.",
+    "For every stage that executes in both modes, authoritative/native outputs are byte-identical across control and instrumented runs unless a documented run-local non-semantic field is the sole difference.",
+    "Instrumented runs preserve every required artifact and produce candidate manifest roots without self-authorizing them.",
+    "Failures, abstentions, not_checkable, HOLD, and downstream non-execution remain exact if observed."
+  ],
+  "terminal_states": [
+    "READY_FOR_INDEPENDENT_ROOT_FREEZE",
+    "BLOCKED_AT_GATE",
+    "BLOCKED_AT_CONTRACT_A_CONFORMANCE",
+    "BLOCKED_AT_EB",
+    "BLOCKED_AT_CAL_C2_AUTHORITY",
+    "FAILED_PROVENANCE_NONINTERFERENCE",
+    "FAILED_PIPELINE"
+  ],
+  "nonclaims": [
+    "No retrieval-recall claim.",
+    "No CAL semantic-accuracy claim.",
+    "No Decision correctness claim.",
+    "No Authorization or production-readiness claim.",
+    "Immutable Gate V1.0.0 is not modified or reinterpreted by this series; its post-release Contract A producer-conformance defect remains tracked separately in proposition-authoring issue #52 and Draft PR #50.",
+    "The declared/all_of boundary probe does not claim that current CAL/C2/Decision implements root-level all_of aggregation."
+  ]
+}

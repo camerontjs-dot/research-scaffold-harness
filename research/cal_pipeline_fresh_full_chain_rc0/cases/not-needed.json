@@ -1,0 +1,37 @@
+{
+  "request": {
+    "handoff_id": "full-chain-rc0-not-needed",
+    "producer_id": "cal-pipeline-full-chain-rc0",
+    "producer_version": "2026-09-17",
+    "work_id": "full-chain-rc0-not-needed",
+    "root_id": "cg-smoke-not-needed-001",
+    "root_text": "Valve Cerulean was inactive.",
+    "sources": [
+      {
+        "source_id": "cg-smoke-not-needed-source",
+        "media_type": "text/plain; charset=utf-8",
+        "content": "Inspection record: Valve Cerulean was inactive."
+      }
+    ]
+  },
+  "evidence_task": {
+    "verification_world": "closed",
+    "corpus_scope": "One frozen synthetic text representation carried by the qualified ClaimGate fixture.",
+    "completeness_state": "complete_for_declared_frozen_subset",
+    "known_gaps_state": "declared_none",
+    "known_gaps": []
+  },
+  "source_metadata": [
+    {
+      "source_id": "cg-smoke-not-needed-source",
+      "origin_type": "user_supplied",
+      "issuer": "synthetic fixture",
+      "source_role": "frozen_qualification_source",
+      "source_authority_basis": "Frozen source representation supplied for bounded full-chain qualification.",
+      "document_type": "text_document",
+      "evidence_form": "document_text",
+      "version": "fixture-v1",
+      "currency_state": "current_as_fixture"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "claim_id": "gates-v1-representative-claim",
+  "proposition": {
+    "proposition_id": "gates-v1-representative-claim",
+    "text_sha256": "bb187e9e03847bef7cee4d82eaec048a79c218f548c3d067908bc3f12b076b45",
+    "semantic_family": "unsupported",
+    "fields": {}
+  }
+}

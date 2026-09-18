@@ -1,0 +1,63 @@
+{
+  "request": {
+    "handoff_id": "full-chain-rc0-health-canada-text-representation",
+    "producer_id": "cal-pipeline-full-chain-rc0",
+    "producer_version": "2026-09-17",
+    "work_id": "health-canada-dpd-ozempic-02562618-text-representation",
+    "root_id": "claim-ozempic-02562618-approved-canada",
+    "root_text": "Ozempic DIN 02562618 is approved in Canada.",
+    "sources": [
+      {
+        "source_id": "hc-dpd-product-106547",
+        "media_type": "text/plain; charset=utf-8",
+        "content": "Health Canada Drug Product Database product information. Current status: Approved. Current status date: 2025-11-04. Product name: OZEMPIC. DIN: 02562618. Company: NOVO NORDISK CANADA INC. Class: Human. Route of administration: Subcutaneous. Active ingredient: SEMAGLUTIDE. Product monograph date: 2026-07-13."
+      },
+      {
+        "source_id": "hc-dpd-query-context",
+        "media_type": "text/plain; charset=utf-8",
+        "content": "Health Canada Drug Product Database online query. The database can be searched by drug identification number, company, status, product name, active ingredient, class, route of administration, dosage form and related product characteristics."
+      }
+    ]
+  },
+  "evidence_task": {
+    "verification_world": "closed",
+    "corpus_scope": "Two frozen textual representations of Health Canada Drug Product Database pages. This successor explicitly represents the consumed UTF-8 text as text/plain for Contract A conformance.",
+    "completeness_state": "partial",
+    "known_gaps_state": "declared_some",
+    "known_gaps": [
+      "The product monograph itself is not included.",
+      "Other Ozempic DIN records are not included."
+    ]
+  },
+  "source_metadata": [
+    {
+      "source_id": "hc-dpd-product-106547",
+      "origin_type": "official_database",
+      "locator_kind": "web_uri",
+      "locator_value": "https://health-products.canada.ca/dpd-bdpp/info?code=106547&lang=eng",
+      "issuer": "Health Canada",
+      "source_role": "official_regulatory_product_record",
+      "source_authority_basis": "Issued by Health Canada through the official Drug Product Database.",
+      "document_type": "database_record",
+      "evidence_form": "registry_entry",
+      "temporal_coverage": "current status date 2025-11-04; product monograph dated 2026-07-13",
+      "jurisdictional_coverage": "Canada",
+      "version": "retrieved 2026-09-17",
+      "currency_state": "current_as_retrieved"
+    },
+    {
+      "source_id": "hc-dpd-query-context",
+      "origin_type": "official_website",
+      "locator_kind": "web_uri",
+      "locator_value": "https://health-products.canada.ca/dpd-bdpp/",
+      "issuer": "Health Canada",
+      "source_role": "official_database_context",
+      "source_authority_basis": "Published by Health Canada as the official database interface.",
+      "document_type": "web_page",
+      "evidence_form": "document_text",
+      "jurisdictional_coverage": "Canada",
+      "version": "retrieved 2026-09-17",
+      "currency_state": "current_as_retrieved"
+    }
+  ]
+}
