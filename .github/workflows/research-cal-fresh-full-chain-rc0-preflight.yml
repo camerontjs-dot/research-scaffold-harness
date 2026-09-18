@@ -56,7 +56,15 @@ jobs:
 
       - name: Install frozen subjects
         run: |
-          python gate/scripts/fetch_frozen_predecessors.py
+          ok=0
+          for attempt in 1 2 3; do
+            if python gate/scripts/fetch_frozen_predecessors.py; then
+              ok=1
+              break
+            fi
+            sleep 5
+          done
+          test "$ok" = "1"
           python -m pip install -e 'gate[dev]'
           python -m pip install -e 'eb[dev]'
 
