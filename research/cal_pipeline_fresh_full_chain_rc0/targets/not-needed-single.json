@@ -1,0 +1,9 @@
+{
+  "claim_id": "cg-smoke-not-needed-001",
+  "proposition": {
+    "proposition_id": "cg-smoke-not-needed-001",
+    "text_sha256": "df3c6026df843227d3b5b3ddb6aa50160700783b9a9bbf661cac7cfca5d935b0",
+    "semantic_family": "unsupported",
+    "fields": {}
+  }
+}
