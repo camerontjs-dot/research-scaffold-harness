@@ -401,7 +401,7 @@ def main() -> None:
             actual_parent = consumed["recomposition"]["parent_conclusion"]
             expected_parent = result["parent"].conclusion.value
             accepted = (
-                consumed["whole_object_sha256"] == whole
+                consumed["result_set_id"] == outer["result_set_id"]
                 and actual_parent == expected_parent
             )
             error = None
