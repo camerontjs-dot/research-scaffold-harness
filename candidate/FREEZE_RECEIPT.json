@@ -1,0 +1,31 @@
+{
+  "aperture_starting_commit": "aab10774970c2f83af6f918396f9fa36d5d519b7",
+  "candidate_commit": "cc30821c15d8dd17301f8d8935feebe86e6ce0f4",
+  "candidate_blob_ids": {
+    "candidate/consumer.py": "662e94c4445d2be9034e786711429394f217c0a6",
+    "candidate/test_consumer.py": "50f3104650a946b834c3ff6415bafb347863e836"
+  },
+  "python_version": "Python 3.14.4",
+  "model_or_agent_identity": "UNKNOWN / PLATFORM-SELECTED",
+  "network_state": "OFF; no network calls or internet sources used",
+  "allowed_aperture_files_read": [
+    "research/contract_c_cal_v1_parent_consumer_aperture_rc1_20260919/AUTHORITIES.json",
+    "research/contract_c_cal_v1_parent_consumer_aperture_rc1_20260919/INNER_RC2_SPEC.md",
+    "research/contract_c_cal_v1_parent_consumer_aperture_rc1_20260919/MANIFEST.json",
+    "research/contract_c_cal_v1_parent_consumer_aperture_rc1_20260919/PARENT_BINDING_SPEC.md",
+    "research/contract_c_cal_v1_parent_consumer_aperture_rc1_20260919/PRE_FREEZE_TASK.md"
+  ],
+  "forbidden_inputs_read": [],
+  "prereveal_tests": {
+    "command": "python3 -m unittest discover -s candidate -p 'test_consumer.py' -v",
+    "passed": 21,
+    "failed": 0,
+    "errors": 0,
+    "result": "PASS"
+  },
+  "contamination_state": "CLEAN",
+  "contamination_record": "No contamination occurred; candidate/CONTAMINATION_RECORD.json was not needed.",
+  "post_freeze_material_seen": false,
+  "post_freeze_material_statement": "No real frozen CAL producer handoff, post-freeze evaluator, prior implementation, prior consumer, hidden expected output, or post-freeze result was seen.",
+  "terminal_pre_reveal_state": "FROZEN_CANDIDATE_READY_FOR_REVEAL"
+}
