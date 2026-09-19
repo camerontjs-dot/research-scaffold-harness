@@ -1,0 +1,17 @@
+{
+  "aperture_class": "contract-c-cal-v1-parent-binding-context-free-consumer-rc1",
+  "outer_profile": "contract-c-cal-v1-parent-recomposition-rc0",
+  "inner_profile": "contract-c-successor-candidate-a-rc2-research",
+  "apparatus_rc0_decisive_head": "7138f6c1599b9b8f8c655f85c9eba0c264fb3b26",
+  "apparatus_candidate_blob": "df6b6ed410f52cafaeadfe1578d770f480a34b09",
+  "cal_freeze_commit": "e24e405f5336ee024674f39dba97255bb58a2dd9",
+  "cal_semantic_source_commit": "7cf0d2e50562ec4ce4082d1e1c058a11025b1a48",
+  "cal_semantic_implementation_sha": "847cc970642bb648dc994b929c2053b5c9d4648c",
+  "policy_sha256": "44ecc33519fa8911079595d322f5f0decbf0389af42e153ac32214931798e42c",
+  "policy_resolver_commit_sha": "1d33e0612befcf8016816197c90c062373796df9",
+  "exact_contract_b_version_in_hidden_cohort": "1.2.0",
+  "native_cal_proposition_text_sha256_wire": "64_lowercase_hex_untagged",
+  "contract_a_and_outer_text_sha256_wire": "sha256_tagged_64_lowercase_hex",
+  "hidden_real_handoffs_revealed_pre_freeze": false,
+  "expected_whole_object_sha256": "SUPPLIED_PER_HIDDEN_HANDOFF_POST_FREEZE"
+}
