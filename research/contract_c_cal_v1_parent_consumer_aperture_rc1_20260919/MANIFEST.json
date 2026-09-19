@@ -1,0 +1,44 @@
+{
+  "aperture_class": "context-free-contract-c-cal-v1-parent-binding-consumer-pre-freeze-rc1",
+  "base_repository_main": "3ed53b13de18e16aa17e71a602218481bad4fc5e",
+  "source_science": {
+    "apparatus_pr": 118,
+    "decisive_head": "7138f6c1599b9b8f8c655f85c9eba0c264fb3b26",
+    "disposition": "SUPPORTED_FOR_INDEPENDENT_CONSUMER_APERTURE",
+    "candidate_blob": "df6b6ed410f52cafaeadfe1578d770f480a34b09"
+  },
+  "public_wire_boundary": {
+    "native_cal_proposition_text_sha256": "64_lowercase_hex_untagged",
+    "contract_a_and_outer_text_sha256": "sha256_tagged_64_lowercase_hex",
+    "comparison_rule": "sha256_prefix_plus_native_equals_declared_tagged"
+  },
+  "files": {
+    "PRE_FREEZE_TASK.md": {
+      "git_blob": "b32fbd431c2dd476b0ff48ac4df4f89f17d5d71b"
+    },
+    "PARENT_BINDING_SPEC.md": {
+      "git_blob": "7ea50014439edc8e15acd6e6d467735a83bfd59c"
+    },
+    "INNER_RC2_SPEC.md": {
+      "git_blob": "dc2c6421d2b92649a66e781f4e748b7c551a4952"
+    },
+    "AUTHORITIES.json": {
+      "git_blob": "751e937a458b109f3a3378752bf169385a15de71"
+    }
+  },
+  "real_producer_handoffs_in_aperture": false,
+  "post_freeze_evaluator_in_aperture": false,
+  "producer_candidate_implementation_in_aperture": false,
+  "prior_consumer_implementation_in_aperture": false,
+  "prior_consumer_result_in_aperture": false,
+  "network_required": false,
+  "required_read_scope": "research/contract_c_cal_v1_parent_consumer_aperture_rc1_20260919/**",
+  "write_scope_after_fresh_execution_begins": [
+    "candidate/consumer.py",
+    "candidate/test_consumer.py",
+    "candidate/FREEZE_RECEIPT.json",
+    "candidate/CONTAMINATION_RECORD.json"
+  ],
+  "prepared_through_commit_before_manifest": "cf10ed248e276ad0188814b4f34273b77b88f48d",
+  "terminal_pre_freeze_marker": "APERTURE_RC1_FROZEN_READY_FOR_FRESH_CONSUMER"
+}
