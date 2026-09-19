@@ -1,0 +1,39 @@
+{
+  "aperture_class": "context-free-contract-c-cal-v1-parent-binding-consumer-pre-freeze",
+  "base_repository_main": "3ed53b13de18e16aa17e71a602218481bad4fc5e",
+  "source_science": {
+    "apparatus_pr": 118,
+    "decisive_head": "7138f6c1599b9b8f8c655f85c9eba0c264fb3b26",
+    "disposition": "SUPPORTED_FOR_INDEPENDENT_CONSUMER_APERTURE",
+    "candidate_blob": "df6b6ed410f52cafaeadfe1578d770f480a34b09"
+  },
+  "files": {
+    "PRE_FREEZE_TASK.md": {
+      "git_blob": "e2e44377966999bcb7706c685f80009d505904fe"
+    },
+    "PARENT_BINDING_SPEC.md": {
+      "git_blob": "b3ee9ec828edbb63abc65aed7117535f9ae5e5d4"
+    },
+    "INNER_RC2_SPEC.md": {
+      "git_blob": "f5faef13c62783dd125fc63e962369ceb563a7a7",
+      "provenance": "exact public RC2 clean-room spec previously frozen in aperture 07258b47477f8df4151b0ba531809e76a7c5641b"
+    },
+    "AUTHORITIES.json": {
+      "git_blob": "e6f49439e091d175223c263e8f58d88080fb5f28"
+    }
+  },
+  "real_producer_handoffs_in_aperture": false,
+  "post_freeze_evaluator_in_aperture": false,
+  "producer_candidate_implementation_in_aperture": false,
+  "prior_consumer_implementation_in_aperture": false,
+  "network_required": false,
+  "required_read_scope": "research/contract_c_cal_v1_parent_consumer_aperture_20260919/**",
+  "write_scope_after_fresh_execution_begins": [
+    "candidate/consumer.py",
+    "candidate/test_consumer.py",
+    "candidate/FREEZE_RECEIPT.json",
+    "candidate/CONTAMINATION_RECORD.json"
+  ],
+  "prepared_through_commit_before_manifest": "f0f61ac1384700e2a1d89c1b8cd2c608dfecf6ca",
+  "terminal_pre_freeze_marker": "APERTURE_FROZEN_READY_FOR_FRESH_CONSUMER"
+}
