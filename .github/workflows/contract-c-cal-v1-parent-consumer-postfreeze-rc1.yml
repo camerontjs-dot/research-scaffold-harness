@@ -3,11 +3,11 @@ name: Contract C CAL V1 parent consumer post-freeze comparison RC1
 on:
   push:
     branches:
-      - research/contract-c-cal-v1-parent-consumer-postfreeze-rc1-rc1-20260919
+      - research/contract-c-cal-v1-parent-consumer-postfreeze-rc1-20260919
   pull_request:
     paths:
       - "research/contract_c_cal_v1_parent_consumer_postfreeze_rc1_20260919/**"
-      - ".github/workflows/contract-c-cal-v1-parent-consumer-postfreeze-rc1-rc1.yml"
+      - ".github/workflows/contract-c-cal-v1-parent-consumer-postfreeze-rc1.yml"
   workflow_dispatch:
 
 permissions:
