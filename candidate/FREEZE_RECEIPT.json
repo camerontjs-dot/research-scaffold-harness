@@ -1,0 +1,44 @@
+{
+  "aperture_starting_commit": "52869e08f98ebaaf4acd31dd5955874f7fdaec81",
+  "candidate_commit": "49251b3f8ea19f600249e8189254d257ccd6aa3e",
+  "consumer_blob": "3d36881673575adafc42e9a0f9b2b7fae2d5bf9d",
+  "test_blob": "1b89b9536106fa66568953d3ff5f8e3e850027b2",
+  "python_version": "Python 3.14.4",
+  "model_agent_identity": "UNKNOWN / PLATFORM-SELECTED",
+  "network_state": "OFF",
+  "allowed_aperture_files_read": [
+    "research/contract_c_cal_v1_parent_consumer_aperture_20260919/AUTHORITIES.json",
+    "research/contract_c_cal_v1_parent_consumer_aperture_20260919/INNER_RC2_SPEC.md",
+    "research/contract_c_cal_v1_parent_consumer_aperture_20260919/MANIFEST.json",
+    "research/contract_c_cal_v1_parent_consumer_aperture_20260919/PARENT_BINDING_SPEC.md",
+    "research/contract_c_cal_v1_parent_consumer_aperture_20260919/PRE_FREEZE_TASK.md"
+  ],
+  "forbidden_inputs_read": [],
+  "prereveal_tests": {
+    "command": "PYTHONHASHSEED=0 python3 -B -m unittest discover -s candidate -p 'test_consumer.py' -v",
+    "result": "PASS",
+    "tests_run": 10,
+    "success_parent_subcases": 4,
+    "failures": 0,
+    "errors": 0,
+    "mutation_classes": [
+      "child-result identity",
+      "native-result bytes",
+      "child omission",
+      "sequence/order",
+      "root binding",
+      "receipt identity",
+      "parent conclusion",
+      "cross-run replay",
+      "coherent reseal",
+      "private-codec result IDs",
+      "inner RC2 substitution",
+      "external whole-object mismatch",
+      "destination-policy injection"
+    ]
+  },
+  "contamination_state": "NONE",
+  "terminal_pre_reveal_state": "FROZEN_CANDIDATE_READY_FOR_REVEAL",
+  "withheld_inputs_seen": false,
+  "statement": "No real frozen CAL producer handoff, post-freeze evaluator, prior implementation, prior consumer, hidden expected output, or post-freeze result was seen. STOP before reveal/comparison."
+}
