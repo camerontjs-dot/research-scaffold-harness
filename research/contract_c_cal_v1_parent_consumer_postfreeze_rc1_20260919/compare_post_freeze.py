@@ -136,7 +136,7 @@ def _decomposition_input(contract_a: dict[str, Any]) -> dict[str, Any]:
 
 def _authority(whole_object_sha256: str) -> dict[str, str]:
     return {
-        "profile": producer.candidate.PROFILE,
+        "profile": producer.rc2.PROFILE,
         "inner_profile": producer.rc2.PROFILE,
         "cal_freeze_commit": producer.candidate.CAL_FREEZE_COMMIT,
         "cal_semantic_source_commit": producer.candidate.CAL_SEMANTIC_SOURCE_COMMIT,
