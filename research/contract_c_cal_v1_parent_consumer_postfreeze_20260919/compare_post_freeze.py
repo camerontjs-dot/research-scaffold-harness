@@ -202,7 +202,16 @@ def _seal_outer(value: dict[str, Any]) -> bytes:
     unsealed = copy.deepcopy(value)
     unsealed.pop("result_set_id", None)
     sealed = producer.candidate.seal(unsealed)
-    return _raw_outer(sealed)
+    return (
+        json.dumps(
+            sealed,
+            sort_keys=True,
+            separators=(",", ":"),
+            ensure_ascii=False,
+            allow_nan=False,
+        )
+        + "\n"
+    ).encode("utf-8")
 
 
 def _reseal_inner_and_outer(value: dict[str, Any]) -> bytes:
